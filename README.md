@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save test
+npm install --save pay-theory-ui
 ```
 
 ## Usage
@@ -15,8 +15,8 @@ npm install --save test
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'test'
-import 'test/dist/index.css'
+import MyComponent from 'pay-theory-ui'
+import 'pay-theory-ui/dist/index.css'
 
 class Example extends Component {
   render() {
@@ -27,4 +27,4 @@ class Example extends Component {
 
 ## License
 
-MIT © [austinzani](https://github.com/austinzani)
+MIT © [pay-theory](https://github.com/pay-theory)
