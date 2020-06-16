@@ -1,0 +1,26 @@
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import WebFont from 'webfontloader'
+
+const Font = (props) => {
+    const WebFontConfig = {
+        typekit: {
+            id: props.typekit
+        }
+    }
+    const [fontState, setFontState] = useState('font-init')
+    useEffect(() => {
+        ;(async () => {
+            WebFont.load(WebFontConfig)
+            setFontState('font-ready')
+        })()
+    }, [])
+
+    return <div className={fontState} />
+}
+
+Font.propTypes = {
+    typekit: PropTypes.string.isRequired
+}
+
+export default Font
