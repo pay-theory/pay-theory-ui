@@ -40,11 +40,7 @@ const DocumentationPortal = (props) => {
                 <GlobalStyle />
                 <BooksHooks.context.page.Provider value={props.paged}>
                     <div id='container'>
-                        <PortalHead
-                            logout={() => {
-                                logout()
-                            }}
-                        />
+                        <PortalHead logout={logout} />
                         <div className='body-container'>
                             <NavigationDrawer
                                 style={docsStyle}
