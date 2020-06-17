@@ -2,6 +2,7 @@ import React from 'react'
 import 'pay-theory-ui/dist/index.css'
 
 import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks }from 'pay-theory-ui';
+import { BrowserRouter as Router } from 'react-router-dom'
 
 export default function App(props) {
 
@@ -69,6 +70,7 @@ export default function App(props) {
 
   return (
     <div id="app">
+      <Router>
      <BooksHooks.context.menu.Provider value={pageMenu.menu}>
                 <GlobalStyle />
                 <BooksHooks.context.page.Provider value={paged}>
@@ -84,6 +86,7 @@ export default function App(props) {
                     </div>
                 </BooksHooks.context.page.Provider>
         </BooksHooks.context.menu.Provider>
+        </Router>
     </div>
   );
 }

@@ -13,7 +13,9 @@
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
     "react-scripts": "file:../node_modules/react-scripts",
-    "pay-theory-ui": "file:.."
+    "pay-theory-ui": "file:..",
+    "@auth0/auth0-spa-js": "file:../node_modules/@auth0/auth0-spa-js",
+    "react-router-dom": "file:../node_modules/react-router-dom"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"

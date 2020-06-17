@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const NavigationItem = (props) => {
-    const location = useLocation()
     const [className, setClassName] = useState('inactive')
 
     useEffect(() => {
-        if (location.pathname.indexOf(props.item.tag) >= 0) {
+        if (window.location.pathname.indexOf(props.item.tag) >= 0) {
             setClassName('active')
         } else {
             setClassName('inactive')
         }
-    }, [location.pathname, props.item.tag])
+    }, [window.location.pathname, props.item.tag])
 
     console.log('nav item', props)
     return (
