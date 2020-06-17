@@ -1,10 +1,10 @@
 // node modules
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { useAuth0 } from '../../../../src/Hooks/external/auth0'
+import { authHook } from '../../../'
 
 const Bouncer = (props) => {
-    const { isAuthenticated, loginWithRedirect, loading } = useAuth0()
+    const { isAuthenticated, loginWithRedirect, loading } = authHook.useAuth0()
     const [bouncer, setBouncer] = useState(
         <div data-testid='unauthenticated' />
     )

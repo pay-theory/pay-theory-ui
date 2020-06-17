@@ -5,7 +5,7 @@ import * as BooksHooks from '../../hooks'
 
 import { PortalHead, NavigationDrawer, GlobalStyle } from '../../common'
 import { Bouncer } from '../../common/auth'
-import { useAuth0 } from '../../hooks/external/auth0'
+import { authHook } from '../../'
 
 const DocumentationPortal = (props) => {
     const docsStyle = {
@@ -15,12 +15,12 @@ const DocumentationPortal = (props) => {
         hoverFontColor: '#6B7887'
     }
 
-    const { isAuthenticated, logout } = useAuth0()
-
     const pageMenu = props.generateMenu()
 
     const [bouncy, setBouncy] = useState(false)
     const [accounted, setAccounted] = useState(false)
+
+    const { isAuthenticated, logout } = authHook.useAuth0()
 
     useEffect(() => {
         setTimeout(() => {
