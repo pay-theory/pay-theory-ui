@@ -1407,6 +1407,15 @@ const menu = [
 
 export { menu }
 
+const menuStyle = {
+    background: '#F4F4F4',
+    hoverBackground: '#E8ECEF',
+    fontColor: '#A3B3C4',
+    hoverFontColor: '#6B7887'
+}
+
+export { menuStyle }
+
 const partner = {
     partner_name: 'Degbugging',
     partner_ip_range: ['99.47.253.73/32', '127.0.0.0/24'],

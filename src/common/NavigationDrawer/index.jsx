@@ -28,7 +28,11 @@ const NavigationDrawer = (props) => {
             {(menuItems) => {
                 console.log('menuItems', menuItems)
                 return (
-                    <div id='drawer' className='nav-drawer'>
+                    <div
+                        id='drawer'
+                        data-testid='nav-drawer'
+                        className='nav-drawer'
+                    >
                         <ul>
                             {/* Added so we could show a list header if we want on the nav bar */}
                             {props.listHead ? (
