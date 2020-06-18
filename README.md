@@ -1,4 +1,4 @@
-# test
+# pay-theory-ui
 
 > Made with create-react-library
 

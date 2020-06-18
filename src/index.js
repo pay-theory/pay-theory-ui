@@ -5,3 +5,5 @@ export * as authHook from './hooks/external/auth0'
 export * from './common'
 
 export * from './documentation'
+
+export * from './admin'
