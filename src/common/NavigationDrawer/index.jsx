@@ -237,8 +237,22 @@ const NavigationDrawer = (props) => {
 }
 
 NavigationDrawer.propTypes = {
-    style: PropTypes.object.isRequired,
+    style: PropTypes.shape({
+        background: PropTypes.string,
+        hoverBackground: PropTypes.string,
+        fontColor: PropTypes.string,
+        hoverFontColor: PropTypes.string
+    }),
     listHead: PropTypes.string
+}
+
+NavigationDrawer.defaultProps = {
+    style: {
+        background: '#160f3d',
+        hoverBackground: '#100a31',
+        fontColor: 'rgba(255, 255, 255, 0.5)',
+        hoverFontColor: '#fff'
+    }
 }
 
 export default NavigationDrawer
