@@ -2,7 +2,7 @@ import React from 'react'
 import { act } from 'react-dom/test-utils'
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent, wait } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 
 import { openModal, closeModal } from '../../common/ModalContent'
 import ModalSpinner from '../../common/ModalSpinner'
@@ -24,7 +24,7 @@ test('modal create account success', async () => {
     // await act(async () => {
     const createNewMember = jest.fn(() => Promise.resolve())
     const setStatusMessage = jest.fn()
-    const { getByText, queryByTestId } = render(
+    const { queryByTestId } = render(
         <div className='spinner-wrapper'>
             <div className='modal-wrapper'>
                 <div id='container' />
@@ -60,7 +60,7 @@ test('modal create account success', async () => {
         target: { value: 'title' }
     })
     fireEvent.submit(queryByTestId('create-account-form'))
-    await wait(() => queryByTestId('success-content'))
+    await waitFor(() => queryByTestId('success-content'))
 
     expect(createNewMember).toHaveBeenCalledTimes(1)
 
@@ -167,7 +167,7 @@ test('modal create account fail', async () => {
     const createNewMember = jest.fn(() => Promise.reject('failed'))
     const setStatusMessage = jest.fn()
     await act(async () => {
-        const { queryByTestId } = render(
+        const { queryByTestId, findByTestId } = render(
             <div className='spinner-wrapper'>
                 <div className='modal-wrapper'>
                     <div id='container' />
@@ -200,9 +200,9 @@ test('modal create account fail', async () => {
             target: { value: 'title' }
         })
         fireEvent.submit(queryByTestId('create-account-form'))
-        await wait(() => queryByTestId('error-content'))
+        findByTestId('error-content')
 
         expect(setStatusMessage).toHaveBeenCalledTimes(1)
-        await wait(() => queryByTestId('status-cleared'))
+        findByTestId('status-cleared')
     })
 })

@@ -3,7 +3,7 @@ import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent, waitForElement } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 
 import ReceiptReviewTable from './'
 import * as BooksHooks from '../../hooks'
@@ -12,7 +12,7 @@ import { receipt_excel, receipt_csv, classicDistrict } from '../../test-data'
 test('display receipt review preview table with content', async () => {
     const viewDetails = jest.fn()
     const onAccept = jest.fn()
-    const { queryByTestId, queryAllByTestId } = render(
+    const { queryByTestId, queryAllByTestId, findByTestId } = render(
         <BooksHooks.context.district.Provider value={classicDistrict}>
             <BooksHooks.context.receiptReview.Provider value={receipt_excel}>
                 <ReceiptReviewTable
@@ -25,7 +25,7 @@ test('display receipt review preview table with content', async () => {
             </BooksHooks.context.receiptReview.Provider>
         </BooksHooks.context.district.Provider>
     )
-    await waitForElement(() => queryByTestId('success-content'))
+    findByTestId('success-content')
     // await waitForElement(() => queryByTestId('status-cleared'))
 
     expect(queryByTestId('upload-button')).toBeInTheDocument()
@@ -80,7 +80,7 @@ test('display excel receipt review table with content', async () => {
 test('display receipt review table with invalid content', async () => {
     const viewDetails = jest.fn()
     const onAccept = jest.fn()
-    const { queryByTestId } = render(
+    const { findByTestId } = render(
         <BooksHooks.context.district.Provider value={classicDistrict}>
             <BooksHooks.context.receiptReview.Provider
                 // eslint-disable-next-line no-undef
@@ -96,6 +96,6 @@ test('display receipt review table with invalid content', async () => {
             </BooksHooks.context.receiptReview.Provider>
         </BooksHooks.context.district.Provider>
     )
-    await waitForElement(() => queryByTestId('error-content'))
+    findByTestId('error-content')
     // await waitForElement(() => queryByTestId('status-cleared'))
 })

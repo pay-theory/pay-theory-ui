@@ -11,7 +11,11 @@ const AccountOverview = (props) => {
         <BooksHooks.context.roles.Consumer>
             {(roles) => {
                 const roleOptions = roles.map((role) => {
-                    return <option value={role.UID}>{role.role_title}</option>
+                    return (
+                        <option key={role.UID} value={role.UID}>
+                            {role.role_title}
+                        </option>
+                    )
                 })
                 return (
                     <BooksHooks.context.member.Consumer>

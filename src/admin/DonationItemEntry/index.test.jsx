@@ -2,7 +2,7 @@ import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent, waitForElement } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 
 import DonationItemEntry from './'
 import * as BooksHooks from '../../hooks'
@@ -10,7 +10,7 @@ import { classicDistrict, checkout, paymentItem } from '../../test-data'
 
 test('display indefinite donation item entry with custom amount and no quick pay', async () => {
     const changePayment = jest.fn()
-    const { queryByTestId } = render(
+    const { queryByTestId, findByTestId } = render(
         <BooksHooks.context.checkout.Provider value={checkout}>
             <BooksHooks.context.district.Provider value={classicDistrict}>
                 <BooksHooks.context.paymentItem.Provider value={paymentItem}>
@@ -23,7 +23,7 @@ test('display indefinite donation item entry with custom amount and no quick pay
         target: { value: 'invalid' }
     })
 
-    await waitForElement(() => queryByTestId('warning-content'))
+    findByTestId('warning-content')
     // await waitForElement(() => queryByTestId('status-cleared'))
     expect(changePayment).toHaveBeenCalledTimes(0)
 

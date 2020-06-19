@@ -2,7 +2,7 @@ import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent, wait } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 
 import PartnerInfoTab from './'
 import ModalSpinner from '../../common/ModalSpinner'
@@ -57,7 +57,7 @@ test('partner tab - generate api key', async () => {
     const setStatusMessage = jest.fn()
     const ipRemovalCallback = jest.fn()
     const savePartner = jest.fn(() => Promise.resolve())
-    const { queryByTestId } = render(
+    const { queryByTestId, findByTestId } = render(
         <div className='spinner-wrapper'>
             <div className='modal-wrapper'>
                 <div id='container'>
@@ -77,7 +77,7 @@ test('partner tab - generate api key', async () => {
     )
 
     fireEvent.click(queryByTestId('generate-partner-apikey'))
-    await wait(() => queryByTestId('success-content'))
+    findByTestId('success-content')
     expect(savePartner).toHaveBeenCalledTimes(1)
 })
 
@@ -86,7 +86,7 @@ test('partner tab - add valid ip address', async () => {
     const setStatusMessage = jest.fn()
     const ipRemovalCallback = jest.fn()
     const savePartner = jest.fn(() => Promise.resolve())
-    const { queryByTestId } = render(
+    const { queryByTestId, findByTestId } = render(
         <div className='spinner-wrapper'>
             <div className='modal-wrapper'>
                 <div id='container'>
@@ -111,7 +111,7 @@ test('partner tab - add valid ip address', async () => {
 
     fireEvent.blur(queryByTestId('partner_ip'))
     fireEvent.click(queryByTestId('add-partner-ip'))
-    await wait(() => queryByTestId('success-content'))
+    findByTestId('success-content')
     expect(addIp).toHaveBeenCalledTimes(1)
 })
 
@@ -132,7 +132,7 @@ test('partner tab - add invalid ip address', async () => {
     const setStatusMessage = jest.fn()
     const ipRemovalCallback = jest.fn()
     const savePartner = jest.fn(() => Promise.resolve())
-    const { queryByTestId } = render(
+    const { queryByTestId, findByTestId } = render(
         <div className='spinner-wrapper'>
             <div className='modal-wrapper'>
                 <div id='container'>
@@ -157,6 +157,6 @@ test('partner tab - add invalid ip address', async () => {
     fireEvent.blur(queryByTestId('partner_ip'))
 
     fireEvent.click(queryByTestId('add-partner-ip'))
-    await wait(() => queryByTestId('error-content'))
+    findByTestId('error-content')
     expect(addIp).toHaveBeenCalledTimes(0)
 })
