@@ -21,7 +21,11 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jest-environment-jsdom-sixteen",
     "test:watch": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "predeploy-package": "npm version prepatch && git push",
+    "deploy-alpha": "npm publish --tag alpha",
+    "deploy-beta": "npm publish --tag beta",
+    "deploy-release": "npm publish"
   },
   "peerDependencies": {
     "react": "^16.0.0"
