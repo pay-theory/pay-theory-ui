@@ -13,7 +13,7 @@ import DonationItemEntry from './DonationItemEntry'
 import ModalCreateAccount from './ModalCreateAccount'
 import ModalCreateDistrict from './ModalCreateDistrict'
 import ModalCreatePartner from './ModalCreatePartner'
-import ModalCreatePaymentitem from './ModalCreatePaymentItem'
+import ModalCreatePaymentItem from './ModalCreatePaymentItem'
 import ModalCreateRole from './ModalCreateRole'
 import ModalReceiptTransactions from './ModalReceiptTransactions'
 import PartnerInfoTab from './PartnerInfoTab'
@@ -49,7 +49,7 @@ export {
     ModalCreateAccount,
     ModalCreateDistrict,
     ModalCreatePartner,
-    ModalCreatePaymentitem,
+    ModalCreatePaymentItem,
     ModalCreateRole,
     ModalReceiptTransactions,
     PartnerInfoTab,

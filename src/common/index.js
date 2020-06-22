@@ -38,6 +38,8 @@ import {
     FormLoginEmail,
     LogoHeader
 } from './auth'
+import Font from './Font'
+import { PaymentItem } from './Model'
 
 export {
     BodyHead,
@@ -79,5 +81,7 @@ export {
     FormLoginAlternative,
     FormLoginCode,
     FormLoginEmail,
-    LogoHeader
+    LogoHeader,
+    Font,
+    PaymentItem
 }
