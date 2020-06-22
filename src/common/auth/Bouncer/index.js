@@ -1,10 +1,8 @@
 // node modules
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { authHook } from '../../../pt-hooks'
 
 const Bouncer = (props) => {
-    const { isAuthenticated, loginWithRedirect, loading } = authHook.useAuth0()
     const [bouncer, setBouncer] = useState(
         <div data-testid='unauthenticated' />
     )
@@ -23,19 +21,25 @@ const Bouncer = (props) => {
             if (isAuthenticated) {
                 setBouncer(<div data-testid='authenticated' />)
             } else {
-                props.onUnauthenticated
-                    ? props.onUnauthenticated()
-                    : loginWithRedirect()
+                props.onUnauthenticated()
             }
         }
-    }, [loading, isAuthenticated, props.bouncy, init])
+    }, [
+        props.loading,
+        props.isAuthenticated,
+        props.onUnauthenticated,
+        props.bouncy,
+        init
+    ])
 
     return bouncer
 }
 
 Bouncer.propTypes = {
     bouncy: PropTypes.bool.isRequired,
-    onUnauthenticated: PropTypes.func
+    loading: PropTypes.bool.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    onUnauthenticated: PropTypes.func.isRequired
 }
 
 Bouncer.timeout = 2500
