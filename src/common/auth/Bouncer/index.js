@@ -9,16 +9,16 @@ const Bouncer = (props) => {
     const [init, setInit] = useState(true)
 
     useEffect(() => {
-        if (!loading && props.bouncy && init) {
+        if (!props.loading && props.bouncy && init) {
             console.log(
                 'bouncing',
-                isAuthenticated,
-                loading,
+                props.isAuthenticated,
+                props.loading,
                 props.bouncy,
                 init
             )
             setInit(false)
-            if (isAuthenticated) {
+            if (props.isAuthenticated) {
                 setBouncer(<div data-testid='authenticated' />)
             } else {
                 props.onUnauthenticated()
