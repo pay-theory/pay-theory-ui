@@ -42,7 +42,16 @@ const AdminPortal = (props) => {
                             <NavigationDrawer />
                             <div className='body-content'>{props.children}</div>
                         </div>
-                        <Bouncer bouncy={bouncy} />
+                        <Bouncer
+                            bouncy={bouncy}
+                            onUnauthenticated={
+                                props.onUnauthenticated
+                                    ? props.onUnauthenticated
+                                    : () => {
+                                          console.log('no longer authenticated')
+                                      }
+                            }
+                        />
                     </div>
                 </BooksHooks.context.page.Provider>
             </BooksHooks.context.account.Provider>
@@ -52,7 +61,8 @@ const AdminPortal = (props) => {
 
 AdminPortal.propTypes = {
     generateMenu: PropTypes.func.isRequired,
-    paged: PropTypes.object.isRequired
+    paged: PropTypes.object.isRequired,
+    onUnauthenticated: PropTypes.func
 }
 
 export default AdminPortal
