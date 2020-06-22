@@ -1,4 +1,4 @@
-import * from './pt-hooks'
+export * from './pt-hooks'
 
 export * from './common'
 
