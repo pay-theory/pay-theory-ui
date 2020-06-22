@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { render } from '@testing-library/react'
 
-import SubsectionHead from './'
+import SubsectionHead from '.'
 import * as BooksHooks from '../../hooks'
 import { parent, page } from '../../test-data'
 

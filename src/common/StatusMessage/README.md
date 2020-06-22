@@ -1,6 +1,6 @@
-# ModalContent
+# StatusMessage
 
-A UI component that allows for a pop up Modal with a header and whatever children components are input.
+A UI component that generates messages components for Error, Warning, and Success responses.
 
 ## Hooks
 

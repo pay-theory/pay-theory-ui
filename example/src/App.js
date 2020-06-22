@@ -1,7 +1,7 @@
 import React from 'react'
 import 'pay-theory-ui/dist/index.css'
 
-import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, BodyHead, NotFound }from 'pay-theory-ui';
+import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, BodyHead, AccountOverviewCard }from 'pay-theory-ui';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default function App(props) {
@@ -80,7 +80,7 @@ export default function App(props) {
                             />
                             <div className='body-content'>
                               <BodyHead />
-                              <NotFound />
+                              <AccountOverviewCard />
                             </div>
                         </div>
                     </div>

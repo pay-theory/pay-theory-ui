@@ -12,6 +12,7 @@ import ModalSpinner, { openSpinner, closeSpinner } from './ModalSpinner'
 import NavigationDrawer from './NavigationDrawer'
 import NotFound from './NotFound'
 import PortalHead from './PortalHead'
+import SubsectionHead from './SubsectionHead'
 import {
     ErrorMessage,
     WarningMessage,
@@ -57,6 +58,7 @@ export {
     NavigationDrawer,
     NotFound,
     PortalHead,
+    SubsectionHead,
     ErrorMessage,
     WarningMessage,
     SuccessMessage,
