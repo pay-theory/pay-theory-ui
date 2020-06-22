@@ -1,4 +1,4 @@
-# BooksComponents.CardRow
+# CardRow
 
 A UI element for displaying a wrapping, centered row of content.
 

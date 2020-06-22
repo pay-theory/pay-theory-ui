@@ -1,4 +1,4 @@
-# BooksComponents.ClickToCopyText
+# ClickToCopyText
 
 A TextEntry that provides click to copy behavior.
 
@@ -8,10 +8,15 @@ A TextEntry that provides click to copy behavior.
 
 ## Props
 
+### Required
+
 * label: PropTypes.string.isRequired
   * the label for the text entry 
 * name: PropTypes.string.isRequired
   * the name for the text entry to be referenced in code
+
+### Optional
+
 * value: PropTypes.string
   * the value for the text entry
 * message: PropTypes.string

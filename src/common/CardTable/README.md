@@ -1,4 +1,4 @@
-# BooksComponents.CardTable
+# CardTable
 
 A UI element for displaying a column of content (generally CardRows).
 

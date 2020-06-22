@@ -1,4 +1,4 @@
-# BooksComponents.DynamicList
+# DynamicList
 
 A UI element for displaying a variable list of items.
 

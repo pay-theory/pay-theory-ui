@@ -1,7 +1,7 @@
 import React from 'react'
 import 'pay-theory-ui/dist/index.css'
 
-import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks }from 'pay-theory-ui';
+import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, BodyHead, NotFound }from 'pay-theory-ui';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default function App(props) {
@@ -53,18 +53,16 @@ export default function App(props) {
       ]
     };
   };
+  
 
-  const docsStyle = {
-    background: '#F4F4F4',
-    hoverBackground: '#E8ECEF',
-    fontColor: '#A3B3C4',
-    hoverFontColor: '#6B7887'
-}
+ 
 
   const paged = {
     title: "Pay Theory UI",
     subtitle: "UI Playground"
   };
+
+  
 
   const pageMenu = generateDocumentationMenu();
 
@@ -78,10 +76,12 @@ export default function App(props) {
                         <PortalHead />
                         <div className='body-container'>
                             <NavigationDrawer
-                                style={docsStyle}
                                 listHead={pageMenu.listHead}
                             />
-                            <div className='body-content'>{props.children}</div>
+                            <div className='body-content'>
+                              <BodyHead />
+                              <NotFound />
+                            </div>
                         </div>
                     </div>
                 </BooksHooks.context.page.Provider>

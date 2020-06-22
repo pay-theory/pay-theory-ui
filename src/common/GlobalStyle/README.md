@@ -1,4 +1,4 @@
-# BooksComponents.GlobalStyle
+# GlobalStyle
 
 A UI element for importing global pay theory styles.
 

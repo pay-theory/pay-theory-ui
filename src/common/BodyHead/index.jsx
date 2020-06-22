@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BodyTitle, BodySubtitle } from './sub'
+import { BodyTitle, BodySubtitle } from './children'
 
 const BodyHead = () => {
     return (

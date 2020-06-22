@@ -1,6 +1,6 @@
-# BooksComponents.FormHead
+# FormHead
 
-A UI element for displaying a heading for a pay theory form.
+A UI element for displaying a heading for a Pay Theory form.
 
 ## Hooks
 
