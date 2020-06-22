@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SubsectionParent, SubsectionSubtitle } from './sub'
+import { SubsectionParent, SubsectionSubtitle } from './children'
 
 const SubsectionHead = (props) => {
     return (

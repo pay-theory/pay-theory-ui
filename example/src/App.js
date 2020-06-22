@@ -1,7 +1,7 @@
 import React from 'react'
 import 'pay-theory-ui/dist/index.css'
 
-import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, BodyHead, AccountOverviewCard }from 'pay-theory-ui';
+import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, TabMenu }from 'pay-theory-ui';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default function App(props) {
@@ -62,6 +62,23 @@ export default function App(props) {
     subtitle: "UI Playground"
   };
 
+  const parent = { parent: 'test-parent', route: '/test' }
+
+  const tabArray = [
+    {
+      id: "test",
+      action: () => {},
+      active: "active-tab",
+      label: "test"
+    },
+    {
+      id: "test2",
+      action: () => {},
+      active: "",
+      label: "test 2"
+    }
+  ]
+
   
 
   const pageMenu = generateDocumentationMenu();
@@ -69,6 +86,7 @@ export default function App(props) {
   return (
     <div id="app">
       <Router>
+        <BooksHooks.context.parent.Provider value={parent}>
      <BooksHooks.context.menu.Provider value={pageMenu.menu}>
                 <GlobalStyle />
                 <BooksHooks.context.page.Provider value={paged}>
@@ -79,13 +97,13 @@ export default function App(props) {
                                 listHead={pageMenu.listHead}
                             />
                             <div className='body-content'>
-                              <BodyHead />
-                              <AccountOverviewCard />
+                              <TabMenu items={tabArray}/>
                             </div>
                         </div>
                     </div>
                 </BooksHooks.context.page.Provider>
         </BooksHooks.context.menu.Provider>
+        </BooksHooks.context.parent.Provider>
         </Router>
     </div>
   );

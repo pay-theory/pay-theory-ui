@@ -5,7 +5,7 @@ import * as BooksHooks from '../../hooks'
 
 import { PortalHead, NavigationDrawer, GlobalStyle } from '../../common'
 import { Bouncer } from '../../common/auth'
-import { authHook } from '../../'
+import { useAuth0 } from '../../hooks/external/auth0'
 
 const DocumentationPortal = (props) => {
     const docsStyle = {
@@ -20,7 +20,7 @@ const DocumentationPortal = (props) => {
     const [bouncy, setBouncy] = useState(false)
     const [accounted, setAccounted] = useState(false)
 
-    const { isAuthenticated, logout } = authHook.useAuth0()
+    const { isAuthenticated, logout } = useAuth0()
 
     useEffect(() => {
         setTimeout(() => {
