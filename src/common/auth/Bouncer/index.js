@@ -1,7 +1,7 @@
 // node modules
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { authHook } from '../../../'
+import { authHook } from '../../../hooks'
 
 const Bouncer = (props) => {
     const { isAuthenticated, loginWithRedirect, loading } = authHook.useAuth0()
