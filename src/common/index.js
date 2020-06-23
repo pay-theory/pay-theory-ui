@@ -50,7 +50,9 @@ import TabMenu from './TabMenu'
 import TabPage from './TabPage'
 import TextEntry from './TextEntry'
 import TextEntryCurrency from './TextEntryCurrency'
+import TextEntryDate from './TextEntryDate'
 import TextEntryPercentage from './TextEntryPercentage'
+import TextEntryPhone from './TextEntryPhone'
 
 import Unauthorized from './Unauthorized'
 import UtilityBar from './UtilityBar'
@@ -95,7 +97,9 @@ export {
     TabPage,
     TextEntry,
     TextEntryCurrency,
+    TextEntryDate,
     TextEntryPercentage,
+    TextEntryPhone,
     Unauthorized,
     UtilityBar
 }

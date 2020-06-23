@@ -6,20 +6,25 @@ import { TabMenu, InnerTable, CardTable } from '../../common'
 import SalesTab from '../SalesTab'
 
 const MENU_ITEMS = {
+    SUCCEEDED: {
+        menu: 'succeeded-payments-menu',
+        tab: 'succeeded-payments-tab',
+        table: 'succeeded-payments-table'
+    },
+    REFUNDED: {
+        menu: 'refunded-payments-menu',
+        tab: 'refunded-payments-tab',
+        table: 'refunded-payments-table'
+    },
+    UNCAPTURED: {
+        menu: 'uncaptured-payments-menu',
+        tab: 'uncaptured-payments-tab',
+        table: 'uncaptured-payments-table'
+    },
     ALL: {
-        menu: 'all-sales-menu',
-        tab: 'all-sales-tab',
-        table: 'all-sales-table'
-    },
-    DONATIONS: {
-        menu: 'donation-sales-menu',
-        tab: 'donation-sales-tab',
-        table: 'donation-sales-table'
-    },
-    INVOICES: {
-        menu: 'invoice-sales-menu',
-        tab: 'invoice-sales-tab',
-        table: 'invoice-sales-table'
+        menu: 'all-payments-menu',
+        tab: 'all-payments-tab',
+        table: 'all-payments-table'
     }
 }
 
@@ -32,8 +37,8 @@ const getStatusDate = (item) => {
         case 'paid':
             date = new Date(item.paid_on_date)
             break
-        case 'voided':
-            date = new Date(item.voided_on_date)
+        case 'refunded':
+            date = new Date(item.refunded_on_date)
             break
         default:
             date = new Date(item.validated_on_date)
@@ -79,43 +84,56 @@ const clearUnselected = (unselected) => {
 
 const changeTab = (selected) => {
     /* istanbul ignore next */
+    const remaining = { ...MENU_ITEMS }
     switch (selected) {
         case MENU_ITEMS.ALL:
-            clearUnselected([MENU_ITEMS.DONATIONS, MENU_ITEMS.INVOICES])
+            delete remaining.ALL
             break
-        case MENU_ITEMS.INVOICES:
-            clearUnselected([MENU_ITEMS.DONATIONS, MENU_ITEMS.ALL])
+        case MENU_ITEMS.UNCAPTURED:
+            delete remaining.UNCAPTURED
+            break
+        case MENU_ITEMS.REFUNDED:
+            delete remaining.REFUNDED
             break
         default:
-            clearUnselected([MENU_ITEMS.ALL, MENU_ITEMS.INVOICES])
+            delete remaining.SUCCEEDED
+            break
     }
+    console.log(remaining)
+    clearUnselected([...Object.values(remaining)])
     selectTab(selected)
 }
 
 const menuItems = [
     {
+        id: MENU_ITEMS.SUCCEEDED.menu,
+        label: 'Succeeded',
+        active: '',
+        action: () => changeTab(MENU_ITEMS.SUCCEEDED)
+    },
+    {
+        id: MENU_ITEMS.REFUNDED.menu,
+        label: 'Refunded',
+        active: '',
+        action: () => changeTab(MENU_ITEMS.REFUNDED)
+    },
+    {
+        id: MENU_ITEMS.UNCAPTURED.menu,
+        label: 'Uncaptured',
+        active: '',
+        action: () => changeTab(MENU_ITEMS.UNCAPTURED)
+    },
+    {
         id: MENU_ITEMS.ALL.menu,
-        label: 'All Sales',
+        label: 'All',
         active: 'active-tab',
         action: () => changeTab(MENU_ITEMS.ALL)
-    },
-    {
-        id: MENU_ITEMS.DONATIONS.menu,
-        label: 'Donations',
-        active: '',
-        action: () => changeTab(MENU_ITEMS.DONATIONS)
-    },
-    {
-        id: MENU_ITEMS.INVOICES.menu,
-        label: 'Invoices',
-        active: '',
-        action: () => changeTab(MENU_ITEMS.INVOICES)
     }
 ]
 
-const SalesOverview = (props) => {
-    const generateRows = (sales) => {
-        return sales.map((item, i) => {
+const PaymentsOverview = (props) => {
+    const generateRows = (payments) => {
+        return payments.map((item, i) => {
             const name = item.data.payor.is_anonymous
                 ? 'anonymous'
                 : `${item.data.payor.payor_family_name}, ${item.data.payor.payor_given_name}`
@@ -163,18 +181,26 @@ const SalesOverview = (props) => {
                         hasActions
                     />
                 </SalesTab>
-                <SalesTab id={MENU_ITEMS.DONATIONS.tab} visibility='gone'>
+                <SalesTab id={MENU_ITEMS.UNCAPTURED.tab} visibility='gone'>
                     <InnerTable
-                        id={MENU_ITEMS.DONATIONS.table}
-                        rows={generateRows(props.donationItems)}
+                        id={MENU_ITEMS.UNCAPTURED.table}
+                        rows={generateRows(props.uncapturedItems)}
                         columns={generateTableColumns()}
                         hasActions
                     />
                 </SalesTab>
-                <SalesTab id={MENU_ITEMS.INVOICES.tab} visibility='gone'>
+                <SalesTab id={MENU_ITEMS.REFUNDED.tab} visibility='gone'>
                     <InnerTable
-                        id={MENU_ITEMS.INVOICES.table}
-                        rows={generateRows(props.invoiceItems)}
+                        id={MENU_ITEMS.REFUNDED.table}
+                        rows={generateRows(props.refundedItems)}
+                        columns={generateTableColumns()}
+                        hasActions
+                    />
+                </SalesTab>
+                <SalesTab id={MENU_ITEMS.SUCCEEDED.tab} visibility='gone'>
+                    <InnerTable
+                        id={MENU_ITEMS.SUCCEEDED.table}
+                        rows={generateRows(props.succeededItems)}
                         columns={generateTableColumns()}
                         hasActions
                     />
@@ -269,11 +295,12 @@ const SalesOverview = (props) => {
     )
 }
 
-SalesOverview.propTypes = {
+PaymentsOverview.propTypes = {
     allItems: PropTypes.array,
-    donationItems: PropTypes.array,
-    invoiceItems: PropTypes.array,
+    uncapturedItems: PropTypes.array,
+    refundedItems: PropTypes.array,
+    succeededItems: PropTypes.array,
     viewItem: PropTypes.func
 }
 
-export default SalesOverview
+export default PaymentsOverview

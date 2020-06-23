@@ -23,9 +23,9 @@ test('display account overview', async () => {
         </BooksHooks.context.roles.Provider>
     )
 
-    expect(queryByTestId('first_name').value).toBe(member.first_name)
+    expect(queryByTestId('nickname').value).toBe(member.nickname)
 
-    fireEvent.change(queryByTestId('first_name'), { target: { value: '001' } })
+    fireEvent.change(queryByTestId('nickname'), { target: { value: '001' } })
     expect(onChange).toHaveBeenCalledTimes(1)
 
     fireEvent.click(queryByTestId('submit-account-detail'))

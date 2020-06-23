@@ -27,14 +27,14 @@ const generateTableRows = (accounts, view, deleteAccount) => {
 }
 
 const validEmail = (emailIn) => {
-    emailIn = emailIn ? emailIn : ''
+    emailIn = emailIn || ''
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn)
         ? emailIn
         : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn)
 }
 
 const formatPhone = (incoming) => {
-    incoming = /* istanbul ignore next */ incoming ? incoming : ''
+    incoming = /* istanbul ignore next */ incoming || ''
     incoming = incoming.replace(/[\D]/g, '')
     const areaCode = incoming.substring(0, 3)
     const prefix = incoming.substring(3, 6)
@@ -50,7 +50,7 @@ const formatPhone = (incoming) => {
 }
 
 const validPhone = (phoneIn) => {
-    phoneIn = phoneIn ? phoneIn : ''
+    phoneIn = phoneIn || ''
     let phone = phoneIn.replace(/\D+/g, '')
 
     if (phone.length === 10) {

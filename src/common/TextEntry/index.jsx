@@ -25,7 +25,7 @@ const TextEntry = (props) => {
                     data-testid={props.name}
                     isValid={props.isValid}
                     name={props.name}
-                    value={props.value}
+                    value={props.value === null ? '' : props.value}
                     type={props.type || 'text'}
                     required={props.required || false}
                     disabled={props.disabled || false}

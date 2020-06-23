@@ -10,15 +10,13 @@ import {
     openSpinner,
     closeSpinner
 } from '../../common'
-import { formatPhone, validPhone, validEmail } from '../../common/accountUtils'
+import { validEmail } from '../../common/accountUtils'
 import { StockTags } from '../../common/StatusMessage'
 
 const INITIAL_STATE = {
-    first_name: '',
-    last_name: '',
-    email: '',
-    phone_number: '',
-    title: ''
+    given_name: '',
+    family_name: '',
+    email: ''
 }
 
 const ModalCreateAccount = (props) => {
@@ -28,10 +26,7 @@ const ModalCreateAccount = (props) => {
 
     const onChange = (event) => {
         const changed = { ...state }
-        changed[event.target.name] =
-            event.target.name === 'phone_number'
-                ? formatPhone(event.target.value)
-                : event.target.value
+        changed[event.target.name] = event.target.value
         setState(changed)
     }
 
@@ -58,43 +53,36 @@ const ModalCreateAccount = (props) => {
 
                     account.role = props.role
 
-                    if (props.district) {
-                        account.district = props.district
+                    if (props.merchant) {
+                        account.merchant = props.merchant
                     }
 
-                    if (props.partner) {
-                        account.partner = props.partner
-                    }
-
-                    account.phone_number = validPhone(account.phone_number)
                     account.email = validEmail(account.email)
-                    if (account.phone_number && account.email) {
-                        return props.createNewMember(state).then(() => {
+                    if (account.email) {
+                        return props.createNewMember(account).then(() => {
                             setState({
                                 ...INITIAL_STATE
                             })
                         })
                     } else {
                         /* istanbul ignore else */
-                        if (!account.phone_number) {
-                            return setError('phone is invalid')
-                        } else if (!account.email) {
+                        if (!account.email) {
                             return setError('email is invalid')
                         }
                     }
                 }}
             >
                 <TextEntry
-                    label='First Name'
-                    name='first_name'
-                    value={state.first_name}
+                    label='Given Name'
+                    name='given_name'
+                    value={state.given_name}
                     required
                     onChange={onChange}
                 />
                 <TextEntry
-                    label='Last Name'
-                    name='last_name'
-                    value={state.last_name}
+                    label='Family Name'
+                    name='family_name'
+                    value={state.family_name}
                     required
                     onChange={onChange}
                 />
@@ -103,21 +91,6 @@ const ModalCreateAccount = (props) => {
                     name='email'
                     value={state.email}
                     isValid={Boolean(validEmail(state.email))}
-                    required
-                    onChange={onChange}
-                />
-                <TextEntry
-                    label='Phone'
-                    name='phone_number'
-                    value={state.phone_number}
-                    isValid={Boolean(validPhone(state.phone_number))}
-                    required
-                    onChange={onChange}
-                />
-                <TextEntry
-                    label='Title'
-                    name='title'
-                    value={state.title}
                     required
                     onChange={onChange}
                 />
@@ -143,7 +116,7 @@ ModalCreateAccount.propTypes = {
     createNewMember: PropTypes.func.isRequired,
     setStatusMessage: PropTypes.func.isRequired,
     partner: PropTypes.string,
-    district: PropTypes.string
+    merchant: PropTypes.string
 }
 
 export default ModalCreateAccount

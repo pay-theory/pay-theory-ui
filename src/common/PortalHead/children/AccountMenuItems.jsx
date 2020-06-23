@@ -11,7 +11,7 @@ const AccountMenuItems = (props) => {
                 return (
                     <div className='portal-head-account-menu-items'>
                         <span data-testid='account-dropdown-label'>
-                            {accountHook.display_name}
+                            {accountHook.nickname}
                         </span>
                         <div
                             onClick={props.logout}

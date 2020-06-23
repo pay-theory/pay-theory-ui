@@ -44,13 +44,10 @@ const AccountsTab = (props) => (
                         .account-name {
                             width: 140px;
                         }
-                        .account-phone {
+                        .account-full-name {
                             width: 140px;
                         }
                         .account-email {
-                            width: 140px;
-                        }
-                        .account-title {
                             width: 140px;
                         }
                     `}</style>

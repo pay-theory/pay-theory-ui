@@ -7,7 +7,7 @@ import { render, fireEvent, waitFor } from '@testing-library/react'
 import { openModal, closeModal } from '../../common/ModalContent'
 import ModalSpinner from '../../common/ModalSpinner'
 
-import ModalCreateAccount from '.'
+import ModalCreateAccount from './'
 
 /*
 ModalCreateAccount.propTypes = {
@@ -33,31 +33,18 @@ test('modal create account success', async () => {
                     role='test'
                     createNewMember={createNewMember}
                     setStatusMessage={setStatusMessage}
-                    district='test-district'
-                    partner='test-partner'
+                    merchant='test-district'
                 />
             </div>
             <ModalSpinner />
         </div>
     )
-    expect(queryByTestId('first_name')).not.toBeVisible()
+    expect(queryByTestId('email')).not.toBeVisible()
     openModal()
-    expect(queryByTestId('first_name')).toBeVisible()
+    expect(queryByTestId('email')).toBeVisible()
 
-    fireEvent.change(queryByTestId('first_name'), {
-        target: { value: 'first' }
-    })
-    fireEvent.change(queryByTestId('last_name'), {
-        target: { value: 'last' }
-    })
     fireEvent.change(queryByTestId('email'), {
         target: { value: 'this@that.com' }
-    })
-    fireEvent.change(queryByTestId('phone_number'), {
-        target: { value: '6143400823' }
-    })
-    fireEvent.change(queryByTestId('title'), {
-        target: { value: 'title' }
     })
     fireEvent.submit(queryByTestId('create-account-form'))
     await waitFor(() => queryByTestId('success-content'))
@@ -65,54 +52,8 @@ test('modal create account success', async () => {
     expect(createNewMember).toHaveBeenCalledTimes(1)
 
     closeModal()
-    expect(queryByTestId('first_name')).not.toBeVisible()
+    expect(queryByTestId('email')).not.toBeVisible()
     // })
-})
-
-test('modal create account invalid phone', async () => {
-    await act(async () => {
-        const createNewMember = jest.fn(() => Promise.resolve())
-        const setStatusMessage = jest.fn()
-        const { queryByTestId } = render(
-            <div className='spinner-wrapper'>
-                <div className='modal-wrapper'>
-                    <div id='container' />
-                    <ModalCreateAccount
-                        roleLabel='tester'
-                        role='test'
-                        createNewMember={createNewMember}
-                        setStatusMessage={setStatusMessage}
-                    />
-                </div>
-                <ModalSpinner />
-            </div>
-        )
-        expect(queryByTestId('first_name')).not.toBeVisible()
-        openModal()
-        expect(queryByTestId('first_name')).toBeVisible()
-
-        fireEvent.change(queryByTestId('first_name'), {
-            target: { value: 'first' }
-        })
-        fireEvent.change(queryByTestId('last_name'), {
-            target: { value: 'last' }
-        })
-        fireEvent.change(queryByTestId('email'), {
-            target: { value: 'this@that.com' }
-        })
-        fireEvent.change(queryByTestId('phone_number'), {
-            target: { value: 'abc' }
-        })
-        fireEvent.change(queryByTestId('title'), {
-            target: { value: 'title' }
-        })
-        fireEvent.submit(queryByTestId('create-account-form'))
-
-        expect(setStatusMessage).toHaveBeenCalledTimes(1)
-
-        closeModal()
-        expect(queryByTestId('first_name')).not.toBeVisible()
-    })
 })
 
 test('modal create account invalid email', async () => {
@@ -134,31 +75,19 @@ test('modal create account invalid email', async () => {
                 <ModalSpinner />
             </div>
         )
-        expect(queryByTestId('first_name')).not.toBeVisible()
+        expect(queryByTestId('email')).not.toBeVisible()
         openModal()
-        expect(queryByTestId('first_name')).toBeVisible()
+        expect(queryByTestId('email')).toBeVisible()
 
-        fireEvent.change(queryByTestId('first_name'), {
-            target: { value: 'first' }
-        })
-        fireEvent.change(queryByTestId('last_name'), {
-            target: { value: 'last' }
-        })
         fireEvent.change(queryByTestId('email'), {
             target: { value: 'invalid' }
-        })
-        fireEvent.change(queryByTestId('phone_number'), {
-            target: { value: '6143400823' }
-        })
-        fireEvent.change(queryByTestId('title'), {
-            target: { value: 'title' }
         })
         fireEvent.submit(queryByTestId('create-account-form'))
 
         expect(setStatusMessage).toHaveBeenCalledTimes(1)
 
         closeModal()
-        expect(queryByTestId('first_name')).not.toBeVisible()
+        expect(queryByTestId('email')).not.toBeVisible()
     })
 })
 
@@ -167,7 +96,7 @@ test('modal create account fail', async () => {
     const createNewMember = jest.fn(() => Promise.reject('failed'))
     const setStatusMessage = jest.fn()
     await act(async () => {
-        const { queryByTestId, findByTestId } = render(
+        const { queryByTestId } = render(
             <div className='spinner-wrapper'>
                 <div className='modal-wrapper'>
                     <div id='container' />
@@ -181,28 +110,16 @@ test('modal create account fail', async () => {
                 <ModalSpinner />
             </div>
         )
-        expect(queryByTestId('first_name')).not.toBeVisible()
+        expect(queryByTestId('email')).not.toBeVisible()
         openModal()
-        expect(queryByTestId('first_name')).toBeVisible()
-        fireEvent.change(queryByTestId('first_name'), {
-            target: { value: 'first' }
-        })
-        fireEvent.change(queryByTestId('last_name'), {
-            target: { value: 'last' }
-        })
+        expect(queryByTestId('email')).toBeVisible()
         fireEvent.change(queryByTestId('email'), {
             target: { value: 'this@that.com' }
         })
-        fireEvent.change(queryByTestId('phone_number'), {
-            target: { value: '6143400823' }
-        })
-        fireEvent.change(queryByTestId('title'), {
-            target: { value: 'title' }
-        })
         fireEvent.submit(queryByTestId('create-account-form'))
-        findByTestId('error-content')
+        await waitFor(() => queryByTestId('error-content'))
 
         expect(setStatusMessage).toHaveBeenCalledTimes(1)
-        findByTestId('status-cleared')
+        await waitFor(() => queryByTestId('status-cleared'))
     })
 })

@@ -21,7 +21,7 @@ test('display portal head', async () => {
     )
 
     expect(getByText(page.title)).toBeInTheDocument()
-    expect(getAllByText(account.display_name)[0]).toBeInTheDocument()
+    expect(getAllByText(account.nickname)[0]).toBeInTheDocument()
 
     fireEvent.keyPress(queryByTestId('account-logout'), {
         key: 'Enter',
@@ -47,7 +47,7 @@ test('AccountMenuButton shows display name from account context', async () => {
         </BooksHooks.context.account.Provider>
     )
 
-    expect(getByText(account.display_name)).toBeInTheDocument()
+    expect(getByText(account.nickname)).toBeInTheDocument()
 })
 
 test('AccountMenuButton shows display name from account context', async () => {
@@ -58,7 +58,7 @@ test('AccountMenuButton shows display name from account context', async () => {
         </BooksHooks.context.account.Provider>
     )
 
-    expect(getByText(account.display_name)).toBeInTheDocument()
+    expect(getByText(account.nickname)).toBeInTheDocument()
 
     fireEvent.click(queryByTestId('account-logout'))
     expect(logout).toHaveBeenCalled()

@@ -26,6 +26,7 @@ import PartnerTable from './PartnerTable'
 import PaymentItemDiscontinueCard from './PaymentItemDiscontinueCard'
 import PaymentItemPublishCard from './PaymentItemPublishCard'
 import PaymentItemTable from './PaymentItemTable'
+import PaymentsOverview from './PaymentsOverview'
 
 import ReceiptReviewTable from './ReceiptReviewTable'
 import ReceiptsTable from './ReceiptsTable'
@@ -34,7 +35,6 @@ import RoleInfoTab from './RoleInfoTab'
 import RolesOverview from './RolesOverview'
 import RolesTab from './RolesTab'
 
-import SalesOverview from './SalesOverview'
 import SalesTab from './SalesTab'
 
 import TransactionItems from './TransactionItems'
@@ -65,13 +65,13 @@ export {
     PaymentItemDiscontinueCard,
     PaymentItemPublishCard,
     PaymentItemTable,
+    PaymentsOverview,
     ReceiptReviewTable,
     ReceiptsTable,
     ReceiptUploader,
     RoleInfoTab,
     RolesOverview,
     RolesTab,
-    SalesOverview,
     SalesTab,
     TransactionItems,
     TransactionOverview

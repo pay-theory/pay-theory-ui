@@ -11,7 +11,7 @@ const AccountMenuButton = (props) => {
                         data-testid='account-label'
                         tabIndex='0'
                     >
-                        {accountHook.display_name}
+                        {accountHook.nickname}
                         <i className={`fal fa-chevron-down}`} />
                         <style jsx='true' global='true'>{`
                             .portal-head-account-menu-button {

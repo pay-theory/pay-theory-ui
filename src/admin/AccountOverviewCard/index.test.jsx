@@ -17,10 +17,9 @@ test('display district overview card', async () => {
             </div>
         </BooksHooks.context.member.Provider>
     )
-    expect(getByText(member.UID)).toBeInTheDocument()
+    expect(getByText(member.user_id)).toBeInTheDocument()
     expect(
-        getByText(`${member.first_name} ${member.last_name}`)
+        getByText(`${member.given_name} ${member.family_name}`)
     ).toBeInTheDocument()
-    expect(getByText(member.phone_number)).toBeInTheDocument()
     expect(getByText(member.email)).toBeInTheDocument()
 })
