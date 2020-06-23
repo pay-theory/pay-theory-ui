@@ -1,85 +1,85 @@
 {
-  "name": "@paytheory/pay-theory-ui",
-  "version": "0.0.12-0",
-  "description": "Made with create-react-library",
-  "author": "austinzani",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pay-theory/pay-theory-ui.git"
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.js",
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jest-environment-jsdom-sixteen",
-    "test:watch": "react-scripts test --env=jest-environment-jsdom-sixteen",
-    "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build",
-    "predeploy-package": "npm version prepatch && git push",
-    "deploy-alpha": "npm publish --tag alpha",
-    "deploy-beta": "npm publish --tag beta",
-    "deploy-release": "npm publish"
-  },
-  "peerDependencies": {
-    "react": "^16.0.0"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^5.10.1",
-    "@testing-library/react": "^10.2.1",
-    "babel-eslint": "^10.0.3",
-    "cross-env": "^7.0.2",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0",
-    "microbundle-crl": "^0.13.10",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
-  },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "@auth0/auth0-spa-js": "^1.9.0",
-    "@material/react-button": "^0.15.0",
-    "@material/react-radio": "^0.15.0",
-    "@material/react-select": "^0.15.0",
-    "@material/react-text-field": "^0.15.0",
-    "@testing-library/jest-dom": "^5.10.1",
-    "jest-environment-jsdom-sixteen": "^1.0.3",
-    "moment": "^2.26.0",
-    "react-dropzone": "^11.0.1",
-    "react-router-dom": "^5.2.0",
-    "uuid": "^8.1.0",
-    "validator": "^13.1.0",
-    "webfontloader": "^1.6.28",
-    "xlsx": "^0.16.2"
-  },
-  "bugs": {
-    "url": "https://github.com/pay-theory/pay-theory-ui/issues"
-  },
-  "homepage": "https://github.com/pay-theory/pay-theory-ui#readme",
-  "directories": {
-    "example": "example"
-  }
+    "name": "@paytheory/pay-theory-ui",
+    "version": "0.0.12-0",
+    "description": "Made with create-react-library",
+    "author": "austinzani",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pay-theory/pay-theory-ui.git"
+    },
+    "main": "dist/index.js",
+    "module": "dist/index.modern.js",
+    "source": "src/index.js",
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "build": "microbundle-crl --no-compress --format modern,cjs --sourcemap true",
+        "start": "microbundle-crl watch --no-compress --format modern,cjs",
+        "prepare": "run-s build",
+        "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
+        "test:build": "run-s build",
+        "test:lint": "eslint .",
+        "test:unit": "cross-env CI=1 react-scripts test --env=jest-environment-jsdom-sixteen",
+        "test:watch": "react-scripts test --env=jest-environment-jsdom-sixteen",
+        "predeploy": "cd example && npm install && npm run build",
+        "deploy": "gh-pages -d example/build",
+        "predeploy-package": "npm version prepatch && git push",
+        "deploy-alpha": "npm publish --tag alpha",
+        "deploy-beta": "npm publish --tag beta",
+        "deploy-release": "npm publish"
+    },
+    "peerDependencies": {
+        "react": "^16.0.0"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^5.10.1",
+        "@testing-library/react": "^10.2.1",
+        "babel-eslint": "^10.0.3",
+        "cross-env": "^7.0.2",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.7.0",
+        "eslint-config-standard": "^14.1.0",
+        "eslint-config-standard-react": "^9.2.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-node": "^11.0.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-react": "^7.17.0",
+        "eslint-plugin-standard": "^4.0.1",
+        "gh-pages": "^2.2.0",
+        "microbundle-crl": "^0.13.10",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.0.4",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-scripts": "^3.4.1"
+    },
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "@auth0/auth0-spa-js": "^1.9.0",
+        "@material/react-button": "^0.15.0",
+        "@material/react-radio": "^0.15.0",
+        "@material/react-select": "^0.15.0",
+        "@material/react-text-field": "^0.15.0",
+        "@testing-library/jest-dom": "^5.10.1",
+        "jest-environment-jsdom-sixteen": "^1.0.3",
+        "moment": "^2.26.0",
+        "react-dropzone": "^11.0.1",
+        "react-router-dom": "^5.2.0",
+        "uuid": "^8.1.0",
+        "validator": "^13.1.0",
+        "webfontloader": "^1.6.28",
+        "xlsx": "^0.16.2"
+    },
+    "bugs": {
+        "url": "https://github.com/pay-theory/pay-theory-ui/issues"
+    },
+    "homepage": "https://github.com/pay-theory/pay-theory-ui#readme",
+    "directories": {
+        "example": "example"
+    }
 }
