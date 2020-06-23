@@ -1,6 +1,11 @@
 # StatusMessage
 
-A UI component that generates messages components for Error, Warning, and Success responses.
+A set of components that generate messages for Error, Warning, and Success responses. Also includes a StockTags export with stock functions for each StatusMessage.
+
+## Components
+* **ErrorMessage**
+* **SuccessMessage**
+* **WarningMessage**
 
 ## Hooks
 
@@ -8,14 +13,15 @@ A UI component that generates messages components for Error, Warning, and Succes
 
 ## Props
 
+### Required
+* **message**: PropTypes.string.isRequired
+    * The status message that is going to be displayed.
+
 ### optional
-*  **text**: PropTypes.string
-    * Text to be used as a header for the modal box
+*  **removeWarning**, **removeError**, **removeSucess**: PropTypes.function
+    * Function to handle removing the message after a 4 second timeout 
 
 ## Additional Exports
 
-* **openModal**
-    * function that allows the modal to be shown 
-
-* **closeModal**
-    * function that allows the modal to be hidden
+* **StockTags**
+    * Set of three functions that return a corresponding Message Component **(StockTags.success, StockTags.error, and StockTags.warn)**. They accept optional arguments of a message object and a callback function to handle removing the message. If no arguments are passed it has a default message and handler.

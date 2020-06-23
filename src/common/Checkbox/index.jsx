@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 
 const Checkbox = (props) => {
-    const input = { 'data-testid': props.id, type: 'checkbox', ...props }
+    const checkRef = useRef()
+
+    useEffect(() => {
+        checkRef.current.indeterminate = props.isPartial
+    }, [checkRef, props.isPartial])
+
     return (
         <div className='checkbox'>
-            <input {...input} />
+            <input
+                ref={checkRef}
+                data-testid={props.id}
+                type='checkbox'
+                {...props}
+            />
             <label htmlFor={props.id}>{props.label}</label>
             <style jsx='true'>{`
                 .checkbox {
                     position: relative;
+                    height: 1.125em;
+                    width: 1.125em;
                 }
 
                 .checkbox label {
@@ -77,11 +89,31 @@ const Checkbox = (props) => {
                     display: block;
                     position: absolute;
                     color: white;
-                    top: 25%;
+                    top: calc(6px / 2);
                     left: calc(6px / 2);
                     font-family: 'Font Awesome 5 Pro Light',
                         'Font Awesome 5 Pro', 'Font Awesome 5 Pro Solid';
                     content: '\f00c';
+                    font-size: 12px;
+                }
+
+                /* 'Indeterminate' Blue Frame (:before) */
+
+                input[type='checkbox']:indeterminate + label::before {
+                    background-color: #0199ed;
+                }
+
+                /* 'Indeterminate' White Dash Icon (:after) */
+
+                input[type='checkbox']:indeterminate + label::after {
+                    display: block;
+                    position: absolute;
+                    color: white;
+                    top: 0.375em;
+                    left: 0.375em;
+                    font-family: 'Font Awesome 5 Pro Light',
+                        'Font Awesome 5 Pro', 'Font Awesome 5 Pro Solid';
+                    content: '\f068';
                     font-size: 12px;
                 }
 

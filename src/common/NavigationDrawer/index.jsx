@@ -59,10 +59,7 @@ const NavigationDrawer = (props) => {
                                 overflow: hidden;
                                 height: auto;
                                 padding-top: 20px;
-                                flex-grow: 1;
-                                position: fixed;
                                 top: 52px;
-                                bottom: 0;
                                 overflow-y: scroll;
                             }
 
