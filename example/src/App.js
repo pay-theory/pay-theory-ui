@@ -1,7 +1,7 @@
 import React from 'react'
 import 'pay-theory-ui/dist/index.css'
 
-import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, Checkbox }from 'pay-theory-ui';
+import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks }from 'pay-theory-ui';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default function App(props) {
@@ -63,21 +63,7 @@ export default function App(props) {
   };
 
   const parent = { parent: 'test-parent', route: '/test' }
-
-  const tabArray = [
-    {
-      id: "test",
-      action: () => {},
-      active: "active-tab",
-      label: "test"
-    },
-    {
-      id: "test2",
-      action: () => {},
-      active: "",
-      label: "test 2"
-    }
-  ]
+  
 
   
 
