@@ -1,11 +1,34 @@
 import React, { useState, useEffect, useContext } from 'react'
 import createAuth0Client from '@auth0/auth0-spa-js'
+import { Route } from 'react-router-dom'
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
     window.history.replaceState({}, document.title, window.location.pathname)
 
 export const Auth0Context = React.createContext()
 export const useAuth0 = () => useContext(Auth0Context)
+
+export const PrivateRoute = ({ component: Component, path, ...rest }) => {
+    const { loading, isAuthenticated, loginWithRedirect } = useAuth0()
+
+    useEffect(() => {
+        if (loading || isAuthenticated) {
+            return
+        }
+        const fn = async () => {
+            await loginWithRedirect({
+                appState: { targetUrl: window.location.pathname }
+            })
+        }
+        fn()
+    }, [loading, isAuthenticated, loginWithRedirect, path])
+
+    const render = (props) =>
+        isAuthenticated === true ? <Component {...props} /> : null
+
+    return <Route path={path} render={render} {...rest} />
+}
+
 export const Auth0Provider = ({
     children,
     onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
@@ -45,7 +68,7 @@ export const Auth0Provider = ({
         }
         initAuth0()
         // eslint-disable-next-line
-    }, []);
+    }, [])
 
     const loginWithPopup = async (params = {}) => {
         setPopupOpen(true)
