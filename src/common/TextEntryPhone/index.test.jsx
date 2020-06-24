@@ -4,12 +4,12 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { render, fireEvent } from '@testing-library/react'
 
-import TextEntryCurrency from '.'
+import TextEntryPhone from '.'
 
-test('display currency entry', async () => {
+test('display phone entry', async () => {
     const onChange = jest.fn()
     const { getByText, queryByTestId } = render(
-        <TextEntryCurrency
+        <TextEntryPhone
             name='test-name'
             label='test-label'
             value='100'

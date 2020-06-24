@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import * as sub from './sub'
+import * as sub from './children'
 
 const InnerTable = (props) => (
     <div id='body-content'>

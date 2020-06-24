@@ -115,7 +115,6 @@ ModalCreateAccount.propTypes = {
     role: PropTypes.string.isRequired,
     createNewMember: PropTypes.func.isRequired,
     setStatusMessage: PropTypes.func.isRequired,
-    partner: PropTypes.string,
     merchant: PropTypes.string
 }
 

@@ -1,4 +1,4 @@
-# BooksComponents.AccountTable
+# AccountTable
 
 A UI element for displaying a list of accounts in a CardTable.
 
@@ -7,6 +7,8 @@ A UI element for displaying a list of accounts in a CardTable.
 * AccountsConsumer
 
 ## Props
+
+### Required
 
 * viewAccount: PropTypes.func.isRequired
    * view function for underlying InnerTable

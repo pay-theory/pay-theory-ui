@@ -1,6 +1,6 @@
-# BooksComponents.AccountOverviewCard
+# AccountOverviewCard
 
-A UI element for displaying read only details from a pay theory user account.
+A UI element for displaying read only details from a Pay Theory user account.
 
 ## Hooks
 

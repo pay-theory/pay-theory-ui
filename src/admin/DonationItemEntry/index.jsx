@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { BasicInfo, PaymentOptions, PublicationOptions } from './sub'
+import { BasicInfo, PaymentOptions, PublicationOptions } from './children'
 
 import { StockTags } from '../../common/StatusMessage'
 

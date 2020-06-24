@@ -7,7 +7,7 @@ import { FormHead, TextEntry, TabPage, CardTable } from '../../common'
 import * as BooksHooks from '../../hooks'
 import { StockTags } from '../../common/StatusMessage'
 import { ACCESS } from './const'
-import * as sub from './sub'
+import * as sub from './children'
 
 const INITIAL_STATE = {
     UID: false,

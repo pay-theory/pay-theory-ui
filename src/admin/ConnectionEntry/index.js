@@ -1,3 +1,3 @@
-import Merchant from './sub/Merchant'
-import Usas from './sub/Usas'
+import Merchant from './children/Merchant'
+import Usas from './children/Usas'
 export { Merchant, Usas }

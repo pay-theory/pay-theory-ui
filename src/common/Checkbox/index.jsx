@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 const Checkbox = (props) => {
     const checkRef = useRef()
@@ -138,6 +139,11 @@ const Checkbox = (props) => {
             `}</style>
         </div>
     )
+}
+
+Checkbox.propTypes = {
+    id: PropTypes.string,
+    label: PropTypes.string
 }
 
 export default Checkbox

@@ -1,4 +1,4 @@
-# BooksComponents.ConnectionEntry
+# ConnectionEntry
 
 A UI element for displaying a form for establishing a new connection, or editing 
 an existing one.

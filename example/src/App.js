@@ -1,8 +1,10 @@
 import React from 'react'
 import 'pay-theory-ui/dist/index.css'
 
-import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks }from 'pay-theory-ui';
+import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks , TransactionOverview }from 'pay-theory-ui';
 import { BrowserRouter as Router } from 'react-router-dom'
+
+import { partner, partners, paymentItem, parent, invoiceItems, receipt_excel, classicDistrict, receipts, roles, payment } from './example-data'
 
 export default function App(props) {
 
@@ -54,16 +56,10 @@ export default function App(props) {
     };
   };
   
-
- 
-
   const paged = {
     title: "Pay Theory UI",
     subtitle: "UI Playground"
   };
-
-  const parent = { parent: 'test-parent', route: '/test' }
-  
 
   
 
@@ -72,8 +68,7 @@ export default function App(props) {
   return (
     <div id="app">
       <Router>
-        <BooksHooks.context.parent.Provider value={parent}>
-     <BooksHooks.context.menu.Provider value={pageMenu.menu}>
+          <BooksHooks.context.menu.Provider value={pageMenu.menu}>
                 <GlobalStyle />
                 <BooksHooks.context.page.Provider value={paged}>
                     <div id='container'>
@@ -83,14 +78,13 @@ export default function App(props) {
                                 listHead={pageMenu.listHead}
                             />
                             <div className='body-content'>
-                              <h2>Test</h2>
+                            <h1>Test</h1>
                             </div>
                         </div>
                     </div>
                 </BooksHooks.context.page.Provider>
-        </BooksHooks.context.menu.Provider>
-        </BooksHooks.context.parent.Provider>
-        </Router>
+            </BooksHooks.context.menu.Provider>
+      </Router>
     </div>
   );
 }

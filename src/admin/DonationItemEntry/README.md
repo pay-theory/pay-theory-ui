@@ -1,4 +1,4 @@
-# BooksComponents.DonationItemEntry
+# DonationItemEntry
 
 A UI element for displaying an editable payment item.
 

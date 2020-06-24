@@ -1,13 +1,13 @@
 // node modules
 import React from 'react'
 
-import * as sub from './sub'
+import * as children from './children'
 
 const TransactionOverview = (props) => {
     return (
         <div className='transaction-container'>
             <div className='transaction-overview card rounded'>
-                <sub.Meta />
+                <children.Meta />
             </div>
             <style jsx='true' global='true'>{`
                 :root {

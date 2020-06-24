@@ -6,9 +6,7 @@ const TabPage = (props) => {
         <div
             id={props.id}
             data-testid='tab-page'
-            className={`tab-container ${
-                props.visibility ? 'tab-visible' : 'gone'
-            }`}
+            className={`tab-container ${props.visibility}`}
         >
             {props.children}
             <style jsx='true' global='true'>{`
@@ -68,7 +66,7 @@ const TabPage = (props) => {
 
 TabPage.propTypes = {
     id: PropTypes.string.isRequired,
-    visibility: PropTypes.boolean
+    visibility: PropTypes.string
 }
 
 export default TabPage

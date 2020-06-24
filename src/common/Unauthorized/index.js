@@ -16,7 +16,7 @@ const Unauthorized = () => {
                     <a href='mailto:support@paytheory.com'>contact support</a>.
                 </p>
             </div>
-            <style jsx global>{`
+            <style jsx='true' global='true'>{`
                 html {
                     height: 100%;
                 }

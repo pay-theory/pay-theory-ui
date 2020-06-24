@@ -1,4 +1,4 @@
-# BooksComponents.DistrictTable
+# DistrictTable
 
 A UI element for displaying a list of districts in a CardTable.
 

@@ -1,4 +1,4 @@
-# Documentation Portal
+# Admin Portal
 
 A UI component that sets up needed components to create a Administrative page.
 

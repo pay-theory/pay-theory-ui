@@ -1,6 +1,6 @@
-# BooksComponents.AccountOverview
+# AccountOverview
 
-A UI element for displaying editable details from a pay theory user account.
+A UI element for displaying editable details from a Pay Theory user account.
 
 ## Hooks
 
@@ -9,7 +9,9 @@ A UI element for displaying editable details from a pay theory user account.
 
 ## Props
 
-* saveAccount: PropTypes.func.isRequired
+### Required
+
+* **saveAccount**: PropTypes.func.isRequired
   * ```() => {}```
-* onChange: PropTypes.func.isRequired
+* **onChange**: PropTypes.func.isRequired
   * ```(event) => {}```

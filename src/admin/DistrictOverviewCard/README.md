@@ -1,6 +1,6 @@
-# BooksComponents.DistrictOverviewCard
+# DistrictOverviewCard
 
-A UI element for displaying read only details from a pay theory district.
+A UI element for displaying read only details from a Pay Theory district.
 
 ## Hooks
 

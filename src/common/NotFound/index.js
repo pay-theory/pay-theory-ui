@@ -16,7 +16,7 @@ const NotFound = () => {
                     you’re trying to access a page that is not available.
                 </p>
             </div>
-            <style jsx global>{`
+            <style jsx='true' global='true'>{`
                 html {
                     height: 100%;
                 }

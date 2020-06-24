@@ -1,4 +1,4 @@
-# BooksComponents.ConnectionColumn
+# ConnectionColumn
 
 A UI element for displaying a client account external connection.
 

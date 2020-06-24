@@ -1,4 +1,4 @@
-# BooksComponents.AccountCodeBar
+# AccountCodeBar
 
 A UI element for searching USAS account codes.
 
@@ -8,12 +8,14 @@ A UI element for searching USAS account codes.
 
 ## Props
 
-* searchHandler: PropTypes.func.isRequired
+### Required
+
+* **searchHandler**: PropTypes.func.isRequired
  * ```(searchState) => {}```
 
 ## State
 
-* searchState
+* **searchState**
 ```
 {
 	fund: '',

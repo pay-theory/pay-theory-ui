@@ -1,4 +1,4 @@
-# BooksComponents.DistrictInfoTab
+# DistrictInfoTab
 
 A UI element for displaying a list of districts in a TabPage.
 
