@@ -15,7 +15,12 @@
         "node": ">=10"
     },
     "scripts": {
-        "build": "microbundle-crl --no-compress --format modern,cjs --sourcemap true",
+        "build-admin": "microbundle-crl --no-compress --format modern,cjs src/admin/index.js -o dist/admin.js",
+        "build-documentation": "microbundle-crl --no-compress --format modern,cjs src/documentation/index.js -o dist/documentation.js",
+        "build-common": "microbundle-crl --no-compress --format modern,cjs src/common/index.js -o dist/common.js",
+        "build-font": "microbundle-crl --no-compress --format modern,cjs src/common/Font/index.js -o dist/Font.js",
+        "build-default": "microbundle-crl --no-compress --format modern,cjs",
+        "build": "npm run build-default && npm run build-common && npm run build-documentation && npm run build-font",
         "start": "microbundle-crl watch --no-compress --format modern,cjs",
         "prepare": "run-s build",
         "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
