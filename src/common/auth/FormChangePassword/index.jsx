@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Button from '@material/react-button'
 import TextEntry from '../../TextEntry'
 import { StockTags } from '../../StatusMessage'
+import PropTypes from 'prop-types'
 
 const FormChangePassword = (props) => {
     const [verificationCode, setVerificationCode] = useState('')
@@ -111,7 +112,7 @@ const FormChangePassword = (props) => {
         </div>
     )
     return (
-        <div className='auth-contain'>
+        <div className='auth-contain' data-testid='form-change-password'>
             <form
                 className='auth-form'
                 onSubmit={(e) => props.onSubmit(e, verificationCode, newPass)}
@@ -166,6 +167,11 @@ const FormChangePassword = (props) => {
             `}</style>
         </div>
     )
+}
+
+FormChangePassword.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    error: PropTypes.string
 }
 
 export default FormChangePassword

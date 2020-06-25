@@ -14,7 +14,7 @@ const FormLoginCode = (props) => {
     }, [value])
 
     return (
-        <div className='auth-contain'>
+        <div data-testid='form-login-code' className='auth-contain'>
             <form
                 className='auth-form'
                 onSubmit={(e) => {

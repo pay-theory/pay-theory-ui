@@ -19,7 +19,7 @@ const FormLoginEmail = (props) => {
     }, [valid])
 
     return (
-        <div className='auth-contain'>
+        <div data-testid='form-login-email' className='auth-contain'>
             <form
                 className='auth-form'
                 onSubmit={(e) => {
@@ -30,8 +30,9 @@ const FormLoginEmail = (props) => {
                 <TextEntry
                     label='email'
                     name='login-email'
+                    data-testid='email-field'
                     value={value}
-                    isValid={props.valid}
+                    isValid={valid}
                     onChange={(e) => setValue(e.target.value)}
                 />
                 <br />

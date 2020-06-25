@@ -1,5 +1,6 @@
 // node modules
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // ui root
 import AuthBG from '../AuthBG'
@@ -10,7 +11,7 @@ const AuthBox = (props) => (
     <AuthBG>
         <div className='auth'>
             <LogoHeader />
-            <div className='auth-outer'>
+            <div data-testid='authBox' className='auth-outer'>
                 <FormHeader text={props.formHead} />
                 <div className='grey centered full-bottom'>
                     {props.formText}
@@ -21,5 +22,10 @@ const AuthBox = (props) => (
         </div>
     </AuthBG>
 )
+
+AuthBox.propTypes = {
+    formHead: PropTypes.string.isRequired,
+    formText: PropTypes.string.isRequired
+}
 
 export default AuthBox

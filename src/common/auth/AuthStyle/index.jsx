@@ -3,7 +3,7 @@ import React from 'react'
 
 const AuthStyle = (props) => {
     return (
-        <div className='appContainer'>
+        <div data-testid='authStyle' className='appContainer'>
             {props.children}
             <style jsx='true' global='true'>{`
                 body {

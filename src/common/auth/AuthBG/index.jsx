@@ -19,7 +19,7 @@ function AuthBG(props) {
     return (
         <div>
             <AuthStyle />
-            <div className='spinner-wrapper'>
+            <div data-testid='authBg' className='spinner-wrapper'>
                 <div id='container'>{props.children}</div>
                 <ModalSpinner />
             </div>

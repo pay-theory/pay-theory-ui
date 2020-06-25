@@ -10,7 +10,7 @@ const FormLoginAlternative = (props) => {
     const [value, setValue] = useState('')
 
     return (
-        <div className='auth-contain'>
+        <div data-testid='form-login-alternative' className='auth-contain'>
             <form
                 className='auth-form'
                 onSubmit={(e) => {
@@ -27,6 +27,7 @@ const FormLoginAlternative = (props) => {
                     helperText={
                         <a
                             className='helper-link'
+                            data-testid='forgot-password'
                             href
                             onClick={(e) => props.forgotPassword(e)}
                         >

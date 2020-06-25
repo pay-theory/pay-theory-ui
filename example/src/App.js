@@ -1,10 +1,8 @@
 import React from 'react'
 import 'pay-theory-ui/dist/index.css'
 
-import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks , TransactionOverview }from 'pay-theory-ui';
+import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, AuthBox, FormLoginEmail }from 'pay-theory-ui';
 import { BrowserRouter as Router } from 'react-router-dom'
-
-import { partner, partners, paymentItem, parent, invoiceItems, receipt_excel, classicDistrict, receipts, roles, payment } from './example-data'
 
 export default function App(props) {
 
@@ -78,7 +76,9 @@ export default function App(props) {
                                 listHead={pageMenu.listHead}
                             />
                             <div className='body-content'>
-                            <h1>Test</h1>
+                            <AuthBox formHead="Test" formText="This is a test" >
+                              <FormLoginEmail validate={() => {}} />
+                            </AuthBox>
                             </div>
                         </div>
                     </div>
