@@ -28,7 +28,6 @@ const FormLoginAlternative = (props) => {
                         <a
                             className='helper-link'
                             data-testid='forgot-password'
-                            href
                             onClick={(e) => props.forgotPassword(e)}
                         >
                             I do not know my password.

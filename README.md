@@ -16,7 +16,7 @@ npm install --save pay-theory-ui
 * JSX example
 ```
     <BooksHooks.context.menu.Provider value={generateMenu()}>
-        <BooksComponents.NavigationDrawer />
+        <NavigationDrawer />
     </BooksHooks.context.menu.Provider>
 ```
 
@@ -80,6 +80,18 @@ npm install --save pay-theory-ui
 * [TextEntryPercentage](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/TextEntryPercentage)
 * [UtilityBar](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/UtilityBar)
 
+### Auth
+* [AuthBG](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/AuthBg)
+* [AuthBox](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/AuthBox)
+* [AuthStyle](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/AuthStyle)
+* [Bouncer](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/Bouncer)
+* [FormChangePassword](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/FormChangePassword)
+* [FormHeader](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/FormHeader)
+* [FormLoginAlternative](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/FormLoginAlternative)
+* [FormLoginCode](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/FormLoginCode)
+* [FormLoginEmail](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/FormLoginEmail)
+* [LogoHeader](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/LoginHeader)
+
 
 
 ## Admin
@@ -127,7 +139,7 @@ npm install --save pay-theory-ui
 * [ModalReceiptTransactions](https://github.com/pay-theory/pay-theory-ui/tree/master/src/admin/ModalReceiptTransactions)
 
 ### Sales
-* [SalesOverview](https://github.com/pay-theory/pay-theory-ui/tree/master/src/admin/SalesOverview)
+* [PaymentsOverview](https://github.com/pay-theory/pay-theory-ui/tree/master/src/admin/PaymentsOverview)
 * [SalesTab](https://github.com/pay-theory/pay-theory-ui/tree/master/src/admin/SalesTab)
 * [TransactionItems](https://github.com/pay-theory/pay-theory-ui/tree/master/src/admin/TransactionItems)
 * [TransactionOverview](https://github.com/pay-theory/pay-theory-ui/tree/master/src/admin/TransactionOverview)

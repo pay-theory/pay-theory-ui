@@ -32,6 +32,7 @@ test('display partner tab', async () => {
                             apiPrefix='testing'
                             setStatusMessage={setStatusMessage}
                             savePartner={savePartner}
+                            onGenerateApiKey={() => {}}
                         />
                     </BooksHooks.context.partner.Provider>
                 </div>

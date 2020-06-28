@@ -80,7 +80,7 @@ const RoleInfoTab = (props) => {
 
                 const pages = state.permissions.map((page, index) => {
                     return (
-                        <div key={page.tag}>
+                        <div key={`${page.tag}-${index}`}>
                             <sub.AccessPageAccordion
                                 index={index}
                                 page={page}

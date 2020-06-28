@@ -57,10 +57,9 @@ const ClickToCopyText = (props) => {
                 }
             }}
             onClick={() => clip(props.name)}
-            inputProps={{
-                'data-testid': 'click-to-copy'
-            }}
+            data-testid='click-to-copy'
             isValid={!isReady || copied}
+            readOnly
         />
     )
 }

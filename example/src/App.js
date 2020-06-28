@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import 'pay-theory-ui/dist/index.css'
 
-import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, AuthBox, FormLoginEmail }from 'pay-theory-ui';
+import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, AuthBox, FormChangePassword, TextEntry }from 'pay-theory-ui';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default function App(props) {
+
+  const [value, setValue] = useState()
 
   const generateDocumentationMenu = () => {
     return {
@@ -77,7 +79,13 @@ export default function App(props) {
                             />
                             <div className='body-content'>
                             <AuthBox formHead="Test" formText="This is a test" >
-                              <FormLoginEmail validate={() => {}} />
+                              <FormChangePassword onSubmit={() => {}} />
+                              <TextEntry
+                              label='test'
+                               name='test'
+                               value={value}
+                               onChange={(e) => setValue(e.target.value)}
+                               />
                             </AuthBox>
                             </div>
                         </div>

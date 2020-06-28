@@ -1,8 +1,7 @@
 import React from 'react'
-import { act } from 'react-dom/test-utils'
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, act } from '@testing-library/react'
 
 import { openModal, closeModal, ModalSpinner } from '../../common'
 

@@ -47,6 +47,7 @@ const AccessPageAccordion = (props) => {
         return (
             // eslint-disable-next-line react/jsx-key
             <AccessSubPage
+                key={`${page.tag}-${index}`}
                 tag={page.tag}
                 checked={page.checked}
                 title={page.title}
