@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import 'pay-theory-ui/dist/index.css'
 
-import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, AuthBox, FormChangePassword, TextEntry }from 'pay-theory-ui';
+import { PortalHead, NavigationDrawer, GlobalStyle, BooksHooks, PaymentItemDiscontinueCard, DonationItemEntry }from 'pay-theory-ui';
 import { BrowserRouter as Router } from 'react-router-dom'
+
+import { paymentItem, checkout, classicDistrict } from './example-data'
 
 export default function App(props) {
 
@@ -68,6 +70,9 @@ export default function App(props) {
   return (
     <div id="app">
       <Router>
+      <BooksHooks.context.paymentItem.Provider value={paymentItem}>
+        <BooksHooks.context.checkout.Provider value={checkout}>
+          <BooksHooks.context.district.Provider value={classicDistrict}>
           <BooksHooks.context.menu.Provider value={pageMenu.menu}>
                 <GlobalStyle />
                 <BooksHooks.context.page.Provider value={paged}>
@@ -78,20 +83,17 @@ export default function App(props) {
                                 listHead={pageMenu.listHead}
                             />
                             <div className='body-content'>
-                            <AuthBox formHead="Test" formText="This is a test" >
-                              <FormChangePassword onSubmit={() => {}} />
-                              <TextEntry
-                              label='test'
-                               name='test'
-                               value={value}
-                               onChange={(e) => setValue(e.target.value)}
-                               />
-                            </AuthBox>
+                                <PaymentItemDiscontinueCard onDiscontinue={() => {}}
+                                  copyLink={() => {}} />
+                                  <DonationItemEntry changePayment={() => {}} />
                             </div>
                         </div>
                     </div>
                 </BooksHooks.context.page.Provider>
             </BooksHooks.context.menu.Provider>
+            </BooksHooks.context.district.Provider>
+            </BooksHooks.context.checkout.Provider>
+            </BooksHooks.context.paymentItem.Provider>
       </Router>
     </div>
   );

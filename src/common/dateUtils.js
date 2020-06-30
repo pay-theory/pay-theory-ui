@@ -1,4 +1,18 @@
 const dateSplit = /^([0-1]?(?:(?<=1)[0-2]|(?<!1)[1-9]))([0-3]?(?:(?<=[1-2])[0-9]|(?<=[3])[0-1]|(?<!1)[1-9]))?([1-2](?:(?<=1)9[0-9][0-9]|(?<=2)0[0-2][0-9]))?$/
+const monthAbbreviations = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'June',
+    'July',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+]
 
 export const formatDateString = (dateIn) => {
     const dated = dateIn.replace(/\D/g, '')
@@ -45,4 +59,25 @@ export const validDate = (dateIn) => {
     } else {
         return false
     }
+}
+
+export const formatTimestamp = (stamp) => {
+    const date = new Date(stamp)
+
+    const MM = date.getMonth()
+    const DD = date.getDate()
+    const YY = date.getFullYear()
+    const HH = date.getHours()
+    const mm = date.getMinutes()
+    let result
+
+    if (HH === 0 || HH === 12) {
+        result = `${monthAbbreviations[MM]} ${DD}, ${YY} @ 12:${mm}`
+    } else if (HH < 12) {
+        result = `${monthAbbreviations[MM]} ${DD}, ${YY} @ ${HH}:${mm}`
+    } else {
+        result = `${monthAbbreviations[MM]} ${DD}, ${YY} @ ${HH - 11}:${mm}`
+    }
+
+    return result
 }

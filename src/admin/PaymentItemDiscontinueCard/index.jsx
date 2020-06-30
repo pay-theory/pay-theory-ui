@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 
 import Button from '@material/react-button'
 
 import * as BooksHooks from '../../hooks'
+import { formatTimestamp } from '../../common/dateUtils'
 
 const formatDate = (stamp) => {
-    return moment(stamp).format('MMM D, YYYY @ H:mm')
+    return formatTimestamp(stamp)
 }
 
 const PaymentItemDiscontinueCard = (props) => {

@@ -1,6 +1,5 @@
 // node modules
 import React, { useState } from 'react'
-import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
 import Button from '@material/react-button'
 import PropTypes from 'prop-types'
@@ -31,9 +30,9 @@ const ReceiptUploader = (props) => {
                     return (
                         <div
                             {...getRootProps()}
-                            className={classNames('dropzone', {
-                                'dropzone--isActive': isDragActive
-                            })}
+                            className={`dropzone ${
+                                isDragActive ? 'dropzone--isActive' : ''
+                            }`}
                         >
                             <input
                                 {...getInputProps({
