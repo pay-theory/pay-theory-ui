@@ -12,22 +12,19 @@ const saveAccount = jest.fn()
 const onChange = jest.fn()
 
 test('display account overview', async () => {
-    const { queryByTestId } = render(
-        <BooksHooks.context.roles.Provider value={roles.systemRoles}>
-            <BooksHooks.context.member.Provider value={member}>
-                <AccountOverview
-                    saveAccount={saveAccount}
-                    onChange={onChange}
-                />
-            </BooksHooks.context.member.Provider>
-        </BooksHooks.context.roles.Provider>
-    )
+	const { queryByTestId } = render(
+		<BooksHooks.context.roles.Provider value={roles.systemRoles}>
+			<BooksHooks.context.member.Provider value={member}>
+				<AccountOverview saveAccount={saveAccount} onChange={onChange} />
+			</BooksHooks.context.member.Provider>
+		</BooksHooks.context.roles.Provider>
+	)
 
-    expect(queryByTestId('nickname').value).toBe(member.nickname)
+	expect(queryByTestId('nickname').value).toBe(member.nickname)
 
-    fireEvent.change(queryByTestId('nickname'), { target: { value: '001' } })
-    expect(onChange).toHaveBeenCalledTimes(1)
+	fireEvent.change(queryByTestId('nickname'), { target: { value: '001' } })
+	expect(onChange).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(queryByTestId('submit-account-detail'))
-    expect(saveAccount).toHaveBeenCalledTimes(1)
+	fireEvent.click(queryByTestId('submit-account-detail'))
+	expect(saveAccount).toHaveBeenCalledTimes(1)
 })

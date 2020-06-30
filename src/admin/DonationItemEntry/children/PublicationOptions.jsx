@@ -9,42 +9,42 @@ import { FormHead, Checkbox } from '../../../common'
 import * as BooksHooks from '../../../hooks'
 
 const showOptions = (show) => {
-    return show ? 'options-visible' : 'options-gone'
+	return show ? 'options-visible' : 'options-gone'
 }
 
 const PublicationOptions = (props) => {
-    return (
-        <BooksHooks.context.paymentItem.Consumer>
-            {(paymentHook) => {
-                const startDate = paymentHook.item_start_date
-                    ? moment(paymentHook.item_start_date)
-                    : moment()
+	return (
+		<BooksHooks.context.paymentItem.Consumer>
+			{(paymentHook) => {
+				const startDate = paymentHook.item_start_date
+					? moment(paymentHook.item_start_date)
+					: moment()
 
-                const endDate = paymentHook.item_end_date
-                    ? moment(paymentHook.item_end_date)
-                    : moment()
+				const endDate = paymentHook.item_end_date
+					? moment(paymentHook.item_end_date)
+					: moment()
 
-                const checkChanged = (event) => {
-                    const paymentItem = { ...paymentHook }
-                    paymentItem[event.target.name] = event.target.checked
-                    if (
-                        event.target.name === 'item_is_indefinite' &&
-                        event.target.checked
-                    ) {
-                        paymentItem.item_start_date = ''
-                        paymentItem.item_end_date = ''
-                    }
-                    props.changePayment(paymentItem)
-                }
+				const checkChanged = (event) => {
+					const paymentItem = { ...paymentHook }
+					paymentItem[event.target.name] = event.target.checked
+					if (
+						event.target.name === 'item_is_indefinite' &&
+						event.target.checked
+					) {
+						paymentItem.item_start_date = ''
+						paymentItem.item_end_date = ''
+					}
+					props.changePayment(paymentItem)
+				}
 
-                const dateChanged = (moment, dateType) => {
-                    const target = `item_${dateType}_date`
-                    const paymentItem = { ...paymentHook }
-                    paymentItem[target] = moment.toDate().getTime()
-                    props.changePayment(paymentItem)
-                }
+				const dateChanged = (moment, dateType) => {
+					const target = `item_${dateType}_date`
+					const paymentItem = { ...paymentHook }
+					paymentItem[target] = moment.toDate().getTime()
+					props.changePayment(paymentItem)
+				}
 
-                /*
+				/*
                                             <DatePicker
                                                 id="item_start_date_picker"
                                                 name="item_start_date"
@@ -94,155 +94,155 @@ const PublicationOptions = (props) => {
                                             />
 */
 
-                return (
-                    <div className={`payment-item-entry card rounded `}>
-                        <div className='payment-content'>
-                            <FormHead text='Publication Options' />
+				return (
+					<div className={`payment-item-entry card rounded `}>
+						<div className='payment-content'>
+							<FormHead text='Publication Options' />
 
-                            <div className='check-option'>
-                                <Checkbox
-                                    name='item_can_be_anonymous'
-                                    id='item_can_be_anonymous'
-                                    checked={paymentHook.item_can_be_anonymous}
-                                    onChange={(e) => checkChanged(e)}
-                                    label='Allow Anonymous Payments'
-                                />
-                            </div>
+							<div className='check-option'>
+								<Checkbox
+									name='item_can_be_anonymous'
+									id='item_can_be_anonymous'
+									checked={paymentHook.item_can_be_anonymous}
+									onChange={(e) => checkChanged(e)}
+									label='Allow Anonymous Payments'
+								/>
+							</div>
 
-                            <div className='check-option'>
-                                <Checkbox
-                                    name='item_is_public'
-                                    id='item_is_public'
-                                    disabled
-                                    checked={paymentHook.item_is_public}
-                                    onChange={(e) => checkChanged(e)}
-                                    label='Publicly Available'
-                                />
-                            </div>
-                            <div
-                                className={`options ${showOptions(
-                                    !paymentHook.item_is_public
-                                )}`}
-                            >
-                                Here are options for private donations
-                            </div>
+							<div className='check-option'>
+								<Checkbox
+									name='item_is_public'
+									id='item_is_public'
+									disabled
+									checked={paymentHook.item_is_public}
+									onChange={(e) => checkChanged(e)}
+									label='Publicly Available'
+								/>
+							</div>
+							<div
+								className={`options ${showOptions(
+									!paymentHook.item_is_public
+								)}`}
+							>
+								Here are options for private donations
+							</div>
 
-                            <div className='check-option'>
-                                <Checkbox
-                                    name='item_is_indefinite'
-                                    id='item_is_indefinite'
-                                    checked={paymentHook.item_is_indefinite}
-                                    onChange={(e) => checkChanged(e)}
-                                    label='Publish Indefintely'
-                                />
-                            </div>
-                            <div
-                                className={`options ${showOptions(
-                                    !paymentHook.item_is_indefinite
-                                )}`}
-                            >
-                                <FormHead text='Choose a date range for accepting donations' />
-                                <div className='payment-item-date-range'>
-                                    <div className='payment-item-date-selection'>
-                                        <div className='payment-item-date'>
-                                            <div id='date-picker-placeholder-item-start-date' />
-                                        </div>
-                                    </div>
-                                    <div className='payment-item-date-selection'>
-                                        <div className='payment-item-date'>
-                                            <div id='date-picker-placeholder-item-end-date' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+							<div className='check-option'>
+								<Checkbox
+									name='item_is_indefinite'
+									id='item_is_indefinite'
+									checked={paymentHook.item_is_indefinite}
+									onChange={(e) => checkChanged(e)}
+									label='Publish Indefintely'
+								/>
+							</div>
+							<div
+								className={`options ${showOptions(
+									!paymentHook.item_is_indefinite
+								)}`}
+							>
+								<FormHead text='Choose a date range for accepting donations' />
+								<div className='payment-item-date-range'>
+									<div className='payment-item-date-selection'>
+										<div className='payment-item-date'>
+											<div id='date-picker-placeholder-item-start-date' />
+										</div>
+									</div>
+									<div className='payment-item-date-selection'>
+										<div className='payment-item-date'>
+											<div id='date-picker-placeholder-item-end-date' />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                        <style jsx='true' global='true'>
-                            {`
-                                .payment-item-detail {
-                                    display: flex;
-                                    flex-direction: column;
-                                    justify-content: flex-start;
-                                    flex-grow: 1;
-                                }
-                                .payment-item-entry {
-                                    max-width: 100%;
-                                    min-width: 600px;
-                                    width: auto;
-                                    padding: 0;
-                                    flex-grow: 1;
-                                    margin: 0 24px 24px;
-                                }
-                                .payment-content {
-                                    display: flex;
-                                    flex-direction: column;
-                                    justify-content: flex-start;
-                                    align-items: stretch;
-                                }
-                                .check-option {
-                                    margin: 16px 24px;
-                                    display: flex;
-                                    flex-direction: row;
-                                    justify-content: flex-start;
-                                    align-items: center;
-                                }
-                                .options {
-                                    margin: 16px 24px;
-                                }
+						<style jsx='true' global='true'>
+							{`
+								.payment-item-detail {
+									display: flex;
+									flex-direction: column;
+									justify-content: flex-start;
+									flex-grow: 1;
+								}
+								.payment-item-entry {
+									max-width: 100%;
+									min-width: 600px;
+									width: auto;
+									padding: 0;
+									flex-grow: 1;
+									margin: 0 24px 24px;
+								}
+								.payment-content {
+									display: flex;
+									flex-direction: column;
+									justify-content: flex-start;
+									align-items: stretch;
+								}
+								.check-option {
+									margin: 16px 24px;
+									display: flex;
+									flex-direction: row;
+									justify-content: flex-start;
+									align-items: center;
+								}
+								.options {
+									margin: 16px 24px;
+								}
 
-                                .option-row {
-                                    display: flex;
-                                    flex-direction: row;
-                                    justify-content: flex-start;
-                                    align-items: center;
-                                }
+								.option-row {
+									display: flex;
+									flex-direction: row;
+									justify-content: flex-start;
+									align-items: center;
+								}
 
-                                .options-visible {
-                                    display: flex;
-                                    flex-direction: column;
-                                    justify-content: flex-start;
-                                    align-items: flex-start;
-                                }
-                                .options-gone {
-                                    display: none;
-                                }
-                                .hidden-options {
-                                    visibility: hidden;
-                                }
-                                .visible-options {
-                                    visibility: visible;
-                                }
-                                .payment-item-date-range {
-                                    display: flex;
-                                    flex-direction: row;
-                                    justify-content: flex-start;
-                                    align-items: center;
-                                    width: 100%;
-                                }
-                                .payment-item-date-selection {
-                                    display: flex;
-                                    flex-direction: column;
-                                    justify-content: center;
-                                    align-items: center;
-                                    width: auto;
-                                }
-                                .payment-item-date {
-                                    width: 350px;
-                                }
-                            `}
-                        </style>
-                    </div>
-                )
-            }}
-        </BooksHooks.context.paymentItem.Consumer>
-    )
+								.options-visible {
+									display: flex;
+									flex-direction: column;
+									justify-content: flex-start;
+									align-items: flex-start;
+								}
+								.options-gone {
+									display: none;
+								}
+								.hidden-options {
+									visibility: hidden;
+								}
+								.visible-options {
+									visibility: visible;
+								}
+								.payment-item-date-range {
+									display: flex;
+									flex-direction: row;
+									justify-content: flex-start;
+									align-items: center;
+									width: 100%;
+								}
+								.payment-item-date-selection {
+									display: flex;
+									flex-direction: column;
+									justify-content: center;
+									align-items: center;
+									width: auto;
+								}
+								.payment-item-date {
+									width: 350px;
+								}
+							`}
+						</style>
+					</div>
+				)
+			}}
+		</BooksHooks.context.paymentItem.Consumer>
+	)
 }
 
 PublicationOptions.propTypes = {
-    domain: PropTypes.string,
-    district: PropTypes.string,
-    titleFocus: PropTypes.func,
-    paymentChanged: PropTypes.func
+	domain: PropTypes.string,
+	district: PropTypes.string,
+	titleFocus: PropTypes.func,
+	paymentChanged: PropTypes.func
 }
 
 export default PublicationOptions

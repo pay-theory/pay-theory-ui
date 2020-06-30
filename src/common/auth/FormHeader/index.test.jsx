@@ -7,7 +7,7 @@ import { render } from '@testing-library/react'
 import FormHeader from '.'
 
 test('display form head', async () => {
-    const { getByText } = render(<FormHeader text='something' />)
+	const { getByText } = render(<FormHeader text='something' />)
 
-    expect(getByText('something')).toBeInTheDocument()
+	expect(getByText('something')).toBeInTheDocument()
 })

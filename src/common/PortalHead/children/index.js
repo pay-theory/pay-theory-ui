@@ -6,10 +6,10 @@ import PortalLogo from './PortalLogo'
 import PortalTitle from './PortalTitle'
 
 export {
-    AccountMenu,
-    AccountMenuItems,
-    AccountMenuButton,
-    PortalLabel,
-    PortalLogo,
-    PortalTitle
+	AccountMenu,
+	AccountMenuItems,
+	AccountMenuButton,
+	PortalLabel,
+	PortalLogo,
+	PortalTitle
 }

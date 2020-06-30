@@ -4,8 +4,8 @@ A UI element for displaying a wrapping, centered row of content.
 
 ## Hooks
 
-* None
+- None
 
 ## Props
 
-* children: JSX elements included as children elements
+- children: JSX elements included as children elements

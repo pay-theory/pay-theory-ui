@@ -13,18 +13,18 @@ const viewAccount = jest.fn()
 const deleteAccount = jest.fn()
 
 test('display account table', async () => {
-    const { queryAllByTestId } = render(
-        <BooksHooks.context.accounts.Provider value={accounts}>
-            <AccountTable
-                id='test-id'
-                viewAccount={viewAccount}
-                deleteAccount={deleteAccount}
-            />
-        </BooksHooks.context.accounts.Provider>
-    )
-    fireEvent.click(queryAllByTestId('view-action')[0])
-    expect(viewAccount).toHaveBeenCalledTimes(1)
+	const { queryAllByTestId } = render(
+		<BooksHooks.context.accounts.Provider value={accounts}>
+			<AccountTable
+				id='test-id'
+				viewAccount={viewAccount}
+				deleteAccount={deleteAccount}
+			/>
+		</BooksHooks.context.accounts.Provider>
+	)
+	fireEvent.click(queryAllByTestId('view-action')[0])
+	expect(viewAccount).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(queryAllByTestId('delete-action')[0])
-    expect(deleteAccount).toHaveBeenCalledTimes(1)
+	fireEvent.click(queryAllByTestId('delete-action')[0])
+	expect(deleteAccount).toHaveBeenCalledTimes(1)
 })

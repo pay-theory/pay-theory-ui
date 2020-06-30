@@ -7,7 +7,7 @@ import { render } from '@testing-library/react'
 import AuthBG from './'
 
 test('display form head', async () => {
-    const { queryByTestId } = render(<AuthBG />)
+	const { queryByTestId } = render(<AuthBG />)
 
-    expect(queryByTestId('authBg')).toBeTruthy()
+	expect(queryByTestId('authBg')).toBeTruthy()
 })

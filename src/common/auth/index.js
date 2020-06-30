@@ -9,14 +9,14 @@ import FormLoginEmail from './FormLoginEmail'
 import FormLoginCode from './FormLoginCode'
 import LogoHeader from './LogoHeader'
 export {
-    AuthBG,
-    AuthBox,
-    AuthStyle,
-    Bouncer,
-    FormChangePassword,
-    FormHeader,
-    FormLoginAlternative,
-    FormLoginCode,
-    FormLoginEmail,
-    LogoHeader
+	AuthBG,
+	AuthBox,
+	AuthStyle,
+	Bouncer,
+	FormChangePassword,
+	FormHeader,
+	FormLoginAlternative,
+	FormLoginCode,
+	FormLoginEmail,
+	LogoHeader
 }

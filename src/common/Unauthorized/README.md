@@ -4,8 +4,8 @@ A UI component for displaying when someone is unauthorized to access a page. Inc
 
 ## Hooks
 
-* None
+- None
 
 ## Props
 
-* None
+- None

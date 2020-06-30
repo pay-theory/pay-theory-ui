@@ -4,13 +4,13 @@ A UI element that displays a a card for a Pay Theory payment item and allows you
 
 ## Hooks
 
-* BookHooks PaymentItem Consumer
+- BookHooks PaymentItem Consumer
 
 ## Props
 
 ### Required
 
-* **onDiscontinue**: PropTypes.func.isRequired
-    * callback function that would discontinue the payment item when button clicked
-* **copyLink**: PropTypes.func.isRequired
-    * callback function that would copy a link to the payment item when button clicked
+- **onDiscontinue**: PropTypes.func.isRequired
+  - callback function that would discontinue the payment item when button clicked
+- **copyLink**: PropTypes.func.isRequired
+  - callback function that would copy a link to the payment item when button clicked

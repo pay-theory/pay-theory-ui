@@ -4,11 +4,11 @@ A UI element for displaying a modal for creating a Pay Theory partner. Utilizes 
 
 ## Hooks
 
-* None
+- None
 
 ## Props
 
 ### Required
 
-* **createNewPartner**: PropTypes.func.isRequired
-  * callback function that will handling creating a partner being passed a partner object as an argument
+- **createNewPartner**: PropTypes.func.isRequired
+  - callback function that will handling creating a partner being passed a partner object as an argument

@@ -4,18 +4,20 @@ A UI component that allows for a pop up Modal with a header and whatever childre
 
 ## Hooks
 
-* None
+- None
 
 ## Props
 
 ### optional
-*  **text**: PropTypes.string
-    * Text to be used as a header for the modal box
+
+- **text**: PropTypes.string
+  - Text to be used as a header for the modal box
 
 ## Additional Exports
 
-* **openModal**
-    * function that allows the modal to be shown 
+- **openModal**
 
-* **closeModal**
-    * function that allows the modal to be hidden
+  - function that allows the modal to be shown
+
+- **closeModal**
+  - function that allows the modal to be hidden

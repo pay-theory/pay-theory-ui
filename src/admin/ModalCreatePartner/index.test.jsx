@@ -10,30 +10,30 @@ import ModalSpinner from '../../common/ModalSpinner'
 import ModalPartnerDistrict from '.'
 
 test('modal create partner success', async () => {
-    act(() => {
-        const createNewPartner = jest.fn(() => Promise.resolve())
+	act(() => {
+		const createNewPartner = jest.fn(() => Promise.resolve())
 
-        const { queryByTestId } = render(
-            <div className='spinner-wrapper'>
-                <div className='modal-wrapper'>
-                    <div id='container' />
-                    <ModalPartnerDistrict createNewPartner={createNewPartner} />
-                </div>
-                <ModalSpinner />
-            </div>
-        )
-        expect(queryByTestId('partner_name')).not.toBeVisible()
-        openModal()
-        expect(queryByTestId('partner_name')).toBeVisible()
+		const { queryByTestId } = render(
+			<div className='spinner-wrapper'>
+				<div className='modal-wrapper'>
+					<div id='container' />
+					<ModalPartnerDistrict createNewPartner={createNewPartner} />
+				</div>
+				<ModalSpinner />
+			</div>
+		)
+		expect(queryByTestId('partner_name')).not.toBeVisible()
+		openModal()
+		expect(queryByTestId('partner_name')).toBeVisible()
 
-        fireEvent.change(queryByTestId('partner_name'), {
-            target: { value: 'name' }
-        })
-        fireEvent.submit(queryByTestId('create-partner-form'))
+		fireEvent.change(queryByTestId('partner_name'), {
+			target: { value: 'name' }
+		})
+		fireEvent.submit(queryByTestId('create-partner-form'))
 
-        expect(createNewPartner).toHaveBeenCalledTimes(1)
+		expect(createNewPartner).toHaveBeenCalledTimes(1)
 
-        closeModal()
-        expect(queryByTestId('partner_name')).not.toBeVisible()
-    })
+		closeModal()
+		expect(queryByTestId('partner_name')).not.toBeVisible()
+	})
 })

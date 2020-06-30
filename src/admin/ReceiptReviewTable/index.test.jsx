@@ -10,92 +10,92 @@ import * as BooksHooks from '../../hooks'
 import { receipt_excel, receipt_csv, classicDistrict } from '../../test-data'
 
 test('display receipt review preview table with content', async () => {
-    const viewDetails = jest.fn()
-    const onAccept = jest.fn()
-    const { queryByTestId, queryAllByTestId, findByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
-            <BooksHooks.context.receiptReview.Provider value={receipt_excel}>
-                <ReceiptReviewTable
-                    goBackTo='/'
-                    history={[]}
-                    viewDetails={viewDetails}
-                    onAccept={onAccept}
-                    isPreview
-                />
-            </BooksHooks.context.receiptReview.Provider>
-        </BooksHooks.context.district.Provider>
-    )
-    findByTestId('success-content')
-    // await waitForElement(() => queryByTestId('status-cleared'))
+	const viewDetails = jest.fn()
+	const onAccept = jest.fn()
+	const { queryByTestId, queryAllByTestId, findByTestId } = render(
+		<BooksHooks.context.district.Provider value={classicDistrict}>
+			<BooksHooks.context.receiptReview.Provider value={receipt_excel}>
+				<ReceiptReviewTable
+					goBackTo='/'
+					history={[]}
+					viewDetails={viewDetails}
+					onAccept={onAccept}
+					isPreview
+				/>
+			</BooksHooks.context.receiptReview.Provider>
+		</BooksHooks.context.district.Provider>
+	)
+	findByTestId('success-content')
+	// await waitForElement(() => queryByTestId('status-cleared'))
 
-    expect(queryByTestId('upload-button')).toBeInTheDocument()
+	expect(queryByTestId('upload-button')).toBeInTheDocument()
 
-    fireEvent.click(queryAllByTestId('view-action')[0])
+	fireEvent.click(queryAllByTestId('view-action')[0])
 
-    expect(viewDetails).toHaveBeenCalledTimes(1)
+	expect(viewDetails).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(queryByTestId('upload-button'))
+	fireEvent.click(queryByTestId('upload-button'))
 
-    expect(onAccept).toHaveBeenCalledTimes(1)
+	expect(onAccept).toHaveBeenCalledTimes(1)
 })
 
 test('display csv receipt review table with content', async () => {
-    const viewDetails = jest.fn()
-    const onAccept = jest.fn()
-    const { queryByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
-            <BooksHooks.context.receiptReview.Provider value={receipt_csv}>
-                <ReceiptReviewTable
-                    goBackTo='/'
-                    history={[]}
-                    viewDetails={viewDetails}
-                    onAccept={onAccept}
-                />
-            </BooksHooks.context.receiptReview.Provider>
-        </BooksHooks.context.district.Provider>
-    )
+	const viewDetails = jest.fn()
+	const onAccept = jest.fn()
+	const { queryByTestId } = render(
+		<BooksHooks.context.district.Provider value={classicDistrict}>
+			<BooksHooks.context.receiptReview.Provider value={receipt_csv}>
+				<ReceiptReviewTable
+					goBackTo='/'
+					history={[]}
+					viewDetails={viewDetails}
+					onAccept={onAccept}
+				/>
+			</BooksHooks.context.receiptReview.Provider>
+		</BooksHooks.context.district.Provider>
+	)
 
-    expect(queryByTestId('upload-button')).not.toBeInTheDocument()
+	expect(queryByTestId('upload-button')).not.toBeInTheDocument()
 })
 
 test('display excel receipt review table with content', async () => {
-    const viewDetails = jest.fn()
-    const onAccept = jest.fn()
-    const { queryByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
-            <BooksHooks.context.receiptReview.Provider value={receipt_excel}>
-                <ReceiptReviewTable
-                    goBackTo='/'
-                    history={[]}
-                    viewDetails={viewDetails}
-                    onAccept={onAccept}
-                />
-            </BooksHooks.context.receiptReview.Provider>
-        </BooksHooks.context.district.Provider>
-    )
+	const viewDetails = jest.fn()
+	const onAccept = jest.fn()
+	const { queryByTestId } = render(
+		<BooksHooks.context.district.Provider value={classicDistrict}>
+			<BooksHooks.context.receiptReview.Provider value={receipt_excel}>
+				<ReceiptReviewTable
+					goBackTo='/'
+					history={[]}
+					viewDetails={viewDetails}
+					onAccept={onAccept}
+				/>
+			</BooksHooks.context.receiptReview.Provider>
+		</BooksHooks.context.district.Provider>
+	)
 
-    expect(queryByTestId('upload-button')).not.toBeInTheDocument()
+	expect(queryByTestId('upload-button')).not.toBeInTheDocument()
 })
 
 test('display receipt review table with invalid content', async () => {
-    const viewDetails = jest.fn()
-    const onAccept = jest.fn()
-    const { findByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
-            <BooksHooks.context.receiptReview.Provider
-                // eslint-disable-next-line no-undef
-                value={btoa('invalid-receipt')}
-            >
-                <ReceiptReviewTable
-                    goBackTo='/'
-                    history={[]}
-                    viewDetails={viewDetails}
-                    onAccept={onAccept}
-                    isPreview
-                />
-            </BooksHooks.context.receiptReview.Provider>
-        </BooksHooks.context.district.Provider>
-    )
-    findByTestId('error-content')
-    // await waitForElement(() => queryByTestId('status-cleared'))
+	const viewDetails = jest.fn()
+	const onAccept = jest.fn()
+	const { findByTestId } = render(
+		<BooksHooks.context.district.Provider value={classicDistrict}>
+			<BooksHooks.context.receiptReview.Provider
+				// eslint-disable-next-line no-undef
+				value={btoa('invalid-receipt')}
+			>
+				<ReceiptReviewTable
+					goBackTo='/'
+					history={[]}
+					viewDetails={viewDetails}
+					onAccept={onAccept}
+					isPreview
+				/>
+			</BooksHooks.context.receiptReview.Provider>
+		</BooksHooks.context.district.Provider>
+	)
+	findByTestId('error-content')
+	// await waitForElement(() => queryByTestId('status-cleared'))
 })

@@ -7,12 +7,12 @@ import { render } from '@testing-library/react'
 import TabPage from '.'
 
 test('display TabPage', async () => {
-    const { getByText, getByTestId } = render(
-        <TabPage id='test' visibility='gone'>
-            Test
-        </TabPage>
-    )
+	const { getByText, getByTestId } = render(
+		<TabPage id='test' visibility='gone'>
+			Test
+		</TabPage>
+	)
 
-    expect(getByText('Test')).toBeInTheDocument()
-    expect(getByTestId('tab-page')).toBeInTheDocument()
+	expect(getByText('Test')).toBeInTheDocument()
+	expect(getByTestId('tab-page')).toBeInTheDocument()
 })

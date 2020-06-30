@@ -26,16 +26,16 @@ export const DISTRICT_SETTINGS = '/dashboard/district-settings'
 export const ACCOUNT = '/account'
 export const MANAGE_ADMIN = '/admin/manage-administrators'
 export const ADMIN_ACCOUNT_DETAIL =
-    '/admin/manage-administrators/account-detail'
+	'/admin/manage-administrators/account-detail'
 export const MANAGE_DISTRICT = '/admin/manage-districts'
 export const DISTRICT_DETAIL = '/admin/manage-districts/district-detail'
 export const DISTRICT_ACCOUNT_DETAIL =
-    '/admin/manage-districts/district-detail/district-account-detail'
+	'/admin/manage-districts/district-detail/district-account-detail'
 
 export const MANAGE_PARTNER = '/admin/manage-partners'
 export const PARTNER_DETAIL = '/admin/manage-partners/partner-detail'
 export const PARTNER_ACCOUNT_DETAIL =
-    '/admin/manage-partners/partner-detail/partner-account-detail'
+	'/admin/manage-partners/partner-detail/partner-account-detail'
 
 // error
 export const VERIFICATION_FAILED = '/verification-failed'

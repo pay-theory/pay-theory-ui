@@ -21,25 +21,25 @@ PartnerInfoTab.propTypes = {
  */
 
 test('display partner tab', async () => {
-    const setStatusMessage = jest.fn()
-    const savePartner = jest.fn(() => Promise.resolve())
-    const { getByText, queryByTestId } = render(
-        <div className='spinner-wrapper'>
-            <div className='modal-wrapper'>
-                <div id='container'>
-                    <BooksHooks.context.partner.Provider value={partner}>
-                        <PartnerInfoTab
-                            apiPrefix='testing'
-                            setStatusMessage={setStatusMessage}
-                            savePartner={savePartner}
-                            onGenerateApiKey={() => {}}
-                        />
-                    </BooksHooks.context.partner.Provider>
-                </div>
-            </div>
-            <ModalSpinner />
-        </div>
-    )
+	const setStatusMessage = jest.fn()
+	const savePartner = jest.fn(() => Promise.resolve())
+	const { getByText, queryByTestId } = render(
+		<div className='spinner-wrapper'>
+			<div className='modal-wrapper'>
+				<div id='container'>
+					<BooksHooks.context.partner.Provider value={partner}>
+						<PartnerInfoTab
+							apiPrefix='testing'
+							setStatusMessage={setStatusMessage}
+							savePartner={savePartner}
+							onGenerateApiKey={() => {}}
+						/>
+					</BooksHooks.context.partner.Provider>
+				</div>
+			</div>
+			<ModalSpinner />
+		</div>
+	)
 })
 
 // test('partner tab - generate api key', async() => {

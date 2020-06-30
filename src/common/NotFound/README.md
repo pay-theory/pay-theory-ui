@@ -4,8 +4,8 @@ A UI component for 404 errors
 
 ## Hooks
 
-* None
+- None
 
 ## Props
 
-* None
+- None

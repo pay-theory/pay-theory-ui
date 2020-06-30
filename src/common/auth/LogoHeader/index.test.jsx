@@ -7,7 +7,7 @@ import { render } from '@testing-library/react'
 import LogoHeader from './'
 
 test('display AuthBox with text', async () => {
-    const { queryByTestId } = render(<LogoHeader />)
+	const { queryByTestId } = render(<LogoHeader />)
 
-    expect(queryByTestId('logoHeader')).toBeTruthy()
+	expect(queryByTestId('logoHeader')).toBeTruthy()
 })

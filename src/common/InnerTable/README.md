@@ -4,22 +4,24 @@ A UI component that builds a table with the ability to include delete or copy ac
 
 ## Hooks
 
-* None
+- None
 
 ## Props
 
 ### Required
-* **columns** : PropTypes.array.isRequired
-    * Array of objects with the column names and className for each element
-* **rows**: PropTypes.array.isRequired
-    * Array of objects representing each row with the data corosponding to each column and any callback functions for actions the table has
+
+- **columns** : PropTypes.array.isRequired
+  - Array of objects with the column names and className for each element
+- **rows**: PropTypes.array.isRequired
+  - Array of objects representing each row with the data corosponding to each column and any callback functions for actions the table has
 
 ### Optional
-* **visibility**: PropTypes.bool
-    * Boolean that tells if there is a visibility callback in the row objecct
-* **hasActions**: PropTypes.bool
-    * Boolean telling the table if it should have an action column
-* **canDelete**: PropTypes.bool
-    * Boolean that tells if there is a delete callback in the row objects
-* **copyOnly**: PropTypes.bool
-    * Boolean that tells if there is a copy callback in the row object
+
+- **visibility**: PropTypes.bool
+  - Boolean that tells if there is a visibility callback in the row objecct
+- **hasActions**: PropTypes.bool
+  - Boolean telling the table if it should have an action column
+- **canDelete**: PropTypes.bool
+  - Boolean that tells if there is a delete callback in the row objects
+- **copyOnly**: PropTypes.bool
+  - Boolean that tells if there is a copy callback in the row object

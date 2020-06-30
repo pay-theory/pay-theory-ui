@@ -9,10 +9,10 @@ import * as BooksHooks from '../../hooks'
 import { partner } from '../../test-data'
 
 test('display partner overview', async () => {
-    // eslint-disable-next-line no-unused-vars
-    const { getByText, queryByTestId } = render(
-        <BooksHooks.context.partner.Provider value={partner}>
-            <PartnerOverviewCard />
-        </BooksHooks.context.partner.Provider>
-    )
+	// eslint-disable-next-line no-unused-vars
+	const { getByText, queryByTestId } = render(
+		<BooksHooks.context.partner.Provider value={partner}>
+			<PartnerOverviewCard />
+		</BooksHooks.context.partner.Provider>
+	)
 })

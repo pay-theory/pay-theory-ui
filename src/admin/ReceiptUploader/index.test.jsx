@@ -9,21 +9,21 @@ import ReceiptUploader from './'
 import { receipt_excel } from '../../test-data'
 
 test('display file uploader open', async () => {
-    const callback = jest.fn()
-    const { queryByTestId, findByTestId } = render(
-        <ReceiptUploader callback={callback} visible />
-    )
-    expect(queryByTestId('upload-dropzone')).toBeVisible()
+	const callback = jest.fn()
+	const { queryByTestId, findByTestId } = render(
+		<ReceiptUploader callback={callback} visible />
+	)
+	expect(queryByTestId('upload-dropzone')).toBeVisible()
 
-    // eslint-disable-next-line no-undef
-    fireEvent.drop(queryByTestId('dropzone-input'), atob(receipt_excel))
+	// eslint-disable-next-line no-undef
+	fireEvent.drop(queryByTestId('dropzone-input'), atob(receipt_excel))
 
-    findByTestId('files-dropped')
+	findByTestId('files-dropped')
 })
 
 test('display file uploader closed', async () => {
-    const callback = jest.fn()
-    const { queryByTestId } = render(<ReceiptUploader callback={callback} />)
+	const callback = jest.fn()
+	const { queryByTestId } = render(<ReceiptUploader callback={callback} />)
 
-    expect(queryByTestId('upload-dropzone')).not.toBeVisible()
+	expect(queryByTestId('upload-dropzone')).not.toBeVisible()
 })

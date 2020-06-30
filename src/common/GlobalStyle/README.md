@@ -4,8 +4,8 @@ A UI element for importing global pay theory styles.
 
 ## Hooks
 
-* None
+- None
 
 ## Props
 
-* None
+- None

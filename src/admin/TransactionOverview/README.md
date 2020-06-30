@@ -4,8 +4,8 @@ A UI element that displays a card with info about a payment pulled from the paym
 
 ## Hooks
 
-* Payment Consumer
+- Payment Consumer
 
 ## Props
 
-* None
+- None

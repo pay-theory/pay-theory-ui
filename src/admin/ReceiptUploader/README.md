@@ -4,16 +4,16 @@ A UI element that provides a drag and drop area for uploading receipts. It utili
 
 ## Hooks
 
-* None
+- None
 
 ## Props
 
 ### Required
 
-* **callback**: PropTypes.func.isRequired
-    * callback function that will process the files when they are dropped in the dropzone
-
+- **callback**: PropTypes.func.isRequired
+  - callback function that will process the files when they are dropped in the dropzone
 
 ### Optional
-* **visible** PropTypes.bool
-    * bool that tells the dropzone if it should be shown or not
+
+- **visible** PropTypes.bool
+  - bool that tells the dropzone if it should be shown or not

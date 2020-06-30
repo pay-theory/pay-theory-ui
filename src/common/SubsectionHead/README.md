@@ -5,11 +5,13 @@ A UI component that displays a header for sub sections of Pay Theory pages. It d
 ## Hooks
 
 ### Page Context Consumer
-* The page context provides the page title and subtitle to the SubsectionSubtitle child
+
+- The page context provides the page title and subtitle to the SubsectionSubtitle child
 
 ### Parent Context Consumer
-* The parent context provides the parent name and parent route info to the SubsectionParent child
+
+- The parent context provides the parent name and parent route info to the SubsectionParent child
 
 ## Props
 
-* None
+- None
