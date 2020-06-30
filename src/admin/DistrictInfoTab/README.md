@@ -9,8 +9,10 @@ A UI element for displaying a list of districts in a TabPage.
 ## Props
 
 -   saveDistrict: PropTypes.func.isRequired
+
     -   function to save changes to a district
     -   `(district) => {}`
+
 -   setStatusMessage: PropTypes.func.isRequired
     -   pass a status message as JSX content to be displayed
     -   `(JSX) => {}`
