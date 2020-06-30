@@ -14,7 +14,7 @@ const TextEntry = (props) => {
     delete newProps.trailingIcon
 
     return (
-        <label className={props.className}>
+        <label className={props.innerClass}>
             <input
                 id={props.name}
                 data-testid={props.name}
@@ -343,6 +343,7 @@ const TextEntry = (props) => {
 TextEntry.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    innerClass: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.any,
     leadingIcon: PropTypes.any,

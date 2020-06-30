@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-const TabMenu = (props) => {
-    const menuItems = props.items.map((item) => {
+/* eslint react/jsx-handler-names:0 */
+const TabMenu = ({ items }) => {
+    const menuItems = items.map((item) => {
         return (
             <div
+                className={`tab-menu-item ${item.active}`}
+                data-testid={item.id}
                 id={item.id}
                 key={item.id}
-                data-testid={item.id}
-                className={`tab-menu-item ${item.active}`}
                 onClick={item.action}
             >
                 {item.label}
@@ -18,25 +18,27 @@ const TabMenu = (props) => {
     return (
         <div className='tab-menu'>
             {menuItems}
-            <style jsx='true' global='true'>{`
-                .tab-menu {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-start;
-                    align-items: center;
-                    margin: 16px 0 0 0;
-                }
-                .tab-menu-item {
-                    color: #6b7887;
-                    margin: 0 16px;
-                    font-weight: 500;
-                    cursor: pointer;
-                }
+            <style global='true' jsx='true'>
+                {`
+                    .tab-menu {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        margin: 16px 0 0 0;
+                    }
+                    .tab-menu-item {
+                        color: #6b7887;
+                        margin: 0 16px;
+                        font-weight: 500;
+                        cursor: pointer;
+                    }
 
-                .active-tab {
-                    border-bottom: 4px solid #66cccc;
-                }
-            `}</style>
+                    .active-tab {
+                        border-bottom: 4px solid #66cccc;
+                    }
+                `}
+            </style>
         </div>
     )
 }

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import WebFont from 'webfontloader'
 
-const Font = (props) => {
+const Font = ({ typekit }) => {
     const WebFontConfig = {
         typekit: {
-            id: props.typekit
+            id: typekit
         }
     }
     const [fontState, setFontState] = useState('font-init')

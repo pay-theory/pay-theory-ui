@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react'
 import createAuth0Client from '@auth0/auth0-spa-js'
 import { Route } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
     window.history.replaceState({}, document.title, window.location.pathname)
 
-export const Auth0Context = React.createContext()
-export const useAuth0 = () => useContext(Auth0Context)
-
-export const PrivateRoute = ({ component: Component, path, ...rest }) => {
+const Auth0Context = React.createContext()
+const useAuth0 = () => useContext(Auth0Context)
+/* eslint react/no-multi-comp: 0 */
+/* eslint react/prop-types: 0 */
+/* eslint react/require-default-props: 0 */
+const PrivateRoute = ({ component: Component, path, ...rest }) => {
     const { loading, isAuthenticated, loginWithRedirect } = useAuth0()
 
     useEffect(() => {
@@ -29,7 +32,12 @@ export const PrivateRoute = ({ component: Component, path, ...rest }) => {
     return <Route path={path} render={render} {...rest} />
 }
 
-export const Auth0Provider = ({
+PrivateRoute.propTypes = {
+    component: PropTypes.elementType.isRequired,
+    path: PropTypes.string.isRequired
+}
+
+const Auth0Provider = ({
     children,
     onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
     ...initOptions
@@ -114,3 +122,9 @@ export const Auth0Provider = ({
         </Auth0Context.Provider>
     )
 }
+
+Auth0Provider.propTypes = {
+    onRedirectCallback: PropTypes.func
+}
+
+export { Auth0Context, useAuth0, Auth0Provider }

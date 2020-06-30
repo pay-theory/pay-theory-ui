@@ -132,7 +132,7 @@ const parse = (uploaded, forDistrict) => {
     })
 
     const first_sheet_name = workbook.SheetNames[0]
-    const worksheet = workbook.Sheets[first_sheet_name]
+    const worksheet = workbook.Sheets[first_sheet_name.toString()]
     const rows = XLSX.utils.sheet_to_json(worksheet, {
         header: HEADERS
     })
@@ -178,20 +178,21 @@ const parse = (uploaded, forDistrict) => {
 
             const account_code = row.AccountCode
 
-            usas_submissions[school][account_code] = usas_submissions[school][
-                account_code
-            ]
-                ? usas_submissions[school][account_code]
-                : {
-                      fees: 0.0,
-                      receipts: []
-                  }
+            const empty_fee = { fees: 0.0, receipts: [] }
+
+            usas_submissions[school.toString()][
+                account_code.toString()
+            ] = usas_submissions[school.toString()][account_code.toString()]
+                ? usas_submissions[school.toString()][account_code.toString()]
+                : empty_fee
 
             const paymentMade = useConvenienceAsDate
                 ? row.ConvenienceFee
                 : row.PaymentMadeDate
 
-            const receipts = usas_submissions[school][account_code].receipts
+            const receipts =
+                usas_submissions[school.toString()][account_code.toString()]
+                    .receipts
             receipts.push({
                 school: school,
                 student_id: row.StudentID,
@@ -206,22 +207,27 @@ const parse = (uploaded, forDistrict) => {
             })
 
             const fees =
-                parseFloat(usas_submissions[school][account_code].fees) + fee
+                parseFloat(
+                    usas_submissions[school.toString()][account_code.toString()]
+                        .fees
+                ) + fee
 
-            if (!school_fees[school]) {
-                school_fees[school] = 0.0
-                school_receipts[school] = 0
+            if (!school_fees[school.toString()]) {
+                school_fees[school.toString()] = 0.0
+                school_receipts[school.toString()] = 0
             }
 
-            school_fees[school] = school_fees[school] + fee
+            school_fees[school.toString()] =
+                school_fees[school.toString()] + fee
 
             total_fees = normalizeCents(parseFloat(total_fees) + fee)
 
-            school_receipts[school] = school_receipts[school] + 1
+            school_receipts[school.toString()] =
+                school_receipts[school.toString()] + 1
 
             total_receipts = total_receipts + 1
 
-            usas_submissions[school][account_code] = {
+            usas_submissions[school.toString()][account_code.toString()] = {
                 fees: normalizeCents(fees),
                 receipts: receipts,
                 date: (reportRange.end.getTime() / 1000).toString()
@@ -230,21 +236,21 @@ const parse = (uploaded, forDistrict) => {
             if (school) {
                 total_submissions =
                     total_submissions +
-                    Object.keys(usas_submissions[school]).length
+                    Object.keys(usas_submissions[school.toString()]).length
             }
 
             school = row.StudentID
             school_names.push(school)
-            receipts[school] = []
-            usas_submissions[school] = {}
+            receipts[school.toString()] = []
+            usas_submissions[school.toString()] = {}
         }
     }
     const schools = school_names.map((school) => {
         return {
             name: school,
-            submissions: usas_submissions[school],
-            total: school_fees[school],
-            receipts: school_receipts[school]
+            submissions: usas_submissions[school.toString()],
+            total: school_fees[school.toString()],
+            receipts: school_receipts[school.toString()]
         }
     })
 
@@ -253,14 +259,14 @@ const parse = (uploaded, forDistrict) => {
     report.report_submissions = total_submissions
     report.report_line_items = usas_submissions
 
-    return /* istanbul ignore next */ school
-        ? {
-              schools: schools,
-              total_fees: total_fees,
-              total_receipts: total_receipts,
-              upload: report
-          }
-        : school
+    const schooled = {
+        schools: schools,
+        total_fees: total_fees,
+        total_receipts: total_receipts,
+        upload: report
+    }
+
+    return /* istanbul ignore next */ school ? schooled : school
 }
 
 export { parse, formatFee }

@@ -24,108 +24,110 @@ const AccountCodeBar = (props) => {
     return (
         <div className='search-account-codes'>
             <TextEntry
-                className='account-code-search'
                 data-testid='fund'
-                label='Fund'
-                name='fund'
+                innerClass='account-code-search'
                 inputProps={{
                     minLength: '3',
                     maxLength: '3',
                     size: '3'
                 }}
-                value={searchState.fund}
+                label='Fund'
+                name='fund'
                 onChange={onChange}
+                value={searchState.fund}
             />
-            -
+            {` - `}
             <TextEntry
-                className='account-code-search'
                 data-testid='receipt'
-                label='Receipt'
-                name='receipt'
+                innerClass='account-code-search'
                 inputProps={{
                     minLength: '4',
                     maxLength: '4',
                     size: '5'
                 }}
-                value={searchState.receipt}
+                label='Receipt'
+                name='receipt'
                 onChange={onChange}
+                value={searchState.receipt}
             />
-            -
+            {` - `}
             <TextEntry
-                className='account-code-search'
                 data-testid='scc'
-                label='SCC'
-                name='scc'
+                innerClass='account-code-search'
                 inputProps={{
                     minLength: '4',
                     maxLength: '4',
                     size: '4'
                 }}
-                value={searchState.scc}
+                label='SCC'
+                name='scc'
                 onChange={onChange}
+                value={searchState.scc}
             />
-            -
+            {` - `}
             <TextEntry
-                className='account-code-search'
                 data-testid='subject'
-                label='Subject'
-                name='subject'
+                innerClass='account-code-search'
                 inputProps={{
                     minLength: '6',
                     maxLength: '6',
                     size: '6'
                 }}
-                value={searchState.subject}
+                label='Subject'
+                name='subject'
                 onChange={onChange}
+                value={searchState.subject}
             />
-            -
+            {` - `}
             <TextEntry
-                className='account-code-search'
                 data-testid='opu'
-                label='OPU'
-                name='opu'
+                innerClass='account-code-search'
                 inputProps={{
                     minLength: '3',
                     maxLength: '3',
                     size: '3'
                 }}
-                value={searchState.opu}
+                label='OPU'
+                name='opu'
                 onChange={onChange}
+                value={searchState.opu}
             />
             <div className='spacer' />
             <TextEntry
-                className='account-code-search'
                 data-testid='description'
+                innerClass='account-code-search'
                 label='Description'
                 name='description'
-                value={searchState.description}
                 onChange={onChange}
+                value={searchState.description}
             />
             <div className='spacer' />
             <Button
-                raised
-                className='primary-button'
                 data-testid='searchButton'
+                innerClass='primary-button'
                 onClick={(e) => {
                     props.searchHandler(searchState)
                 }}
+                raised
             >
                 <i className='fal fa-search' />
-                Search USAS
+                {`Search USAS `}
             </Button>
-            <style jsx='true'>{`
-                .search-account-codes {
-                    flex-grow: 1;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-start;
-                    align-items: baseline;
-                }
+            <style jsx='true'>
+                {`
+                    .search-account-codes {
+                        flex-grow: 1;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: baseline;
+                    }
 
-                .search-account-codes .spacer {
-                    margin: 8px;
-                }
-            `}</style>
+                    .search-account-codes .spacer {
+                        margin: 8px;
+                    }
+                `}
+            </style>
         </div>
     )
 }

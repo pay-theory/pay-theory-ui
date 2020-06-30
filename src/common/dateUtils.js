@@ -1,3 +1,4 @@
+// eslint-disable-next-line security/detect-unsafe-regex
 const dateSplit = /^([0-1]?(?:(?<=1)[0-2]|(?<!1)[1-9]))([0-3]?(?:(?<=[1-2])[0-9]|(?<=[3])[0-1]|(?<!1)[1-9]))?([1-2](?:(?<=1)9[0-9][0-9]|(?<=2)0[0-2][0-9]))?$/
 const monthAbbreviations = [
     'Jan',
@@ -24,12 +25,13 @@ export const formatDateString = (dateIn) => {
     const dayRemainder =
         day || (matched && matched[1] ? dated.replace(matched[0], '') : '')
     const year = matched && matched[3] ? matched[3] : ''
+    /* eslint-disable-next-line indent */
     const yearRemainder =
         year.length > 1
             ? year
-            : matched && matched[2]
+            : matched && matched[2] /* eslint-disable-next-line indent */
             ? dated.replace(matched[0], '')
-            : ''
+            : '' /* eslint-disable-line indent */
 
     if (year.length > 0) {
         return `${month} / ${day} / ${year}`
@@ -72,11 +74,15 @@ export const formatTimestamp = (stamp) => {
     let result
 
     if (HH === 0 || HH === 12) {
-        result = `${monthAbbreviations[MM]} ${DD}, ${YY} @ 12:${mm}`
+        result = `${monthAbbreviations[parseInt(MM)]} ${DD}, ${YY} @ 12:${mm}`
     } else if (HH < 12) {
-        result = `${monthAbbreviations[MM]} ${DD}, ${YY} @ ${HH}:${mm}`
+        result = `${
+            monthAbbreviations[parseInt(MM)]
+        } ${DD}, ${YY} @ ${HH}:${mm}`
     } else {
-        result = `${monthAbbreviations[MM]} ${DD}, ${YY} @ ${HH - 11}:${mm}`
+        result = `${monthAbbreviations[parseInt(MM)]} ${DD}, ${YY} @ ${
+            HH - 11
+        }:${mm}`
     }
 
     return result

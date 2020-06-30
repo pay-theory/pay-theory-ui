@@ -58,10 +58,12 @@ const validPhone = (phoneIn) => {
     }
 
     if (
+        // eslint-disable-next-line security/detect-unsafe-regex
         !/^((\+1|1)?( |-)?)?(\([2-9][0-9]{2}\)|[2-9][0-9]{2})( |-)?([2-9][0-9]{2}( |-)?[0-9]{4})$/.test(
             phone
         )
     )
+        // eslint-disable-next-line security/detect-unsafe-regex
         return /^((\+1|1)?( |-)?)?(\([2-9][0-9]{2}\)|[2-9][0-9]{2})( |-)?([2-9][0-9]{2}( |-)?[0-9]{4})$/.test(
             phone
         )

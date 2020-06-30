@@ -43,8 +43,8 @@ const DocumentationPortal = (props) => {
                         <PortalHead logout={logout} />
                         <div className='body-container'>
                             <NavigationDrawer
-                                style={docsStyle}
                                 listHead={pageMenu.listHead}
+                                style={docsStyle}
                             />
                             <div className='body-content'>{props.children}</div>
                         </div>
