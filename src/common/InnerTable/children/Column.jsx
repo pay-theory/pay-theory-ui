@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const Column = (props) => {
     const className = `cell ${props.className}`
 
-    const lock = props.locked ? <i className={`fal fa-lock locked`} /> : <i />
+    const lock = props.locked ? <i className='fal fa-lock locked' /> : <i />
 
     if (props.linked) {
         return (

@@ -1,13 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 
-import { openModal, closeModal } from '.'
-
-import ModalContent from '.'
+import ModalContent, { openModal, closeModal } from '.'
 
 /*
 ModalCreateAccount.propTypes = {
@@ -21,13 +18,10 @@ ModalCreateAccount.propTypes = {
 */
 
 test('modal open and close', async () => {
-    const createNewMember = jest.fn()
-    const setStatusMessage = jest.fn()
-
-    const { getByText, queryByTestId } = render(
+    const { queryByTestId } = render(
         <div className='modal-wrapper'>
             <div id='container' />
-            <ModalContent text={`test modal`}>
+            <ModalContent text='test modal'>
                 <div data-testid='am-i-open' />
             </ModalContent>
         </div>

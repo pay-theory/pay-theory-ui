@@ -12,7 +12,7 @@ const ViewDeleteAction = (props) => {
                 className='action view'
                 title='view'
                 onClick={props.view}
-                data-testid={`view-action`}
+                data-testid='view-action'
                 key={`view-action-${props.row}`}
             >
                 <span>
@@ -23,7 +23,7 @@ const ViewDeleteAction = (props) => {
                 className={deleteActionClass}
                 title='delete'
                 onClick={props.locked ? () => {} : props.delete}
-                data-testid={`delete-action`}
+                data-testid='delete-action'
                 key={`delete-action-${props.row}`}
             >
                 <span>

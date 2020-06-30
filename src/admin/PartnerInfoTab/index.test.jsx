@@ -2,7 +2,7 @@ import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import PartnerInfoTab from './'
 import ModalSpinner from '../../common/ModalSpinner'
@@ -23,7 +23,7 @@ PartnerInfoTab.propTypes = {
 test('display partner tab', async () => {
     const setStatusMessage = jest.fn()
     const savePartner = jest.fn(() => Promise.resolve())
-    const { getByText, queryByTestId } = render(
+    const { queryByTestId } = render(
         <div className='spinner-wrapper'>
             <div className='modal-wrapper'>
                 <div id='container'>
