@@ -66,6 +66,7 @@
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-react": "^7.20.2",
         "eslint-plugin-standard": "^4.0.1",
+        "eslint-plugin-scanjs-rules": "^0.2.1",
         "gh-pages": "^3.1.0",
         "install-peers": "^1.0.3",
         "microbundle-crl": "^0.13.11",
@@ -76,7 +77,6 @@
     "files": [
         "dist"
     ],
-    "dependencies": {},
     "bugs": {
         "url": "https://github.com/pay-theory/pay-theory-ui/issues"
     },

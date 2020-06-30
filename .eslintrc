@@ -1,4 +1,5 @@
 {
+  "plugins": ["eslint-plugin-scanjs-rules"],
   "parser": "babel-eslint",
   "extends": [
     "standard",
