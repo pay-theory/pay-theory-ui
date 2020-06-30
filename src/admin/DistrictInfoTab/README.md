@@ -4,18 +4,18 @@ A UI element for displaying a list of districts in a TabPage.
 
 ## Hooks
 
-- DistrictConsumer
+-   DistrictConsumer
 
 ## Props
 
-- saveDistrict: PropTypes.func.isRequired
+-   saveDistrict: PropTypes.func.isRequired
 
-  - function to save changes to a district
-  - `(district) => {}`
+    -   function to save changes to a district
+    -   `(district) => {}`
 
-- setStatusMessage: PropTypes.func.isRequired
-  - pass a status message as JSX content to be displayed
-  - `(JSX) => {}`
+-   setStatusMessage: PropTypes.func.isRequired
+    -   pass a status message as JSX content to be displayed
+    -   `(JSX) => {}`
 
 ## District Object
 

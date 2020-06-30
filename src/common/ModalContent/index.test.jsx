@@ -21,21 +21,21 @@ ModalCreateAccount.propTypes = {
 */
 
 test('modal open and close', async () => {
-	const createNewMember = jest.fn()
-	const setStatusMessage = jest.fn()
+    const createNewMember = jest.fn()
+    const setStatusMessage = jest.fn()
 
-	const { getByText, queryByTestId } = render(
-		<div className='modal-wrapper'>
-			<div id='container' />
-			<ModalContent text={`test modal`}>
-				<div data-testid='am-i-open' />
-			</ModalContent>
-		</div>
-	)
+    const { getByText, queryByTestId } = render(
+        <div className='modal-wrapper'>
+            <div id='container' />
+            <ModalContent text={`test modal`}>
+                <div data-testid='am-i-open' />
+            </ModalContent>
+        </div>
+    )
 
-	expect(queryByTestId('am-i-open')).not.toBeVisible()
-	openModal()
-	expect(queryByTestId('am-i-open')).toBeVisible()
-	closeModal()
-	expect(queryByTestId('am-i-open')).not.toBeVisible()
+    expect(queryByTestId('am-i-open')).not.toBeVisible()
+    openModal()
+    expect(queryByTestId('am-i-open')).toBeVisible()
+    closeModal()
+    expect(queryByTestId('am-i-open')).not.toBeVisible()
 })

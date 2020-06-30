@@ -4,13 +4,13 @@ A UI element for displaying a modal for creating a new role. Utilizes the [Modal
 
 ## Hooks
 
-- None
+-   None
 
 ## Props
 
 ### Required
 
-- **roleType**: PropTypes.string.isRequired
-  - string that will be passed to the state for the role type when creating the account
-- **createNewRole**: PropTypes.func.isRequired
-  - callback function that will handling creating an account being passed an account object as an argument
+-   **roleType**: PropTypes.string.isRequired
+    -   string that will be passed to the state for the role type when creating the account
+-   **createNewRole**: PropTypes.func.isRequired
+    -   callback function that will handling creating an account being passed an account object as an argument

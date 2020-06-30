@@ -7,11 +7,11 @@ import ViewAction from './ViewAction'
 import ViewDeleteAction from './ViewDeleteAction'
 
 export {
-	Column,
-	CopyAction,
-	Header,
-	HeaderRow,
-	Row,
-	ViewAction,
-	ViewDeleteAction
+    Column,
+    CopyAction,
+    Header,
+    HeaderRow,
+    Row,
+    ViewAction,
+    ViewDeleteAction
 }

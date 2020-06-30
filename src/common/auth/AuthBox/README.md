@@ -4,15 +4,15 @@ A UI element that creates a box for an auth form. It utilizes the [FormHeader](h
 
 ## Hooks
 
-- None
+-   None
 
 ## Props
 
 ### Required
 
-- formHead
+-   formHead
 
-  - string that shows up as the header of the AuthBox
+    -   string that shows up as the header of the AuthBox
 
-- formText
-  - string that shows up as the subtext of the AuthBox above any children
+-   formText
+    -   string that shows up as the subtext of the AuthBox above any children

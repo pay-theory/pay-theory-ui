@@ -4,8 +4,8 @@ A UI element for displaying a column of content (generally CardRows).
 
 ## Hooks
 
-- None
+-   None
 
 ## Props
 
-- children: JSX elements included as children elements
+-   children: JSX elements included as children elements

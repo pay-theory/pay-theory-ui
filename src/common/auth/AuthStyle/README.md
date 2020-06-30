@@ -4,8 +4,8 @@ A UI element for importing pay theory auth styles.
 
 ## Hooks
 
-- None
+-   None
 
 ## Props
 
-- None
+-   None

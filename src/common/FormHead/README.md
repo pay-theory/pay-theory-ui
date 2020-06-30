@@ -4,14 +4,14 @@ A UI element for displaying a heading for a Pay Theory form.
 
 ## Hooks
 
-- None
+-   None
 
 ## Props
 
 ### Required
 
-- text: the text to display as the form head
+-   text: the text to display as the form head
 
 ### Optional
 
-- locked: indication of need to display lock icon
+-   locked: indication of need to display lock icon

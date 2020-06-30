@@ -4,8 +4,8 @@ A UI element for displaying a card with partner info pulled from the Partner Con
 
 ## Hooks
 
-- BookHooks Partner Consumer
+-   BookHooks Partner Consumer
 
 ## Props
 
-- None
+-   None

@@ -8,7 +8,7 @@ import { render, cleanup, fireEvent } from '@testing-library/react'
 import CardTable from '.'
 
 test('display card table', async () => {
-	const { getByText, queryByTestId } = render(<CardTable>child</CardTable>)
+    const { getByText, queryByTestId } = render(<CardTable>child</CardTable>)
 
-	expect(getByText('child')).toBeInTheDocument()
+    expect(getByText('child')).toBeInTheDocument()
 })

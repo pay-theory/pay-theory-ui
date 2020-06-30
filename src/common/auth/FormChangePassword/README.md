@@ -4,15 +4,15 @@ A UI element that can be wrapped in an [AuthBox](https://github.com/pay-theory/p
 
 ## Hooks
 
-- None
+-   None
 
 ## Props
 
 ### Required
 
-- **onSubmit**: PropTypes.func.isRequired
-  - a callback function that is used to submit the password change when the Set Password button is clicked
+-   **onSubmit**: PropTypes.func.isRequired
+    -   a callback function that is used to submit the password change when the Set Password button is clicked
 
 ### Optional
 
-- error: PropTypes.string.isRequired
+-   error: PropTypes.string.isRequired

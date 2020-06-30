@@ -9,11 +9,11 @@ import AccountCodeBar from '.'
 const searchHandler = jest.fn()
 
 test('display district list without actions', async () => {
-	const { queryByTestId } = render(
-		<AccountCodeBar searchHandler={searchHandler} />
-	)
+    const { queryByTestId } = render(
+        <AccountCodeBar searchHandler={searchHandler} />
+    )
 
-	fireEvent.change(queryByTestId('fund'), { target: { value: '001' } })
-	fireEvent.click(queryByTestId('searchButton'))
-	expect(searchHandler).toHaveBeenCalledTimes(1)
+    fireEvent.change(queryByTestId('fund'), { target: { value: '001' } })
+    fireEvent.click(queryByTestId('searchButton'))
+    expect(searchHandler).toHaveBeenCalledTimes(1)
 })

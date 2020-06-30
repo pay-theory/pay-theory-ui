@@ -39,7 +39,7 @@
     "space-before-function-paren": 0,
 
     "import/export": 0,
-    "indent": ["error", 'tab', { "ignoredNodes": ["ConditionalExpression"] }],
+    "indent": ["error", 4, { "ignoredNodes": ["ConditionalExpression"] }],
     /** ScanJS rules **/
     "scanjs-rules/accidental_assignment": 1,
     "scanjs-rules/assign_to_hostname" : 1,

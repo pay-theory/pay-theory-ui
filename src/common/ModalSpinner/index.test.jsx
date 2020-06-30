@@ -18,29 +18,29 @@ ModalCreateAccount.propTypes = {
 */
 
 test('modal open and close', async () => {
-	const { queryByTestId } = render(
-		<div className='spinner-wrapper'>
-			<div id='container' />
-			<ModalSpinner />
-		</div>
-	)
+    const { queryByTestId } = render(
+        <div className='spinner-wrapper'>
+            <div id='container' />
+            <ModalSpinner />
+        </div>
+    )
 
-	expect(queryByTestId('spinner-form')).not.toBeVisible()
-	openSpinner()
-	expect(queryByTestId('spinner-form')).toBeVisible()
-	closeSpinner()
-	expect(queryByTestId('spinner-form')).not.toBeVisible()
+    expect(queryByTestId('spinner-form')).not.toBeVisible()
+    openSpinner()
+    expect(queryByTestId('spinner-form')).toBeVisible()
+    closeSpinner()
+    expect(queryByTestId('spinner-form')).not.toBeVisible()
 })
 
 test('modal opened and closed', async () => {
-	const { queryByTestId } = render(
-		<div className='spinner-wrapper'>
-			<div id='container' />
-			<ModalSpinner on />
-		</div>
-	)
+    const { queryByTestId } = render(
+        <div className='spinner-wrapper'>
+            <div id='container' />
+            <ModalSpinner on />
+        </div>
+    )
 
-	expect(queryByTestId('spinner-form')).toBeVisible()
-	closeSpinner()
-	expect(queryByTestId('spinner-form')).not.toBeVisible()
+    expect(queryByTestId('spinner-form')).toBeVisible()
+    closeSpinner()
+    expect(queryByTestId('spinner-form')).not.toBeVisible()
 })

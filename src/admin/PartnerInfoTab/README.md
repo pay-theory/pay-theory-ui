@@ -2,13 +2,13 @@
 
 ## Hooks
 
-- BookHooks Partner Consumer
+-   BookHooks Partner Consumer
 
 ## Props
 
 ### Required
 
-- apiPrefix: PropTypes.string.isRequired
-- setStatusMessage: PropTypes.func.isRequired
-- savePartner: PropTypes.func.isRequired
-- onGenerateApiKey: PropTypes.func.isRequired
+-   apiPrefix: PropTypes.string.isRequired
+-   setStatusMessage: PropTypes.func.isRequired
+-   savePartner: PropTypes.func.isRequired
+-   onGenerateApiKey: PropTypes.func.isRequired

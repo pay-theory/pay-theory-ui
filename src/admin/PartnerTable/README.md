@@ -4,13 +4,13 @@ A UI element for displaying a table with all the partners that it pulls from the
 
 ## Hooks
 
-- BookHooks Partners Consumer
+-   BookHooks Partners Consumer
 
 ## Props
 
 ### Required
 
-- **viewPartner**: PropTypes.func.isRequired
-  - callback function that will tell the [InnerTable](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/InnerTable) what to do when the view button is clicked
-- **deletePartner**: PropTypes.func.isRequired
-  - callback function that will tell the [InnerTable](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/InnerTable) what to do when the delete button is clicked
+-   **viewPartner**: PropTypes.func.isRequired
+    -   callback function that will tell the [InnerTable](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/InnerTable) what to do when the view button is clicked
+-   **deletePartner**: PropTypes.func.isRequired
+    -   callback function that will tell the [InnerTable](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/InnerTable) what to do when the delete button is clicked

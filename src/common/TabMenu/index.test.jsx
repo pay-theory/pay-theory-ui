@@ -9,20 +9,20 @@ import TabMenu from '.'
 const testFunc = jest.fn()
 
 const items = [
-	{
-		id: 'test',
-		active: 'active-tab',
-		action: testFunc,
-		label: 'Test'
-	}
+    {
+        id: 'test',
+        active: 'active-tab',
+        action: testFunc,
+        label: 'Test'
+    }
 ]
 
 test('display TabMenu', async () => {
-	const { getByText, getByTestId } = render(<TabMenu items={items} />)
+    const { getByText, getByTestId } = render(<TabMenu items={items} />)
 
-	expect(getByText('Test')).toBeInTheDocument()
-	expect(getByTestId('test')).toBeInTheDocument()
+    expect(getByText('Test')).toBeInTheDocument()
+    expect(getByTestId('test')).toBeInTheDocument()
 
-	fireEvent.click(getByTestId('test'))
-	expect(testFunc).toHaveBeenCalledTimes(1)
+    fireEvent.click(getByTestId('test'))
+    expect(testFunc).toHaveBeenCalledTimes(1)
 })

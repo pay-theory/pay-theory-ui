@@ -4,13 +4,13 @@ A UI element for displaying a table with all the payment items that it pulls fro
 
 ## Hooks
 
-- BookHooks PaymentItems Consumer
+-   BookHooks PaymentItems Consumer
 
 ## Props
 
 ### Required
 
-- **viewPaymentItem**: PropTypes.func.isRequired
-  - callback function that will tell the [InnerTable](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/InnerTable) what to do when the view button is clicked
-- **deletePaymentItem**: PropTypes.func.isRequired
-  - callback function that will tell the [InnerTable](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/InnerTable) what to do when the delete button is clicked
+-   **viewPaymentItem**: PropTypes.func.isRequired
+    -   callback function that will tell the [InnerTable](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/InnerTable) what to do when the view button is clicked
+-   **deletePaymentItem**: PropTypes.func.isRequired
+    -   callback function that will tell the [InnerTable](https://github.com/pay-theory/pay-theory-ui/tree/master/src/common/InnerTable) what to do when the delete button is clicked

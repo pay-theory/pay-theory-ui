@@ -7,39 +7,39 @@ import { render } from '@testing-library/react'
 import { StockTags } from './'
 
 test('display success message row', async () => {
-	const { findByTestId } = render(
-		StockTags.success('success message', () => {})
-	)
+    const { findByTestId } = render(
+        StockTags.success('success message', () => {})
+    )
 
-	findByTestId('success-content')
+    findByTestId('success-content')
 })
 
 test('display default success message row', async () => {
-	const { findByTestId } = render(
-		StockTags.success({ reason: 'something' }, () => {})
-	)
+    const { findByTestId } = render(
+        StockTags.success({ reason: 'something' }, () => {})
+    )
 
-	findByTestId('success-content')
+    findByTestId('success-content')
 })
 
 test('display default success message row', async () => {
-	const { findByTestId } = render(
-		StockTags.success({ message: 'something' }, () => {})
-	)
+    const { findByTestId } = render(
+        StockTags.success({ message: 'something' }, () => {})
+    )
 
-	findByTestId('success-content')
+    findByTestId('success-content')
 })
 
 test('display default success message row', async () => {
-	const { findByTestId } = render(
-		StockTags.success({ invalid: 'something' }, () => {})
-	)
+    const { findByTestId } = render(
+        StockTags.success({ invalid: 'something' }, () => {})
+    )
 
-	findByTestId('success-content')
+    findByTestId('success-content')
 })
 
 test('display default success message row', async () => {
-	const { findByTestId } = render(StockTags.success(undefined, () => {}))
+    const { findByTestId } = render(StockTags.success(undefined, () => {}))
 
-	findByTestId('success-content')
+    findByTestId('success-content')
 })

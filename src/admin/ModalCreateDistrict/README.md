@@ -4,11 +4,11 @@ A UI element for displaying a modal for creating a Pay Theory district. Utilizes
 
 ## Hooks
 
-- None
+-   None
 
 ## Props
 
 ### Required
 
-- **createNewDistrict**: PropTypes.func.isRequired
-  - callback function that will handling creating a district being passed a district object as an argument
+-   **createNewDistrict**: PropTypes.func.isRequired
+    -   callback function that will handling creating a district being passed a district object as an argument

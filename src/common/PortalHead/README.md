@@ -16,4 +16,4 @@ The account context provides the user_name to the AccountMenuButton/Items child 
 
 ### optional
 
-- logout: a function that should come from the useAuth0 context. If not included it will not show the AccountMenu.
+-   logout: a function that should come from the useAuth0 context. If not included it will not show the AccountMenu.
