@@ -4,25 +4,26 @@ A UI element for searching USAS account codes.
 
 ## Hooks
 
-* None
+-   None
 
 ## Props
 
 ### Required
 
-* **searchHandler**: PropTypes.func.isRequired
- * ```(searchState) => {}```
+-   **searchHandler**: PropTypes.func.isRequired
+-   `(searchState) => {}`
 
 ## State
 
-* **searchState**
+-   **searchState**
+
 ```
 {
-	fund: '',
-	receipt: '',
-	subject: '',
-	opu: '',
-	scc: '',
-	description: '',
+    fund: '',
+    receipt: '',
+    subject: '',
+    opu: '',
+    scc: '',
+    description: '',
 }
-``` 
+```

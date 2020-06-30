@@ -11,12 +11,12 @@ import ModalContent from '.'
 
 /*
 ModalCreateAccount.propTypes = {
-	roleLabel: PropTypes.string.isRequired,
-	role: PropTypes.string.isRequired,
-	createNewMember: PropTypes.func.isRequired,
-	setStatusMessage: PropTypes.func.isRequired,
-	partner: PropTypes.string,
-	district: PropTypes.string,
+    roleLabel: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    createNewMember: PropTypes.func.isRequired,
+    setStatusMessage: PropTypes.func.isRequired,
+    partner: PropTypes.string,
+    district: PropTypes.string,
 }
 */
 
@@ -25,10 +25,10 @@ test('modal open and close', async () => {
 	const setStatusMessage = jest.fn()
 
 	const { getByText, queryByTestId } = render(
-		<div className="modal-wrapper">
-			<div id="container" />
+		<div className='modal-wrapper'>
+			<div id='container' />
 			<ModalContent text={`test modal`}>
-				<div data-testid="am-i-open" />
+				<div data-testid='am-i-open' />
 			</ModalContent>
 		</div>
 	)

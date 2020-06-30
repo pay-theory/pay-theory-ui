@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Column = props => {
+const Column = (props) => {
 	const className = `cell ${props.className}`
 
 	const lock = props.locked ? <i className={`fal fa-lock locked`} /> : <i />
@@ -12,7 +12,7 @@ const Column = props => {
 				className={`${className} link-column`}
 				key={`${props.className}-${props.row}-${props.col}`}
 				onClick={props.view}
-				data-testid="linked-column"
+				data-testid='linked-column'
 			>
 				{props.content}
 			</span>
@@ -22,7 +22,7 @@ const Column = props => {
 			<span
 				className={`${className}`}
 				key={`${props.className}-${props.row}-${props.col}`}
-				data-testid="unlinked-column"
+				data-testid='unlinked-column'
 			>
 				{props.content}
 				{lock}
@@ -38,7 +38,7 @@ Column.propTypes = {
 	content: PropTypes.any,
 	linked: PropTypes.bool,
 	locked: PropTypes.bool,
-	view: PropTypes.func,
+	view: PropTypes.func
 }
 
 export default Column

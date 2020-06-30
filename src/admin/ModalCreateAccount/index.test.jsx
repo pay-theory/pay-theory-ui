@@ -11,12 +11,12 @@ import ModalCreateAccount from './'
 
 /*
 ModalCreateAccount.propTypes = {
-	roleLabel: PropTypes.string.isRequired,
-	role: PropTypes.string.isRequired,
-	createNewMember: PropTypes.func.isRequired,
-	setStatusMessage: PropTypes.func.isRequired,
-	partner: PropTypes.string,
-	district: PropTypes.string,
+    roleLabel: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    createNewMember: PropTypes.func.isRequired,
+    setStatusMessage: PropTypes.func.isRequired,
+    partner: PropTypes.string,
+    district: PropTypes.string,
 }
 */
 

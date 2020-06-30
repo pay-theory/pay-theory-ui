@@ -135,12 +135,12 @@ test('display finite donation item entry', async () => {
         </BooksHooks.context.checkout.Provider>
     )
     // fireEvent.change(queryByLabelText('Begin Date'), {
-    // 	target: { value: moment() },
+    //     target: { value: moment() },
     // })
     // expect(changePayment).toHaveBeenCalledTimes(1)
 
     // fireEvent.change(queryByLabelText('End Date'), {
-    // 	target: { value: moment() },
+    //     target: { value: moment() },
     // })
     // expect(changePayment).toHaveBeenCalledTimes(2)
 

@@ -45,53 +45,53 @@ const PublicationOptions = (props) => {
                 }
 
                 /*
-											<DatePicker
-												id="item_start_date_picker"
-												name="item_start_date"
-												selected={startDate.toDate()}
-												onChange={dated =>
-													dateChanged(
-														moment(dated),
-														'start'
-													)
-												}
-												showTimeSelect
-												timeFormat="HH:mm"
-												timeIntervals={15}
-												dateFormat="MMMM d, yyyy h:mm aa"
-												timeCaption="time"
-												minDate={new Date()}
-												maxDate={endDate.toDate()}
-												customInput={
-													<TextEntry
-														label="Begin Date"
-														name="item_begin_date"
-													/>
-												}
-											/>
-										<DatePicker
-												id="item_end_date_picker"
-												name="item_end_date"
-												selected={endDate.toDate()}
-												onChange={dated =>
-													dateChanged(
-														moment(dated),
-														'end'
-													)
-												}
-												showTimeSelect
-												timeFormat="HH:mm"
-												timeIntervals={15}
-												dateFormat="MMMM d, yyyy h:mm aa"
-												timeCaption="time"
-												minDate={startDate.toDate()}
-												customInput={
-													<TextEntry
-														label="End Date"
-														name="item_end_date"
-													/>
-												}
-											/>
+                                            <DatePicker
+                                                id="item_start_date_picker"
+                                                name="item_start_date"
+                                                selected={startDate.toDate()}
+                                                onChange={dated =>
+                                                    dateChanged(
+                                                        moment(dated),
+                                                        'start'
+                                                    )
+                                                }
+                                                showTimeSelect
+                                                timeFormat="HH:mm"
+                                                timeIntervals={15}
+                                                dateFormat="MMMM d, yyyy h:mm aa"
+                                                timeCaption="time"
+                                                minDate={new Date()}
+                                                maxDate={endDate.toDate()}
+                                                customInput={
+                                                    <TextEntry
+                                                        label="Begin Date"
+                                                        name="item_begin_date"
+                                                    />
+                                                }
+                                            />
+                                        <DatePicker
+                                                id="item_end_date_picker"
+                                                name="item_end_date"
+                                                selected={endDate.toDate()}
+                                                onChange={dated =>
+                                                    dateChanged(
+                                                        moment(dated),
+                                                        'end'
+                                                    )
+                                                }
+                                                showTimeSelect
+                                                timeFormat="HH:mm"
+                                                timeIntervals={15}
+                                                dateFormat="MMMM d, yyyy h:mm aa"
+                                                timeCaption="time"
+                                                minDate={startDate.toDate()}
+                                                customInput={
+                                                    <TextEntry
+                                                        label="End Date"
+                                                        name="item_end_date"
+                                                    />
+                                                }
+                                            />
 */
 
                 return (
