@@ -19,19 +19,19 @@ A UI element for displaying a list of districts in a TabPage.
 
 ## District Object
 
-```
+```json
 {
-    district_name: '',
-    district_nickname: '',
-    district_phone: '',
-    district_email: '',
-    district_website: '',
-    district_ncesid: '',
-    district_country: '',
-    district_timezone: '',
-    district_street: '',
-    district_city: '',
-    district_state: '',
-    district_zipcode: '',
+    "district_name": "",
+    "district_nickname": "",
+    "district_phone": "",
+    "district_email": "",
+    "district_website": "",
+    "district_ncesid": "",
+    "district_country": "",
+    "district_timezone": "",
+    "district_street": "",
+    "district_city": "",
+    "district_state": "",
+    "district_zipcode": ""
 }
 ```

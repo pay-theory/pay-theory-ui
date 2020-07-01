@@ -17,13 +17,13 @@ A UI element for searching USAS account codes.
 
 -   **searchState**
 
-```
+```json
 {
-    fund: '',
-    receipt: '',
-    subject: '',
-    opu: '',
-    scc: '',
-    description: '',
+	"fund": "",
+	"receipt": "",
+	"subject": "",
+	"opu": "",
+	"scc": "",
+	"description": ""
 }
 ```
