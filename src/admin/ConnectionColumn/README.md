@@ -17,7 +17,6 @@ A UI element for displaying a client account external connection.
     -   the type of connection, must be one of:
 
         -   usas_ohio
-
         -   merchant_account (not yet implemented completely)
 
 -   description: PropTypes.string
@@ -29,7 +28,6 @@ A UI element for displaying a client account external connection.
     -   a class name referencing the logo to use, must be one of:
 
         -   usas-oh
-
         -   pay-theory
 
 -   connected: PropTypes.bool
