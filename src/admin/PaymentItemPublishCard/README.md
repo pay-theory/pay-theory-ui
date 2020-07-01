@@ -11,8 +11,13 @@ A UI element that displays a a card for a Pay Theory payment item and allows you
 ### Required
 
 -   **onSave**: PropTypes.func.isRequired
+
     -   callback function that would save a draft of the payment item when button clicked
+
 -   **onPreview**: PropTypes.func.isRequired
+
     -   callback function that would display a preview of the payment item when button clicked
+
 -   **onPublish**: PropTypes.func.isRequired
+
     -   callback function that would publish the payment item when button clicked

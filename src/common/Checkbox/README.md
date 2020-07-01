@@ -11,6 +11,9 @@ A UI component that provides a styled checkbox input
 ### Required
 
 -   **label**
+
     -   string that provides label for checkbox
+
 -   **id**
+
     -   string that assigns test-id
