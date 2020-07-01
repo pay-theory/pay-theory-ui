@@ -41,30 +41,3 @@ test('display partner tab', async () => {
         </div>
     )
 })
-
-// test('partner tab - generate api key', async() => {
-//     delete window.confirm
-//     window.confirm = () => true
-
-//     const setStatusMessage = jest.fn()
-//     const savePartner = jest.fn(() => Promise.resolve())
-//     const { getByText, queryByTestId } = render(
-//         <div className="spinner-wrapper">
-//             <div className="modal-wrapper">
-//                 <div id="container">
-//                     <BooksHooks.context.partner.Provider value={partner}>
-//                         <PartnerInfoTab
-//                             apiPrefix="testing"
-//                             setStatusMessage={setStatusMessage}
-//                             savePartner={savePartner}
-//                         />
-//                     </BooksHooks.context.partner.Provider>
-//                 </div>
-//             </div>
-//             <ModalSpinner />
-//         </div>
-//     )
-
-//     fireEvent.click(queryByTestId('generate-partner-apikey'))
-//     await wait(() => queryByTestId('success-content'))
-// })

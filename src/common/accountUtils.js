@@ -6,7 +6,7 @@ const generateTableColumns = () => {
     ]
 }
 const generateTableRows = (accounts, view, deleteAccount) => {
-    return accounts.map((item, i) => {
+    return accounts.map((item) => {
         return {
             columns: [
                 { className: 'account-name', content: item.nickname },
