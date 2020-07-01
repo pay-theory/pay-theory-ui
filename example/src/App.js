@@ -6,12 +6,11 @@ import {
     NavigationDrawer,
     GlobalStyle,
     BooksHooks,
-    PaymentItemDiscontinueCard,
-    DonationItemEntry
+    AccountOverview
 } from 'pay-theory-ui'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import { paymentItem, checkout, classicDistrict } from './example-data'
+import { paymentItem, checkout, classicDistrict, roles, member } from './example-data'
 
 export default function App(props) {
     const generateDocumentationMenu = () => {
@@ -89,13 +88,14 @@ export default function App(props) {
                                                 listHead={pageMenu.listHead}
                                             />
                                             <div className='body-content'>
-                                                <PaymentItemDiscontinueCard
-                                                    onDiscontinue={() => {}}
-                                                    copyLink={() => {}}
-                                                />
-                                                <DonationItemEntry
-                                                    changePayment={() => {}}
-                                                />
+                                            <BooksHooks.context.roles.Provider value={roles.systemRoles}>
+            <BooksHooks.context.member.Provider value={member}>
+                <AccountOverview
+                    onChange={() => {}}
+                    saveAccount={() => {}}
+                />
+                </BooksHooks.context.member.Provider>
+                </BooksHooks.context.roles.Provider>
                                             </div>
                                         </div>
                                     </div>

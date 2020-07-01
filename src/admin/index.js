@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import AccountCodeBar from './AccountCodeBar'
 import AccountOverview from './AccountOverview'
 import AccountOverviewCard from './AccountOverviewCard'

@@ -16,8 +16,8 @@ test('display account overview', async () => {
         <BooksHooks.context.roles.Provider value={roles.systemRoles}>
             <BooksHooks.context.member.Provider value={member}>
                 <AccountOverview
-                    saveAccount={saveAccount}
                     onChange={onChange}
+                    saveAccount={saveAccount}
                 />
             </BooksHooks.context.member.Provider>
         </BooksHooks.context.roles.Provider>

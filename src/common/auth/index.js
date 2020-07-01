@@ -1,7 +1,6 @@
 import AuthBG from './AuthBG'
 import AuthBox from './AuthBox'
 import AuthStyle from './AuthStyle'
-import Bouncer from './Bouncer'
 import FormChangePassword from './FormChangePassword'
 import FormHeader from './FormHeader'
 import FormLoginAlternative from './FormLoginAlternative'
@@ -12,7 +11,6 @@ export {
     AuthBG,
     AuthBox,
     AuthStyle,
-    Bouncer,
     FormChangePassword,
     FormHeader,
     FormLoginAlternative,

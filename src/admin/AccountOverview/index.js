@@ -11,68 +11,62 @@ const AccountOverview = (props) => {
             {(member) => {
                 return (
                     <div className='card rounded' id='account-entry'>
-                        <div className='page-contain'>
-                            <div className='page-container page-visible'>
-                                <div className='page-content'>
-                                    <FormHead text='User Account Details' />
-                                    <div className='row' id='given-name'>
-                                        <div className='column'>
-                                            <TextEntry
-                                                data-testid='given'
-                                                label='Given Name'
-                                                name='given_name'
-                                                onChange={props.onChange}
-                                                value={member.given_name}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className='row' id='family-name'>
-                                        <div className='column'>
-                                            <TextEntry
-                                                data-testid='family_name'
-                                                label='Family Name'
-                                                name='family_name'
-                                                onChange={props.onChange}
-                                                value={member.family_name}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className='row' id='member-name'>
-                                        <div className='column'>
-                                            <TextEntry
-                                                data-testid='nickname'
-                                                label='Username'
-                                                name='nickname'
-                                                onChange={props.onChange}
-                                                value={member.nickname}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className='row' id='email-phone'>
-                                        <div className='column'>
-                                            <TextEntry
-                                                data-testid='email'
-                                                disabled
-                                                label='Email'
-                                                name='email'
-                                                onChange={props.onChange}
-                                                value={member.email}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className='page-content'>
-                                        <Button
-                                            className='primary-button save-account-button'
-                                            data-testid='submit-account-detail'
-                                            onClick={() =>
-                                                props.saveAccount(member)
-                                            }
-                                            raised
-                                        >
-                                            {`Save `}
-                                        </Button>
-                                    </div>
+                        <div className='page-content'>
+                            <FormHead text='User Account Details' />
+                            <div className='row' id='given-name'>
+                                <div className='column'>
+                                    <TextEntry
+                                        data-testid='given'
+                                        label='Given Name'
+                                        name='given_name'
+                                        onChange={props.onChange}
+                                        value={member.given_name}
+                                    />
                                 </div>
+                            </div>
+                            <div className='row' id='family-name'>
+                                <div className='column'>
+                                    <TextEntry
+                                        data-testid='family_name'
+                                        label='Family Name'
+                                        name='family_name'
+                                        onChange={props.onChange}
+                                        value={member.family_name}
+                                    />
+                                </div>
+                            </div>
+                            <div className='row' id='member-name'>
+                                <div className='column'>
+                                    <TextEntry
+                                        data-testid='nickname'
+                                        label='Username'
+                                        name='nickname'
+                                        onChange={props.onChange}
+                                        value={member.nickname}
+                                    />
+                                </div>
+                            </div>
+                            <div className='row' id='email-phone'>
+                                <div className='column'>
+                                    <TextEntry
+                                        data-testid='email'
+                                        disabled
+                                        label='Email'
+                                        name='email'
+                                        onChange={props.onChange}
+                                        value={member.email}
+                                    />
+                                </div>
+                            </div>
+                            <div className='page-content'>
+                                <Button
+                                    className='primary-button save-account-button'
+                                    data-testid='submit-account-detail'
+                                    onClick={() => props.saveAccount(member)}
+                                    raised
+                                >
+                                    {`Save `}
+                                </Button>
                             </div>
                         </div>
                         <style global='true' jsx='true'>
