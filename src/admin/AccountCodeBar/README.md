@@ -19,11 +19,11 @@ A UI element for searching USAS account codes.
 
 ```json
 {
-	"fund": "",
-	"receipt": "",
-	"subject": "",
-	"opu": "",
-	"scc": "",
-	"description": ""
+    "fund": "",
+    "receipt": "",
+    "subject": "",
+    "opu": "",
+    "scc": "",
+    "description": ""
 }
 ```
