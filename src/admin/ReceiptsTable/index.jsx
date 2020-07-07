@@ -95,33 +95,35 @@ const ReceiptsTable = (props) => {
                 return (
                     <InnerTable
                         columns={generateTableColumns()}
-                        rows={generateTableRows(receipts)}
                         hasActions
+                        rows={generateTableRows(receipts)}
                     >
-                        <style jsx='true' global='true'>{`
-                            .report-begin {
-                                width: 110px;
-                            }
-                            .report-end {
-                                width: 110px;
-                            }
-                            .report-uploaded-by {
-                                flex-grow: 1;
-                                min-width: 140px;
-                            }
-                            .report-receipts {
-                                width: 60px;
-                                margin-right: 16px;
-                            }
-                            .report-submissions {
-                                width: 80px;
-                                margin-right: 16px;
-                            }
-                            .report-fees {
-                                width: 70px;
-                                margin-right: 16px;
-                            }
-                        `}</style>
+                        <style global='true' jsx='true'>
+                            {`
+                                .report-begin {
+                                    width: 110px;
+                                }
+                                .report-end {
+                                    width: 110px;
+                                }
+                                .report-uploaded-by {
+                                    flex-grow: 1;
+                                    min-width: 140px;
+                                }
+                                .report-receipts {
+                                    width: 60px;
+                                    margin-right: 16px;
+                                }
+                                .report-submissions {
+                                    width: 80px;
+                                    margin-right: 16px;
+                                }
+                                .report-fees {
+                                    width: 70px;
+                                    margin-right: 16px;
+                                }
+                            `}
+                        </style>
                     </InnerTable>
                 )
             }}

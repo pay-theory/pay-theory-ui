@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import Column from './Column'
 import CopyAction from './CopyAction'
 import Header from './Header'

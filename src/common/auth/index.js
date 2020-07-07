@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import AuthBG from './AuthBG'
 import AuthBox from './AuthBox'
 import AuthStyle from './AuthStyle'

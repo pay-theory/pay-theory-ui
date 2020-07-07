@@ -13,38 +13,41 @@ const AccountMenuButton = (props) => {
                     >
                         {accountHook.nickname}
                         <i className={`fal fa-chevron-down}`} />
-                        <style jsx='true' global='true'>{`
-                            .portal-head-account-menu-button {
-                                color: #fff;
-                                background: #160f3d;
-                                display: flex;
-                                font-weight: 600;
-                                border: none;
-                                border-radius: 3px;
-                                padding: 2px 12px;
-                                font-size: 11pt;
-                                flex-direction: row;
-                                justify-content: flex-start;
-                                align-items: center;
-                                height: 33px;
-                                margin-top: auto;
-                                margin-bottom: auto;
-                                line-height: 30px;
-                            }
+                        <style global='true' jsx='true'>
+                            {`
+                                .portal-head-account-menu-button {
+                                    color: #fff;
+                                    background: #160f3d;
+                                    display: flex;
+                                    font-weight: 600;
+                                    border: none;
+                                    border-radius: 3px;
+                                    padding: 2px 12px;
+                                    font-size: 11pt;
+                                    flex-direction: row;
+                                    justify-content: flex-start;
+                                    align-items: center;
+                                    height: 33px;
+                                    margin-top: auto;
+                                    margin-bottom: auto;
+                                    line-height: 30px;
+                                }
 
-                            .portal-head-account-menu-button svg {
-                                margin: 8px;
-                            }
+                                .portal-head-account-menu-button svg {
+                                    margin: 8px;
+                                }
 
-                            .portal-head-account-menu-button:hover
-                                + .portal-head-account-menu-items,
-                            .portal-head-account-menu-button:focus
-                                + .portal-head-account-menu-items,
-                            .portal-head-account-menu-items:focus-within,
-                            .portal-head-account-menu-items:hover {
-                                opacity: 100;
-                            }
-                        `}</style>
+                                .portal-head-account-menu-button:hover
+                                    + .portal-head-account-menu-items,
+                                .portal-head-account-menu-button:focus
+                                    + .portal-head-account-menu-items,
+                                .portal-head-account-menu-items:focus-within,
+                                .portal-head-account-menu-items:hover {
+                                    opacity: 100;
+                                    display: block;
+                                }
+                            `}
+                        </style>
                     </div>
                 )
             }}

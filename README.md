@@ -97,7 +97,6 @@ npm install --save pay-theory-ui
 -   [AuthBG](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/AuthBg)
 -   [AuthBox](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/AuthBox)
 -   [AuthStyle](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/AuthStyle)
--   [Bouncer](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/Bouncer)
 -   [FormChangePassword](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/FormChangePassword)
 -   [FormHeader](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/FormHeader)
 -   [FormLoginAlternative](https://github.com/pay-theory/pay-theory-ui/tree/dev/src/common/auth/FormLoginAlternative)

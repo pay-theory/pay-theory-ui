@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import account from './account'
 import accounts from './accounts'
 import checkout from './checkout'

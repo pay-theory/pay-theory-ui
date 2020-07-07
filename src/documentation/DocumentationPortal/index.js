@@ -31,7 +31,7 @@ const DocumentationPortal = ({ generateMenu, paged, children }) => {
             <BooksHooks.context.account.Provider value={accounted}>
                 <GlobalStyle />
                 <BooksHooks.context.page.Provider value={paged}>
-                    <div id='container'>
+                    <div data-testid='portal-container' id='container'>
                         <PortalHead logout={logout} />
                         <div className='body-container'>
                             <NavigationDrawer

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 // authentication
 export const LANDING = '/'
 export const VERIFY = '/verify'

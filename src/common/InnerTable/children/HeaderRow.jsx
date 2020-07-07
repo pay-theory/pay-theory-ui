@@ -7,9 +7,9 @@ const HeaderRow = (props) => {
     const columns = props.columns.map((column, col) => {
         return (
             <Header
-                key={`header-${col}`}
                 className={column.className}
                 itemKey={col}
+                key={`header-${col}`}
                 label={column.label}
             />
         )
@@ -17,9 +17,9 @@ const HeaderRow = (props) => {
     if (props.hasActions) {
         columns.push(
             <Header
-                key='header-actions'
                 className='actions'
                 itemKey='actions'
+                key='header-actions'
                 label='actions'
             />
         )

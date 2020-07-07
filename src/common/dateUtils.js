@@ -87,3 +87,37 @@ export const formatTimestamp = (stamp) => {
 
     return result
 }
+
+export const formatDateAndTime = (date) => {
+    const MM = date.getMonth()
+    const DD = date.getDate()
+    const YY = date.getFullYear()
+    const HH = date.getHours()
+    let mm = date.getMinutes()
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    let result
+
+    if (HH === 0) {
+        result = `${
+            monthAbbreviations[parseInt(MM)]
+        } ${DD}, ${YY} @ 12:${mm} AM`
+    } else if (HH === 11) {
+        result = `${
+            monthAbbreviations[parseInt(MM)]
+        } ${DD}, ${YY} @ 12:${mm} PM`
+    } else if (HH < 11) {
+        result = `${
+            monthAbbreviations[parseInt(MM)]
+        } ${DD}, ${YY} @ ${HH}:${mm} AM`
+    } else {
+        result = `${monthAbbreviations[parseInt(MM)]} ${DD}, ${YY} @ ${
+            HH - 11
+        }:${mm} PM`
+    }
+
+    return result
+}

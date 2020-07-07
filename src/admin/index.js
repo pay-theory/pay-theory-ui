@@ -40,6 +40,8 @@ import SalesTab from './SalesTab'
 
 import TransactionItems from './TransactionItems'
 import TransactionOverview from './TransactionOverview'
+import TransactionsTable from './TransactionsTable'
+import TransactionDetails from './TransactionDetails'
 
 export {
     AdminPortal,
@@ -75,5 +77,7 @@ export {
     RolesTab,
     SalesTab,
     TransactionItems,
-    TransactionOverview
+    TransactionOverview,
+    TransactionDetails,
+    TransactionsTable
 }

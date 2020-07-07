@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import AccountMenu from './AccountMenu'
 import AccountMenuItems from './AccountMenuItems'
 import AccountMenuButton from './AccountMenuButton'
