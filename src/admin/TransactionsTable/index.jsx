@@ -14,7 +14,7 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-    const { transactions, viewTransaction } = props
+    const { transactions, viewTransaction, handleRefund, handleResendingEmail, handleVoid } = props
 
     const generateTableColumns = () => {
         return [
@@ -61,10 +61,30 @@ const TransactionsTable = (props) => {
         })
     }
 
+    const otherActions = [
+        {
+            action: handleRefund,
+            label: 'Refund',
+            icon: 'fa-undo'
+        },
+        {
+            action: handleResendingEmail,
+            label: 'Resend Email',
+            icon: 'fa-envelope'
+        },
+        {
+            action: handleVoid,
+            label: 'Void',
+            icon: 'fa-times-circle'
+        }
+    ]
+
     return (
         <CardTable>
             <InnerTable
                 columns={generateTableColumns()}
+                hasActions
+                otherActions={otherActions}
                 rows={generateTableRows(transactions)}
             >
                 <style global='true' jsx='true'>
@@ -86,6 +106,9 @@ const TransactionsTable = (props) => {
                         }
                         .customer-name {
                             width: 120px;
+                        }
+                        .actions {
+                            width: 120px !important;
                         }
 
                         .canceled p,
@@ -120,6 +143,9 @@ const TransactionsTable = (props) => {
 }
 
 TransactionsTable.propTypes = {
+    handleRefund: PropTypes.func.isRequired,
+    handleResendingEmail: PropTypes.func.isRequired,
+    handleVoid: PropTypes.func.isRequired,
     transactions: PropTypes.array.isRequired,
     viewTransaction: PropTypes.func.isRequired
 }

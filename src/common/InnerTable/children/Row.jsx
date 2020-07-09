@@ -5,6 +5,7 @@ import Column from './Column'
 import CopyAction from './CopyAction'
 import ViewAction from './ViewAction'
 import ViewDeleteAction from './ViewDeleteAction'
+import OtherAction from './OtherAction'
 
 const Row = (props) => {
     const columns = props.columns.map((column, col) => {
@@ -45,6 +46,14 @@ const Row = (props) => {
                     locked={props.locked}
                     row={props.row}
                     view={props.view}
+                />
+            )
+        } else if (props.otherActions) {
+            columns.push(
+                <OtherAction
+                    actions={props.otherActions}
+                    key={`${props.itemKey}-other`}
+                    row={props.row}
                 />
             )
         } else if (props.copyOnly) {
@@ -89,7 +98,8 @@ Row.propTypes = {
     copyText: PropTypes.string,
     view: PropTypes.any,
     delete: PropTypes.any,
-    copyCallback: PropTypes.any
+    copyCallback: PropTypes.any,
+    otherActions: PropTypes.array
 }
 
 export default Row

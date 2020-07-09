@@ -6,6 +6,7 @@ import HeaderRow from './HeaderRow'
 import Row from './Row'
 import ViewAction from './ViewAction'
 import ViewDeleteAction from './ViewDeleteAction'
+import OtherAction from './OtherAction'
 
 export {
     Column,
@@ -14,5 +15,6 @@ export {
     HeaderRow,
     Row,
     ViewAction,
-    ViewDeleteAction
+    ViewDeleteAction,
+    OtherAction
 }

@@ -27,6 +27,7 @@ const InnerTable = (props) => (
                             itemKey={item.key}
                             key={item.key}
                             locked={item.locked}
+                            otherActions={props.otherActions}
                             row={rowNum}
                             view={item.view ? item.view : false}
                         />
@@ -127,7 +128,8 @@ const InnerTable = (props) => (
                     -webkit-transition: all 0.2s ease-in-out;
                     transition: all width 0.2s ease-in-out;
                 }
-                .action.view span:hover {
+                .action.view span:hover,
+                .action.other span:hover {
                     background: #0199ed;
                 }
                 .action.copy span:hover {
@@ -161,7 +163,8 @@ InnerTable.propTypes = {
     visibility: PropTypes.bool,
     hasActions: PropTypes.bool,
     canDelete: PropTypes.bool,
-    copyOnly: PropTypes.bool
+    copyOnly: PropTypes.bool,
+    otherActions: PropTypes.array
 }
 
 export default InnerTable

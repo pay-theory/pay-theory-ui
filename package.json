@@ -20,7 +20,7 @@
         "build-common": "microbundle-crl --no-compress --format modern,cjs src/common/index.js -o dist/common.js",
         "build-font": "microbundle-crl --no-compress --format modern,cjs src/common/Font/index.js -o dist/Font.js",
         "build-default": "microbundle-crl --no-compress --format modern,cjs",
-        "build": "npm run build-default && npm run build-common && npm run build-documentation && npm run build-font",
+        "build": "npm run build-default && npm run build-common && npm run build-font",
         "start": "microbundle-crl watch --no-compress --format modern,cjs",
         "prepare": "run-s build",
         "format": "prettier-eslint \"src/**/*.js\"",

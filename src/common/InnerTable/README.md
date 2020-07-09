@@ -35,3 +35,14 @@ A UI component that builds a table with the ability to include delete or copy ac
 -   **copyOnly**: PropTypes.bool
 
     -   Boolean that tells if there is a copy callback in the row object
+
+- **otherActions**: Proptypes.array
+
+    - Array of objects that create custom action button for the table. Obects should contain a label, icon, and corresponding action function.
+        ```jsx
+        {
+            action: {() => {}}
+            label: "Email"
+            icon: "fa-envelope"
+        }
+        ```
