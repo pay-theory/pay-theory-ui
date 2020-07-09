@@ -9,8 +9,10 @@ const OtherAction = (props) => {
                     <div
                         className='action other'
                         data-testid={`${item.label}-action`}
-                        key={item.action}
-                        onClick={item.action}
+                        key={item.label}
+                        onClick={() => {
+                            item.action(props.rowObject)
+                        }}
                         title={item.label}
                     >
                         <span>
@@ -25,7 +27,8 @@ const OtherAction = (props) => {
 
 OtherAction.propTypes = {
     actions: PropTypes.array.isRequired,
-    row: PropTypes.number.isRequired
+    row: PropTypes.number.isRequired,
+    rowObject: PropTypes.object.isRequired
 }
 
 export default OtherAction

@@ -29,6 +29,7 @@ const InnerTable = (props) => (
                             locked={item.locked}
                             otherActions={props.otherActions}
                             row={rowNum}
+                            rowObject={item.item}
                             view={item.view ? item.view : false}
                         />
                     )

@@ -14,7 +14,7 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-    const { transactions, viewTransaction, handleRefund, handleResendingEmail, handleVoid } = props
+    const { transactions, viewTransaction } = props
 
     const generateTableColumns = () => {
         return [
@@ -56,9 +56,22 @@ const TransactionsTable = (props) => {
                     }
                 ],
                 key: item.id,
-                view: () => viewTransaction(item)
+                view: () => viewTransaction(item),
+                item: item
             }
         })
+    }
+
+    const handleRefund = (object) => {
+        console.log(`Order ${object.id} was refunded`)
+    }
+
+    const handleResendingEmail = (object) => {
+        console.log(`Order ${object.id} had the email resent`)
+    }
+
+    const handleVoid = (object) => {
+        console.log(`Order ${object.id} was voided`)
     }
 
     const otherActions = [
@@ -143,9 +156,6 @@ const TransactionsTable = (props) => {
 }
 
 TransactionsTable.propTypes = {
-    handleRefund: PropTypes.func.isRequired,
-    handleResendingEmail: PropTypes.func.isRequired,
-    handleVoid: PropTypes.func.isRequired,
     transactions: PropTypes.array.isRequired,
     viewTransaction: PropTypes.func.isRequired
 }

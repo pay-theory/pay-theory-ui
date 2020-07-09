@@ -54,6 +54,7 @@ const Row = (props) => {
                     actions={props.otherActions}
                     key={`${props.itemKey}-other`}
                     row={props.row}
+                    rowObject={props.rowObject}
                 />
             )
         } else if (props.copyOnly) {
@@ -99,7 +100,8 @@ Row.propTypes = {
     view: PropTypes.any,
     delete: PropTypes.any,
     copyCallback: PropTypes.any,
-    otherActions: PropTypes.array
+    otherActions: PropTypes.array,
+    rowObject: PropTypes.object
 }
 
 export default Row

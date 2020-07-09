@@ -180,7 +180,7 @@ const NavigationDrawer = (props) => {
                                 display: none;
                             }
 
-                            .fa-angle-down {
+                            .far.fa-angle-down {
                                 display: none;
                             }
 
@@ -194,7 +194,7 @@ const NavigationDrawer = (props) => {
                                 display: none;
                             }
 
-                            .fa-angle-right {
+                            .far.fa-angle-right {
                                 color: #0bd8aa !important;
                                 margin-right: 25px !important;
                             }
