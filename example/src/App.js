@@ -7,7 +7,7 @@ import {
     NavigationDrawer,
     GlobalStyle,
     BooksHooks,
-    TransactionsTable,
+    TransactionDetails,
     BodyHead
 } from 'pay-theory-ui'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -130,7 +130,7 @@ export default function App(props) {
                                             />
                                             <div className='body-content'>
                                             <BodyHead />
-                                            <TransactionsTable transactions={transactions._embedded.transfers} viewTransaction={() => {}} />
+                                            <TransactionDetails transaction={transactions._embedded.transfers[0]} />
                                             </div>
                                         </div>
                                     </div>

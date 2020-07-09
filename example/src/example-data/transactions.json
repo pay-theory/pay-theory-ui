@@ -3,8 +3,16 @@
       "transfers" : [ {
         "id" : "TRdsQZBp8Fqm535qb82dE4wo",
         "amount" : 100,
-        "tags" : { },
-        "state" : "PENDING",
+        "tags" : { 
+          "name": "John Smith",
+          "type": "Credit",
+          "card_brand": "Visa",
+          "account_number": "1234",
+          "item_description": "lunch",
+          "ip_address": "213.57.73.72",
+          "email": "noreply@paytheory.com"
+        },
+        "state" : "SUCCEEDED",
         "trace_id" : "0733ac16-5102-41d8-aa99-2f0358940cb7",
         "currency" : "USD",
         "application" : "AP5vJSS1N3Gst7CGXecgEsM7",
@@ -53,7 +61,10 @@
       }, {
         "id" : "TRidDQ2DeBXxkBSbyH6cUbMg",
         "amount" : 729645,
-        "tags" : { },
+        "tags" : { 
+          "name": "Tim Hall",
+          "type": "ACH"
+        },
         "state" : "SUCCEEDED",
         "trace_id" : "2d923f2c-6e7e-41ff-ab69-6fee14567bb3",
         "currency" : "USD",
@@ -98,7 +109,8 @@
         "id" : "TRwfivDv4bMXS4pX8fvoA3pa",
         "amount" : 729645,
         "tags" : {
-          "order_number" : "21DFASJSAKAS"
+          "name": "Greg Jones",
+          "type": "Credit"
         },
         "state" : "CANCELED",
         "trace_id" : "1bd1b6ac-a11d-40fa-94e4-3d410b4ff920",
@@ -150,7 +162,8 @@
         "id" : "TRvXeKLFDXBFAd6U2qiHuvyE",
         "amount" : 353688,
         "tags" : {
-          "test" : "sale"
+          "name": "Hannah West",
+          "type": "Cash"
         },
         "state" : "PENDING",
         "trace_id" : "ae8e14cb-08b3-4737-97c8-8a7fb0bb8e26",
@@ -202,7 +215,8 @@
         "id" : "TRvNMTH5X1qiRMcPaDBMuXRi",
         "amount" : 3209,
         "tags" : {
-          "order_number" : "21DFASJSAKAS"
+          "name": "Karl Fall",
+          "type": "Credit"
         },
         "state" : "PENDING",
         "trace_id" : "23693645-9082-4893-98ff-8604ec96a26c",
@@ -254,7 +268,8 @@
         "id" : "TRvEgi4d7yPUi3WipHxBYyZ3",
         "amount" : 298734,
         "tags" : {
-          "order_number" : "21DFASJSAKAS"
+          "name": "Brian Riggs",
+          "type": "ACH"
         },
         "state" : "PENDING",
         "trace_id" : "61cdb330-75b6-4c5c-86be-d813c540d060",
@@ -306,9 +321,10 @@
         "id" : "TRvvoBcNMUNXa3kh16dbd9qd",
         "amount" : 475804,
         "tags" : {
-          "order_number" : "21DFASJSAKAS"
+          "name": "John Doe",
+          "type": "Credit"
         },
-        "state" : "PENDING",
+        "state" : "SUCCEEDED",
         "trace_id" : "99b7839d-2871-43bc-aec7-9abaa8c2d1e1",
         "currency" : "USD",
         "application" : "AP5vJSS1N3Gst7CGXecgEsM7",

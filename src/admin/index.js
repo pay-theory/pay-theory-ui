@@ -4,7 +4,6 @@ import AccountOverview from './AccountOverview'
 import AccountOverviewCard from './AccountOverviewCard'
 import AccountsTab from './AccountsTab'
 import AccountTable from './AccountTable'
-import AdminPortal from './AdminPortal'
 
 import ConnectionColumn from './ConnectionColumn'
 import * as ConnectionEntry from './ConnectionEntry'
@@ -44,7 +43,6 @@ import TransactionsTable from './TransactionsTable'
 import TransactionDetails from './TransactionDetails'
 
 export {
-    AdminPortal,
     AccountCodeBar,
     AccountOverview,
     AccountOverviewCard,

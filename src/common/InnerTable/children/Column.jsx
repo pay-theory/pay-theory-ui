@@ -14,7 +14,7 @@ const Column = (props) => {
                 onClick={props.view}
                 data-testid='linked-column'
             >
-                {props.content}
+                <p>{props.content}</p>
             </span>
         )
     } else {
@@ -24,7 +24,7 @@ const Column = (props) => {
                 key={`${props.className}-${props.row}-${props.col}`}
                 data-testid='unlinked-column'
             >
-                {props.content}
+                <p>{props.content}</p>
                 {lock}
             </span>
         )

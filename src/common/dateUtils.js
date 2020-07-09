@@ -121,3 +121,8 @@ export const formatDateAndTime = (date) => {
 
     return result
 }
+
+export const formatDate = (stamp) => {
+    const dated = new Date(stamp)
+    return `${dated.getMonth() + 1}/${dated.getDate()}/${dated.getFullYear()}`
+}
