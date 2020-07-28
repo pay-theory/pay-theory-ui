@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import * as BooksHooks from '../../hooks'
 
-const NavigationDrawer = (props) => {
+const NavigationDrawer = ({ navStyle, listHead }) => {
     const createItem = (item) => {
         return <NavigationItem item={item} className='' key={item.tag} />
     }
@@ -35,8 +35,8 @@ const NavigationDrawer = (props) => {
                     >
                         <ul>
                             {/* Added so we could show a list header if we want on the nav bar */}
-                            {props.listHead ? (
-                                <p className='nav-header'>{props.listHead}</p>
+                            {listHead ? (
+                                <p className='nav-header'>{listHead}</p>
                             ) : null}
                             {Array.isArray(menuItems) ? (
                                 menuItems.map((item) => {
@@ -52,8 +52,8 @@ const NavigationDrawer = (props) => {
                         </ul>
                         <style jsx='true' global='true'>{`
                             .nav-drawer {
-                                background: ${props.style.background};
-                                color: ${props.style.hoverFontColor};
+                                background: ${navStyle.background};
+                                color: ${navStyle.hoverFontColor};
                                 min-width: 290px;
                                 max-width: 290px;
                                 overflow: hidden;
@@ -85,7 +85,7 @@ const NavigationDrawer = (props) => {
                             .nav-drawer a:link,
                             .nav-drawer a:visited,
                             .nav-drawer details summary {
-                                color: ${props.style.fontColor};
+                                color: ${navStyle.fontColor};
                                 margin-top: auto;
                                 margin-bottom: auto;
                                 height: 46px;
@@ -100,13 +100,13 @@ const NavigationDrawer = (props) => {
 
                             .nav-drawer a:link i,
                             .nav-drawer a:visited i {
-                                color: ${props.style.fontColor};
+                                color: ${navStyle.fontColor};
                                 margin-left: 24px;
                                 margin-right: 16px;
                             }
 
                             .nav-drawer summary i {
-                                color: ${props.style.fontColor};
+                                color: ${navStyle.fontColor};
                                 margin-left: 24px;
                                 margin-right: 16px;
                             }
@@ -115,8 +115,8 @@ const NavigationDrawer = (props) => {
                             .nav-drawer a:hover i,
                             .nav-drawer summary:hover,
                             .nav-drawer summary:hover i {
-                                color: ${props.style.hoverFontColor};
-                                background: ${props.style.hoverBackground};
+                                color: ${navStyle.hoverFontColor};
+                                background: ${navStyle.hoverBackground};
                                 -webkit-transition: all 0.2s ease-in-out;
                                 transition: all width 0.2s ease-in-out;
                             }
@@ -124,7 +124,7 @@ const NavigationDrawer = (props) => {
                             .nav-drawer a:active,
                             .nav-drawer a:hover,
                             .nav-drawer summary:hover {
-                                color: ${props.style.hoverFontColor};
+                                color: ${navStyle.hoverFontColor};
                                 border-left: 4px solid #0bd8aa;
                                 margin-top: auto;
                                 margin-bottom: auto;
@@ -140,12 +140,12 @@ const NavigationDrawer = (props) => {
 
                             .nav-drawer a:active i,
                             .nav-drawer a:hover i {
-                                color: ${props.style.hoverFontColor};
+                                color: ${navStyle.hoverFontColor};
                             }
 
                             .nav-drawer a.active:link,
                             .nav-drawer a.active:visited {
-                                color: ${props.style.hoverFontColor};
+                                color: ${navStyle.hoverFontColor};
                                 margin-top: auto;
                                 margin-bottom: auto;
                                 height: 46px;
@@ -234,7 +234,7 @@ const NavigationDrawer = (props) => {
 }
 
 NavigationDrawer.propTypes = {
-    style: PropTypes.shape({
+    navStyle: PropTypes.shape({
         background: PropTypes.string,
         hoverBackground: PropTypes.string,
         fontColor: PropTypes.string,
@@ -244,7 +244,7 @@ NavigationDrawer.propTypes = {
 }
 
 NavigationDrawer.defaultProps = {
-    style: {
+    navStyle: {
         background: '#160f3d',
         hoverBackground: '#100a31',
         fontColor: 'rgba(255, 255, 255, 0.5)',

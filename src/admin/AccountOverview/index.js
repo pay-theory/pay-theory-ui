@@ -5,6 +5,8 @@ import Button from '@material/react-button'
 import { FormHead, TextEntry } from '../../common'
 import * as BooksHooks from '../../hooks'
 
+/* eslint-disable react/jsx-max-depth */
+
 const AccountOverview = (props) => {
     return (
         <BooksHooks.context.member.Consumer>
@@ -61,6 +63,7 @@ const AccountOverview = (props) => {
                                         </div>
                                     </div>
                                     <div className='page-content'>
+                                        {/* eslint-disable react/forbid-component-props */}
                                         <Button
                                             className='primary-button save-account-button'
                                             data-testid='submit-account-detail'
@@ -71,6 +74,7 @@ const AccountOverview = (props) => {
                                         >
                                             {`Save `}
                                         </Button>
+                                        {/* eslint-enable react/forbid-component-props */}
                                     </div>
                                 </div>
                             </div>
@@ -124,3 +128,5 @@ AccountOverview.propTypes = {
 }
 
 export default AccountOverview
+
+/* eslint-enable react/jsx-max-depth */
