@@ -23,7 +23,7 @@
         "build": "npm run build-default && npm run build-common && npm run build-documentation && npm run build-font",
         "start": "microbundle-crl watch --no-compress --format modern,cjs",
         "prepare": "run-s build",
-        "format": "prettier-eslint \"$PWD/src/**/*.js\" --write",
+        "format": "prettier-eslint --write \"$PWD/src/**/*.js\"",
         "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
         "ops-test": "react-scripts test --watchAll=false --env=jest-environment-jsdom-sixteen --coverage",
         "test-report": "curl https://coverage.codacy.com/get.sh > get.sh && chmod +x get.sh && sh get.sh report -r coverage/lcov.info",
