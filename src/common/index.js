@@ -1,8 +1,8 @@
+/* istanbul ignore file */
 import {
     AuthBG,
     AuthBox,
     AuthStyle,
-    Bouncer,
     FormChangePassword,
     FormHeader,
     FormLoginAlternative,
@@ -61,7 +61,6 @@ export {
     AuthBG,
     AuthBox,
     AuthStyle,
-    Bouncer,
     FormChangePassword,
     FormHeader,
     FormLoginAlternative,

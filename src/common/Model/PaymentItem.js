@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import PropTypes from 'prop-types'
 
 export default PropTypes.exact({

@@ -14,47 +14,51 @@ const AccountMenuItems = (props) => {
                             {accountHook.nickname}
                         </span>
                         <div
+                            data-testid='account-logout'
                             onClick={props.logout}
                             onKeyPress={handleKeyPress}
                             tabIndex='0'
-                            data-testid='account-logout'
                         >
                             Logout
                         </div>
-                        <style jsx='true' global='true'>{`
-                            .portal-head-account-menu-items {
-                                opacity: 0;
-                                text-align: right;
-                                line-height: 22px;
-                                position: absolute;
-                                top: 40px;
-                                right: 0px;
-                                border-radius: 6px;
-                                padding: 4px 0px;
-                                background-color: #fff;
-                                min-width: 160px;
-                                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.175);
-                            }
-                            .portal-head-account-menu-items span {
-                                color: #253243;
-                                padding: 5px 12px;
-                                text-decoration: none;
-                                display: block;
-                                font-weight: 600;
-                            }
-                            .portal-head-account-menu-items div {
-                                color: #6b7887;
-                                padding: 5px 12px;
-                                text-decoration: none;
-                                display: block;
-                            }
+                        <style global='true' jsx='true'>
+                            {`
+                                .portal-head-account-menu-items {
+                                    display: none;
+                                    opacity: 0;
+                                    text-align: right;
+                                    line-height: 22px;
+                                    position: absolute;
+                                    top: 40px;
+                                    right: 0px;
+                                    border-radius: 6px;
+                                    padding: 4px 0px;
+                                    background-color: #fff;
+                                    min-width: 160px;
+                                    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.175);
+                                }
+                                .portal-head-account-menu-items span {
+                                    color: #253243;
+                                    padding: 5px 12px;
+                                    text-decoration: none;
+                                    display: block;
+                                    font-weight: 600;
+                                }
+                                .portal-head-account-menu-items div {
+                                    color: #6b7887;
+                                    padding: 5px 12px;
+                                    text-decoration: none;
+                                    display: block;
+                                }
 
-                            .portal-head-account-menu-items div:hover,
-                            .portal-head-account-menu-items div:focus {
-                                background-color: #0199ed;
-                                color: #fff;
-                            }
-                        `}</style>
+                                .portal-head-account-menu-items div:hover,
+                                .portal-head-account-menu-items div:focus {
+                                    display: block;
+                                    background-color: #0199ed;
+                                    color: #fff;
+                                }
+                            `}
+                        </style>
                     </div>
                 )
             }}

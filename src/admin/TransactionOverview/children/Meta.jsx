@@ -97,27 +97,29 @@ const Meta = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <style jsx='true'>{`
-                            .cardHead {
-                                margin: 18px 18px 9px;
-                            }
-                            .cardContent {
-                                margin: 9px 0 18px;
-                            }
-                            .details-card {
-                                flex-grow: 1;
-                            }
-                            .col-1 div {
-                                margin: 0 0 16px;
-                            }
-                            .navy {
-                                color: #253243 !important;
-                            }
+                        <style jsx='true'>
+                            {`
+                                .cardHead {
+                                    margin: 18px 18px 9px;
+                                }
+                                .cardContent {
+                                    margin: 9px 0 18px;
+                                }
+                                .details-card {
+                                    flex-grow: 1;
+                                }
+                                .col-1 div {
+                                    margin: 0 0 16px;
+                                }
+                                .navy {
+                                    color: #253243 !important;
+                                }
 
-                            .light-navy {
-                                color: #cad3dd !important;
-                            }
-                        `}</style>
+                                .light-navy {
+                                    color: #cad3dd !important;
+                                }
+                            `}
+                        </style>
                     </CardRow>
                 )
             }}

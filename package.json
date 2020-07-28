@@ -1,6 +1,6 @@
 {
     "name": "@paytheory/pay-theory-ui",
-    "version": "0.0.24-0",
+    "version": "0.0.29-0",
     "description": "Made with create-react-library",
     "author": "austinzani",
     "license": "MIT",
@@ -20,7 +20,7 @@
         "build-common": "microbundle-crl --no-compress --format modern,cjs src/common/index.js -o dist/common.js",
         "build-font": "microbundle-crl --no-compress --format modern,cjs src/common/Font/index.js -o dist/Font.js",
         "build-default": "microbundle-crl --no-compress --format modern,cjs",
-        "build": "npm run build-default && npm run build-common && npm run build-documentation && npm run build-font",
+        "build": "npm run build-default && npm run build-common && npm run build-font",
         "start": "microbundle-crl watch --no-compress --format modern,cjs",
         "prepare": "run-s build",
         "format": "prettier-eslint --write \"$PWD/src/**/*.js\"",

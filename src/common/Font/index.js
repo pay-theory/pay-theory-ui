@@ -16,7 +16,7 @@ const Font = ({ typekit }) => {
         })()
     }, [])
 
-    return <div className={fontState} />
+    return <div className={fontState} data-testid='font' />
 }
 
 Font.propTypes = {

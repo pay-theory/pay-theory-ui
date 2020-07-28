@@ -16,29 +16,31 @@ const AccountTable = (props) => {
                 return (
                     <CardTable>
                         <InnerTable
+                            canDelete
                             columns={generateTableColumns()}
+                            hasActions
                             rows={generateTableRows(
                                 accounts,
                                 props.viewAccount,
                                 props.deleteAccount
                             )}
-                            hasActions
-                            canDelete
                         />
-                        <style jsx='true' global='true'>{`
-                            .account-name {
-                                width: 140px;
-                            }
-                            .account-phone {
-                                width: 140px;
-                            }
-                            .account-email {
-                                width: 140px;
-                            }
-                            .account-title {
-                                width: 140px;
-                            }
-                        `}</style>
+                        <style global='true' jsx='true'>
+                            {`
+                                .account-name {
+                                    width: 140px;
+                                }
+                                .account-phone {
+                                    width: 140px;
+                                }
+                                .account-email {
+                                    width: 140px;
+                                }
+                                .account-title {
+                                    width: 140px;
+                                }
+                            `}
+                        </style>
                     </CardTable>
                 )
             }}
@@ -47,8 +49,8 @@ const AccountTable = (props) => {
 }
 
 AccountTable.propTypes = {
-    viewAccount: PropTypes.func.isRequired,
-    deleteAccount: PropTypes.func.isRequired
+    deleteAccount: PropTypes.func.isRequired,
+    viewAccount: PropTypes.func.isRequired
 }
 
 export default AccountTable

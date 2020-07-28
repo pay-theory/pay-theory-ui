@@ -1,9 +1,9 @@
+/* istanbul ignore file */
 import AccountCodeBar from './AccountCodeBar'
 import AccountOverview from './AccountOverview'
 import AccountOverviewCard from './AccountOverviewCard'
 import AccountsTab from './AccountsTab'
 import AccountTable from './AccountTable'
-import AdminPortal from './AdminPortal'
 
 import ConnectionColumn from './ConnectionColumn'
 import * as ConnectionEntry from './ConnectionEntry'
@@ -39,9 +39,10 @@ import SalesTab from './SalesTab'
 
 import TransactionItems from './TransactionItems'
 import TransactionOverview from './TransactionOverview'
+import TransactionsTable from './TransactionsTable'
+import TransactionDetails from './TransactionDetails'
 
 export {
-    AdminPortal,
     AccountCodeBar,
     AccountOverview,
     AccountOverviewCard,
@@ -74,5 +75,7 @@ export {
     RolesTab,
     SalesTab,
     TransactionItems,
-    TransactionOverview
+    TransactionOverview,
+    TransactionDetails,
+    TransactionsTable
 }

@@ -5,6 +5,7 @@ import Column from './Column'
 import CopyAction from './CopyAction'
 import ViewAction from './ViewAction'
 import ViewDeleteAction from './ViewDeleteAction'
+import OtherAction from './OtherAction'
 
 const Row = (props) => {
     const columns = props.columns.map((column, col) => {
@@ -13,25 +14,25 @@ const Row = (props) => {
         if (col === 0 && props.view) {
             return (
                 <Column
-                    key={`${props.itemKey}-${col}`}
                     className={column.className}
-                    row={props.row}
                     col={col}
-                    view={props.view}
                     content={column.content}
-                    locked={props.locked}
+                    key={`${props.itemKey}-${col}`}
                     linked
+                    locked={props.locked}
+                    row={props.row}
+                    view={props.view}
                 />
             )
         } else {
             return (
                 <Column
-                    key={`${props.itemKey}-${col}`}
                     className={column.className}
-                    row={props.row}
                     col={col}
                     content={column.content}
+                    key={`${props.itemKey}-${col}`}
                     locked={props.locked}
+                    row={props.row}
                 />
             )
         }
@@ -40,21 +41,30 @@ const Row = (props) => {
         if (props.canDelete) {
             columns.push(
                 <ViewDeleteAction
+                    delete={props.delete}
                     key={`${props.itemKey}-delete`}
+                    locked={props.locked}
                     row={props.row}
                     view={props.view}
-                    delete={props.delete}
-                    locked={props.locked}
+                />
+            )
+        } else if (props.otherActions) {
+            columns.push(
+                <OtherAction
+                    actions={props.otherActions}
+                    key={`${props.itemKey}-other`}
+                    row={props.row}
+                    rowObject={props.rowObject}
                 />
             )
         } else if (props.copyOnly) {
             columns.push(
                 <CopyAction
+                    callback={props.copyCallback}
+                    copyText={props.copyText}
+                    itemKey={props.itemKey}
                     key={`${props.itemKey}-copy`}
                     row={props.row}
-                    copyText={props.copyText}
-                    callback={props.copyCallback}
-                    itemKey={props.itemKey}
                 />
             )
         } else {
@@ -69,8 +79,8 @@ const Row = (props) => {
     }
     return (
         <div
-            id={`${props.row}`}
             className='inner-table-row'
+            id={`${props.row}`}
             key={`${props.row}-${props.itemKey}`}
         >
             {columns}
@@ -89,7 +99,9 @@ Row.propTypes = {
     copyText: PropTypes.string,
     view: PropTypes.any,
     delete: PropTypes.any,
-    copyCallback: PropTypes.any
+    copyCallback: PropTypes.any,
+    otherActions: PropTypes.array,
+    rowObject: PropTypes.object
 }
 
 export default Row

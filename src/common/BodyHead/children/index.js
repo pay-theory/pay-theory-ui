@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import BodySubtitle from './BodySubtitle'
 import BodyTitle from './BodyTitle'
 

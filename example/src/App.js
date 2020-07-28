@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import 'pay-theory-ui/dist/index.css'
 
@@ -6,12 +7,14 @@ import {
     NavigationDrawer,
     GlobalStyle,
     BooksHooks,
-    PaymentItemDiscontinueCard,
-    DonationItemEntry
+    TransactionsTable,
+    BodyHead
 } from 'pay-theory-ui'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import { paymentItem, checkout, classicDistrict } from './example-data'
+import { paymentItem, checkout, classicDistrict, payment, invoiceItems } from './example-data'
+
+import transactions from './example-data/transactions.json'
 
 export default function App(props) {
     const generateDocumentationMenu = () => {
@@ -62,6 +65,36 @@ export default function App(props) {
         }
     }
 
+    const generateTableColumns = () => {
+        return [
+            { className: 'item-name', label: 'name' },
+            { className: 'item-description', label: 'description' }
+        ]
+    }
+
+    const itemsArray = [
+        { name: 'test-one', description: 'this is the first test row' },
+        { name: 'test-two', description: 'this is the second test row' }
+    ]
+
+    const generateTableRows = (items) => {
+        return items.map((item, i) => {
+            return {
+                columns: [
+                    {
+                        className: 'name',
+                        content: item.name
+                    },
+                    {
+                        className: 'description',
+                        content: item.description
+                    }
+                ],
+                key: `test-key-${i}`
+            }
+        })
+    }
+
     const paged = {
         title: 'Pay Theory UI',
         subtitle: 'UI Playground'
@@ -69,9 +102,16 @@ export default function App(props) {
 
     const pageMenu = generateDocumentationMenu()
 
+    const tableRows = generateTableRows(itemsArray)
+
+    const demoAccount = {
+        nickname: "Demo Account"
+      };
+
     return (
         <div id='app'>
             <Router>
+            <BooksHooks.context.account.Provider value={demoAccount}>
                 <BooksHooks.context.paymentItem.Provider value={paymentItem}>
                     <BooksHooks.context.checkout.Provider value={checkout}>
                         <BooksHooks.context.district.Provider
@@ -83,19 +123,14 @@ export default function App(props) {
                                 <GlobalStyle />
                                 <BooksHooks.context.page.Provider value={paged}>
                                     <div id='container'>
-                                        <PortalHead />
+                                        <PortalHead logout={() => {}}/>
                                         <div className='body-container'>
                                             <NavigationDrawer
                                                 listHead={pageMenu.listHead}
                                             />
                                             <div className='body-content'>
-                                                <PaymentItemDiscontinueCard
-                                                    onDiscontinue={() => {}}
-                                                    copyLink={() => {}}
-                                                />
-                                                <DonationItemEntry
-                                                    changePayment={() => {}}
-                                                />
+                                            <BodyHead />
+                                            <TransactionsTable viewTransaction={() => {}} transactions={transactions._embedded.transfers} />
                                             </div>
                                         </div>
                                     </div>
@@ -104,6 +139,7 @@ export default function App(props) {
                         </BooksHooks.context.district.Provider>
                     </BooksHooks.context.checkout.Provider>
                 </BooksHooks.context.paymentItem.Provider>
+                </BooksHooks.context.account.Provider>
             </Router>
         </div>
     )

@@ -16,9 +16,9 @@ test('display account table', async () => {
     const { queryAllByTestId } = render(
         <BooksHooks.context.accounts.Provider value={accounts}>
             <AccountTable
+                deleteAccount={deleteAccount}
                 id='test-id'
                 viewAccount={viewAccount}
-                deleteAccount={deleteAccount}
             />
         </BooksHooks.context.accounts.Provider>
     )
