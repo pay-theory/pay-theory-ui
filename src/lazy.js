@@ -1,2 +1,3 @@
 /* istanbul ignore file */
-export default from './common/Font'
+import * as Font from './common/Font'
+export default Font

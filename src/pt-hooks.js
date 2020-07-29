@@ -1,2 +1,3 @@
 /* istanbul ignore file */
-export * as BooksHooks from './hooks'
+import * as BooksHooks from './hooks'
+export { BooksHooks }

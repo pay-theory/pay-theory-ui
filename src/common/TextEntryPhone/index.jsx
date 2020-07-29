@@ -11,7 +11,7 @@ const TextEntryPhone = (props) => {
             helperText='1-234-456-9101'
             name={props.name}
             label={props.label}
-            isValid={() => validPhone(props.value.replace(/\D/, ''))}
+            isValid={(() => validPhone(props.value.replace(/\D/, '')))()}
             onChange={(e) => {
                 const formatted = formatPhone(e.target.value)
                 props.onChange(formatted)

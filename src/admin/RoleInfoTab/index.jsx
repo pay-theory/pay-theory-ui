@@ -1,5 +1,5 @@
 // node modules
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material/react-button'
 
@@ -16,20 +16,21 @@ const INITIAL_STATE = {
     role_locked: false,
     role_type: 'Default',
     key: '',
-    permissions: [
-        {
-            tag: 'test',
-            enabled: true,
-            title: 'test-page',
-            subpages: [],
-            accessType: ''
-        }
-    ]
+    permissions: [{
+        tag: 'test',
+        enabled: true,
+        title: 'test-page',
+        subpages: [],
+        accessType: ''
+    }]
 }
 
 const RoleInfoTab = (props) => {
-    const [state, setState] = useState(INITIAL_STATE)
-    const [loaded, setLoaded] = useState(false)
+    const roleContext = useContext(BooksHooks.context.role)
+    const role = roleContext ? roleContext : INITIAL_STATE
+
+    const [state, setState] = useState(role)
+
     const onChange = (event) => {
         event.preventDefault()
         const changed = { ...state }
@@ -48,8 +49,8 @@ const RoleInfoTab = (props) => {
         stated.permissions[index] = permission
         if (
             stated.permissions
-                .map((permission) => permission.enabled)
-                .indexOf(true) < 0
+            .map((permission) => permission.enabled)
+            .indexOf(true) < 0
         ) {
             props.setStatusMessage(
                 StockTags.error(
@@ -60,27 +61,22 @@ const RoleInfoTab = (props) => {
                 )
             )
             return false
-        } else {
+        }
+        else {
             setState(stated)
             return true
         }
     }
 
-    return (
-        <BooksHooks.context.role.Consumer>
-            {(role) => {
-                if (!loaded && role.UID) {
-                    setLoaded(true)
-                    setState(role)
-                }
-                const pagesClass =
-                    state.role_access === ACCESS.FULL
-                        ? 'pages-gone'
-                        : 'tab-content'
 
-                const pages = state.permissions.map((page, index) => {
-                    return (
-                        <div key={`${page.tag}-${index}`}>
+    const pagesClass =
+        state.role_access === ACCESS.FULL ?
+        'pages-gone' :
+        'tab-content'
+
+    const pages = state.permissions.map((page, index) => {
+        return (
+            <div key={`${page.tag}-${index}`}>
                             <sub.AccessPageAccordion
                                 index={index}
                                 page={page}
@@ -88,14 +84,17 @@ const RoleInfoTab = (props) => {
                             />
                             <hr />
                         </div>
-                    )
-                })
+        )
+    })
 
-                const saveClass = state.role_locked
-                    ? 'pages-gone'
-                    : 'tab-content'
-                return (
-                    <CardTable>
+
+    const saveClass = state.role_locked ?
+        'pages-gone' :
+        'tab-content'
+
+
+    return (
+        <CardTable>
                         <TabPage id='role-info-tab' visibility='tab-visible'>
                             <div
                                 className='tab-content'
@@ -178,9 +177,6 @@ const RoleInfoTab = (props) => {
                             `}</style>
                         </TabPage>
                     </CardTable>
-                )
-            }}
-        </BooksHooks.context.role.Consumer>
     )
 }
 

@@ -1,18 +1,19 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent, act } from '@testing-library/react'
+import { render, fireEvent, act, waitFor } from '@testing-library/react'
 
 import { openModal, closeModal, ModalSpinner } from '../../common'
 
 import ModalCreateRole from '.'
 
-test('modal create role success', async () => {
-    act(() => {
-        const createNewRole = jest.fn(() => Promise.resolve())
+test('modal create role success', async() => {
+    const promise = Promise.resolve()
 
-        const { queryByTestId } = render(
-            <div className='spinner-wrapper'>
+    const createNewRole = jest.fn(() => promise)
+
+    const { queryByTestId } = render(
+        <div className='spinner-wrapper'>
                 <div className='modal-wrapper'>
                     <div id='container' />
                     <ModalCreateRole
@@ -22,19 +23,20 @@ test('modal create role success', async () => {
                 </div>
                 <ModalSpinner />
             </div>
-        )
-        expect(queryByTestId('role_title')).not.toBeVisible()
-        openModal()
-        expect(queryByTestId('role_title')).toBeVisible()
+    )
+    expect(queryByTestId('role_title')).not.toBeVisible()
+    openModal()
+    expect(queryByTestId('role_title')).toBeVisible()
 
-        fireEvent.change(queryByTestId('role_title'), {
-            target: { value: 'name' }
-        })
-        fireEvent.submit(queryByTestId('create-role-form'))
-
-        expect(createNewRole).toHaveBeenCalledTimes(1)
-
-        closeModal()
-        expect(queryByTestId('role_title')).not.toBeVisible()
+    fireEvent.change(queryByTestId('role_title'), {
+        target: { value: 'name' }
     })
+    fireEvent.submit(queryByTestId('create-role-form'))
+
+    expect(createNewRole).toHaveBeenCalledTimes(1)
+
+    closeModal()
+    expect(queryByTestId('role_title')).not.toBeVisible()
+
+    await act(() => promise)
 })

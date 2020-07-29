@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material/react-button'
 
@@ -9,17 +9,17 @@ import { StockTags } from '../../common/StatusMessage'
 import { parse, formatFee } from './excelUtils'
 
 const ReceiptReviewTable = (props) => {
+    const districtHook = useContext(BooksHooks.context.district)
+    const receiptReview = useContext(BooksHooks.context.receiptReview)
+
     const [statusMessage, setStatusMessage] = useState(<div />)
-    const [districtHook, setDistrict] = useState(false)
     const [schoolData, setSchoolData] = useState(<div />)
     const [totalFees, setTotalFees] = useState(0.0)
     const [totalReceipts, setTotalReceipts] = useState(0.0)
-    const [upload, setUpload] = useState(false)
     const [loaded, setLoaded] = useState(false)
 
     const generateTableColumns = () => {
-        return [
-            {
+        return [{
                 className: 'account-code',
                 label: 'Account Code'
             },
@@ -39,8 +39,7 @@ const ReceiptReviewTable = (props) => {
             const receipts = submission[1].receipts.length
             const fees = submission[1].fees
             return {
-                columns: [
-                    {
+                columns: [{
                         className: 'account-code',
                         content: account_code
                     },
@@ -65,16 +64,17 @@ const ReceiptReviewTable = (props) => {
     }
 
     useEffect(() => {
-        if (!loaded && upload && districtHook.districtData) {
+        if (!loaded && receiptReview && districtHook.districtData) {
             setLoaded(true)
-            const parsed = parse(upload, districtHook.district)
+            const parsed = parse(receiptReview, districtHook.district)
 
             if (!parsed) {
                 setError('file format is invalid')
                 props.history.push({
                     pathname: props.goBackTo
                 })
-            } else {
+            }
+            else {
                 setTotalFees(parsed.total_fees)
                 setTotalReceipts(parsed.total_receipts)
 
@@ -87,14 +87,14 @@ const ReceiptReviewTable = (props) => {
                             >
                                 <FormHead text={school.name} />
                                 <InnerTable
-                                    key={`school.name-${index}`}
                                     columns={generateTableColumns()}
-                                    rows={generateTableRows(school)}
                                     hasActions
+                                    key={`school.name-${index}`}
+                                    rows={generateTableRows(school)}
                                 />
                                 <div
-                                    key={`${school.name}-total`}
                                     className='inner-table inner'
+                                    key={`${school.name}-total`}
                                 >
                                     <div className='inner-table-row'>
                                         <span className='foot school-name'>
@@ -137,119 +137,104 @@ const ReceiptReviewTable = (props) => {
     }
 
     return (
-        <BooksHooks.context.district.Consumer>
-            {(withDistrict) => {
-                setDistrict(withDistrict)
-                return (
-                    <BooksHooks.context.receiptReview.Consumer>
-                        {(receiptReview) => {
-                            setUpload(receiptReview)
-
-                            return (
-                                <div className='review-table card rounded'>
-                                    {schoolData}
-                                    <br />
-                                    <div className='inner-table inner'>
-                                        <div className='inner-table-row'>
-                                            <span className='totals account-code'>
-                                                Grand Total
-                                            </span>
-                                            <span className='totals receipts numeric'>
-                                                {totalReceipts}
-                                            </span>
-                                            <span className='totals fees numeric'>
-                                                {formatFee(totalFees)}
-                                            </span>
-                                            <span className='actions' />
-                                        </div>
-                                    </div>
-                                    <br />
-                                    {props.isPreview ? (
-                                        <Button
-                                            className='primary-button'
-                                            data-testid='upload-button'
-                                            raised
-                                            onClick={() => props.onAccept()}
-                                        >
-                                            <i className='fal fa-paper-plane' />
-                                            Accept & Send
-                                        </Button>
-                                    ) : (
-                                        <div />
-                                    )}
-                                    {statusMessage}
-                                    <style jsx='true' global='true'>{`
-                                        .review-table {
-                                            background-color: #fff;
-                                            flex-grow: 100;
-                                            height: auto;
-                                            margin: 32px 24px;
-                                        }
-                                        .review-table .primary-button {
-                                            margin: 16px 24px;
-                                        }
-                                        .foot {
-                                            font-size: 11pt;
-                                            font-weight: 600;
-                                            border-top: 1px solid #666666;
-                                        }
-                                        .totals {
-                                            font-size: 11pt;
-                                            font-weight: 600;
-                                            border-top: 2px solid double #666666;
-                                        }
-                                        .account-code {
-                                            width: 140px;
-                                            flex-grow: 1;
-                                        }
-                                        .school-name {
-                                            width: 140px;
-                                            flex-grow: 1;
-                                            text-transform: capitalize;
-                                        }
-                                        .details {
-                                            width: 47px;
-                                        }
-                                        .accept-send {
-                                            width: 260px;
-                                        }
-                                        .receipts {
-                                            width: 60px;
-                                            padding-right: 24px;
-                                        }
-                                        .fees {
-                                            width: 80px;
-                                            padding-right: 24px;
-                                        }
-                                        .student-id {
-                                            width: 120px;
-                                        }
-                                        .student-name {
-                                            width: 200px;
-                                        }
-                                        .payment-no {
-                                            width: 50px;
-                                        }
-                                        .description {
-                                            width: 300px;
-                                        }
-                                        .fee-type {
-                                            width: 75px;
-                                        }
-                                        .fee {
-                                            width: 75px;
-                                        }
-                                        .fee-date {
-                                            width: 140px;
-                                        }
-                                    `}</style>
-                                </div>
-                            )
-                        }}
-                    </BooksHooks.context.receiptReview.Consumer>
-                )
-            }}
-        </BooksHooks.context.district.Consumer>
+        <div className='review-table card rounded'>
+            {schoolData}
+            <br />
+            <div className='inner-table inner'>
+                <div className='inner-table-row'>
+                    <span className='totals account-code'>Grand Total</span>
+                    <span className='totals receipts numeric'>
+                        {totalReceipts}
+                    </span>
+                    <span className='totals fees numeric'>
+                        {formatFee(totalFees)}
+                    </span>
+                    <span className='actions' />
+                </div>
+            </div>
+            <br />
+            {props.isPreview ? (
+                <Button
+                    className='primary-button'
+                    data-testid='upload-button'
+                    onClick={() => props.onAccept()}
+                    raised
+                >
+                    <i className='fal fa-paper-plane' />
+                    Accept & Send
+                </Button>
+            ) : (
+                <div />
+            )}
+            {statusMessage}
+            <style global='true' jsx='true'>
+                {`
+                    .review-table {
+                        background-color: #fff;
+                        flex-grow: 100;
+                        height: auto;
+                        margin: 32px 24px;
+                    }
+                    .review-table .primary-button {
+                        margin: 16px 24px;
+                    }
+                    .foot {
+                        font-size: 11pt;
+                        font-weight: 600;
+                        border-top: 1px solid #666666;
+                    }
+                    .totals {
+                        font-size: 11pt;
+                        font-weight: 600;
+                        border-top: 2px solid double #666666;
+                    }
+                    .account-code {
+                        width: 140px;
+                        flex-grow: 1;
+                    }
+                    .school-name {
+                        width: 140px;
+                        flex-grow: 1;
+                        text-transform: capitalize;
+                    }
+                    .details {
+                        width: 47px;
+                    }
+                    .accept-send {
+                        width: 260px;
+                    }
+                    .receipts {
+                        width: 60px;
+                        padding-right: 24px;
+                    }
+                    .fees {
+                        width: 80px;
+                        padding-right: 24px;
+                    }
+                    .student-id {
+                        width: 120px;
+                    }
+                    .student-name {
+                        width: 200px;
+                    }
+                    .payment-no {
+                        width: 50px;
+                    }
+                    .description {
+                        width: 300px;
+                    }
+                    .fee-type {
+                        width: 75px;
+                    }
+                    .fee {
+                        width: 75px;
+                    }
+                    .fee-date {
+                        width: 140px;
+                    }
+                `}
+            </style>
+        </div>
     )
 }
 

@@ -59,6 +59,7 @@ const AccountOverview = (props) => {
                                 </div>
                             </div>
                             <div className='page-content'>
+                                {/* eslint-disable react/forbid-component-props */}
                                 <Button
                                     className='primary-button save-account-button'
                                     data-testid='submit-account-detail'
@@ -67,6 +68,7 @@ const AccountOverview = (props) => {
                                 >
                                     {`Save `}
                                 </Button>
+                                {/* eslint-enable react/forbid-component-props */}
                             </div>
                         </div>
                         <style global='true' jsx='true'>

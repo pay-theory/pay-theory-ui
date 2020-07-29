@@ -26,7 +26,6 @@ const NavigationDrawer = ({ navStyle, listHead }) => {
     return (
         <BooksHooks.context.menu.Consumer>
             {(menuItems) => {
-                console.log('menuItems', menuItems)
                 return (
                     <div
                         id='drawer'

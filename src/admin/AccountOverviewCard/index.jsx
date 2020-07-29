@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import * as BooksHooks from '../../hooks'
 
 const AccountOverviewCard = (props) => {
+    const member = useContext(BooksHooks.context.member)
+
     const [account, setAccount] = useState({
         family_name: '',
         given_name: '',
@@ -10,14 +12,14 @@ const AccountOverviewCard = (props) => {
         app_metadata: { role: '' }
     })
 
+    useEffect(() => {
+        if (member.user_id) {
+            setAccount(member)
+        }
+    }, [member])
+
     return (
-        <BooksHooks.context.member.Consumer>
-            {(member) => {
-                if (member.user_id) {
-                    setAccount(member)
-                }
-                return (
-                    <div
+        <div
                         className='overview card rounded'
                         data-testid='AccountOverviewCard'
                     >
@@ -140,9 +142,6 @@ const AccountOverviewCard = (props) => {
                             }
                         `}</style>
                     </div>
-                )
-            }}
-        </BooksHooks.context.member.Consumer>
     )
 }
 

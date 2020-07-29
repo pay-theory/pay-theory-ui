@@ -25,8 +25,8 @@ const AccountCodeBar = (props) => {
         <div className='search-account-codes'>
             <TextEntry
                 data-testid='fund'
-                innerClass='account-code-search'
-                inputProps={{
+                innerclass='account-code-search'
+                inputprops={{
                     minLength: '3',
                     maxLength: '3',
                     size: '3'
@@ -39,8 +39,8 @@ const AccountCodeBar = (props) => {
             {` - `}
             <TextEntry
                 data-testid='receipt'
-                innerClass='account-code-search'
-                inputProps={{
+                innerclass='account-code-search'
+                inputprops={{
                     minLength: '4',
                     maxLength: '4',
                     size: '5'
@@ -53,8 +53,8 @@ const AccountCodeBar = (props) => {
             {` - `}
             <TextEntry
                 data-testid='scc'
-                innerClass='account-code-search'
-                inputProps={{
+                innerclass='account-code-search'
+                inputprops={{
                     minLength: '4',
                     maxLength: '4',
                     size: '4'
@@ -67,8 +67,8 @@ const AccountCodeBar = (props) => {
             {` - `}
             <TextEntry
                 data-testid='subject'
-                innerClass='account-code-search'
-                inputProps={{
+                innerclass='account-code-search'
+                inputprops={{
                     minLength: '6',
                     maxLength: '6',
                     size: '6'
@@ -81,8 +81,8 @@ const AccountCodeBar = (props) => {
             {` - `}
             <TextEntry
                 data-testid='opu'
-                innerClass='account-code-search'
-                inputProps={{
+                innerclass='account-code-search'
+                inputprops={{
                     minLength: '3',
                     maxLength: '3',
                     size: '3'
@@ -95,7 +95,7 @@ const AccountCodeBar = (props) => {
             <div className='spacer' />
             <TextEntry
                 data-testid='description'
-                innerClass='account-code-search'
+                innerclass='account-code-search'
                 label='Description'
                 name='description'
                 onChange={onChange}
@@ -104,7 +104,7 @@ const AccountCodeBar = (props) => {
             <div className='spacer' />
             <Button
                 data-testid='searchButton'
-                innerClass='primary-button'
+                innerclass='primary-button'
                 onClick={(e) => {
                     props.searchHandler(searchState)
                 }}

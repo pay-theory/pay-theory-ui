@@ -26,7 +26,8 @@ const LineItems = (props) => {
         const selection = selected.slice(0)
         if (event.target.checked) {
             selection.push(item)
-        } else {
+        }
+        else {
             var toGo = selection.indexOf(item)
 
             selection.splice(toGo, 1)
@@ -71,10 +72,10 @@ const LineItems = (props) => {
                                                 <Checkbox
                                                     id='select-all-items'
                                                     indeterminate={
-                                                        selected.length <
+                                                        (selected.length <
                                                             paymentHook.items
                                                                 .length &&
-                                                        selected.length > 0
+                                                        selected.length > 0) ? true : undefined
                                                     }
                                                     checked={
                                                         selected.length ===

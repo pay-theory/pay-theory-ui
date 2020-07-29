@@ -14,10 +14,6 @@ const FormLoginEmail = (props) => {
         setValid(props.validate(value))
     }, [value])
 
-    useEffect(() => {
-        console.log('valid', valid)
-    }, [valid])
-
     return (
         <div data-testid='form-login-email' className='auth-contain'>
             <form

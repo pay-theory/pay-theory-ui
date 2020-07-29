@@ -22,21 +22,21 @@ const FormChangePassword = (props) => {
     const validatePassword = (password) => {
         let validationsPassed = 0
 
-        validationsPassed = password.match(/.*\d.*/)
-            ? validationsPassed + 1
-            : validationsPassed
+        validationsPassed = password.match(/.*\d.*/) ?
+            validationsPassed + 1 :
+            validationsPassed
 
-        validationsPassed = password.match(/.*[a-z].*/)
-            ? validationsPassed + 1
-            : validationsPassed
+        validationsPassed = password.match(/.*[a-z].*/) ?
+            validationsPassed + 1 :
+            validationsPassed
 
-        validationsPassed = password.match(/.*[A-Z].*/)
-            ? validationsPassed + 1
-            : validationsPassed
+        validationsPassed = password.match(/.*[A-Z].*/) ?
+            validationsPassed + 1 :
+            validationsPassed
 
-        validationsPassed = password.match(/.*[^a-zA-Z\d\s:].*/)
-            ? validationsPassed + 1
-            : validationsPassed
+        validationsPassed = password.match(/.*[^a-zA-Z\d\s:].*/) ?
+            validationsPassed + 1 :
+            validationsPassed
 
         validationsPassed =
             password.length >= 8 ? validationsPassed + 1 : validationsPassed
@@ -47,32 +47,39 @@ const FormChangePassword = (props) => {
         for (let i = 1; i <= 6; i++) {
             if (i <= validationsPassed) {
                 refs[i - 1].current.classList.remove('gone')
-            } else {
+            }
+            else {
                 refs[i - 1].current.classList.add('gone')
             }
         }
         switch (validationsPassed) {
-            case 2: {
+        case 2:
+            {
                 setPasswordValidation('#FF6000')
                 break
             }
-            case 3: {
+        case 3:
+            {
                 setPasswordValidation('#FFC000')
                 break
             }
-            case 4: {
+        case 4:
+            {
                 setPasswordValidation('#E0FF00')
                 break
             }
-            case 5: {
+        case 5:
+            {
                 setPasswordValidation('#80FF00')
                 break
             }
-            case 6: {
+        case 6:
+            {
                 setPasswordValidation('#20FF00')
                 break
             }
-            default: {
+        default:
+            {
                 setPasswordValidation('#FF0000')
                 break
             }
@@ -80,7 +87,6 @@ const FormChangePassword = (props) => {
     }
 
     useEffect(() => {
-        console.log(newPass)
         validatePassword(newPass)
     }, [newPass])
 
@@ -115,6 +121,7 @@ const FormChangePassword = (props) => {
         <div className='auth-contain' data-testid='form-change-password'>
             <form
                 className='auth-form'
+                data-testid='code-login-form'
                 onSubmit={(e) => props.onSubmit(e, verificationCode, newPass)}
             >
                 <TextEntry
@@ -155,7 +162,6 @@ const FormChangePassword = (props) => {
                     className='primary-auth-button'
                     raised
                     type='submit'
-                    data-testid='code-login-link'
                 >
                     Set Password
                 </Button>

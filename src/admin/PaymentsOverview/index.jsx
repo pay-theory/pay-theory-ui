@@ -31,18 +31,18 @@ const MENU_ITEMS = {
 const getStatusDate = (item) => {
     let date
     switch (item.status) {
-        case 'approved':
-            date = new Date(item.approved_on_date)
-            break
-        case 'paid':
-            date = new Date(item.paid_on_date)
-            break
-        case 'refunded':
-            date = new Date(item.refunded_on_date)
-            break
-        default:
-            date = new Date(item.validated_on_date)
-            break
+    case 'approved':
+        date = new Date(item.approved_on_date)
+        break
+    case 'paid':
+        date = new Date(item.paid_on_date)
+        break
+    case 'refunded':
+        date = new Date(item.refunded_on_date)
+        break
+    default:
+        date = new Date(item.validated_on_date)
+        break
     }
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
 }
@@ -86,26 +86,24 @@ const changeTab = (selected) => {
     /* istanbul ignore next */
     const remaining = { ...MENU_ITEMS }
     switch (selected) {
-        case MENU_ITEMS.ALL:
-            delete remaining.ALL
-            break
-        case MENU_ITEMS.UNCAPTURED:
-            delete remaining.UNCAPTURED
-            break
-        case MENU_ITEMS.REFUNDED:
-            delete remaining.REFUNDED
-            break
-        default:
-            delete remaining.SUCCEEDED
-            break
+    case MENU_ITEMS.ALL:
+        delete remaining.ALL
+        break
+    case MENU_ITEMS.UNCAPTURED:
+        delete remaining.UNCAPTURED
+        break
+    case MENU_ITEMS.REFUNDED:
+        delete remaining.REFUNDED
+        break
+    default:
+        delete remaining.SUCCEEDED
+        break
     }
-    console.log(remaining)
     clearUnselected([...Object.values(remaining)])
     selectTab(selected)
 }
 
-const menuItems = [
-    {
+const menuItems = [{
         id: MENU_ITEMS.SUCCEEDED.menu,
         label: 'Succeeded',
         active: '',
@@ -134,16 +132,15 @@ const menuItems = [
 const PaymentsOverview = (props) => {
     const generateRows = (payments) => {
         return payments.map((item, i) => {
-            const name = item.data.payor.is_anonymous
-                ? 'anonymous'
-                : `${item.data.payor.payor_family_name}, ${item.data.payor.payor_given_name}`
+            const name = item.data.payor.is_anonymous ?
+                'anonymous' :
+                `${item.data.payor.payor_family_name}, ${item.data.payor.payor_given_name}`
             return {
-                columns: [
-                    {
+                columns: [{
                         className: 'order-id',
-                        content: /* istanbul ignore next */ item.data.order_id
-                            ? item.data.order_id
-                            : item.data.UID
+                        content: /* istanbul ignore next */ item.data.order_id ?
+                            item.data.order_id :
+                            item.data.UID
                     },
                     { className: 'order-name', content: name },
                     {

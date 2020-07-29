@@ -8,7 +8,7 @@ import TransactionItems from '.'
 import * as BooksHooks from '../../hooks'
 import { invoiceItems, payment } from '../../test-data'
 
-test('display transaction line items select all', async () => {
+test('display transaction line items select all', async() => {
     const onRefund = jest.fn()
     const { getByText, queryByTestId, findByTestId } = render(
         <BooksHooks.context.payment.Provider value={payment}>
@@ -26,7 +26,7 @@ test('display transaction line items select all', async () => {
     expect(Boolean(queryByTestId('select-all-items').checked)).toEqual(false)
 
     fireEvent.click(queryByTestId('select-all-items'))
-    findByTestId('selection-active')
+    await findByTestId('selection-active')
 
     expect(Boolean(queryByTestId('select-all-items').checked)).toEqual(true)
 
@@ -34,7 +34,7 @@ test('display transaction line items select all', async () => {
     expect(onRefund).toBeCalledTimes(1)
 
     fireEvent.click(queryByTestId('select-all-items'))
-    findByTestId('selection-inactive')
+    await findByTestId('selection-inactive')
 
     expect(Boolean(queryByTestId('select-all-items').checked)).toEqual(false)
 
@@ -42,7 +42,7 @@ test('display transaction line items select all', async () => {
     expect(onRefund).toBeCalledTimes(1)
 })
 
-test('display transaction line items select one', async () => {
+test('display transaction line items select one', async() => {
     const onRefund = jest.fn()
     const { getByText, queryByTestId, queryAllByTestId, findByTestId } = render(
         <BooksHooks.context.payment.Provider value={payment}>
@@ -62,7 +62,7 @@ test('display transaction line items select one', async () => {
     expect(Boolean(queryAllByTestId('select-item')[0].checked)).toEqual(false)
 
     fireEvent.click(queryAllByTestId('select-item')[0])
-    findByTestId('selection-active')
+    await findByTestId('selection-active')
 
     expect(Boolean(queryAllByTestId('select-item')[0].checked)).toEqual(true)
 
@@ -70,7 +70,7 @@ test('display transaction line items select one', async () => {
     expect(onRefund).toBeCalledTimes(1)
 
     fireEvent.click(queryAllByTestId('select-item')[0])
-    findByTestId('selection-inactive')
+    await findByTestId('selection-inactive')
 
     expect(Boolean(queryAllByTestId('select-item')[0].checked)).toEqual(false)
 

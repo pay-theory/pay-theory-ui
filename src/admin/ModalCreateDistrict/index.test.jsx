@@ -9,12 +9,12 @@ import ModalSpinner from '../../common/ModalSpinner'
 
 import ModalCreateDistrict from '.'
 
-test('modal create district success', async () => {
-    act(() => {
-        const createNewDistrict = jest.fn(() => Promise.resolve())
+test('modal create district success', async() => {
+    const promise = Promise.resolve()
+    const createNewDistrict = jest.fn(() => promise)
 
-        const { queryByTestId } = render(
-            <div className='spinner-wrapper'>
+    const { queryByTestId } = render(
+        <div className='spinner-wrapper'>
                 <div className='modal-wrapper'>
                     <div id='container' />
                     <ModalCreateDistrict
@@ -23,19 +23,19 @@ test('modal create district success', async () => {
                 </div>
                 <ModalSpinner />
             </div>
-        )
-        expect(queryByTestId('district_name')).not.toBeVisible()
-        openModal()
-        expect(queryByTestId('district_name')).toBeVisible()
+    )
+    expect(queryByTestId('district_name')).not.toBeVisible()
+    openModal()
+    expect(queryByTestId('district_name')).toBeVisible()
 
-        fireEvent.change(queryByTestId('district_name'), {
-            target: { value: 'name' }
-        })
-        fireEvent.submit(queryByTestId('create-district-form'))
-
-        expect(createNewDistrict).toHaveBeenCalledTimes(1)
-
-        closeModal()
-        expect(queryByTestId('district_name')).not.toBeVisible()
+    fireEvent.change(queryByTestId('district_name'), {
+        target: { value: 'name' }
     })
+    fireEvent.submit(queryByTestId('create-district-form'))
+
+    expect(createNewDistrict).toHaveBeenCalledTimes(1)
+
+    closeModal()
+    expect(queryByTestId('district_name')).not.toBeVisible()
+    await act(() => promise)
 })

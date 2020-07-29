@@ -8,12 +8,12 @@ const NavigationItem = (props) => {
     useEffect(() => {
         if (window.location.pathname.indexOf(props.item.tag) >= 0) {
             setClassName('active')
-        } else {
+        }
+        else {
             setClassName('inactive')
         }
     }, [window.location.pathname, props.item.tag])
 
-    console.log('nav item', props)
     return (
         <li key={props.item.tag} data-testid={props.item.tag}>
             <Link
