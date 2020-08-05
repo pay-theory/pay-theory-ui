@@ -4,6 +4,9 @@
     "description": "Made with create-react-library",
     "author": "austinzani",
     "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/pay-theory/pay-theory-ui.git"
