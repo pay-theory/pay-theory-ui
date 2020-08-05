@@ -71,27 +71,21 @@ const LineItems = (props) => {
                                             <span className='head purchase-item-selector'>
                                                 <Checkbox
                                                     id='select-all-items'
-                                                    indeterminate={
-                                                        (selected.length <
-                                                            paymentHook.items
-                                                                .length &&
-                                                        selected.length > 0) ? true : undefined
-                                                    }
-                                                    checked={
-                                                        selected.length ===
-                                                            paymentHook.items
-                                                                .length &&
-                                                        selected.length > 0
-                                                    }
-                                                    onChange={(e) => {
-                                                        if (e.target.checked) {
-                                                            setSelected(
-                                                                paymentHook.items.slice(
-                                                                    0
+                                                    indeterminate={(selected.length < paymentHook.items.length && selected.length > 0)? true : undefined}
+                                                    inputProps={{
+                                                        'data-testid':'select-all-items',
+
+                                                        checked:(selected.length === paymentHook.items.length && selected.length > 0),
+                                                        onChange:(e) => {
+                                                            if (e.target.checked) {
+                                                                setSelected(
+                                                                    paymentHook.items.slice(
+                                                                        0
+                                                                    )
                                                                 )
-                                                            )
-                                                        } else {
-                                                            setSelected([])
+                                                            } else {
+                                                                setSelected([])
+                                                            }
                                                         }
                                                     }}
                                                 />
@@ -120,20 +114,18 @@ const LineItems = (props) => {
                                                     >
                                                         <span className='cell purchase-item-selector'>
                                                             <Checkbox
-                                                                data-testid='select-item'
-                                                                onChange={(
-                                                                    e
-                                                                ) => {
-                                                                    setSelected(
-                                                                        establishSelection(
-                                                                            e,
-                                                                            item
+                                                                inputProps={{
+                                                                    'data-testid':'select-item',
+                                                                    checked:selected.includes(item),
+                                                                    onChange:(e) => {
+                                                                        setSelected(
+                                                                            establishSelection(
+                                                                                e,
+                                                                                item
+                                                                            )
                                                                         )
-                                                                    )
+                                                                    }
                                                                 }}
-                                                                checked={selected.includes(
-                                                                    item
-                                                                )}
                                                             />
                                                         </span>
                                                         <span className='cell purchase-item'>

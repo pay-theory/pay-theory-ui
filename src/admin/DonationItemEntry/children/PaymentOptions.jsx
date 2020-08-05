@@ -124,11 +124,11 @@ const PaymentOptions = (props) => {
                             >
                                 <Checkbox
                                     id='item_has_quick_pay_options'
-                                    name='item_has_quick_pay_options'
-                                    checked={
-                                        paymentHook.item_has_quick_pay_options
-                                    }
-                                    onChange={checkChanged}
+                                    inputProps={{
+                                        name:'item_has_quick_pay_options',
+                                        checked:paymentHook.item_has_quick_pay_options,
+                                        onChange:checkChanged
+                                    }}
                                 />
                                 <label htmlFor='item_has_quick_pay_options'>
                                     <b>Provide Quick Pay Options</b>

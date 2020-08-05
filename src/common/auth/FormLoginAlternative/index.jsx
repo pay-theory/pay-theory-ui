@@ -5,7 +5,7 @@ import { StockTags } from '../../StatusMessage'
 
 const FormLoginAlternative = (props) => {
     const [error] = useState(
-        props.error ? StockTags.error(props.error) : <div />
+        props.error ? StockTags.error(props.error) : <div data-testid="no-error"/>
     )
     const [value, setValue] = useState('')
 
@@ -23,6 +23,7 @@ const FormLoginAlternative = (props) => {
                     name='login-password'
                     type='password'
                     value={value}
+                    data-testid="login-password"
                     onChange={(e) => setValue(e.target.value)}
                     helperText={
                         <a

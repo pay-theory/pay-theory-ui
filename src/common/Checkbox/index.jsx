@@ -1,22 +1,23 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const Checkbox = (props) => {
+const Checkbox = ({ id, label, indeterminate, inputProps }) => {
     const checkRef = useRef()
 
     useEffect(() => {
-        checkRef.current.indeterminate = props.isPartial
-    }, [checkRef, props.isPartial])
+        checkRef.current.indeterminate = indeterminate ? true : undefined
+    }, [indeterminate])
 
     return (
         <div className='checkbox'>
             <input
+                id={id}
+                data-testid={id}
                 ref={checkRef}
-                data-testid={props.id}
                 type='checkbox'
-                {...props}
+                {...inputProps}
             />
-            <label htmlFor={props.id}>{props.label}</label>
+            <label htmlFor={id}>{label}</label>
             <style jsx='true'>{`
                 .checkbox {
                     position: relative;
@@ -143,7 +144,14 @@ const Checkbox = (props) => {
 
 Checkbox.propTypes = {
     id: PropTypes.string,
-    label: PropTypes.string
+    label: PropTypes.string,
+    inputProps: PropTypes.object,
+    indeterminate: PropTypes.any
+}
+
+Checkbox.defaultProps = {
+    inputProps: {},
+    indeterminate: undefined
 }
 
 export default Checkbox

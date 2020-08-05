@@ -122,17 +122,13 @@ const ReceiptReviewTable = (props) => {
 
     const setError = (message) => {
         setStatusMessage(
-            StockTags.error(message, () => {
-                setStatusMessage(<div data-testid='status-cleared' />)
-            })
+            StockTags.error(message)
         )
     }
 
     const setSuccess = (message) => {
         setStatusMessage(
-            StockTags.success(message, () => {
-                setStatusMessage(<div data-testid='status-cleared' />)
-            })
+            StockTags.success(message)
         )
     }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent, act } from '@testing-library/react'
+import { render, fireEvent, act, waitFor } from '@testing-library/react'
 
 import RoleInfoTab from './'
 
@@ -12,7 +12,7 @@ import { roles } from '../../test-data'
 /* global jest */
 /* global expect */
 
-test('display role info tab (locked)', async () => {
+test('display role info tab (locked)', async() => {
     const saveRole = jest.fn()
     const { queryByTestId } = render(
         <BooksHooks.context.role.Provider value={roles.systemRoles[0]}>
@@ -20,11 +20,12 @@ test('display role info tab (locked)', async () => {
         </BooksHooks.context.role.Provider>
     )
 
+
     fireEvent.click(queryByTestId('save-role-button'))
     expect(saveRole).toHaveBeenCalledTimes(0)
 })
 
-test('display role info tab (unlocked)', async () => {
+test('display role info tab (unlocked)', async() => {
     const promise = Promise.resolve()
     const saveRole = jest.fn()
     const { queryByTestId } = render(

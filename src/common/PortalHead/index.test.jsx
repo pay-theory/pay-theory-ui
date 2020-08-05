@@ -10,7 +10,7 @@ import { account, page } from '../../test-data'
 
 import { AccountMenuButton, AccountMenuItems, PortalLabel } from './children'
 
-test('display portal head', async () => {
+test('display portal head', async() => {
     const logout = jest.fn()
     const { getByText, getAllByText, queryByTestId } = render(
         <BooksHooks.context.account.Provider value={account}>
@@ -28,9 +28,11 @@ test('display portal head', async () => {
         code: 13,
         charCode: 13
     })
+
+    expect(queryByTestId("account-menu")).toBeInTheDocument()
 })
 
-test('PortalLabel shows title from page context', async () => {
+test('PortalLabel shows title from page context', async() => {
     const { getByText } = render(
         <BooksHooks.context.page.Provider value={page}>
             <PortalLabel />
@@ -40,7 +42,7 @@ test('PortalLabel shows title from page context', async () => {
     expect(getByText(page.title)).toBeInTheDocument()
 })
 
-test('AccountMenuButton shows display name from account context', async () => {
+test('AccountMenuButton shows display name from account context', async() => {
     const { getByText } = render(
         <BooksHooks.context.account.Provider value={account}>
             <AccountMenuButton />
@@ -50,7 +52,7 @@ test('AccountMenuButton shows display name from account context', async () => {
     expect(getByText(account.nickname)).toBeInTheDocument()
 })
 
-test('AccountMenuButton shows display name from account context', async () => {
+test('AccountMenuButton shows display name from account context', async() => {
     const logout = jest.fn()
     const { getByText, queryByTestId } = render(
         <BooksHooks.context.account.Provider value={account}>
@@ -62,4 +64,17 @@ test('AccountMenuButton shows display name from account context', async () => {
 
     fireEvent.click(queryByTestId('account-logout'))
     expect(logout).toHaveBeenCalled()
+})
+
+test('display portal head without account menu', async() => {
+    const logout = jest.fn()
+    const { getByText, getAllByText, queryByTestId } = render(
+        <BooksHooks.context.account.Provider value={account}>
+            <BooksHooks.context.page.Provider value={page}>
+                <PortalHead />
+            </BooksHooks.context.page.Provider>
+        </BooksHooks.context.account.Provider>
+    )
+
+    expect(queryByTestId("account-menu")).not.toBeInTheDocument()
 })

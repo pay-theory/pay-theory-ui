@@ -1241,7 +1241,7 @@ const sales = {
                 tender_type: 'credit',
                 payor_type: 'public',
                 partner_uid: 'internal-checkout',
-                status: 'validate',
+                status: 'refunded',
                 transaction_source: 'partner-processing',
                 payment_type: 'invoice',
                 items: [
@@ -1273,7 +1273,7 @@ const sales = {
                     payor_email: 'aron@paytheory.com',
                     payor_family_name: 'Price'
                 },
-                validated_on_date: 1566324297865,
+                refunded_on_date: 1566324297865,
                 approved_on_date: '',
                 order_id: 'gjdh4w',
                 voided_on_date: ''
@@ -1345,6 +1345,11 @@ const payment = {
             debtor_id: 'public',
             amount: '10',
             invoice_item_uid: '03307b63-8da8-55ab-b39e-0f0a8d43b112'
+        },
+        {
+            debtor_id: 'public',
+            amount: '13',
+            invoice_item_uid: '03307b63-8da8-55ab-b39e-0f0a8d43b111'
         }
     ],
     transaction_history: [
@@ -1609,6 +1614,35 @@ const parent = { parent: 'test-parent', route: '/' }
 
 export { parent }
 
+const manageDistrictPermissions = {
+    title: 'Manage Districts',
+    tag: 'manage-districts',
+    enabled: true,
+    accessType: 'read-write',
+    subpages: [
+        {
+            tag: 'district-information',
+            title: 'District Information',
+            checked: true
+        },
+        {
+            tag: 'district-fees',
+            title: 'Fees',
+            checked: true
+        },
+        {
+            tag: 'district-transactions',
+            title: 'Transactions',
+            checked: true
+        },
+        {
+            tag: 'district-accounts',
+            title: 'User Accounts',
+            checked: true
+        }
+    ]
+}
+
 const emptySystemPermissions = [
     {
         title: 'Manage Districts',
@@ -1742,7 +1776,7 @@ const systemAdmin = {
     role_access: 'full-access',
     role_locked: true,
     role_type: 'System',
-    permissions: []
+    permissions: [manageDistrictPermissions]
 }
 const systemContrib = {
     UID: 'c6ce0ca1-5fbf-5478-9a81-50dd29ca8c32',

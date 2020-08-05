@@ -9,8 +9,9 @@ const AccessPageAccordion = (props) => {
     useEffect(() => {
         if (loaded) {
             props.changePermissions(props.index, paged)
-        } else if (paged) {
-            setTimeout(() => setLoaded(true), 100)
+        }
+        else if (paged) {
+            setLoaded(true)
         }
     }, [paged, loaded])
 
@@ -40,6 +41,9 @@ const AccessPageAccordion = (props) => {
         if (loaded && pager.accessType !== e.target.value) {
             pager.accessType = e.target.value
             setPaged(pager)
+        }
+        else {
+            console.log('changeAccessType', pager, loaded, e.target.value)
         }
     }
 

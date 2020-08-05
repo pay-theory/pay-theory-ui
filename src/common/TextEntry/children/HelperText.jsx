@@ -5,6 +5,7 @@ export default (props) => {
         <React.Fragment>
             <div className='helper-line'>
                 <div
+                    data-testid="helper"
                     className={`helper-text ${
                         props.show ? 'opaque' : 'transparent'
                     }`}

@@ -21,11 +21,11 @@ const TextEntry = (props) => {
                 placeholder=' '
                 onFocus={() => showHelper(true)}
                 onBlur={() => showHelper(false)}
-                value={props.value === null ? '' : props.value}
-                type={props.type || 'text'}
-                required={props.required || false}
-                disabled={props.disabled || false}
-                autoComplete={props.autoComplete || 'off'}
+                value={props.value}
+                type={props.type}
+                required={props.required}
+                disabled={props.disabled}
+                autoComplete={props.autoComplete}
                 onChange={props.onChange}
                 onClick={props.onClick}
                 pattern={props.pattern}
@@ -35,7 +35,7 @@ const TextEntry = (props) => {
             {hasHelper ? (
                 <HelperText show={helper}>{props.helperText}</HelperText>
             ) : (
-                <div className='helpless' />
+                <div className='helpless' data-testid="helpless" />
             )}
             <style jsx='true'>{`
                 label {
@@ -358,6 +358,14 @@ TextEntry.propTypes = {
     onClick: PropTypes.func,
     onBlur: PropTypes.func,
     onFocus: PropTypes.func
+}
+
+TextEntry.defaultProps = {
+    value: '',
+    type: 'text',
+    required: false,
+    disabled: false,
+    autoComplete: 'off'
 }
 
 export default TextEntry

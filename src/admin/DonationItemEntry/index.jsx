@@ -9,9 +9,7 @@ const DonationItemEntry = (props) => {
     const [statusMessage, setStatusMessage] = useState(<div />)
     const titleFocus = () => {
         setStatusMessage(
-            StockTags.warn('titles cannot be edited', () => {
-                return setStatusMessage(<div data-testid='status-cleared' />)
-            })
+            StockTags.warn('titles cannot be edited')
         )
     }
     return (

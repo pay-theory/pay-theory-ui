@@ -2,43 +2,43 @@
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 
 import { StockTags } from './'
 
-test('display success message row', async () => {
+test('display success message row', async() => {
     const { findByTestId } = render(
         StockTags.success('success message', () => {})
     )
 
-    findByTestId('success-content')
+    await waitFor(() => findByTestId('success-content'))
 })
 
-test('display default success message row', async () => {
+test('display default success message row', async() => {
     const { findByTestId } = render(
-        StockTags.success({ reason: 'something' }, () => {})
+        StockTags.success({ reason: 'some reason' }, () => {})
     )
 
     findByTestId('success-content')
 })
 
-test('display default success message row', async () => {
+test('display default success message row', async() => {
     const { findByTestId } = render(
-        StockTags.success({ message: 'something' }, () => {})
+        StockTags.success({ message: 'some message' }, () => {})
     )
 
     findByTestId('success-content')
 })
 
-test('display default success message row', async () => {
+test('display default success message row', async() => {
     const { findByTestId } = render(
-        StockTags.success({ invalid: 'something' }, () => {})
+        StockTags.success({ invalid: 'success message' }, () => {})
     )
 
     findByTestId('success-content')
 })
 
-test('display default success message row', async () => {
+test('display default success message row', async() => {
     const { findByTestId } = render(StockTags.success(undefined, () => {}))
 
     findByTestId('success-content')

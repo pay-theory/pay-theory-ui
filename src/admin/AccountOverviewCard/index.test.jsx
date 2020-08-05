@@ -9,7 +9,7 @@ import AccountOverviewCard from '.'
 import * as BooksHooks from '../../hooks'
 import { member } from '../../test-data'
 
-test('display district overview card', async () => {
+test('display district overview card', async() => {
     const { getByText } = render(
         <BooksHooks.context.member.Provider value={member}>
             <div id='container'>

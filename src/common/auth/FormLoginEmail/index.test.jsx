@@ -6,7 +6,7 @@ import { render, fireEvent } from '@testing-library/react'
 
 import FormLoginEmail from './'
 
-test('FormLoginCode renders and calls submit', async () => {
+test('FormLoginCode renders and calls submit', async() => {
     const password = jest.fn()
     const submit = jest.fn()
     const { queryByTestId } = render(
@@ -27,9 +27,17 @@ test('FormLoginCode renders and calls submit', async () => {
 
     fireEvent.click(queryByTestId('password-link'))
     expect(password).toHaveBeenCalledTimes(1)
+
+    fireEvent.change(queryByTestId('email-field'), {
+        target: { value: '111111' }
+    })
+    expect(queryByTestId('email-field').value).toBe('111111')
+
+
+    expect(queryByTestId("no-error")).toBeInTheDocument()
 })
 
-test('FormLoginCode wont submit if invalid', async () => {
+test('FormLoginCode wont submit if invalid', async() => {
     const password = jest.fn()
     const submit = jest.fn()
     const { queryByTestId } = render(
@@ -40,6 +48,7 @@ test('FormLoginCode wont submit if invalid', async () => {
                 return false
             }}
             user=''
+            error='test'
         />
     )
 
@@ -47,4 +56,7 @@ test('FormLoginCode wont submit if invalid', async () => {
 
     fireEvent.click(queryByTestId('email-login-link'))
     expect(submit).toHaveBeenCalledTimes(0)
+
+
+    expect(queryByTestId("no-error")).not.toBeInTheDocument()
 })

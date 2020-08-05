@@ -1,7 +1,7 @@
 import React from 'react'
 const AccountMenu = (props) => {
     return (
-        <div className='portal-head-account-menu'>
+        <div className='portal-head-account-menu' data-testid="account-menu">
             {props.children}{' '}
             <style jsx='true' global='true'>{`
                 .portal-head-account-menu {

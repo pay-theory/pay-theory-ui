@@ -9,7 +9,8 @@ import * as BooksHooks from '../../../hooks'
 import {
     formatAccountCode,
     padAccountCode
-} from '../../../common/accountCodeUtils'
+}
+from '../../../common/accountCodeUtils'
 
 const BasicInfo = (props) => {
     return (
@@ -63,6 +64,7 @@ const BasicInfo = (props) => {
                                                         onChange={
                                                             props.titleFocus
                                                         }
+                                                        data-testid='item_title'
                                                     />
                                                     <div id='published-link'>
                                                         {linkPreview}

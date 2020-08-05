@@ -2,7 +2,7 @@ import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 
 import PartnerInfoTab from './'
 import ModalSpinner from '../../common/ModalSpinner'
@@ -20,9 +20,10 @@ PartnerInfoTab.propTypes = {
 }
  */
 
-test('display partner tab', async () => {
+test('display partner tab', async() => {
     const setStatusMessage = jest.fn()
     const savePartner = jest.fn(() => Promise.resolve())
+    const apiGenerator = jest.fn()
     const { queryByTestId } = render(
         <div className='spinner-wrapper'>
             <div className='modal-wrapper'>
@@ -32,7 +33,7 @@ test('display partner tab', async () => {
                             apiPrefix='testing'
                             setStatusMessage={setStatusMessage}
                             savePartner={savePartner}
-                            onGenerateApiKey={() => {}}
+                            onGenerateApiKey={apiGenerator}
                         />
                     </BooksHooks.context.partner.Provider>
                 </div>
@@ -40,4 +41,8 @@ test('display partner tab', async () => {
             <ModalSpinner />
         </div>
     )
+
+    fireEvent.click(queryByTestId("generate-partner-apikey"))
+    expect(apiGenerator).toBeCalledTimes(1)
+
 })

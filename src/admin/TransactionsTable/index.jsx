@@ -14,7 +14,7 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-    const { transactions, viewTransaction } = props
+    const { transactions, viewTransaction, handleRefund, handleResendingEmail, handleVoid } = props
 
     const generateTableColumns = () => {
         return [
@@ -29,8 +29,7 @@ const TransactionsTable = (props) => {
     const generateTableRows = (reports) => {
         return reports.map((item, i) => {
             return {
-                columns: [
-                    {
+                columns: [{
                         className: 'transaction-id',
                         content: item.id
                     },
@@ -62,20 +61,7 @@ const TransactionsTable = (props) => {
         })
     }
 
-    const handleRefund = (object) => {
-        console.log(`Order ${object.id} was refunded`)
-    }
-
-    const handleResendingEmail = (object) => {
-        console.log(`Order ${object.id} had the email resent`)
-    }
-
-    const handleVoid = (object) => {
-        console.log(`Order ${object.id} was voided`)
-    }
-
-    const otherActions = [
-        {
+    const otherActions = [{
             action: handleRefund,
             label: 'Refund',
             icon: 'fa-undo'
@@ -157,7 +143,11 @@ const TransactionsTable = (props) => {
 
 TransactionsTable.propTypes = {
     transactions: PropTypes.array.isRequired,
-    viewTransaction: PropTypes.func.isRequired
+    viewTransaction: PropTypes.func.isRequired,
+    handleRefund: PropTypes.func.isRequired,
+    handleResendingEmail: PropTypes.func.isRequired,
+    handleVoid: PropTypes.func.isRequired
+
 }
 
 export default TransactionsTable

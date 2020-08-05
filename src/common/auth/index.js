@@ -2,7 +2,6 @@
 import AuthBG from './AuthBG'
 import AuthBox from './AuthBox'
 import AuthStyle from './AuthStyle'
-import FormChangePassword from './FormChangePassword'
 import FormHeader from './FormHeader'
 import FormLoginAlternative from './FormLoginAlternative'
 import FormLoginEmail from './FormLoginEmail'
@@ -12,7 +11,6 @@ export {
     AuthBG,
     AuthBox,
     AuthStyle,
-    FormChangePassword,
     FormHeader,
     FormLoginAlternative,
     FormLoginCode,

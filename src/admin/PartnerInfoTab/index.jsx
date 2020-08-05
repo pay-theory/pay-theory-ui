@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 // node modules
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material/react-button'
 
@@ -11,22 +11,10 @@ import * as BooksHooks from '../../hooks'
 const INITIAL_STATE = {}
 
 const PartnerInfoTab = (props) => {
-    const [state, setState] = useState({
-        ...INITIAL_STATE
-    })
-
-    const initPartner = (partnerIn) => {
-        if (partnerIn.identity) {
-            setState(partnerIn)
-        }
-    }
+    const partner = useContext(BooksHooks.context.partner)
 
     return (
-        <BooksHooks.context.partner.Consumer>
-            {(partnered) => {
-                initPartner(partnered)
-                return (
-                    <TabPage id='merchant-info-tab' visibility='tab-visible'>
+        <TabPage id='merchant-info-tab' visibility='tab-visible'>
                         <div className='tab-content'>
                             <FormHead text='Merchant Details' />
                             <div className='tab-row'>
@@ -36,7 +24,7 @@ const PartnerInfoTab = (props) => {
                                             label='API Key'
                                             message='API key'
                                             name='apiKey'
-                                            value={state.sandbox_api_key}
+                                            value={partner.sandbox_api_key}
                                         />
                                         <Button
                                             className='primary-button buttoned'
@@ -57,7 +45,7 @@ const PartnerInfoTab = (props) => {
                                         label='Client ID'
                                         message='Client ID'
                                         name='client'
-                                        value={state.identity}
+                                        value={partner.identity}
                                     />
                                 </div>
                             </div>
@@ -100,9 +88,6 @@ const PartnerInfoTab = (props) => {
                             `}
                         </style>
                     </TabPage>
-                )
-            }}
-        </BooksHooks.context.partner.Consumer>
     )
 }
 

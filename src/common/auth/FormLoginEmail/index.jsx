@@ -5,7 +5,7 @@ import { StockTags } from '../../StatusMessage'
 
 const FormLoginEmail = (props) => {
     const [error] = useState(
-        props.error ? StockTags.error(props.error) : <div />
+        props.error ? StockTags.error(props.error) : <div data-testid="no-error"/>
     )
     const [value, setValue] = useState('')
     const [valid, setValid] = useState(false)

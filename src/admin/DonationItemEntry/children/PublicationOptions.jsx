@@ -37,12 +37,12 @@ const PublicationOptions = (props) => {
                     props.changePayment(paymentItem)
                 }
 
-                const dateChanged = (moment, dateType) => {
-                    const target = `item_${dateType}_date`
-                    const paymentItem = { ...paymentHook }
-                    paymentItem[target] = moment.toDate().getTime()
-                    props.changePayment(paymentItem)
-                }
+                // const dateChanged = (moment, dateType) => {
+                //     const target = `item_${dateType}_date`
+                //     const paymentItem = { ...paymentHook }
+                //     paymentItem[target] = moment.toDate().getTime()
+                //     props.changePayment(paymentItem)
+                // }
 
                 /*
                                             <DatePicker
@@ -101,22 +101,25 @@ const PublicationOptions = (props) => {
 
                             <div className='check-option'>
                                 <Checkbox
-                                    name='item_can_be_anonymous'
                                     id='item_can_be_anonymous'
-                                    checked={paymentHook.item_can_be_anonymous}
-                                    onChange={(e) => checkChanged(e)}
                                     label='Allow Anonymous Payments'
+                                    inputProps={{
+                                        name:'item_can_be_anonymous',
+                                        checked:paymentHook.item_can_be_anonymous,
+                                        onChange:checkChanged
+                                    }}
                                 />
                             </div>
 
                             <div className='check-option'>
                                 <Checkbox
-                                    name='item_is_public'
                                     id='item_is_public'
-                                    disabled
-                                    checked={paymentHook.item_is_public}
-                                    onChange={(e) => checkChanged(e)}
                                     label='Publicly Available'
+                                    inputProps={{
+                                        name:'item_is_public',
+                                        checked:paymentHook.item_is_public,
+                                        onChange:checkChanged
+                                    }}
                                 />
                             </div>
                             <div
@@ -129,11 +132,13 @@ const PublicationOptions = (props) => {
 
                             <div className='check-option'>
                                 <Checkbox
-                                    name='item_is_indefinite'
                                     id='item_is_indefinite'
-                                    checked={paymentHook.item_is_indefinite}
-                                    onChange={(e) => checkChanged(e)}
                                     label='Publish Indefintely'
+                                    inputProps={{
+                                        name:'item_is_indefinite',
+                                        checked:paymentHook.item_is_indefinite,
+                                        onChange:checkChanged
+                                    }}
                                 />
                             </div>
                             <div

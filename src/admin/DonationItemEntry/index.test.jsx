@@ -2,15 +2,15 @@ import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
 
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, waitFor, waitForElementToBeRemoved } from '@testing-library/react'
 
 import DonationItemEntry from './'
 import * as BooksHooks from '../../hooks'
 import { classicDistrict, checkout, paymentItem } from '../../test-data'
 
-test('display indefinite donation item entry with custom amount and no quick pay', async () => {
+test('display indefinite donation item entry with custom amount and no quick pay', async() => {
     const changePayment = jest.fn()
-    const { queryByTestId, findByTestId } = render(
+    const { queryByTestId, findByTestId, queryByLabelText } = render(
         <BooksHooks.context.checkout.Provider value={checkout}>
             <BooksHooks.context.district.Provider value={classicDistrict}>
                 <BooksHooks.context.paymentItem.Provider value={paymentItem}>
@@ -23,9 +23,13 @@ test('display indefinite donation item entry with custom amount and no quick pay
         target: { value: 'invalid' }
     })
 
-    findByTestId('warning-content')
+    await waitFor(() => {
+        expect(queryByTestId('warning-content')).toBeInTheDocument()
+    })
     // await waitForElement(() => queryByTestId('status-cleared'))
     expect(changePayment).toHaveBeenCalledTimes(0)
+
+    await waitFor(() => queryByTestId('status-cleared'), { timeout: 4000 })
 
     fireEvent.blur(queryByTestId('item_title'))
 
@@ -40,6 +44,8 @@ test('display indefinite donation item entry with custom amount and no quick pay
     expect(changePayment).toHaveBeenCalledTimes(2)
 
     fireEvent.blur(queryByTestId('item_account_code'))
+    expect(changePayment).toHaveBeenCalledTimes(3)
+
 
     // fireEvent.click(queryByTestId('item_has_quick_pay_options'))
     // expect(changePayment).toHaveBeenCalledTimes(3)
@@ -47,14 +53,14 @@ test('display indefinite donation item entry with custom amount and no quick pay
     // fireEvent.click(queryByLabelText('Publish Indefintely'))
     // expect(changePayment).toHaveBeenCalledTimes(4)
 
-    // fireEvent.click(queryByLabelText('Allow Anonymous Payments'))
-    // expect(changePayment).toHaveBeenCalledTimes(5)
+    fireEvent.click(queryByLabelText('Allow Anonymous Payments'))
+    expect(changePayment).toHaveBeenCalledTimes(4)
 
-    // fireEvent.click(queryByLabelText('Publicly Available'))
-    // expect(changePayment).toHaveBeenCalledTimes(6)
+    fireEvent.click(queryByLabelText('Publicly Available'))
+    expect(changePayment).toHaveBeenCalledTimes(5)
 })
 
-test('display donation item entry with custom amount and quick pay', async () => {
+test('display donation item entry with custom amount and quick pay', async() => {
     const payment = { ...paymentItem }
     payment.item_has_quick_pay_options = true
 
@@ -93,7 +99,7 @@ test('display donation item entry with custom amount and quick pay', async () =>
     expect(changePayment).toHaveBeenCalledTimes(5)
 })
 
-test('display donation item entry with fixed amount', async () => {
+test('display donation item entry with fixed amount', async() => {
     const payment = { ...paymentItem }
     payment.item_has_fixed_amount = true
 
@@ -117,7 +123,7 @@ test('display donation item entry with fixed amount', async () => {
     expect(changePayment).toHaveBeenCalledTimes(2)
 })
 
-test('display finite donation item entry', async () => {
+test('display finite donation item entry', async() => {
     const dated = new Date()
     const payment = { ...paymentItem }
     payment.item_start_date = dated

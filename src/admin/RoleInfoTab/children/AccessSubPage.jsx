@@ -7,11 +7,13 @@ const AccessSubPage = (props) => {
     return (
         <div className='check-option' key={props.tag}>
             <Checkbox
-                data-testid={props.tag}
                 id={props.tag}
-                checked={props.checked}
-                onChange={(e) => props.onChange(e)}
                 label={props.title}
+                inputProps={{
+                    'data-testid':props.tag,
+                    checked:props.checked,
+                    onChange:(e) => props.onChange(e)
+                }}
             />
             <style jsx='true'>{`
                 .check-option {

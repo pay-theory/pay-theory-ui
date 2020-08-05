@@ -2,21 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import * as BooksHooks from '../../hooks'
 
 const AccountOverviewCard = (props) => {
-    const member = useContext(BooksHooks.context.member)
-
-    const [account, setAccount] = useState({
-        family_name: '',
-        given_name: '',
-        user_id: '',
-        email: '',
-        app_metadata: { role: '' }
-    })
-
-    useEffect(() => {
-        if (member.user_id) {
-            setAccount(member)
-        }
-    }, [member])
+    const account = useContext(BooksHooks.context.member)
 
     return (
         <div
@@ -26,7 +12,7 @@ const AccountOverviewCard = (props) => {
                         <div className='circle'>
                             <i className='fal fa-user fa-5x' />
                         </div>
-                        <div className='proper-name'>
+                        <div className='proper-name' data-testid="proper">
                             {`${account.given_name} ${account.family_name}`}
                         </div>
                         <div className='role-contain'>

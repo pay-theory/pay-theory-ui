@@ -5,7 +5,7 @@ import { StockTags } from '../../StatusMessage'
 
 const FormLoginCode = (props) => {
     const [error] = useState(
-        props.error ? StockTags.error(props.error) : <div />
+        props.error ? StockTags.error(props.error) : <div data-testid="no-error"/>
     )
     const [value, setValue] = useState('')
 
@@ -26,6 +26,7 @@ const FormLoginCode = (props) => {
                     label='authorization code'
                     name='login-code'
                     value={value}
+                    data-testid="auth-code"
                     pattern='[0-9]{6}'
                     onChange={(e) => setValue(e.target.value)}
                 />

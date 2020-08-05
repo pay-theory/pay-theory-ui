@@ -31,6 +31,7 @@ const ReceiptUploader = (props) => {
                         <div
                             {...getRootProps()}
                             className={`dropzone ${
+                                /* istanbul ignore next */
                                 isDragActive ? 'dropzone--isActive' : ''
                             }`}
                         >
