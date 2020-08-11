@@ -43,7 +43,7 @@
         "predeploy-package": "npm version prepatch && git push",
         "deploy-alpha": "npm run post-commit && npm run predeploy-package && npm publish --tag alpha",
         "deploy-beta": "npm run post-commit && npm run predeploy-package && npm publish --tag beta",
-        "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --release"
+        "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --tag release"
     },
     "peerDependencies": {
         "@material/react-button": "^0.15.0",
