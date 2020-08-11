@@ -46,7 +46,6 @@
         "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --release"
     },
     "peerDependencies": {
-        "@auth0/auth0-spa-js": "^1.11.0",
         "@material/react-button": "^0.15.0",
         "@material/react-radio": "^0.15.0",
         "@material/react-select": "^0.15.0",
