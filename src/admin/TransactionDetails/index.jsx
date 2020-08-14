@@ -20,7 +20,8 @@ const TransactionDetails = (props) => {
                     ))}
                 </div>
             )
-        } else {
+        }
+        else {
             return (
                 <div className='col-1'>
                     <h5>Messages:</h5>
@@ -41,7 +42,7 @@ const TransactionDetails = (props) => {
                         {transaction.state}
                     </p>
                 </div>
-                <p className='subHeader'>{`Payment via ${transaction.statement_descriptor}. Customer IP:${transaction.tags.ip_address}`}</p>
+                <p className='subHeader'>{`Payment via ${transaction.statement_descriptor}.`}</p>
                 <div className='cardContent'>
                     <div className='col-1'>
                         <h5 className='grey'>Create Date:</h5>
@@ -50,8 +51,8 @@ const TransactionDetails = (props) => {
                         </div>
                         <h5 className='grey'>Name on the Account:</h5>
                         <div className='navy'>{transaction.tags.name}</div>
-                        <h5 className='grey'>Email Address:</h5>
-                        <div className='navy'>{transaction.tags.email}</div>
+                        <h5 className='grey'>Source ID:</h5>
+                        <div className='navy'>{transaction.source}</div>
                     </div>
                     <div className='col-1'>
                         <h5>Amount:</h5>
@@ -62,14 +63,6 @@ const TransactionDetails = (props) => {
                         <div className='navy'>
                             {`${transaction.tags.card_brand} card ending in ${transaction.tags.account_number}`}
                         </div>
-                    </div>
-                    <div className='col-1'>
-                        <h5>Item Description:</h5>
-                        <div className='navy'>
-                            {transaction.tags.item_description}
-                        </div>
-                        <h5 className='grey'>Source ID:</h5>
-                        <div className='navy'>{transaction.source}</div>
                     </div>
                     {buildMessages()}
                 </div>
