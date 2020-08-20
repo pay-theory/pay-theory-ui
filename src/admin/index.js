@@ -13,6 +13,8 @@ import DistrictOverviewCard from './DistrictOverviewCard'
 import DistrictTable from './DistrictTable'
 import DonationItemEntry from './DonationItemEntry'
 
+import FilterBar from './FilterBar'
+
 import ModalCreateAccount from './ModalCreateAccount'
 import ModalCreateDistrict from './ModalCreateDistrict'
 import ModalCreatePartner from './ModalCreatePartner'
@@ -53,6 +55,7 @@ export {
     DistrictInfoTab,
     DistrictOverviewCard,
     DistrictTable,
+    FilterBar,
     DonationItemEntry,
     ModalCreateAccount,
     ModalCreateDistrict,

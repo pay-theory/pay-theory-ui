@@ -1,0 +1,25 @@
+//Transaction Details Page
+{
+    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
+    "state": "COMPLETED",
+    "statement_descriptor": "PD*PAY_THEORY",
+    "created_at": "2020-05-29T17:53:47.19Z",
+    "name": "John Doe",
+    "source_id": "PIvaF2bSw1YL8V275ZH13QWe",
+    "amount": 2589,
+    "type": "CREDIT",
+    //next two lines would be swapped for bank and account num info if ACH
+    "card_brand": "VISA",
+    "last_four": "4242",
+    "messages": []
+}
+
+//Details for the Transactions Table
+{
+    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
+    "state": "COMPLETED",
+    "created_at": "2020-05-29T17:53:47.19Z",
+    "name": "John Doe",
+    "amount": 2589,
+    "type": "CREDIT"
+}
