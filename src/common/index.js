@@ -8,8 +8,7 @@ import {
     FormLoginCode,
     FormLoginEmail,
     LogoHeader
-}
-from './auth'
+} from './auth'
 
 import BodyHead from './BodyHead'
 import Button from './Button'
@@ -43,8 +42,7 @@ import {
     WarningMessage,
     SuccessMessage,
     StockTags
-}
-from './StatusMessage'
+} from './StatusMessage'
 
 import Select from './Select'
 import SubsectionHead from './SubsectionHead'
