@@ -111,7 +111,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                         flex-grow: 1;
                     }
 
-                    .filter-bar #search {
+                    .filter-bar #fb-search {
                         background-color: #FFFFFF;
                     }
 
