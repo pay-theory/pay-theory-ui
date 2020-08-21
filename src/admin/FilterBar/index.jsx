@@ -98,6 +98,10 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
             </div>
             <style jsx='true'>
                 {`
+                    .outer-filter-bar {
+                        margin: 0px 24px;
+                    }
+
                     .filter-bar {
                         display: flex;
                         width: auto;
