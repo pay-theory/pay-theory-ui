@@ -39,11 +39,11 @@ const TransactionsTable = (props) => {
                     },
                     {
                         className: 'customer-name',
-                        content: item.tags.name
+                        content: item.name
                     },
                     {
                         className: 'transaction-type',
-                        content: item.tags.type
+                        content: item.type
                     },
                     {
                         className: 'amount numeric',
@@ -54,8 +54,7 @@ const TransactionsTable = (props) => {
                         content: formatString(item.state)
                     }
                 ],
-                key: item.id,
-                view: () => viewTransaction(item),
+                key: item.id,view: () => viewTransaction(item),
                 item: item
             }
         })

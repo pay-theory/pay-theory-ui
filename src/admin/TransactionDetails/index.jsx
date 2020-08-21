@@ -37,7 +37,7 @@ const TransactionDetails = (props) => {
         <CardTable className='details-card'>
             <CardRow>
                 <div className='cardHead'>
-                    <h3>Order {transaction.id}</h3>
+                    <h3>Order {transaction.transfer_id}</h3>
                     <p className={`status-${transaction.state.toLowerCase()}`}>
                         {transaction.state}
                     </p>
@@ -50,7 +50,7 @@ const TransactionDetails = (props) => {
                             {formatDate(transaction.created_at)}
                         </div>
                         <h5 className='grey'>Name on the Account:</h5>
-                        <div className='navy'>{transaction.tags.name}</div>
+                        <div className='navy'>{transaction.name}</div>
                         <h5 className='grey'>Source ID:</h5>
                         <div className='navy'>{transaction.source}</div>
                     </div>
@@ -58,10 +58,10 @@ const TransactionDetails = (props) => {
                         <h5>Amount:</h5>
                         <div className='navy'>${transaction.amount / 100}</div>
                         <h5>Transaction Type:</h5>
-                        <div className='navy'>{transaction.tags.type}</div>
+                        <div className='navy'>{transaction.type}</div>
                         <h5>Account:</h5>
                         <div className='navy'>
-                            {`${transaction.tags.card_brand} card ending in ${transaction.tags.account_number}`}
+                            {`${transaction.card_brand} card ending in ${transaction.last_four}`}
                         </div>
                     </div>
                     {buildMessages()}
