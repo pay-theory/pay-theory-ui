@@ -55,7 +55,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     name='fb-select'
                 />
                 <TextEntry
-                    innerclass='search-bar'
+                    outer='search-bar'
                     label='Search'
                     name='fb-search'
                     onChange={(e) => setFilterText(e.target.value)}
@@ -102,6 +102,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                         display: flex;
                         width: auto;
                     }
+
                     .search-bar {
                         flex-grow: 1;
                     }
@@ -119,7 +120,8 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     }
                     .filter-list {
                         display: flex;
-                        margin-top: 15px;
+                        margin: 10px 0px;
+                        min-height: 35px;
                     }
 
                     .filter-list .filter {

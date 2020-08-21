@@ -14,7 +14,7 @@ const TextEntry = (props) => {
     delete newProps.trailingIcon
 
     return (
-        <label className={props.innercalss}>
+        <label className={props.outer}>
             <input
                 id={props.name}
                 data-testid={props.name}
