@@ -1,57 +1,27 @@
-{
-    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "SUCCEEDED",
-    "created_at": "2020-05-29T17:53:47.19Z",
-    "name": "John Doe",
-    "amount": 2589,
-    "type": "CREDIT"
-}, {
-    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "SUCCEEDED",
-    "created_at": "2020-04-29T17:53:47.19Z",
-    "name": "John Doe",
-    "amount": 2345,
-    "type": "CREDIT"
-}, {
-    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "SUCCEEDED",
-    "created_at": "2020-05-11T17:53:47.19Z",
-    "name": "John Doe",
-    "amount": 7483,
-    "type": "CREDIT"
-}, {
-    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "PENDING",
-    "created_at": "2020-06-29T17:53:47.19Z",
-    "name": "John Doe",
-    "amount": 259,
-    "type": "DEBIT"
-}, {
-    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "SUCCEEDED",
-    "created_at": "2020-07-29T17:53:47.19Z",
-    "name": "John Doe",
-    "amount": 121,
-    "type": "CREDIT"
-}, {
-    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "SUCCEEDED",
-    "created_at": "2020-05-31T17:53:47.19Z",
-    "name": "John Doe",
-    "amount": 535,
-    "type": "CREDIT"
-}, {
-    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "SUCCEEDED",
-    "created_at": "2020-07-29T17:53:47.19Z",
-    "name": "John Doe",
-    "amount": 9000,
-    "type": "CREDIT"
-}, {
-    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "SUCCEEDED",
-    "created_at": "2020-05-02T17:53:47.19Z",
-    "name": "John Doe",
-    "amount": 23647,
-    "type": "CREDIT"
-},
+[{
+        "transfer_id": "TRbiLuFNX3XFREN83oZDSEdm",
+        "source_id": "PI4tSnYQrFK24rCG74mnehxt",
+        "name": "Aron Price",
+        "amount": 2581,
+        "type": "PAYMENT_CARD",
+        "card_brand": "MASTERCARD",
+        "last_four": "5454",
+        "state": "SUCCEEDED",
+        "statement_descriptor": "PAYTHEORY*PT-DEV",
+        "created_at": "2020-08-21T13:17:44.00Z",
+        "messages": []
+    },
+    {
+        "transfer_id": "TRdun1e4LyGDW3PYryNLC7qe",
+        "source_id": "PIpTwXnrNG83d4H3NgepCqcF",
+        "name": "Aron Price",
+        "amount": 2581,
+        "type": "PAYMENT_CARD",
+        "card_brand": "VISA",
+        "last_four": "4242",
+        "state": "SUCCEEDED",
+        "statement_descriptor": "PAYTHEORY*PT-DEV",
+        "created_at": "2020-08-21T13:19:11.35Z",
+        "messages": ["test", "This is a test message"]
+    }
+]

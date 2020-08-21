@@ -13,11 +13,11 @@ test('display TransactionsTable w/ working action buttons', async() => {
     const handleResendingEmail = jest.fn()
     const handleVoid = jest.fn()
 
-    const firstTransaction = 'TRdsQZBp8Fqm535qb82dE4wo'
+    const firstTransaction = 'TRbiLuFNX3XFREN83oZDSEdm'
 
     const { getByText, queryAllByTestId } = render(
         <TransactionsTable
-        transactions={transactions._embedded.transfers}
+        transactions={transactions}
         viewTransaction={viewTransaction}
         handleRefund={handleRefund}
         handleResendingEmail={handleResendingEmail}
