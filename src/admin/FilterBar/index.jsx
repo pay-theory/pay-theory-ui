@@ -44,7 +44,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
     const clearAll = () => setFilterList([])
 
     return (
-        <div>
+        <div className="outer-filter-bar" >
             <div className='filter-bar' data-testid='filter-bar'>
                 <Select
                     className='select'
@@ -105,6 +105,14 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
 
                     .search-bar {
                         flex-grow: 1;
+                    }
+
+                    .filter-bar #search {
+                        background-color: #FFFFFF;
+                    }
+
+                    .filter-bar select {
+                         background-color: #FFFFFF;
                     }
 
                     .filter-bar > button {
