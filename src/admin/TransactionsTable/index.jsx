@@ -54,7 +54,7 @@ const TransactionsTable = (props) => {
                         content: formatString(item.state)
                     }
                 ],
-                key: item.id,
+                key: item.transfer_id,
                 view: () => viewTransaction(item),
                 item: item
             }
