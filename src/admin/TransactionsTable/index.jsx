@@ -31,7 +31,7 @@ const TransactionsTable = (props) => {
             return {
                 columns: [{
                         className: 'transaction-id',
-                        content: item.id
+                        content: item.transfer_id
                     },
                     {
                         className: 'create-date',
@@ -54,7 +54,8 @@ const TransactionsTable = (props) => {
                         content: formatString(item.state)
                     }
                 ],
-                key: item.id,view: () => viewTransaction(item),
+                key: item.id,
+                view: () => viewTransaction(item),
                 item: item
             }
         })

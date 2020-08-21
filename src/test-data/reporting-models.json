@@ -23,7 +23,7 @@
 
 
     "name": "John Doe",
-    "state": "COMPLETED",
+    "state": "SUCCEEDED",
     "statement_descriptor": "PD*PAY_THEORY",
     "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
     "created_at": "2020-05-29T17:53:47.19Z",
@@ -35,7 +35,7 @@
 //Details for the Transactions Table
 {
     "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
-    "state": "COMPLETED",
+    "state": "SUCCEEDED",
     "created_at": "2020-05-29T17:53:47.19Z",
     "name": "John Doe",
     "amount": 2589,
