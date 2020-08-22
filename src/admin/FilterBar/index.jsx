@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { TextEntry, Select, Button } from '../../common'
+import { TextEntry, TextEntryDate, Select, Button } from '../../common'
 
 const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
     const [filterCategory, setFilterCategory] = useState('')
