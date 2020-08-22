@@ -11,6 +11,8 @@ const TextEntryDate = (props) => {
             helperText='MM / DD / YYYY'
             name={props.name}
             label={props.label}
+            outer={props.outer}
+            value={props.value}
             isValid={(() => validDate(props.value))()}
             onChange={(e) => {
                 const formatted = formatDateString(props.value)
@@ -23,6 +25,7 @@ const TextEntryDate = (props) => {
 TextEntryDate.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    outer: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.any
 }
