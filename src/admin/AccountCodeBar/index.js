@@ -104,7 +104,7 @@ const AccountCodeBar = (props) => {
             <div className='spacer' />
             <Button
                 data-testid='searchButton'
-                innerClass='primary-button'
+                innerclass='primary-button'
                 onClick={(e) => {
                     props.searchHandler(searchState)
                 }}
