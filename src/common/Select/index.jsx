@@ -47,6 +47,7 @@ const Select = (props) => {
                         display: flex;
                         align-items: center;
                         line-height: 1.5;
+                        max-height: 62px;
                     }
 
                     /* SELECT ELEMENT */

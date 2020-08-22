@@ -32,7 +32,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
     }
 
     const findLabel = (value) => {
-        let result
+        let result = ""
         filterOptions.forEach((filter) => {
             if (filter.value === value) {
                 result = filter.label
@@ -54,13 +54,23 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     value={filterCategory}
                     name='fb-select'
                 />
-                <TextEntry
-                    outer='search-bar'
-                    label='Search'
-                    name='fb-search'
-                    onChange={(e) => setFilterText(e.target.value)}
+                {findLabel(filterCategory).includes("Date") ? (
+                  <TextEntryDate
+                    name="fb-search"
+                    label="Search"
+                    outer="search-bar"
                     value={filterText}
-                />
+                    onChange={(e) => setFilterText(e)}
+                  />
+                ) : (
+                  <TextEntry
+                    name="fb-search"
+                    label="Search"
+                    outer="search-bar"
+                    value={filterText}
+                    onChange={(e) => setFilterText(e.target.value)}
+                  />
+                )}
                 <Button
                     disabled={!filterCategory || !filterText}
                     label='Add Filter'
