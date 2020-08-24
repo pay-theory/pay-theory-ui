@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import { TextEntry, TextEntryDate, Select, Button } from '../../common'
 
+import { formatDate } from '../../common/dateUtils'
+
 const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
     const [filterCategory, setFilterCategory] = useState('')
     const [filterText, setFilterText] = useState('')
