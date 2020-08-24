@@ -9,9 +9,10 @@ import { formatDate } from '../../common/dateUtils'
 
 const TransactionDetails = (props) => {
     const buildMessages = () => {
-        if (transaction.messages[0]) {
-            return (
-                <div className='col-1'>
+        if (transaction.messages) {
+            if (transaction.messages[0]) {
+                return (
+                    <div className='col-1'>
                     <h5>Messages:</h5>
                     {transaction.messages.map((message, index) => (
                         <div className='navy' key={index}>
@@ -19,16 +20,15 @@ const TransactionDetails = (props) => {
                         </div>
                     ))}
                 </div>
-            )
+                )
+            }
         }
-        else {
-            return (
-                <div className='col-1'>
+        return (
+            <div className='col-1'>
                     <h5>Messages:</h5>
                     <div className='navy'>No Messages</div>
                 </div>
-            )
-        }
+        )
     }
 
     const { transaction } = props
