@@ -6,12 +6,12 @@ import { render, fireEvent, act } from '@testing-library/react'
 
 import FilterBar from '.'
 
-import { selectOptions } from '../../test-data'
+import { filterBarOptions } from '../../test-data'
 
 test('display filterBar and add a filter', async() => {
     const setFilters = jest.fn()
     const { getByText, queryByTestId, getAllByTestId } = render(<FilterBar
-        filterOptions={selectOptions}
+        filterOptions={filterBarOptions}
         setFilterList={setFilters}
         filterList={[]}
       />)
@@ -48,17 +48,17 @@ test('display filterBar and remove a filter', async() => {
     let filterList = []
     const setFilters = filters => filterList = filters;
     const { getByText, queryByTestId, getAllByTestId } = render(<FilterBar
-        filterOptions={selectOptions}
+        filterOptions={filterBarOptions}
         setFilterList={setFilters}
         filterList={filterList}
       />)
 
     await fireEvent.change(queryByTestId('fb-select'), {
-        target: { value: 'id' }
+        target: { value: 'created_at' }
     })
 
     await fireEvent.change(queryByTestId('fb-search'), {
-        target: { value: 'search' }
+        target: { value: '10/10/2020' }
     })
 
     await fireEvent.click(queryByTestId('fb-add'))
@@ -74,4 +74,40 @@ test('display filterBar and remove a filter', async() => {
     await fireEvent.click(queryByTestId('fb-add'))
 
     expect(getAllByTestId('filter-tag').length).toBe(2);
+})
+
+test('display filterBar and remove a filter', async() => {
+    let filterList = []
+    const setFilters = filters => filterList = filters;
+    const { queryAllByTestId, queryByTestId } = render(<FilterBar
+        filterOptions={filterBarOptions}
+        setFilterList={setFilters}
+        filterList={filterList}
+      />)
+
+    expect(queryAllByTestId('filter-tag').length).not.toBeTruthy;
+
+    await fireEvent.change(queryByTestId('fb-select'), {
+        target: { value: 'created_at' }
+    })
+
+    await fireEvent.change(queryByTestId('fb-search'), {
+        target: { value: '10/10/2020' }
+    })
+
+    await fireEvent.click(queryByTestId('fb-add'))
+
+    await fireEvent.change(queryByTestId('fb-select'), {
+        target: { value: 'id' }
+    })
+
+    await fireEvent.change(queryByTestId('fb-search'), {
+        target: { value: 'search' }
+    })
+
+    await fireEvent.keyUp(window, { key: 'A', code: 'KeyA' })
+
+    await fireEvent.keyUp(window, { key: 'Enter', code: 'Enter' })
+
+    expect(queryAllByTestId('filter-tag').length).toBe(2);
 })
