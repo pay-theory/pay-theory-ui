@@ -64,6 +64,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                   />
                 ) : (
                   <TextEntry
+                  helperText={<div className="fb-helper" />}
                     name="fb-search"
                     label="Search"
                     outer="search-bar"
@@ -142,7 +143,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     }
                     .filter-list {
                         display: flex;
-                        margin: 10px 0px;
+                        margin: 0px 0px 10px;
                         min-height: 35px;
                     }
 
@@ -159,6 +160,9 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     .filter-list .filter i {
                         cursor: pointer;
                         margin-left: 5px;
+                    }
+                    .fb-helper {
+                        height: 15px;
                     }
                 `}
             </style>
