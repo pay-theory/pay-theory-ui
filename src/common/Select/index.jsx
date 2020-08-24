@@ -188,8 +188,9 @@ const Select = (props) => {
                     /*Not Selected*/
                     .pt-select.empty select + label {
                         font-size: inherit;
-                        line-height: 68px;
+                        line-height: 62px;
                         margin: 0;
+                        padding-top: 6px;
                     }
                     .pt-select.empty select + label::before {
                         border-color: transparent;

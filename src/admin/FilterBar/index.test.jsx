@@ -76,7 +76,7 @@ test('display filterBar and remove a filter', async() => {
     expect(getAllByTestId('filter-tag').length).toBe(2);
 })
 
-test('display filterBar and remove a filter', async() => {
+test('display filterBar and add a filter with return', async() => {
     let filterList = []
     const setFilters = filters => filterList = filters;
     const { queryAllByTestId, queryByTestId } = render(<FilterBar
