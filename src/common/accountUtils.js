@@ -1,7 +1,7 @@
 const generateTableColumns = () => {
     return [
-        { className: 'account-name', label: 'name' },
-        { className: 'account-full-name', label: 'email' },
+        { className: 'account-name', label: 'account name' },
+        { className: 'account-full-name', label: 'full name' },
         { className: 'account-email', label: 'email' }
     ]
 }
@@ -28,9 +28,9 @@ const generateTableRows = (accounts, view, deleteAccount) => {
 
 const validEmail = (emailIn) => {
     emailIn = emailIn || ''
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn)
-        ? emailIn
-        : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn) ?
+        emailIn :
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn)
 }
 
 const formatPhone = (incoming) => {
@@ -39,12 +39,12 @@ const formatPhone = (incoming) => {
     const areaCode = incoming.substring(0, 3)
     const prefix = incoming.substring(3, 6)
     const line = incoming.substring(6, 10)
-    const phone = /* istanbul ignore next */ line
-        ? `${areaCode}-${prefix}-${line}`
-        : /* istanbul ignore next */
-        prefix
-        ? `${areaCode}-${prefix}`
-        : areaCode
+    const phone = /* istanbul ignore next */ line ?
+        `${areaCode}-${prefix}-${line}` :
+        /* istanbul ignore next */
+        prefix ?
+        `${areaCode}-${prefix}` :
+        areaCode
 
     return phone
 }

@@ -6,7 +6,8 @@ import InnerTable from '../../common/InnerTable'
 import {
     generateTableColumns,
     generateTableRows
-} from '../../common/accountUtils'
+}
+from '../../common/accountUtils'
 import * as BooksHooks from '../../hooks'
 
 const AccountTable = (props) => {
@@ -30,7 +31,7 @@ const AccountTable = (props) => {
                                 .account-name {
                                     width: 140px;
                                 }
-                                .account-phone {
+                                .account-full-name {
                                     width: 140px;
                                 }
                                 .account-email {
