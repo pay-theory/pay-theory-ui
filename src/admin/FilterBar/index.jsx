@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { TextEntry, TextEntryDate, Select, Button } from '../../common'
@@ -17,7 +17,12 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
         const newList = filterList
         const newFilter = {}
         newFilter.category = filterCategory
-        newFilter.text = filterText
+        if (filterCategory.includes("created")) {
+            newFilter.text = new Date(filterText).toISOString();
+        }
+        else {
+            newFilter.text = filterText;
+        }
         newList.push(newFilter)
         setFilterList(newList)
         resetFilters()
@@ -41,6 +46,23 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
         return result
     }
 
+    const handleKeyUp = (event) => {
+        switch (event.key) {
+        case "Enter":
+            if (filterCategory && filterText) {
+                addFilter();
+            }
+            break;
+        default:
+            break;
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("keyup", handleKeyUp);
+        return () => window.removeEventListener("keyup", handleKeyUp);
+    });
+
     const clearAll = () => setFilterList([])
 
     return (
@@ -54,7 +76,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     value={filterCategory}
                     name='fb-select'
                 />
-                {findLabel(filterCategory).includes("Date") ? (
+                {filterCategory.includes("created") ? (
                   <TextEntryDate
                     name="fb-search"
                     label="Search"
@@ -95,7 +117,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                             key={`${index}-${filter.category}`}
                             data-testid='filter-tag'
                         >
-                            {`${label}: ${filter.text}  `}
+                            {`${label}: ${label.includes('Created') ? formatDate(filter.text) : filter.text}`}
                             <i
                                 className='fal fa-times'
                                 onClick={() => {
