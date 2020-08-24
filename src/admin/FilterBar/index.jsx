@@ -167,7 +167,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     }
                     .filter-list {
                         display: flex;
-                        margin: 0px 0px 10px;
+                        margin: 0px 0px 15px;
                         min-height: 35px;
                     }
 
