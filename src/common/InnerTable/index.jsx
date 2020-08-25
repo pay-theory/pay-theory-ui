@@ -18,7 +18,8 @@ const InnerTable = (props) => {
 
     const selected = props.selected ? updateSelected : null;
 
-    (
+
+    return (
         <div id='body-content'>
         <div className='inner-table'>
             <children.HeaderRow
