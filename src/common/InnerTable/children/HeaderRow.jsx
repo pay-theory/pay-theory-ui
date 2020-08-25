@@ -24,6 +24,11 @@ const HeaderRow = (props) => {
             />
         )
     }
+    if (props.select) {
+        columns.unshift(
+            <span className='table-select' />
+        )
+    }
     return <div className='inner-table-row inner-table-row-head'>{columns}</div>
 }
 

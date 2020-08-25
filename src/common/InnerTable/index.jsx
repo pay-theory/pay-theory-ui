@@ -4,12 +4,27 @@ import PropTypes from 'prop-types'
 
 import * as children from './children'
 
-const InnerTable = (props) => (
-    <div id='body-content'>
+const InnerTable = (props) => {
+
+
+    const updateSelected = (e, index) => {
+        if (e.target.checked === false) {
+            props.selected = props.selected.filter(item => item !== index)
+        }
+        else {
+            props.selected.push(index)
+        }
+    }
+
+    const selected = props.selected ? updateSelected : null;
+
+    (
+        <div id='body-content'>
         <div className='inner-table'>
             <children.HeaderRow
                 columns={props.columns}
                 hasActions={props.hasActions}
+                select={selected}
             />
             <div className='inner-table inner'>
                 {props.rows.map((item, rowNum) => {
@@ -31,6 +46,7 @@ const InnerTable = (props) => (
                             row={rowNum}
                             rowObject={item.item}
                             view={item.view ? item.view : false}
+                            select={selected}
                         />
                     )
                 })}
@@ -153,10 +169,17 @@ const InnerTable = (props) => (
                 .locked {
                     margin: 0 0.5em;
                 }
+                .inner-table .table-select {
+                    width: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
             `}
         </style>
     </div>
-)
+    )
+}
 
 InnerTable.propTypes = {
     columns: PropTypes.array.isRequired,

@@ -8,6 +8,22 @@ import ViewDeleteAction from './ViewDeleteAction'
 import OtherAction from './OtherAction'
 
 const Row = (props) => {
+    const select = props.select ?
+        <span
+                className="table-select"
+                data-testid='select-column'
+            >
+                 <Checkbox
+                    inputProps={{
+                    'data-testid':'select-item',
+                    onChange:(e) => {
+                            props.select(e, props.row)
+                        }
+                    }}
+                    />
+            </span> :
+        <span/>;
+
     const columns = props.columns.map((column, col) => {
         // eslint-disable-next-line no-unused-vars
         const className = `cell ${column.className}`
@@ -24,7 +40,8 @@ const Row = (props) => {
                     view={props.view}
                 />
             )
-        } else {
+        }
+        else {
             return (
                 <Column
                     className={column.className}
@@ -48,7 +65,8 @@ const Row = (props) => {
                     view={props.view}
                 />
             )
-        } else if (props.otherActions) {
+        }
+        else if (props.otherActions) {
             columns.push(
                 <OtherAction
                     actions={props.otherActions}
@@ -57,7 +75,8 @@ const Row = (props) => {
                     rowObject={props.rowObject}
                 />
             )
-        } else if (props.copyOnly) {
+        }
+        else if (props.copyOnly) {
             columns.push(
                 <CopyAction
                     callback={props.copyCallback}
@@ -67,7 +86,8 @@ const Row = (props) => {
                     row={props.row}
                 />
             )
-        } else {
+        }
+        else {
             columns.push(
                 <ViewAction
                     key={`${props.itemKey}-view`}
@@ -83,6 +103,7 @@ const Row = (props) => {
             id={`${props.row}`}
             key={`${props.row}-${props.itemKey}`}
         >
+            {select}
             {columns}
         </div>
     )

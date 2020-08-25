@@ -65,7 +65,10 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
         return () => window.removeEventListener("keyup", handleKeyUp);
     });
 
-    const clearAll = () => setFilterList([])
+    const clearAll = () => {
+        setFilterList([])
+        resetFilters()
+    }
 
     return (
         <div className="outer-filter-bar" >
