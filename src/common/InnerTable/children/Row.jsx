@@ -8,22 +8,6 @@ import ViewDeleteAction from './ViewDeleteAction'
 import OtherAction from './OtherAction'
 
 const Row = (props) => {
-    const select = props.select ?
-        <span
-                className="table-select"
-                data-testid='select-column'
-            >
-                 <Checkbox
-                    inputProps={{
-                    'data-testid':'select-item',
-                    onChange:(e) => {
-                            props.select(e, props.row)
-                        }
-                    }}
-                    />
-            </span> :
-        <span/>;
-
     const columns = props.columns.map((column, col) => {
         // eslint-disable-next-line no-unused-vars
         const className = `cell ${column.className}`
@@ -97,13 +81,30 @@ const Row = (props) => {
             )
         }
     }
+
+    if (props.select) {
+        columns.unshift(
+            <span
+                className="table-select"
+                data-testid='select-column'
+            >
+                 <Checkbox
+                    inputProps={{
+                    'data-testid':'select-item',
+                    onChange:(e) => {
+                            props.select(e, props.row)
+                        }
+                    }}
+                    />
+            </span>
+        )
+    }
     return (
         <div
             className='inner-table-row'
             id={`${props.row}`}
             key={`${props.row}-${props.itemKey}`}
         >
-            {select}
             {columns}
         </div>
     )
