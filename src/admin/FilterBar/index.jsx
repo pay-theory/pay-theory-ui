@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { TextEntry, TextEntryDate, Select, Button } from '../../common'
+import { TextEntry, TextEntryDate, Select, Button, StockTags } from '../../common'
 
-import { formatDate } from '../../common/dateUtils'
+import { formatDate, validDate } from '../../common/dateUtils'
+import { validCurrency } from '../../common/accountUtils'
 
 const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
     const [filterCategory, setFilterCategory] = useState('')
     const [filterText, setFilterText] = useState('')
     const [updating, setUpdating] = useState(false)
+    const [statusMessage, setStatusMessage] = useState(<div />);
 
     const resetFilters = () => {
         setFilterCategory('')
@@ -16,19 +18,32 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
     }
 
     const addFilter = () => {
-        const newList = filterList
-        const newFilter = {}
-        newFilter.category = filterCategory
+        const newList = filterList;
+        const newFilter = {};
+        newFilter.category = filterCategory;
         if (filterCategory.includes("created")) {
-            newFilter.text = new Date(filterText).toISOString();
+            if (validDate(filterText))
+                newFilter.text = new Date(filterText).toISOString();
+        }
+        else if (filterCategory.includes("amount")) {
+            if (validCurrency(filterText)) newFilter.text = validCurrency(filterText);
         }
         else {
             newFilter.text = filterText;
         }
-        newList.push(newFilter)
-        setFilterList(newList)
-        resetFilters()
-    }
+        if (newFilter.text) {
+            newList.push(newFilter);
+            setFilterList(newList);
+        }
+        else {
+            setStatusMessage(
+                StockTags.warn("Not a valid filter", () => {
+                    setStatusMessage(<div />);
+                })
+            );
+        }
+        resetFilters();
+    };
 
     const deleteFilter = async(index) => {
         setUpdating(true)
@@ -114,6 +129,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                 />
             </div>
             <div className='filter-list' data-testid='filter-list'>
+                <h4>Filters:</h4>
                 {filterList.map((filter, index) => {
                     const label = findLabel(filter.category)
                     return (
@@ -122,7 +138,13 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                             key={`${index}-${filter.category}`}
                             data-testid='filter-tag'
                         >
-                            {`${label}: ${label.includes('Created') ? formatDate(filter.text) : filter.text}`}
+                            {`${label}: ${
+                                label.includes("Created")
+                                ? formatDate(filter.text)
+                                : label.includes("Amount")
+                                ? `$${(filter.text / 100).toFixed(2)}`
+                                : filter.text
+                                }`}
                             <i
                                 className='fal fa-times'
                                 onClick={() => {
@@ -134,6 +156,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     )
                 })}
             </div>
+            {statusMessage}
             <style jsx='true'>
                 {`
                     .outer-filter-bar {
@@ -168,10 +191,16 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     .filter-bar button + button {
                         margin-right: 0px;
                     }
+
                     .filter-list {
                         display: flex;
-                        margin: 0px 0px 15px;
+                        margin: 0px 0px 5px;
                         min-height: 35px;
+                        align-items: center;
+                    }
+
+                    .filter-list h4 {
+                        padding: 0px 10px 0px 2px;
                     }
 
                     .filter-list .filter {
