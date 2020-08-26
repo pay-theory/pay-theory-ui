@@ -6,6 +6,7 @@ import CopyAction from './CopyAction'
 import ViewAction from './ViewAction'
 import ViewDeleteAction from './ViewDeleteAction'
 import OtherAction from './OtherAction'
+import Checkbox from '../../Checkbox'
 
 const Row = (props) => {
     const columns = props.columns.map((column, col) => {
@@ -87,6 +88,7 @@ const Row = (props) => {
             <span
                 className="table-select"
                 data-testid='select-column'
+                key={`${props.itemKey}-select`}
             >
                  <Checkbox
                     inputProps={{

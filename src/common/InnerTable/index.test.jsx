@@ -28,8 +28,7 @@ const generateTableColumns = () => {
 const generateTableRows = (items) => {
     return items.map((item, i) => {
         return {
-            columns: [
-                {
+            columns: [{
                     className: 'name',
                     content: item.name
                 },
@@ -46,8 +45,7 @@ const generateTableRows = (items) => {
 const generateViewTableRows = (items) => {
     return items.map((item, i) => {
         return {
-            columns: [
-                {
+            columns: [{
                     className: 'name',
                     content: item.name
                 },
@@ -65,8 +63,7 @@ const generateViewTableRows = (items) => {
 const generateViewDeleteTableRows = (items) => {
     return items.map((item, i) => {
         return {
-            columns: [
-                {
+            columns: [{
                     className: 'name',
                     content: item.name
                 },
@@ -85,8 +82,7 @@ const generateViewDeleteTableRows = (items) => {
 const generateCopyOnlyTableRows = (items) => {
     return items.map((item, i) => {
         return {
-            columns: [
-                {
+            columns: [{
                     className: 'name',
                     content: item.name
                 },
@@ -102,7 +98,7 @@ const generateCopyOnlyTableRows = (items) => {
     })
 }
 
-test('display district list without actions', async () => {
+test('display district list without actions', async() => {
     const { getByText, queryByTestId } = render(
         <Router>
             <InnerTable
@@ -118,7 +114,7 @@ test('display district list without actions', async () => {
     expect(queryByTestId('delete-action')).not.toBeInTheDocument()
 })
 
-test('display district list with view', async () => {
+test('display district list with view', async() => {
     const tableRows = generateViewTableRows(itemsArray)
 
     const { getByText, queryAllByTestId } = render(
@@ -138,7 +134,7 @@ test('display district list with view', async () => {
     expect(queryAllByTestId('delete-action')).toHaveLength(0)
 })
 
-test('display district list with view and delete', async () => {
+test('display district list with view and delete', async() => {
     const tableRows = generateViewDeleteTableRows(itemsArray)
 
     const { getByText, queryAllByTestId } = render(
@@ -158,7 +154,7 @@ test('display district list with view and delete', async () => {
     expect(queryAllByTestId('delete-action')).toHaveLength(tableRows.length)
 })
 
-test('display district list with copy only', async () => {
+test('display district list with copy only', async() => {
     Object.defineProperty(
         document,
         'execCommand',
@@ -186,4 +182,33 @@ test('display district list with copy only', async () => {
 
     fireEvent.click(queryAllByTestId('copy-action')[0])
     expect(mockCopy).toHaveBeenCalledTimes(1)
+})
+
+test('display district list with checkboxes to select columns', async() => {
+    let selected = []
+    const setSelected = newArray => selected = newArray
+    const { getByText, queryByTestId, queryAllByTestId } = render(
+        <Router>
+            <InnerTable
+                columns={generateTableColumns()}
+                rows={generateTableRows(itemsArray)}
+                selected={selected}
+                setSelected={setSelected}
+            />
+        </Router>
+    )
+
+    expect(getByText(itemsArray[1].description)).toBeInTheDocument()
+    expect(queryByTestId('view-action')).not.toBeInTheDocument()
+    expect(queryByTestId('linked-column')).not.toBeInTheDocument()
+    expect(queryByTestId('delete-action')).not.toBeInTheDocument()
+    expect(queryAllByTestId('select-item')).toBeTruthy()
+
+    fireEvent.click(queryAllByTestId('select-item')[0])
+
+    expect(selected.length).toBe(1)
+
+    fireEvent.click(queryAllByTestId('select-item')[0])
+
+    expect(selected.length).toBe(0)
 })

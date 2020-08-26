@@ -9,7 +9,7 @@ const InnerTable = (props) => {
 
     const updateSelected = (e, index) => {
         if (e.target.checked === false) {
-            props.selected = props.selected.filter(item => item !== index)
+            props.setSelected(props.selected.filter(item => item !== index))
         }
         else {
             props.selected.push(index)
