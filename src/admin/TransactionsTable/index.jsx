@@ -54,12 +54,12 @@ const TransactionsTable = (props) => {
           {
             className: "payment-account",
             content: (
-              <p className="payment-account-detail">
+              <span className="payment-account-detail">
                 <span
                   className={`pay-theory-card-badge pay-theory-card-${item.card_brand.toLowerCase()}`}
                 />
                 ending in {item.last_four}
-              </p>
+              </span>
             )
           },
           {
@@ -200,8 +200,7 @@ TransactionsTable.propTypes = {
   transactions: PropTypes.array.isRequired,
   viewTransaction: PropTypes.func.isRequired,
   handleRefund: PropTypes.func.isRequired,
-  handleResendingEmail: PropTypes.func.isRequired,
-  handleVoid: PropTypes.func.isRequired
+  handleResendingEmail: PropTypes.func.isRequired
 };
 
 export default TransactionsTable;
