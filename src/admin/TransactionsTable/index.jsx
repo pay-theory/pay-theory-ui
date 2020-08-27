@@ -6,47 +6,64 @@ import { InnerTable, CardTable } from '../../common'
 import { formatDate } from '../../common/dateUtils'
 
 const formatFee = (fee) => {
-    return `$${fee / 100}`
-}
+    return `$${(fee / 100).toFixed(2)}`;
+};
 
 const formatString = (string) => {
-    return string[0] + string.substring(1).toLowerCase()
-}
+    return string[0] + string.substring(1).toLowerCase();
+};
 
 const TransactionsTable = (props) => {
-    const { transactions, viewTransaction, handleRefund, handleResendingEmail, handleVoid } = props
+    const {
+        transactions,
+        viewTransaction,
+        handleRefund,
+        handleResendingEmail
+    } = props;
 
     const generateTableColumns = () => {
         return [
-            { className: 'transaction-id', label: 'Transaction ID' },
-            { className: 'create-date', label: 'Create Date' },
-            { className: 'customer-name', label: 'Customer Name' },
-            { className: 'transaction-type', label: 'Transaction Type' },
-            { className: 'amount numeric', label: 'Amount' },
-            { className: 'status', label: 'Status' }
-        ]
-    }
+            { className: "transaction-id", label: "Transaction ID" },
+            { className: "update-date", label: "Update Date" },
+            { className: "customer-name", label: "Customer Name" },
+            { className: "account-type", label: "Account Type" },
+            { className: "payment-account", label: "Payment Account" },
+            { className: "amount numeric", label: "Amount" },
+            { className: "status", label: "Status" }
+        ];
+    };
     const generateTableRows = (reports) => {
         return reports.map((item, i) => {
             return {
                 columns: [{
-                        className: 'transaction-id',
+                        className: "transaction-id",
                         content: item.transfer_id
                     },
                     {
-                        className: 'create-date',
-                        content: formatDate(item.created_at)
+                        className: "update-date",
+                        content: formatDate(item.updated_at)
                     },
                     {
-                        className: 'customer-name',
+                        className: "customer-name",
                         content: item.name
                     },
                     {
-                        className: 'transaction-type',
+                        className: "account-type",
                         content: item.type
                     },
                     {
-                        className: 'amount numeric',
+                        className: "payment-account",
+                        content: (
+                            <p className="payment-account-detail">
+                <div
+                  className={`pay-theory-card-badge pay-theory-card-${item.card_brand.toLowerCase()}`}
+                />
+                ending in {item.last_four}
+              </p>
+                        )
+                    },
+                    {
+                        className: "amount numeric",
                         content: formatFee(item.amount)
                     },
                     {
@@ -57,89 +74,127 @@ const TransactionsTable = (props) => {
                 key: item.transfer_id,
                 view: () => viewTransaction(item),
                 item: item
-            }
-        })
-    }
+            };
+        });
+    };
 
     const otherActions = [{
             action: handleRefund,
-            label: 'Refund',
-            icon: 'fa-undo'
+            label: "Refund",
+            icon: "fa-undo"
         },
         {
             action: handleResendingEmail,
-            label: 'Resend Email',
-            icon: 'fa-envelope'
-        },
-        {
-            action: handleVoid,
-            label: 'Void',
-            icon: 'fa-times-circle'
+            label: "Resend Email",
+            icon: "fa-envelope"
         }
-    ]
+    ];
 
     return (
         <CardTable>
-            <InnerTable
-                columns={generateTableColumns()}
-                hasActions
-                otherActions={otherActions}
-                rows={generateTableRows(transactions)}
-            >
-                <style global='true' jsx='true'>
-                    {`
-                        .transaction-id {
-                            width: 220px;
-                        }
-                        .create-date {
-                            width: 110px;
-                        }
-                        .status {
-                            min-width: 120px;
-                        }
-                        .amount {
-                            width: 60px;
-                        }
-                        .transaction-type {
-                            width: 120px;
-                        }
-                        .customer-name {
-                            width: 120px;
-                        }
-                        .actions {
-                            width: 120px !important;
-                        }
+      <InnerTable
+        columns={generateTableColumns()}
+        hasActions
+        otherActions={otherActions}
+        rows={generateTableRows(transactions)}
+      >
+        <style global="true" jsx="true">
+          {`
+            .transaction-id {
+              width: 120px;
+            }
+            .transaction-id p {
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+            .update-date {
+              width: 90px;
+            }
+            .status {
+              min-width: 110px;
+            }
+            .amount {
+              width: 60px;
+            }
+            .account-type {
+              width: 100px;
+            }
+            .payment-account {
+              width: 150px;
+            }
+            .customer-name {
+              width: 120px;
+            }
+            .actions {
+              width: 70px !important;
+            }
 
-                        .canceled p,
-                        .pending p,
-                        .settled p {
-                            border-radius: 14px;
-                            color: white;
-                            height: 28px;
-                            min-width: auto;
-                            justify-content: center;
-                            align-items: center;
-                            display: flex;
-                            font-size: 16px;
-                        }
+            .declined p,
+            .pending p,
+            .settled p,
+            .recieved p {
+              border-radius: 14px;
+              color: white;
+              height: 28px;
+              min-width: auto;
+              justify-content: center;
+              align-items: center;
+              display: flex;
+              font-size: 16px;
+            }
 
-                        .settled p {
-                            background: #0bd8aa;
-                        }
+            .settled p {
+              background: #5bc794;
+            }
 
-                        .canceled p {
-                            background: #ed454c;
-                        }
+            .declined p {
+              background: #ea4141;
+            }
 
-                        .pending p {
-                            background: #cad3dd;
-                        }
-                    `}
-                </style>
-            </InnerTable>
-        </CardTable>
-    )
-}
+            .pending p {
+              background: #cac4ca;
+            }
+
+            .recieved p {
+              background: #f5bd42;
+            }
+
+            .pay-theory-card-badge {
+              background-repeat: no-repeat;
+              background-size: 100%;
+              background-position: 50%;
+              height: 40px;
+              width: 45px;
+              align-self: center;
+              margin-right: 5px;
+            }
+
+            .pay-theory-card-visa {
+              background-image: url(https://storage.googleapis.com/pt-assets/visa-badge-icon.svg);
+            }
+
+            .pay-theory-card-mastercard {
+              background-image: url(https://storage.googleapis.com/pt-assets/mastercard-badge-icon.svg);
+            }
+
+            .pay-theory-card-amex {
+              background-image: url(https://storage.googleapis.com/pt-assets/amex-badge-icon.svg);
+            }
+
+            .pay-theory-card-discover {
+              background-image: url(https://storage.googleapis.com/pt-assets/discover-badge-icon.svg);
+            }
+
+            .payment-account-detail {
+              display: flex;
+            }
+          `}
+        </style>
+      </InnerTable>
+    </CardTable>
+    );
+};
 
 TransactionsTable.propTypes = {
     transactions: PropTypes.array.isRequired,
@@ -147,7 +202,6 @@ TransactionsTable.propTypes = {
     handleRefund: PropTypes.func.isRequired,
     handleResendingEmail: PropTypes.func.isRequired,
     handleVoid: PropTypes.func.isRequired
+};
 
-}
-
-export default TransactionsTable
+export default TransactionsTable;
