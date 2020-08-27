@@ -112,7 +112,7 @@ const TransactionsTable = (props) => {
 
                         .canceled p,
                         .pending p,
-                        .succeeded p {
+                        .settled p {
                             border-radius: 14px;
                             color: white;
                             height: 28px;
@@ -123,7 +123,7 @@ const TransactionsTable = (props) => {
                             font-size: 16px;
                         }
 
-                        .succeeded p {
+                        .settled p {
                             background: #0bd8aa;
                         }
 
