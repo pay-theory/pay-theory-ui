@@ -6,10 +6,6 @@ import Header from './Header'
 import Checkbox from "../../Checkbox";
 
 const HeaderRow = (props) => {
-    const { selected, setSelected, tableData } = props.select;
-
-    const selectAll = [...Array(tableData.length).keys()];
-
     const columns = props.columns.map((column, col) => {
         return (
             <Header
@@ -31,6 +27,9 @@ const HeaderRow = (props) => {
         )
     }
     if (props.select) {
+        const { selected, setSelected, tableData } = props.select;
+
+        const selectAll = [...Array(tableData.length).keys()];
         columns.unshift(
             <span className="table-select" key="header-select">
         <Checkbox
@@ -41,7 +40,7 @@ const HeaderRow = (props) => {
               : undefined
           }
           inputProps={{
-            "data-testid": "select-item",
+            "data-testid": "header-select-item",
             checked:
               selected.length > 0 && selected.length === tableData.length,
             onChange: (e) => {
