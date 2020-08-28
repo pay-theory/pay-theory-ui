@@ -102,7 +102,7 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
                 /* 'Indeterminate' Blue Frame (:before) */
 
                 input[type='checkbox']:indeterminate + label::before {
-                    background-color: #0199ed;
+                   background-color: #ff8c00;
                 }
 
                 /* 'Indeterminate' White Dash Icon (:after) */

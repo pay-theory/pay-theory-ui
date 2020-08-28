@@ -97,6 +97,8 @@ const TransactionsTable = (props) => {
         hasActions
         otherActions={otherActions}
         rows={generateTableRows(transactions)}
+        selected={props.selected}
+        setSelected={props.setSelected}
       >
         <style global="true" jsx="true">
           {`
@@ -200,7 +202,9 @@ TransactionsTable.propTypes = {
   transactions: PropTypes.array.isRequired,
   viewTransaction: PropTypes.func.isRequired,
   handleRefund: PropTypes.func.isRequired,
-  handleResendingEmail: PropTypes.func.isRequired
+  handleResendingEmail: PropTypes.func.isRequired,
+  selected: PropTypes.array,
+  setSelected: PropTypes.func
 };
 
 export default TransactionsTable;

@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 
 import Header from './Header'
 
+import Checkbox from "../../Checkbox";
+
 const HeaderRow = (props) => {
+    const { selected, setSelected, tableData } = props.select;
+
+    const selectAll = [...Array(tableData.length).keys()];
+
     const columns = props.columns.map((column, col) => {
         return (
             <Header
@@ -26,8 +32,29 @@ const HeaderRow = (props) => {
     }
     if (props.select) {
         columns.unshift(
-            <span className='table-select' key="header-select" />
-        )
+            <span className="table-select" key="header-select">
+        <Checkbox
+          id="header-checkbox"
+          indeterminate={
+            selected.length < tableData.length && selected.length > 0
+              ? true
+              : undefined
+          }
+          inputProps={{
+            "data-testid": "select-item",
+            checked:
+              selected.length > 0 && selected.length === tableData.length,
+            onChange: (e) => {
+              if (e.target.checked) {
+                setSelected(selectAll);
+              } else {
+                setSelected([]);
+              }
+            }
+          }}
+        />
+      </span>
+        );
     }
     return <div className='inner-table-row inner-table-row-head'>{columns}</div>
 }

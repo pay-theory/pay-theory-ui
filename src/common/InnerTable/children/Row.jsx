@@ -86,20 +86,22 @@ const Row = (props) => {
     if (props.select) {
         columns.unshift(
             <span
-                className="table-select"
-                data-testid='select-column'
-                key={`${props.itemKey}-select`}
-            >
-                 <Checkbox
-                    inputProps={{
-                    'data-testid':'select-item',
-                    onChange:(e) => {
-                            props.select(e, props.row)
-                        }
-                    }}
-                    />
-            </span>
-        )
+        className="table-select"
+        data-testid="select-column"
+        key={`${props.itemKey}-select`}
+      >
+        <Checkbox
+          id={props.itemKey}
+          inputProps={{
+            "data-testid": "select-item",
+            checked: props.select.selected.includes(props.row),
+            onChange: (e) => {
+              props.select.setSelected(props.select.onChange(e, props.row));
+            }
+          }}
+        />
+      </span>
+        );
     }
     return (
         <div
