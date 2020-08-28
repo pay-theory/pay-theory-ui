@@ -59,3 +59,15 @@ test('display role info tab (unlocked)', async() => {
 
     expect(queryByTestId('page-permissions')).toBeVisible()
 })
+
+test('display role info tab (locked) without context', async() => {
+    const saveRole = jest.fn()
+    const { getByText } = render(
+        <BooksHooks.context.role.Provider value={undefined}>
+            <RoleInfoTab setStatusMessage={() => {}} saveRole={saveRole} />
+        </BooksHooks.context.role.Provider>
+    )
+
+
+    expect(getByText(`Default Level Role Details`)).toBeInTheDocument()
+})

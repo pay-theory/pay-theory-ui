@@ -204,11 +204,30 @@ test('display district list with checkboxes to select columns', async() => {
     expect(queryByTestId('delete-action')).not.toBeInTheDocument()
     expect(queryAllByTestId('select-item')).toBeTruthy()
 
-    fireEvent.click(queryAllByTestId('select-item')[0])
+    await expect(selected.length).toBe(0)
 
-    expect(selected.length).toBe(1)
+    await fireEvent.click(queryAllByTestId('select-item')[1])
 
-    fireEvent.click(queryAllByTestId('select-item')[0])
+    await expect(selected.length).toBe(1)
+})
+
+test('display district list with checkboxes to select columns', async() => {
+    let selected = []
+    const setSelected = newArray => selected = newArray
+    const { getByText, queryByTestId, queryAllByTestId } = render(
+        <Router>
+            <InnerTable
+                columns={generateTableColumns()}
+                rows={generateTableRows(itemsArray)}
+                selected={selected}
+                setSelected={setSelected}
+            />
+        </Router>
+    )
 
     expect(selected.length).toBe(0)
+
+    fireEvent.click(queryByTestId('header-select-item'))
+
+    expect(selected.length).toBe(2)
 })

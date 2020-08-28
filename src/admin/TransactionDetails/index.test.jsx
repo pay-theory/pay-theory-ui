@@ -24,3 +24,12 @@ test('display TransactionDetails with messages', async() => {
 
     expect(getByText('This is a test message')).toBeInTheDocument();
 })
+
+test('display TransactionDetails without message key in the object', async() => {
+    // eslint-disable-next-line no-unused-vars
+    const { getByText, queryByTestId } = render(
+        <TransactionDetails transaction={transactions[2]} />
+    )
+
+    expect(getByText('No Messages')).toBeInTheDocument();
+})
