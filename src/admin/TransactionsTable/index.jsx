@@ -6,80 +6,80 @@ import { InnerTable, CardTable } from '../../common'
 import { formatDate } from '../../common/dateUtils'
 
 const formatFee = (fee) => {
-    return `$${fee / 100}`
+  return `$${fee / 100}`
 }
 
 const formatString = (string) => {
-    return string[0] + string.substring(1).toLowerCase()
+  return string ? string[0] + string.substring(1).toLowerCase() : '';
 }
 
 const TransactionsTable = (props) => {
-    const { transactions, viewTransaction, handleRefund, handleResendingEmail, handleVoid } = props
+  const { transactions, viewTransaction, handleRefund, handleResendingEmail, handleVoid } = props
 
-    const generateTableColumns = () => {
-        return [
-            { className: 'transaction-id', label: 'Transaction ID' },
-            { className: 'create-date', label: 'Create Date' },
-            { className: 'customer-name', label: 'Customer Name' },
-            { className: 'transaction-type', label: 'Transaction Type' },
-            { className: 'amount numeric', label: 'Amount' },
-            { className: 'status', label: 'Status' }
-        ]
-    }
-    const generateTableRows = (reports) => {
-        return reports.map((item, i) => {
-            return {
-                columns: [{
-                        className: 'transaction-id',
-                        content: item.id
-                    },
-                    {
-                        className: 'create-date',
-                        content: formatDate(item.created_at)
-                    },
-                    {
-                        className: 'customer-name',
-                        content: item.tags.name
-                    },
-                    {
-                        className: 'transaction-type',
-                        content: item.tags.type
-                    },
-                    {
-                        className: 'amount numeric',
-                        content: formatFee(item.amount)
-                    },
-                    {
-                        className: `status ${item.state.toLowerCase()}`,
-                        content: formatString(item.state)
-                    }
-                ],
-                key: item.id,
-                view: () => viewTransaction(item),
-                item: item
-            }
-        })
-    }
-
-    const otherActions = [{
-            action: handleRefund,
-            label: 'Refund',
-            icon: 'fa-undo'
-        },
-        {
-            action: handleResendingEmail,
-            label: 'Resend Email',
-            icon: 'fa-envelope'
-        },
-        {
-            action: handleVoid,
-            label: 'Void',
-            icon: 'fa-times-circle'
-        }
+  const generateTableColumns = () => {
+    return [
+      { className: 'transaction-id', label: 'Transaction ID' },
+      { className: 'create-date', label: 'Create Date' },
+      { className: 'customer-name', label: 'Customer Name' },
+      { className: 'transaction-type', label: 'Transaction Type' },
+      { className: 'amount numeric', label: 'Amount' },
+      { className: 'status', label: 'Status' }
     ]
+  }
+  const generateTableRows = (reports) => {
+    return reports.map((item, i) => {
+      return {
+        columns: [{
+            className: 'transaction-id',
+            content: item.id
+          },
+          {
+            className: 'create-date',
+            content: formatDate(item.created_at)
+          },
+          {
+            className: 'customer-name',
+            content: item.tags.name
+          },
+          {
+            className: 'transaction-type',
+            content: item.tags.type
+          },
+          {
+            className: 'amount numeric',
+            content: formatFee(item.amount)
+          },
+          {
+            className: `status ${item.state.toLowerCase()}`,
+            content: formatString(item.state)
+          }
+        ],
+        key: item.id,
+        view: () => viewTransaction(item),
+        item: item
+      }
+    })
+  }
 
-    return (
-        <CardTable>
+  const otherActions = [{
+      action: handleRefund,
+      label: 'Refund',
+      icon: 'fa-undo'
+    },
+    {
+      action: handleResendingEmail,
+      label: 'Resend Email',
+      icon: 'fa-envelope'
+    },
+    {
+      action: handleVoid,
+      label: 'Void',
+      icon: 'fa-times-circle'
+    }
+  ]
+
+  return (
+    <CardTable>
             <InnerTable
                 columns={generateTableColumns()}
                 hasActions
@@ -138,15 +138,15 @@ const TransactionsTable = (props) => {
                 </style>
             </InnerTable>
         </CardTable>
-    )
+  )
 }
 
 TransactionsTable.propTypes = {
-    transactions: PropTypes.array.isRequired,
-    viewTransaction: PropTypes.func.isRequired,
-    handleRefund: PropTypes.func.isRequired,
-    handleResendingEmail: PropTypes.func.isRequired,
-    handleVoid: PropTypes.func.isRequired
+  transactions: PropTypes.array.isRequired,
+  viewTransaction: PropTypes.func.isRequired,
+  handleRefund: PropTypes.func.isRequired,
+  handleResendingEmail: PropTypes.func.isRequired,
+  handleVoid: PropTypes.func.isRequired
 
 }
 
