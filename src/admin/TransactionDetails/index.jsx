@@ -9,9 +9,10 @@ import { formatDate } from '../../common/dateUtils'
 
 const TransactionDetails = (props) => {
     const buildMessages = () => {
-        if (transaction.messages[0]) {
-            return (
-                <div className='col-1'>
+        if (transaction.messages) {
+            if (transaction.messages[0]) {
+                return (
+                    <div className='col-1'>
                     <h5>Messages:</h5>
                     {transaction.messages.map((message, index) => (
                         <div className='navy' key={index}>
@@ -19,15 +20,15 @@ const TransactionDetails = (props) => {
                         </div>
                     ))}
                 </div>
-            )
-        } else {
-            return (
-                <div className='col-1'>
+                )
+            }
+        }
+        return (
+            <div className='col-1'>
                     <h5>Messages:</h5>
                     <div className='navy'>No Messages</div>
                 </div>
-            )
-        }
+        )
     }
 
     const { transaction } = props
@@ -36,12 +37,12 @@ const TransactionDetails = (props) => {
         <CardTable className='details-card'>
             <CardRow>
                 <div className='cardHead'>
-                    <h3>Order {transaction.id}</h3>
+                    <h3>Order {transaction.transfer_id}</h3>
                     <p className={`status-${transaction.state.toLowerCase()}`}>
                         {transaction.state}
                     </p>
                 </div>
-                <p className='subHeader'>{`Payment via ${transaction.statement_descriptor}. Customer IP:${transaction.tags.ip_address}`}</p>
+                <p className='subHeader'>{`Payment via ${transaction.statement_descriptor}.`}</p>
                 <div className='cardContent'>
                     <div className='col-1'>
                         <h5 className='grey'>Create Date:</h5>
@@ -49,27 +50,19 @@ const TransactionDetails = (props) => {
                             {formatDate(transaction.created_at)}
                         </div>
                         <h5 className='grey'>Name on the Account:</h5>
-                        <div className='navy'>{transaction.tags.name}</div>
-                        <h5 className='grey'>Email Address:</h5>
-                        <div className='navy'>{transaction.tags.email}</div>
+                        <div className='navy'>{transaction.name}</div>
+                        <h5 className='grey'>Source ID:</h5>
+                        <div className='navy'>{transaction.source}</div>
                     </div>
                     <div className='col-1'>
                         <h5>Amount:</h5>
                         <div className='navy'>${transaction.amount / 100}</div>
                         <h5>Transaction Type:</h5>
-                        <div className='navy'>{transaction.tags.type}</div>
+                        <div className='navy'>{transaction.type}</div>
                         <h5>Account:</h5>
                         <div className='navy'>
-                            {`${transaction.tags.card_brand} card ending in ${transaction.tags.account_number}`}
+                            {`${transaction.card_brand} card ending in ${transaction.last_four}`}
                         </div>
-                    </div>
-                    <div className='col-1'>
-                        <h5>Item Description:</h5>
-                        <div className='navy'>
-                            {transaction.tags.item_description}
-                        </div>
-                        <h5 className='grey'>Source ID:</h5>
-                        <div className='navy'>{transaction.source}</div>
                     </div>
                     {buildMessages()}
                 </div>

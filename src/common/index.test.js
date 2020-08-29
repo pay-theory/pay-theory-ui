@@ -9,6 +9,8 @@ import {
     formatDateString
 } from './dateUtils.js'
 
+import { validCurrency } from './accountUtils'
+
 test('display card row', async () => {
     let formatted = formatAccountCode('11')
     expect(formatted).toEqual('11')
@@ -99,4 +101,16 @@ test('test formatDateString', async () => {
     expect(formatDateString('0522')).toBe('05 / 22')
 
     expect(formatDateString('05221999')).toBe('05 / 22 / 1999')
+})
+
+test('test validCurrency', async () => {
+    expect(validCurrency('asdf')).toBe(false)
+
+    expect(validCurrency('$12.3333')).toBe(false)
+
+    expect(validCurrency('2341sdf')).toBe(false)
+
+    expect(validCurrency('12.22')).toBe('1222')
+
+    expect(validCurrency('$12345')).toBe('1234500')
 })

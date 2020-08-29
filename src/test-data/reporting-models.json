@@ -1,0 +1,43 @@
+// When requesting data filters the daya model is as follows
+
+/*
+    [
+        {"ft.id":"TRANSACTION_ID"},
+        {"ft.created_at":"CREATE_DATE"},
+        {"fid.first_name":"FIRST_NAME"},
+        {"fid.last_name":"LAST_NAME"},
+        {"fid.last_name":"LAST_NAME"},
+        {"fin.instrument_type":"TRANSFER_TYPE"},
+        {"fa.amount":"AMOUNT"},
+        {"ft.state":"STATUS"}
+    ]
+*/
+
+//Transaction Details Page
+{
+
+    //next two lines would be swapped for bank and account num info if ACH
+    "card_brand": "VISA",
+    "last_four": "4242",
+    "messages": []
+
+
+    "name": "John Doe",
+    "state": "SUCCEEDED",
+    "statement_descriptor": "PD*PAY_THEORY",
+    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
+    "created_at": "2020-05-29T17:53:47.19Z",
+    "source_id": "PIvaF2bSw1YL8V275ZH13QWe",
+    "amount": 2589,
+    "type": "CREDIT",
+}
+
+//Details for the Transactions Table
+{
+    "transfer_id": "IDtbFmtB2KZ9fNFVLy2bfYWe",
+    "state": "SUCCEEDED",
+    "created_at": "2020-05-29T17:53:47.19Z",
+    "name": "John Doe",
+    "amount": 2589,
+    "type": "CREDIT"
+}

@@ -18,7 +18,7 @@ const NavigationItem = (props) => {
         <li key={props.item.tag} data-testid={props.item.tag}>
             <Link
                 to={{
-                    pathname: props.item.tag,
+                    pathname: props.item.to,
                     state: { hash: props.item.tag }
                 }}
                 className={className}

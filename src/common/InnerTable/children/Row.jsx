@@ -6,6 +6,7 @@ import CopyAction from './CopyAction'
 import ViewAction from './ViewAction'
 import ViewDeleteAction from './ViewDeleteAction'
 import OtherAction from './OtherAction'
+import Checkbox from '../../Checkbox'
 
 const Row = (props) => {
     const columns = props.columns.map((column, col) => {
@@ -24,7 +25,8 @@ const Row = (props) => {
                     view={props.view}
                 />
             )
-        } else {
+        }
+        else {
             return (
                 <Column
                     className={column.className}
@@ -48,7 +50,8 @@ const Row = (props) => {
                     view={props.view}
                 />
             )
-        } else if (props.otherActions) {
+        }
+        else if (props.otherActions) {
             columns.push(
                 <OtherAction
                     actions={props.otherActions}
@@ -57,7 +60,8 @@ const Row = (props) => {
                     rowObject={props.rowObject}
                 />
             )
-        } else if (props.copyOnly) {
+        }
+        else if (props.copyOnly) {
             columns.push(
                 <CopyAction
                     callback={props.copyCallback}
@@ -67,7 +71,8 @@ const Row = (props) => {
                     row={props.row}
                 />
             )
-        } else {
+        }
+        else {
             columns.push(
                 <ViewAction
                     key={`${props.itemKey}-view`}
@@ -76,6 +81,27 @@ const Row = (props) => {
                 />
             )
         }
+    }
+
+    if (props.select) {
+        columns.unshift(
+            <span
+        className="table-select"
+        data-testid="select-column"
+        key={`${props.itemKey}-select`}
+      >
+        <Checkbox
+          id={props.itemKey}
+          inputProps={{
+            "data-testid": "select-item",
+            checked: props.select.selected.includes(props.row),
+            onChange: (e) => {
+              props.select.setSelected(props.select.onChange(e, props.row));
+            }
+          }}
+        />
+      </span>
+        );
     }
     return (
         <div

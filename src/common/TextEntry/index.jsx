@@ -14,7 +14,7 @@ const TextEntry = (props) => {
     delete newProps.trailingIcon
 
     return (
-        <label className={props.innerClass}>
+        <label className={`pt-text-entry ${props.outer}`}>
             <input
                 id={props.name}
                 data-testid={props.name}
@@ -38,7 +38,7 @@ const TextEntry = (props) => {
                 <div className='helpless' data-testid="helpless" />
             )}
             <style jsx='true'>{`
-                label {
+                .pt-text-entry {
                     --pay-theory-safari-helper1: rgb(
                         var(--pay-theory-primary-rgb, 22, 15, 61)
                     );
@@ -61,8 +61,8 @@ const TextEntry = (props) => {
                 }
 
                 /* Input, Textarea */
-                label > input,
-                label > textarea {
+                .pt-text-entry > input,
+                .pt-text-entry > textarea {
                     box-sizing: border-box;
                     margin: 0;
                     border: solid 1px; /* Safari */
@@ -86,8 +86,8 @@ const TextEntry = (props) => {
                 }
 
                 /* Span */
-                label > input + span,
-                label > textarea + span {
+                .pt-text-entry > input + span,
+                .pt-text-entry > textarea + span {
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -106,10 +106,10 @@ const TextEntry = (props) => {
                 }
 
                 /* Corners */
-                label > input + span::before,
-                label > input + span::after,
-                label > textarea + span::before,
-                label > textarea + span::after {
+                .pt-text-entry > input + span::before,
+                .pt-text-entry > input + span::after,
+                .pt-text-entry > textarea + span::before,
+                .pt-text-entry > textarea + span::after {
                     content: '';
                     display: block;
                     box-sizing: border-box;
@@ -126,15 +126,15 @@ const TextEntry = (props) => {
                     transition: border-color 0.2s, box-shadow 0.2s;
                 }
 
-                label > input + span::before,
-                label > textarea + span::before {
+                .pt-text-entry > input + span::before,
+                .pt-text-entry > textarea + span::before {
                     margin-right: 4px;
                     border-left: solid 1px transparent;
                     border-radius: 4px 0;
                 }
 
-                label > input + span::after,
-                label > textarea + span::after {
+                .pt-text-entry > input + span::after,
+                .pt-text-entry > textarea + span::after {
                     flex-grow: 1;
                     margin-left: 4px;
                     border-right: solid 1px transparent;
@@ -142,8 +142,8 @@ const TextEntry = (props) => {
                 }
 
                 /* Hover */
-                label:hover > input,
-                label:hover > textarea {
+                .pt-text-entry:hover > input,
+                .pt-text-entry:hover > textarea {
                     border-color: rgba(
                         var(--pay-theory-onsurface-rgb, 0, 0, 0),
                         0.87
@@ -151,18 +151,18 @@ const TextEntry = (props) => {
                     border-top-color: transparent;
                 }
 
-                label:hover > input + span::before,
-                label:hover > textarea + span::before,
-                label:hover > input + span::after,
-                label:hover > textarea + span::after {
+                .pt-text-entry:hover > input + span::before,
+                .pt-text-entry:hover > textarea + span::before,
+                .pt-text-entry:hover > input + span::after,
+                .pt-text-entry:hover > textarea + span::after {
                     border-top-color: rgba(
                         var(--pay-theory-onsurface-rgb, 0, 0, 0),
                         0.87
                     );
                 }
 
-                label:hover > input:not(:focus):placeholder-shown,
-                label:hover > textarea:not(:focus):placeholder-shown {
+                .pt-text-entry:hover > input:not(:focus):placeholder-shown,
+                .pt-text-entry:hover > textarea:not(:focus):placeholder-shown {
                     border-color: rgba(
                         var(--pay-theory-onsurface-rgb, 0, 0, 0),
                         0.87
@@ -170,30 +170,30 @@ const TextEntry = (props) => {
                 }
 
                 /* Placeholder-shown */
-                label > input:not(:focus):placeholder-shown,
-                label > textarea:not(:focus):placeholder-shown {
+                .pt-text-entry > input:not(:focus):placeholder-shown,
+                .pt-text-entry > textarea:not(:focus):placeholder-shown {
                     border-top-color: rgba(
                         var(--pay-theory-onsurface-rgb, 0, 0, 0),
                         0.6
                     );
                 }
 
-                label > input:not(:focus):placeholder-shown + span,
-                label > textarea:not(:focus):placeholder-shown + span {
+                .pt-text-entry > input:not(:focus):placeholder-shown + span,
+                .pt-text-entry > textarea:not(:focus):placeholder-shown + span {
                     font-size: inherit;
                     line-height: 68px;
                 }
 
-                label > input:not(:focus):placeholder-shown + span::before,
-                label > textarea:not(:focus):placeholder-shown + span::before,
-                label > input:not(:focus):placeholder-shown + span::after,
-                label > textarea:not(:focus):placeholder-shown + span::after {
+                .pt-text-entry > input:not(:focus):placeholder-shown + span::before,
+                .pt-text-entry > textarea:not(:focus):placeholder-shown + span::before,
+                .pt-text-entry > input:not(:focus):placeholder-shown + span::after,
+                .pt-text-entry > textarea:not(:focus):placeholder-shown + span::after {
                     border-top-color: transparent;
                 }
 
                 /* Valid */
-                label > input:valid:not(:placeholder-shown),
-                label > textarea:valid:not(:placeholder-shown) {
+                .pt-text-entry > input:valid:not(:placeholder-shown),
+                .pt-text-entry > textarea:valid:not(:placeholder-shown) {
                     border-color: rgb(
                         var(--pay-theory-primary-rgb, 39, 203, 124)
                     );
@@ -205,15 +205,15 @@ const TextEntry = (props) => {
                     outline: none;
                 }
 
-                label > input:valid:not(:placeholder-shown) + span,
-                label > textarea:valid:not(:placeholder-shown) + span {
+                .pt-text-entry > input:valid:not(:placeholder-shown) + span,
+                .pt-text-entry > textarea:valid:not(:placeholder-shown) + span {
                     color: rgb(var(--pay-theory-primary-rgb, 39, 203, 124));
                 }
 
-                label > input:valid:not(:placeholder-shown) + span::before,
-                label > input:valid:not(:placeholder-shown) + span::after,
-                label > textarea:valid:not(:placeholder-shown) + span::before,
-                label > textarea:valid:not(:placeholder-shown) + span::after {
+                .pt-text-entry > input:valid:not(:placeholder-shown) + span::before,
+                .pt-text-entry > input:valid:not(:placeholder-shown) + span::after,
+                .pt-text-entry > textarea:valid:not(:placeholder-shown) + span::before,
+                .pt-text-entry > textarea:valid:not(:placeholder-shown) + span::after {
                     border-top-color: var(
                         --pay-theory-safari-valid-helper1
                     ) !important;
@@ -222,8 +222,8 @@ const TextEntry = (props) => {
                 }
 
                 /* Invalid */
-                label > input:invalid:not(:focus),
-                label > textarea:invalid:not(:focus) {
+                .pt-text-entry > input:invalid:not(:focus),
+                .pt-text-entry > textarea:invalid:not(:focus) {
                     border-color: rgb(
                         var(--pay-theory-primary-rgb, 237, 69, 76)
                     );
@@ -235,15 +235,15 @@ const TextEntry = (props) => {
                     outline: none;
                 }
 
-                label > input:invalid:not(:focus) + span,
-                label > textarea:invalid:not(:focus) + span {
+                .pt-text-entry > input:invalid:not(:focus) + span,
+                .pt-text-entry > textarea:invalid:not(:focus) + span {
                     color: rgb(var(--pay-theory-primary-rgb, 237, 69, 76));
                 }
 
-                label > input:invalid:not(:focus) + span::before,
-                label > input:invalid:not(:focus) + span::after,
-                label > textarea:invalid:not(:focus) + span::before,
-                label > textarea:invalid:not(:focus) + span::after {
+                .pt-text-entry > input:invalid:not(:focus) + span::before,
+                .pt-text-entry > input:invalid:not(:focus) + span::after,
+                .pt-text-entry > textarea:invalid:not(:focus) + span::before,
+                .pt-text-entry > textarea:invalid:not(:focus) + span::after {
                     border-top-color: var(
                         --pay-theory-safari-invalid-helper1
                     ) !important;
@@ -252,8 +252,8 @@ const TextEntry = (props) => {
                 }
 
                 /* Focus */
-                label > input:focus,
-                label > textarea:focus {
+                .pt-text-entry > input:focus,
+                .pt-text-entry > textarea:focus {
                     border-color: rgb(
                         var(--pay-theory-primary-rgb, 22, 15, 61)
                     );
@@ -264,15 +264,15 @@ const TextEntry = (props) => {
                     outline: none;
                 }
 
-                label > input:focus + span,
-                label > textarea:focus + span {
+                .pt-text-entry > input:focus + span,
+                .pt-text-entry > textarea:focus + span {
                     color: rgb(var(--pay-theory-primary-rgb, 22, 15, 61));
                 }
 
-                label > input:focus + span::before,
-                label > input:focus + span::after,
-                label > textarea:focus + span::before,
-                label > textarea:focus + span::after {
+                .pt-text-entry > input:focus + span::before,
+                .pt-text-entry > input:focus + span::after,
+                .pt-text-entry > textarea:focus + span::before,
+                .pt-text-entry > textarea:focus + span::after {
                     border-top-color: var(
                         --pay-theory-safari-helper1
                     ) !important;
@@ -280,10 +280,10 @@ const TextEntry = (props) => {
                 }
 
                 /* Disabled */
-                label > input:disabled,
-                label > input:disabled + span,
-                label > textarea:disabled,
-                label > textarea:disabled + span {
+                .pt-text-entry > input:disabled,
+                .pt-text-entry > input:disabled + span,
+                .pt-text-entry > textarea:disabled,
+                .pt-text-entry > textarea:disabled + span {
                     border-color: rgba(
                         var(--pay-theory-onsurface-rgb, 0, 0, 0),
                         0.38
@@ -293,44 +293,44 @@ const TextEntry = (props) => {
                     pointer-events: none;
                 }
 
-                label > input:disabled + span::before,
-                label > input:disabled + span::after,
-                label > textarea:disabled + span::before,
-                label > textarea:disabled + span::after {
+                .pt-text-entry > input:disabled + span::before,
+                .pt-text-entry > input:disabled + span::after,
+                .pt-text-entry > textarea:disabled + span::before,
+                .pt-text-entry > textarea:disabled + span::after {
                     border-top-color: rgba(
                         var(--pay-theory-onsurface-rgb, 0, 0, 0),
                         0.38
                     ) !important;
                 }
 
-                label > input:disabled:placeholder-shown,
-                label > input:disabled:placeholder-shown + span,
-                label > textarea:disabled:placeholder-shown,
-                label > textarea:disabled:placeholder-shown + span {
+                .pt-text-entry > input:disabled:placeholder-shown,
+                .pt-text-entry > input:disabled:placeholder-shown + span,
+                .pt-text-entry > textarea:disabled:placeholder-shown,
+                .pt-text-entry > textarea:disabled:placeholder-shown + span {
                     border-top-color: rgba(
                         var(--pay-theory-onsurface-rgb, 0, 0, 0),
                         0.38
                     ) !important;
                 }
 
-                label > input:disabled:placeholder-shown + span::before,
-                label > input:disabled:placeholder-shown + span::after,
-                label > textarea:disabled:placeholder-shown + span::before,
-                label > textarea:disabled:placeholder-shown + span::after {
+                .pt-text-entry > input:disabled:placeholder-shown + span::before,
+                .pt-text-entry > input:disabled:placeholder-shown + span::after,
+                .pt-text-entry > textarea:disabled:placeholder-shown + span::before,
+                .pt-text-entry > textarea:disabled:placeholder-shown + span::after {
                     border-top-color: transparent !important;
                 }
 
                 /* Faster transition in Safari for less noticable fractional font-size issue */
                 @media not all and (min-resolution: 0.001dpcm) {
                     @supports (-webkit-appearance: none) {
-                        label > input,
-                        label > input + span,
-                        label > textarea,
-                        label > textarea + span,
-                        label > input + span::before,
-                        label > input + span::after,
-                        label > textarea + span::before,
-                        label > textarea + span::after {
+                        .pt-text-entry > input,
+                        .pt-text-entry > input + span,
+                        .pt-text-entry > textarea,
+                        .pt-text-entry > textarea + span,
+                        .pt-text-entry > input + span::before,
+                        .pt-text-entry > input + span::after,
+                        .pt-text-entry > textarea + span::before,
+                        .pt-text-entry > textarea + span::after {
                             transition-duration: 0.1s;
                         }
                     }
@@ -343,7 +343,7 @@ const TextEntry = (props) => {
 TextEntry.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    innerClass: PropTypes.string,
+    innerclass: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.any,
     leadingIcon: PropTypes.any,

@@ -1830,3 +1830,32 @@ const roles = {
 }
 
 export { systemRoles, districtRoles, partnerRoles, roles }
+
+const filterBarOptions = [
+    {
+        label: 'Transaction ID',
+        value: 'id'
+    },
+    {
+        label: 'Create Date',
+        value: 'created_at'
+    },
+    {
+        label: 'Customer Name',
+        value: 'name'
+    },
+    {
+        label: 'Transaction Type',
+        value: 'transactionType'
+    },
+    {
+        label: 'Amount',
+        value: 'amount'
+    },
+    {
+        label: 'Status',
+        value: 'status'
+    }
+]
+
+export { filterBarOptions }

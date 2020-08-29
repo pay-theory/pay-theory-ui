@@ -25,7 +25,6 @@ const AccountCodeBar = (props) => {
         <div className='search-account-codes'>
             <TextEntry
                 data-testid='fund'
-                innerclass='account-code-search'
                 inputprops={{
                     minLength: '3',
                     maxLength: '3',
@@ -34,12 +33,12 @@ const AccountCodeBar = (props) => {
                 label='Fund'
                 name='fund'
                 onChange={onChange}
+                outer='account-code-search'
                 value={searchState.fund}
             />
             {` - `}
             <TextEntry
                 data-testid='receipt'
-                innerclass='account-code-search'
                 inputprops={{
                     minLength: '4',
                     maxLength: '4',
@@ -48,12 +47,12 @@ const AccountCodeBar = (props) => {
                 label='Receipt'
                 name='receipt'
                 onChange={onChange}
+                outer='account-code-search'
                 value={searchState.receipt}
             />
             {` - `}
             <TextEntry
                 data-testid='scc'
-                innerclass='account-code-search'
                 inputprops={{
                     minLength: '4',
                     maxLength: '4',
@@ -62,12 +61,12 @@ const AccountCodeBar = (props) => {
                 label='SCC'
                 name='scc'
                 onChange={onChange}
+                outer='account-code-search'
                 value={searchState.scc}
             />
             {` - `}
             <TextEntry
                 data-testid='subject'
-                innerclass='account-code-search'
                 inputprops={{
                     minLength: '6',
                     maxLength: '6',
@@ -76,12 +75,12 @@ const AccountCodeBar = (props) => {
                 label='Subject'
                 name='subject'
                 onChange={onChange}
+                outer='account-code-search'
                 value={searchState.subject}
             />
             {` - `}
             <TextEntry
                 data-testid='opu'
-                innerclass='account-code-search'
                 inputprops={{
                     minLength: '3',
                     maxLength: '3',
@@ -90,15 +89,16 @@ const AccountCodeBar = (props) => {
                 label='OPU'
                 name='opu'
                 onChange={onChange}
+                outer='account-code-search'
                 value={searchState.opu}
             />
             <div className='spacer' />
             <TextEntry
                 data-testid='description'
-                innerclass='account-code-search'
                 label='Description'
                 name='description'
                 onChange={onChange}
+                outer='account-code-search'
                 value={searchState.description}
             />
             <div className='spacer' />

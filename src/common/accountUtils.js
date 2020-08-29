@@ -1,7 +1,7 @@
 const generateTableColumns = () => {
     return [
-        { className: 'account-name', label: 'name' },
-        { className: 'account-full-name', label: 'email' },
+        { className: 'account-name', label: 'account name' },
+        { className: 'account-full-name', label: 'full name' },
         { className: 'account-email', label: 'email' }
     ]
 }
@@ -71,10 +71,33 @@ const validPhone = (phoneIn) => {
     return phone
 }
 
+const validCurrency = (input) => {
+    const userInput = input[0] === '$' ? input.substring(1) : input
+    if (userInput.includes('.')) {
+        const match = userInput.match(/\d+\.\d{2}\b/g)
+        if (match) {
+            if (match.length === 1)
+                return match[0].length === userInput.length
+                    ? match[0].replace(/\./g, '')
+                    : false
+        }
+    } else {
+        const match = userInput.match(/\d+/g)
+        if (match) {
+            if (match.length === 1)
+                return match[0].length === userInput.length
+                    ? `${match[0]}00`
+                    : false
+        }
+    }
+    return false
+}
+
 export {
     validPhone,
     formatPhone,
     validEmail,
     generateTableRows,
-    generateTableColumns
+    generateTableColumns,
+    validCurrency
 }
