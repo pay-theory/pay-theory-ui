@@ -51,7 +51,7 @@ const TransactionsTable = (props) => {
             content: (
               <span className="payment-account-detail">
                 <span
-                  className={`pay-theory-card-badge pay-theory-card-${item.card_brand.toLowerCase()}`}
+                  className={`pay-theory-card-badge pay-theory-card-${item.card_brand ? item.card_brand.toLowerCase() : 'unknown'}`}
                 />
                 ending in {item.last_four}
               </span>
