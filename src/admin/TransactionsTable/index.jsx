@@ -6,7 +6,6 @@ import { InnerTable, CardTable } from '../../common'
 import { formatDate } from '../../common/dateUtils'
 
 const formatFee = (fee) => {
-<<<<<<< HEAD
   return `$${fee / 100}`
 }
 
@@ -27,57 +26,11 @@ const TransactionsTable = (props) => {
       { className: 'status', label: 'Status' }
     ]
   }
-=======
-  return `$${(fee / 100).toFixed(2)}`;
-};
 
-const formatString = (string) => {
-  return string[0] + string.substring(1).toLowerCase();
-};
-
-const TransactionsTable = (props) => {
-  const {
-    transactions,
-    viewTransaction,
-    handleRefund,
-    handleResendingEmail
-  } = props;
-
-  const generateTableColumns = () => {
-    return [
-      { className: "transaction-id", label: "Transaction ID" },
-      { className: "update-date", label: "Update Date" },
-      { className: "customer-name", label: "Customer Name" },
-      { className: "account-type", label: "Account Type" },
-      { className: "payment-account", label: "Payment Account" },
-      { className: "amount numeric", label: "Amount" },
-      { className: "status", label: "Status" }
-    ];
-  };
->>>>>>> master
   const generateTableRows = (reports) => {
     return reports.map((item, i) => {
       return {
         columns: [{
-<<<<<<< HEAD
-            className: 'transaction-id',
-            content: item.id
-          },
-          {
-            className: 'create-date',
-            content: formatDate(item.created_at)
-          },
-          {
-            className: 'customer-name',
-            content: item.tags.name
-          },
-          {
-            className: 'transaction-type',
-            content: item.tags.type
-          },
-          {
-            className: 'amount numeric',
-=======
             className: "transaction-id",
             content: item.transfer_id
           },
@@ -106,7 +59,6 @@ const TransactionsTable = (props) => {
           },
           {
             className: "amount numeric",
->>>>>>> master
             content: formatFee(item.amount)
           },
           {
@@ -114,101 +66,6 @@ const TransactionsTable = (props) => {
             content: formatString(item.state)
           }
         ],
-<<<<<<< HEAD
-        key: item.id,
-        view: () => viewTransaction(item),
-        item: item
-      }
-    })
-  }
-
-  const otherActions = [{
-      action: handleRefund,
-      label: 'Refund',
-      icon: 'fa-undo'
-    },
-    {
-      action: handleResendingEmail,
-      label: 'Resend Email',
-      icon: 'fa-envelope'
-    },
-    {
-      action: handleVoid,
-      label: 'Void',
-      icon: 'fa-times-circle'
-    }
-  ]
-
-  return (
-    <CardTable>
-            <InnerTable
-                columns={generateTableColumns()}
-                hasActions
-                otherActions={otherActions}
-                rows={generateTableRows(transactions)}
-            >
-                <style global='true' jsx='true'>
-                    {`
-                        .transaction-id {
-                            width: 220px;
-                        }
-                        .create-date {
-                            width: 110px;
-                        }
-                        .status {
-                            min-width: 120px;
-                        }
-                        .amount {
-                            width: 60px;
-                        }
-                        .transaction-type {
-                            width: 120px;
-                        }
-                        .customer-name {
-                            width: 120px;
-                        }
-                        .actions {
-                            width: 120px !important;
-                        }
-
-                        .canceled p,
-                        .pending p,
-                        .succeeded p {
-                            border-radius: 14px;
-                            color: white;
-                            height: 28px;
-                            min-width: auto;
-                            justify-content: center;
-                            align-items: center;
-                            display: flex;
-                            font-size: 16px;
-                        }
-
-                        .succeeded p {
-                            background: #0bd8aa;
-                        }
-
-                        .canceled p {
-                            background: #ed454c;
-                        }
-
-                        .pending p {
-                            background: #cad3dd;
-                        }
-                    `}
-                </style>
-            </InnerTable>
-        </CardTable>
-  )
-}
-
-TransactionsTable.propTypes = {
-  transactions: PropTypes.array.isRequired,
-  viewTransaction: PropTypes.func.isRequired,
-  handleRefund: PropTypes.func.isRequired,
-  handleResendingEmail: PropTypes.func.isRequired,
-  handleVoid: PropTypes.func.isRequired
-=======
         key: item.transfer_id,
         view: () => viewTransaction(item),
         item: item
@@ -291,7 +148,6 @@ TransactionsTable.propTypes = {
             .declined p {
               background: #ea4141;
             }
->>>>>>> master
 
             .pending p {
               background: #cac4ca;
