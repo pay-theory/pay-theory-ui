@@ -21,7 +21,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
         const newList = filterList;
         const newFilter = {};
         newFilter.category = filterCategory;
-        if (filterCategory.includes("created")) {
+        if (filterCategory.includes("updated")) {
             if (validDate(filterText))
                 newFilter.text = new Date(filterText).toISOString();
         }
