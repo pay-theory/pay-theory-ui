@@ -14,7 +14,7 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-  const { transactions, viewTransaction, handleRefund, handleResendingEmail, handleVoid } = props
+  const { transactions, viewTransaction, handleRefund, handleResendingEmail, selected, setSelected } = props
 
   const generateTableColumns = () => {
     return [
@@ -93,8 +93,8 @@ const TransactionsTable = (props) => {
         hasActions
         otherActions={otherActions}
         rows={generateTableRows(transactions)}
-        selected={props.selected}
-        setSelected={props.setSelected}
+        selected={selected}
+        setSelected={setSelected}
       >
         <style global="true" jsx="true">
           {`
@@ -199,8 +199,8 @@ TransactionsTable.propTypes = {
   viewTransaction: PropTypes.func.isRequired,
   handleRefund: PropTypes.func.isRequired,
   handleResendingEmail: PropTypes.func.isRequired,
-  selected: PropTypes.array,
-  setSelected: PropTypes.func
+  selected: PropTypes.array.isRequired,
+  setSelected: PropTypes.func.isRequired
 };
 
 export default TransactionsTable;

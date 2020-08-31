@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Button = ({
-  label,
-  color,
-  leadingIcon,
-  trailingIcon,
-  onClick,
-  disabled,
-  type,
-  name
+    label,
+    color,
+    leadingIcon,
+    trailingIcon,
+    onClick,
+    disabled,
+    type,
+    name
 }) => {
-  return (
-    <button
-            className={`pt-button ${color || 'default'} ${
+    return (
+        <button
+            className={`pt-button ${color || 'primary'} ${
                 disabled ? 'disabled' : ''
             }`}
             id={name}
@@ -87,14 +87,14 @@ const Button = ({
                         display: block;
                     }
 
-                    .pt-button.default {
+                    .pt-button.primary {
                         background-color: #7c2cdd;
                         border: 1px solid transparent;
                         color: #ffffff;
                     }
 
                     .pt-button.light {
-                        background-color: #f2f2f2;
+                        background-color: #ffffff;
                         border: 1px solid #6a606d;
                         color: black;
                     }
@@ -116,18 +116,18 @@ const Button = ({
                 `}
             </style>
         </button>
-  )
+    )
 }
 
 Button.propTypes = {
-  color: PropTypes.string,
-  disabled: PropTypes.bool,
-  label: PropTypes.string.isRequired,
-  leadingIcon: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  trailingIcon: PropTypes.string,
-  type: PropTypes.string
+    color: PropTypes.string,
+    disabled: PropTypes.bool,
+    label: PropTypes.string.isRequired,
+    leadingIcon: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    trailingIcon: PropTypes.string,
+    type: PropTypes.string
 }
 
 export default Button

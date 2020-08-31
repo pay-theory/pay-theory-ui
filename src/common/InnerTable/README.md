@@ -46,3 +46,11 @@ A UI component that builds a table with the ability to include delete or copy ac
             icon: "fa-envelope"
         }
         ```
+
+-   **selected**: PropTypes.array
+
+    -   Empty array that can be passed to allow user to select multiple rows to act upon. Array will include the index of the rows selected
+
+-   **setSelected**: PropTypes.func
+
+    -   Funciton that will allow the selected array to be set as the user makes chnages to the checkboxes at the begining of rows

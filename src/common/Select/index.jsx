@@ -232,7 +232,7 @@ Select.propTypes = {
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.array.isRequired,
-    value: PropTypes.string
+    value: PropTypes.string.isRequired
 }
 
 export default Select

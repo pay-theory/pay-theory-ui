@@ -5,30 +5,29 @@ import PropTypes from 'prop-types'
 import * as children from './children'
 
 const InnerTable = (props) => {
-    const establishSelection = (event, item) => {
-        const selection = props.selected.slice(0);
-        if (event.target.checked) {
-            selection.push(item);
-        }
-        else {
-            var toGo = selection.indexOf(item);
+  const establishSelection = (event, item) => {
+    const selection = props.selected.slice(0);
+    if (event.target.checked) {
+      selection.push(item);
+    }
+    else {
+      var toGo = selection.indexOf(item);
 
-            selection.splice(toGo, 1);
-        }
-        return selection;
-    };
+      selection.splice(toGo, 1);
+    }
+    return selection;
+  };
 
-    const selected = props.selected ?
-        {
-            onChange: establishSelection,
-            selected: props.selected,
-            setSelected: props.setSelected,
-            tableData: props.rows
-        } :
-        null;
+  const selected = props.selected ? {
+      onChange: establishSelection,
+      selected: props.selected,
+      setSelected: props.setSelected,
+      tableData: props.rows
+    } :
+    null;
 
-    return (
-        <div id="body-content">
+  return (
+    <div id="body-content">
       <div className="inner-table">
         <children.HeaderRow
           columns={props.columns}
@@ -185,17 +184,19 @@ const InnerTable = (props) => {
         `}
       </style>
     </div>
-    );
+  );
 };
 
 InnerTable.propTypes = {
-    columns: PropTypes.array.isRequired,
-    rows: PropTypes.array.isRequired,
-    visibility: PropTypes.bool,
-    hasActions: PropTypes.bool,
-    canDelete: PropTypes.bool,
-    copyOnly: PropTypes.bool,
-    otherActions: PropTypes.array
+  columns: PropTypes.array.isRequired,
+  rows: PropTypes.array.isRequired,
+  visibility: PropTypes.bool,
+  hasActions: PropTypes.bool,
+  canDelete: PropTypes.bool,
+  copyOnly: PropTypes.bool,
+  otherActions: PropTypes.array,
+  selected: PropTypes.array,
+  setSelected: PropTypes.func
 };
 
 export default InnerTable;

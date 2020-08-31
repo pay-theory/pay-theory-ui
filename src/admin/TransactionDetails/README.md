@@ -8,4 +8,4 @@ A UI element that shows specific details of a transaction
 
 ## Props
 
--   transaction: a transaction object passed to it from the TransactionsTable element.
+-   transaction: a transaction object passed it parses to display the details
