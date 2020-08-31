@@ -16,6 +16,13 @@ const formatString = (string) => {
 const TransactionsTable = (props) => {
   const { transactions, viewTransaction, handleRefund, handleResendingEmail, selected, setSelected, sort } = props
 
+  const bulkAction = (action) => {
+    selected.forEach((index) => {
+      action(transactions[index]);
+    });
+    setSelected([])
+  };
+
   const generateTableColumns = () => {
     return [
       { className: 'transaction-id', label: 'Transaction ID' },
@@ -87,6 +94,7 @@ const TransactionsTable = (props) => {
   ];
 
   return (
+    <React.Fragment>
     <CardTable>
       <InnerTable
         columns={generateTableColumns()}
@@ -97,6 +105,24 @@ const TransactionsTable = (props) => {
         setSelected={setSelected}
         sort={sort}
       >
+      </InnerTable>
+    </CardTable>
+    <div className="group-button">
+        <Button
+          label={selected.length > 1 ? "Resend Emails" : "Resend Email"}
+          disabled={!selected.length}
+          leadingIcon="envelope"
+          onClick={() => bulkAction(handleResendingEmail)}
+          small
+        />
+        <Button
+          label={selected.length > 1 ? "Refund Transactions" : "Refund Transaction"}
+          disabled={!selected.length}
+          leadingIcon="envelope"
+          onClick={() => bulkAction(handleRefund)}
+          small
+        />
+        </div>
         <style global="true" jsx="true">
           {`
             .transaction-id {
@@ -188,10 +214,18 @@ const TransactionsTable = (props) => {
             .payment-account-detail {
               display: flex;
             }
+
+            .group-button {
+              display: flex;
+              justify-content: flex-end;
+              margin: 10px 24px;
+            }
+            .group-button button {
+              margin-left: 10px;
+            }
           `}
         </style>
-      </InnerTable>
-    </CardTable>
+    </React.Fragment>
   );
 };
 

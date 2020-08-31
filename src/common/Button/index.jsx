@@ -9,13 +9,14 @@ const Button = ({
     onClick,
     disabled,
     type,
-    name
+    name,
+    small
 }) => {
     return (
         <button
-            className={`pt-button ${color || 'primary'} ${
-                disabled ? 'disabled' : ''
-            }`}
+            className={`pt-button ${color || 'primary'}
+            ${disabled ? 'disabled' : ''}
+            ${small? 'small' : ''}`}
             id={name}
             data-testid={name}
             disabled={disabled}
@@ -113,6 +114,11 @@ const Button = ({
                         background-color: #8e868f !important;
                         box-shadow: none !important;
                     }
+
+                    .pt-button.small {
+                        height: 35px;
+                        font-size: 11pt;
+                    }
                 `}
             </style>
         </button>
@@ -126,6 +132,7 @@ Button.propTypes = {
     leadingIcon: PropTypes.string,
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
+    small: PropTypes.bool,
     trailingIcon: PropTypes.string,
     type: PropTypes.string
 }

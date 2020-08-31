@@ -25,6 +25,8 @@ A UI component that creates a styled button element
     -   a bool that sets if the button is disabled or not
 -   **leadingIcon**: PropTypes.string
     -   a string that will set an icon before the label inside the button. Pull the name from the font-awesome library.
+-   **small**: PropTypes.bool
+    -   a bool that if passed will style the button to have a smaller height and font
 -   **trailingIcon**: PropTypes.string
     -   a string that will set an icon after the label inside the button. Pull the name from the font-awesome library.
 -   **type**: PropTypes.string
