@@ -26,6 +26,6 @@ A UI component that creates a styled button element
 -   **leadingIcon**: PropTypes.string
     -   a string that will set an icon before the label inside the button. Pull the name from the font-awesome library.
 -   **trailingIcon**: PropTypes.string
-    -    a string that will set an icon after the label inside the button. Pull the name from the font-awesome library.
+    -   a string that will set an icon after the label inside the button. Pull the name from the font-awesome library.
 -   **type**: PropTypes.string
     -   a string that sets the button type. Default is button but it can also be set to submit or reset.

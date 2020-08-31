@@ -12,6 +12,8 @@ test('display TransactionsTable w/ working action buttons', async() => {
     const handleRefund = jest.fn()
     const handleResendingEmail = jest.fn()
     const handleVoid = jest.fn()
+    let selected = []
+    const setSelected = newSelected => selected = newSelected
 
     const firstTransaction = 'TRbiLuFNX3XFREN83oZDSEdm'
 
@@ -22,6 +24,8 @@ test('display TransactionsTable w/ working action buttons', async() => {
         handleRefund={handleRefund}
         handleResendingEmail={handleResendingEmail}
         handleVoid={handleVoid}
+        selected={selected}
+        setSelected={setSelected}
         />
     )
 

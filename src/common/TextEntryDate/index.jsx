@@ -13,7 +13,7 @@ const TextEntryDate = (props) => {
             label={props.label}
             outer={props.outer}
             value={props.value}
-            isValid={(() => validDate(props.value))()}
+            isValid={(() => validDate(props.value))? true : false}
             onChange={(e) => {
                 const formatted = formatDateString(e.target.value)
                 props.onChange(formatted)

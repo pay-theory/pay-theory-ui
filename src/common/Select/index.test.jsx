@@ -10,7 +10,7 @@ import { filterBarOptions } from '../../test-data'
 
 test('display select', async() => {
     const change = jest.fn()
-    const { getByText } = render(<Select label='test' onChange={change} options={filterBarOptions} name='pt-select' />)
+    const { getByText } = render(<Select label='test' onChange={change} options={filterBarOptions} name='pt-select' value="" />)
 
     expect(getByText('test')).toBeInTheDocument()
 

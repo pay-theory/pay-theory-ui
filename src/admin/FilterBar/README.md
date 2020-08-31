@@ -19,4 +19,4 @@ A UI component that creates a search bar to add filters to an array specifically
 
 ### Optional
 
--  None
+-   None

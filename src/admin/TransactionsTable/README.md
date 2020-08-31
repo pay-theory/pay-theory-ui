@@ -25,4 +25,4 @@ A UI component that creates a table to display transactions
 
 ### Optional
 
--  None
+-   None
