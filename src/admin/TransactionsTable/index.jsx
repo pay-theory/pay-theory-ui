@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { InnerTable, CardTable } from '../../common'
+import { InnerTable, CardTable, Button } from '../../common'
 
 import { formatDate } from '../../common/dateUtils'
 
