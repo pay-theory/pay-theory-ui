@@ -139,7 +139,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                             data-testid='filter-tag'
                         >
                             {`${label}: ${
-                                label.includes("Created")
+                                label.includes("Updated")
                                 ? formatDate(filter.text)
                                 : label.includes("Amount")
                                 ? `$${(filter.text / 100).toFixed(2)}`
