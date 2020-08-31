@@ -197,7 +197,8 @@ InnerTable.propTypes = {
   copyOnly: PropTypes.bool,
   otherActions: PropTypes.array,
   selected: PropTypes.array,
-  setSelected: PropTypes.func
+  setSelected: PropTypes.func,
+  sort: PropTypes.object
 };
 
 export default InnerTable;

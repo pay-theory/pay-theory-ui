@@ -19,9 +19,9 @@ const TransactionsTable = (props) => {
   const generateTableColumns = () => {
     return [
       { className: 'transaction-id', label: 'Transaction ID' },
-      { className: 'create-date', label: 'Create Date' },
+      { className: 'update-date', label: 'Update Date' },
       { className: 'customer-name', label: 'Customer Name' },
-      { className: 'transaction-type', label: 'Transaction Type' },
+      { className: 'account-type', label: 'Account Type' },
       { className: 'payment-account', label: 'Payment Account' },
       { className: 'amount numeric', label: 'Amount' },
       { className: 'status', label: 'Status' }
