@@ -44,7 +44,7 @@ const HeaderRow = (props) => {
               selected.length > 0 && selected.length === tableData.length,
             onChange: (e) => {
               if (e.target.checked) {
-                setSelected([...new Array(tableData.length).keys()]);
+                setSelected(Array.from(Array(tableData.length).keys()));
               } else {
                 setSelected([]);
               }
