@@ -113,13 +113,15 @@ const TransactionsTable = (props) => {
           disabled={!selected.length}
           leadingIcon="envelope"
           onClick={() => bulkAction(handleResendingEmail)}
+          name="group-email"
           small
         />
         <Button
           label={selected.length > 1 ? "Refund Transactions" : "Refund Transaction"}
           disabled={!selected.length}
-          leadingIcon="envelope"
+          leadingIcon="undo"
           onClick={() => bulkAction(handleRefund)}
+          name="group-refund"
           small
         />
         </div>
