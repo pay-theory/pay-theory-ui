@@ -230,4 +230,47 @@ test('display district list with checkboxes to select columns', async() => {
     fireEvent.click(queryByTestId('header-select-item'))
 
     expect(selected.length).toBe(2)
+
+    fireEvent.click(queryByTestId('item-name-0'))
+})
+
+test('display district list with checkboxes to select columns', async() => {
+    let sort = {}
+    const { getByText, queryByTestId, queryAllByTestId } = render(
+        <Router>
+            <InnerTable
+                columns={generateTableColumns()}
+                rows={generateTableRows(itemsArray)}
+                sort={sort}
+            />
+        </Router>
+    )
+
+    expect(sort.descending).toBe(undefined)
+    expect(sort.ascending).toBe(undefined)
+
+    fireEvent.click(queryByTestId('item-name-0'))
+
+    expect(sort.descending).toBe('item-name')
+    expect(sort.ascending).toBe('')
+
+    fireEvent.click(queryByTestId('item-name-0'))
+
+    expect(sort.descending).toBe('')
+    expect(sort.ascending).toBe('item-name')
+
+    fireEvent.click(queryByTestId('item-name-0'))
+
+    expect(sort.descending).toBe('')
+    expect(sort.ascending).toBe('')
+
+    fireEvent.click(queryByTestId('item-name-0'))
+
+    expect(sort.descending).toBe('item-name')
+    expect(sort.ascending).toBe('')
+
+    fireEvent.click(queryByTestId('item-description-1'))
+
+    expect(sort.descending).toBe('item-description')
+    expect(sort.ascending).toBe('')
 })

@@ -54,3 +54,7 @@ A UI component that builds a table with the ability to include delete or copy ac
 -   **setSelected**: PropTypes.func
 
     -   Funciton that will allow the selected array to be set as the user makes chnages to the checkboxes at the begining of rows
+
+-   **sort**
+
+    -   Object that will keep track of the column you want to sort by ascending or descinding. You can pass it a blank object and it will then set the ascending and descinding keys on first click of header.

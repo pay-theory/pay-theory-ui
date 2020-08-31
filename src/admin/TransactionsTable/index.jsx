@@ -14,7 +14,7 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-  const { transactions, viewTransaction, handleRefund, handleResendingEmail, selected, setSelected } = props
+  const { transactions, viewTransaction, handleRefund, handleResendingEmail, selected, setSelected, sort } = props
 
   const generateTableColumns = () => {
     return [
@@ -95,6 +95,7 @@ const TransactionsTable = (props) => {
         rows={generateTableRows(transactions)}
         selected={selected}
         setSelected={setSelected}
+        sort={sort}
       >
         <style global="true" jsx="true">
           {`
@@ -107,22 +108,22 @@ const TransactionsTable = (props) => {
               text-overflow: ellipsis;
             }
             .update-date {
-              width: 90px;
+              width: 105px;
             }
             .status {
               min-width: 110px;
             }
             .amount {
-              width: 60px;
+              width: 70px;
             }
             .account-type {
-              width: 100px;
+              width: 115px;
             }
             .payment-account {
               width: 150px;
             }
             .customer-name {
-              width: 120px;
+              width: 130px;
             }
             .actions {
               width: 70px !important;
@@ -200,7 +201,8 @@ TransactionsTable.propTypes = {
   handleRefund: PropTypes.func.isRequired,
   handleResendingEmail: PropTypes.func.isRequired,
   selected: PropTypes.array.isRequired,
-  setSelected: PropTypes.func.isRequired
+  setSelected: PropTypes.func.isRequired,
+  sort: PropTypes.object.isRequired
 };
 
 export default TransactionsTable;

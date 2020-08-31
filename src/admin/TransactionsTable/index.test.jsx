@@ -26,6 +26,7 @@ test('display TransactionsTable w/ working action buttons', async() => {
         handleVoid={handleVoid}
         selected={selected}
         setSelected={setSelected}
+        sort={{}}
         />
     )
 

@@ -22,6 +22,8 @@ A UI component that creates a table to display transactions
     -   should be a blank array passed to the component that can be changed as checkbox at the begining of each row is selected to identify which rows are selected by their index
 -   **setSelected**: PropTypes.string.isRequired
     -   a function that allow the selected array to be set whenever a checkbox at the begining of the row is selected
+-   **sort**: PropTypes.object.isRequired
+    -   Object that will keep track of the column you want to sort by ascending or descinding. You can pass it a blank object and it will then set the ascending and descinding keys on first click of header.
 
 ### Optional
 
