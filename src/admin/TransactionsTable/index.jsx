@@ -22,6 +22,7 @@ const TransactionsTable = (props) => {
       { className: 'create-date', label: 'Create Date' },
       { className: 'customer-name', label: 'Customer Name' },
       { className: 'transaction-type', label: 'Transaction Type' },
+      { className: 'payment-account', label: 'Payment Account' },
       { className: 'amount numeric', label: 'Amount' },
       { className: 'status', label: 'Status' }
     ]
