@@ -96,7 +96,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     value={filterCategory}
                     name='fb-select'
                 />
-                {filterCategory.includes("created") ? (
+                {filterCategory.includes("updated") ? (
                   <TextEntryDate
                     name="fb-search"
                     label="Search"
