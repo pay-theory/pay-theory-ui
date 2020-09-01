@@ -257,13 +257,13 @@ test('display district list with checkboxes to select columns', async() => {
 
     fireEvent.click(queryByTestId('item-name-0'))
 
-    expect(sort.descending).toBe('item-name')
-    expect(sort.ascending).toBe('')
+    expect(sort.descending).toBe('')
+    expect(sort.ascending).toBe('item-name')
 
     await fireEvent.click(queryByTestId('item-name-0'))
 
-    await expect(sort.descending).toBe('')
-    await expect(sort.ascending).toBe('item-name')
+    await expect(sort.descending).toBe('item-name')
+    await expect(sort.ascending).toBe('')
 
     fireEvent.click(queryByTestId('item-name-0'))
 
@@ -272,11 +272,11 @@ test('display district list with checkboxes to select columns', async() => {
 
     fireEvent.click(queryByTestId('item-name-0'))
 
-    expect(sort.descending).toBe('item-name')
-    expect(sort.ascending).toBe('')
+    expect(sort.descending).toBe('')
+    expect(sort.ascending).toBe('item-name')
 
     fireEvent.click(queryByTestId('item-description-1'))
 
-    expect(sort.descending).toBe('item-description')
-    expect(sort.ascending).toBe('')
+    expect(sort.descending).toBe('')
+    expect(sort.ascending).toBe('item-description')
 })

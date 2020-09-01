@@ -9,13 +9,13 @@ const Header = (props) => {
         const newSort = {};
         if (props.sort) {
             if (props.sort.ascending !== name && props.sort.descending !== name) {
-                newSort.descending = name;
-                newSort.ascending = "";
+                newSort.ascending = name;
+                newSort.descending = "";
                 props.setSort(newSort)
             }
-            else if (props.sort.descending === name) {
-                newSort.descending = "";
-                newSort.ascending = name;
+            else if (props.sort.ascending === name) {
+                newSort.ascending = "";
+                newSort.descending = name;
                 props.setSort(newSort)
             }
             else {
@@ -29,10 +29,10 @@ const Header = (props) => {
     useEffect(() => {
         if (props.sort) {
             if (props.sort.ascending === props.className) {
-                setArrow(<i className="fas fa-caret-up" />);
+                setArrow(<i className="fas fa-caret-down" />);
             }
             else if (props.sort.descending === props.className) {
-                setArrow(<i className="fas fa-caret-down" />);
+                setArrow(<i className="fas fa-caret-up" />);
             }
             else {
                 setArrow(null);
