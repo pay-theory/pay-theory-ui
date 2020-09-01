@@ -34,6 +34,7 @@ const InnerTable = (props) => {
           hasActions={props.hasActions}
           select={selected}
           sort={props.sort}
+          setSort={props.setSort}
         />
         <div className="inner-table inner">
           {props.rows.map((item, rowNum) => {

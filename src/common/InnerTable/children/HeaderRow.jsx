@@ -6,7 +6,6 @@ import Checkbox from "../../Checkbox";
 import Header from "./Header";
 
 const HeaderRow = (props) => {
-  const [clicked, setClicked] = useState(false);
 
   const columns = props.columns.map((column, col) => {
     return (
@@ -16,8 +15,7 @@ const HeaderRow = (props) => {
         key={`header-${col}`}
         label={column.label}
         sort={props.sort}
-        clicked={clicked}
-        setClicked={setClicked}
+        setSort={props.setSort}
       />
     );
   });
@@ -65,6 +63,7 @@ HeaderRow.propTypes = {
   columns: PropTypes.array.isRequired,
   hasActions: PropTypes.bool,
   select: PropTypes.object,
+  setSort: PropTypes.func,
   sort: PropTypes.object
 };
 

@@ -236,12 +236,18 @@ test('display district list with checkboxes to select columns', async() => {
 
 test('display district list with checkboxes to select columns', async() => {
     let sort = {}
-    const { getByText, queryByTestId, queryAllByTestId } = render(
+    const setSort = async(newSort) => {
+        sort.descending = newSort.descending
+        sort.ascending = newSort.ascending
+    }
+
+    const { queryByTestId } = render(
         <Router>
             <InnerTable
                 columns={generateTableColumns()}
                 rows={generateTableRows(itemsArray)}
                 sort={sort}
+                setSort={setSort}
             />
         </Router>
     )
@@ -254,10 +260,10 @@ test('display district list with checkboxes to select columns', async() => {
     expect(sort.descending).toBe('item-name')
     expect(sort.ascending).toBe('')
 
-    fireEvent.click(queryByTestId('item-name-0'))
+    await fireEvent.click(queryByTestId('item-name-0'))
 
-    expect(sort.descending).toBe('')
-    expect(sort.ascending).toBe('item-name')
+    await expect(sort.descending).toBe('')
+    await expect(sort.ascending).toBe('item-name')
 
     fireEvent.click(queryByTestId('item-name-0'))
 

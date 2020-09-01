@@ -3,45 +3,42 @@ import PropTypes from "prop-types";
 
 const Header = (props) => {
     const [arrow, setArrow] = useState(null);
-    const { clicked, setClicked } = props;
     const className = `head ${props.className}`;
 
     const sortBy = (name) => {
+        const newSort = {};
         if (props.sort) {
             if (props.sort.ascending !== name && props.sort.descending !== name) {
-                props.sort.descending = name;
-                props.sort.ascending = "";
-                setClicked(true);
+                newSort.descending = name;
+                newSort.ascending = "";
+                props.setSort(newSort)
             }
             else if (props.sort.descending === name) {
-                props.sort.ascending = name;
-                props.sort.descending = "";
-                setClicked(true);
+                newSort.descending = "";
+                newSort.ascending = name;
+                props.setSort(newSort)
             }
             else {
-                props.sort.ascending = "";
-                props.sort.descending = "";
-                setClicked(true);
+                newSort.descending = "";
+                newSort.ascending = "";
+                props.setSort(newSort)
             }
         }
     };
 
     useEffect(() => {
-        if (props.sort && clicked) {
+        if (props.sort) {
             if (props.sort.ascending === props.className) {
                 setArrow(<i className="fas fa-caret-up" />);
-                setClicked(false);
             }
             else if (props.sort.descending === props.className) {
                 setArrow(<i className="fas fa-caret-down" />);
-                setClicked(false);
             }
             else {
                 setArrow(null);
-                setClicked(false);
             }
         }
-    }, [clicked]);
+    }, [props.sort]);
 
     return (
         <span
@@ -73,10 +70,9 @@ const Header = (props) => {
 
 Header.propTypes = {
     className: PropTypes.string.isRequired,
-    click: PropTypes.bool,
     label: PropTypes.string.isRequired,
     itemKey: PropTypes.any,
-    setClicked: PropTypes.func,
+    setSort: PropTypes.func,
     sort: PropTypes.object
 };
 

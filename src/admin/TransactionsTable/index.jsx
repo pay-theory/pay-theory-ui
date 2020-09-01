@@ -238,6 +238,7 @@ TransactionsTable.propTypes = {
   handleResendingEmail: PropTypes.func.isRequired,
   selected: PropTypes.array.isRequired,
   setSelected: PropTypes.func.isRequired,
+  setSort: PropTypes.func,
   sort: PropTypes.object.isRequired
 };
 

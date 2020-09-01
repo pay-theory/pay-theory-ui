@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { CardRow, CardTable } from '../../common'
 
-import { formatDate } from '../../common/dateUtils'
+import { formatTimestamp } from '../../common/dateUtils'
 
 const TransactionDetails = (props) => {
     const buildMessages = () => {
@@ -42,17 +42,17 @@ const TransactionDetails = (props) => {
                         {transaction.state}
                     </p>
                 </div>
-                <p className='subHeader'>{`Payment via ${transaction.statement_descriptor}.`}</p>
+                <p className='subHeader'>{`Payment via ${transaction.statement_descriptor}`}</p>
                 <div className='cardContent'>
                     <div className='col-1'>
-                        <h5 className='grey'>Create Date:</h5>
-                        <div className='navy'>
-                            {formatDate(transaction.created_at)}
-                        </div>
                         <h5 className='grey'>Name on the Account:</h5>
                         <div className='navy'>{transaction.name}</div>
-                        <h5 className='grey'>Source ID:</h5>
-                        <div className='navy'>{transaction.source}</div>
+                        <h5 className='grey'>Create Date:</h5>
+                        <div className='navy'>
+                            {formatTimestamp(transaction.created_at)}
+                        </div>
+                        {transaction.city ? <span><h5 className='grey'>Address:</h5>
+                        <div className='navy'><p>{transaction.address_line_1}</p><p>{`${transaction.city}, ${transaction.state} ${transaction.zip}`}</p></div></span> : null}
                     </div>
                     <div className='col-1'>
                         <h5>Amount:</h5>
@@ -114,9 +114,10 @@ const TransactionDetails = (props) => {
                             min-height: 0.125rem;
                         }
 
-                        .status-canceled,
+                        .status-declined,
                         .status-pending,
-                        .status-succeeded {
+                        .status-settled,
+                        .status-recieved {
                             border-radius: 14px;
                             color: white;
                             height: 28px;
@@ -127,16 +128,20 @@ const TransactionDetails = (props) => {
                             font-size: 16px;
                         }
 
-                        .status-succeeded {
+                        .status-settled {
                             background: #0bd8aa;
                         }
 
-                        .status-canceled {
+                        .status-declined {
                             background: #ed454c;
                         }
 
                         .status-pending {
                             background: #cad3dd;
+                        }
+
+                        .status-recieved {
+                             background: #f5bd42;
                         }
                     `}
                 </style>

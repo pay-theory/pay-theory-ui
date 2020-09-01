@@ -54,7 +54,7 @@ test('display filterBar and remove a filter', async() => {
       />)
 
     await fireEvent.change(queryByTestId('fb-select'), {
-        target: { value: 'created_at' }
+        target: { value: 'updated_at' }
     })
 
     await fireEvent.change(queryByTestId('fb-search'), {
@@ -94,7 +94,7 @@ test('display filterBar and add a filter with return', async() => {
     expect(queryAllByTestId('filter-tag').length).not.toBeTruthy;
 
     await fireEvent.change(queryByTestId('fb-select'), {
-        target: { value: 'created_at' }
+        target: { value: 'updated_at' }
     })
 
     await fireEvent.change(queryByTestId('fb-search'), {
