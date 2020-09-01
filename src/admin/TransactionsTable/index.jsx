@@ -14,7 +14,7 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-  const { transactions, viewTransaction, handleRefund, handleResendingEmail, selected, setSelected, sort } = props
+  const { transactions, viewTransaction, handleRefund, handleResendingEmail, selected, setSelected, sort, setSort } = props
 
   const bulkAction = (action) => {
     selected.forEach((index) => {
@@ -104,6 +104,7 @@ const TransactionsTable = (props) => {
         selected={selected}
         setSelected={setSelected}
         sort={sort}
+        setSort={setSort}
       >
       </InnerTable>
     </CardTable>
