@@ -42,7 +42,7 @@ const TransactionDetails = (props) => {
                         {transaction.state}
                     </p>
                 </div>
-                <p className='subHeader'>{`Payment via ${transaction.statement_descriptor}`}</p>
+                <p className='subHeader'>{`Payment via ${transaction.statement_descriptor} ${transaction.ip_address? `from IP Address: ${transaction.ip_address}`: '' }`}</p>
                 <div className='cardContent'>
                     <div className='col-1'>
                         <h5 className='grey'>Name on the Account:</h5>
@@ -54,6 +54,14 @@ const TransactionDetails = (props) => {
                         {transaction.city ? <span><h5 className='grey'>Address:</h5>
                         <div className='navy'><p>{transaction.address_line_1}</p><p>{`${transaction.city}, ${transaction.state} ${transaction.zip}`}</p></div></span> : null}
                     </div>
+                   {transaction.email || transaction.phone || transaction.batch_id?  <div className='col-1'>
+                        {transaction.email ? <span><h5>Email:</h5>
+                        <div className='navy'>${transaction.email}</div></span> : null }
+                        {transaction.phone ? <span> <h5>Phone Number:</h5>
+                        <div className='navy'>{transaction.phone}</div></span> : null }
+                        {transaction.batch_id ? <span><h5>Batch ID:</h5>
+                        <div className='navy'>{transaction.batch_id}</div></span> : null }
+                    </div> : <div/>}
                     <div className='col-1'>
                         <h5>Amount:</h5>
                         <div className='navy'>${transaction.amount / 100}</div>
