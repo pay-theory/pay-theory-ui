@@ -59,7 +59,7 @@ const TransactionsTable = (props) => {
             content: (
               <span className="payment-account-detail">
                 <span
-                  className={`pay-theory-card-badge pay-theory-card-${item.card_brand ? item.card_brand.toLowerCase() : 'unknown'}`}
+                  className={`pay-theory-card-badge pay-theory-card-${item.card_brand ? item.card_brand.toLowerCase().replace(/_/g, '-') : 'unknown'}`}
                 />
                 ending in {item.last_four}
               </span>
@@ -206,7 +206,7 @@ const TransactionsTable = (props) => {
               background-image: url(https://storage.googleapis.com/pt-assets/mastercard-badge-icon.svg);
             }
 
-            .pay-theory-card-amex {
+            .pay-theory-card-american-express {
               background-image: url(https://storage.googleapis.com/pt-assets/amex-badge-icon.svg);
             }
 

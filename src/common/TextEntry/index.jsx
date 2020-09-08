@@ -14,7 +14,7 @@ const TextEntry = (props) => {
     delete newProps.trailingIcon
 
     return (
-        <label className={`pt-text-entry ${props.outer}`}>
+        <label className={`pt-text-entry ${props.outer} ${props.value ? '' : 'empty'}`}>
             <input
                 id={props.name}
                 data-testid={props.name}
@@ -191,34 +191,28 @@ const TextEntry = (props) => {
                     border-top-color: transparent;
                 }
 
-                /* Valid */
-                .pt-text-entry > input:valid:not(:placeholder-shown),
-                .pt-text-entry > textarea:valid:not(:placeholder-shown) {
-                    border-color: rgb(
-                        var(--pay-theory-primary-rgb, 39, 203, 124)
-                    );
+                /* Invalid */
+                .pt-text-entry:not(.empty) > input:invalid:not(:focus),
+                .pt-text-entry:not(.empty) > textarea:invalid:not(:focus) {
+                    border-color: rgb(var(--pay-theory-primary-rgb, 237, 69, 76));
                     border-top-color: transparent;
-                    box-shadow: inset 1px 0
-                            var(--pay-theory-safari-valid-helper1),
-                        inset -1px 0 var(--pay-theory-safari-valid-helper1),
-                        inset 0 -1px var(--pay-theory-safari-valid-helper1);
+                    box-shadow: inset 1px 0 var(--pay-theory-safari-invalid-helper1),
+                        inset -1px 0 var(--pay-theory-safari-invalid-helper1),
+                        inset 0 -1px var(--pay-theory-safari-invalid-helper1);
                     outline: none;
                 }
 
-                .pt-text-entry > input:valid:not(:placeholder-shown) + span,
-                .pt-text-entry > textarea:valid:not(:placeholder-shown) + span {
-                    color: rgb(var(--pay-theory-primary-rgb, 39, 203, 124));
+                .pt-text-entry:not(.empty) > input:invalid:not(:focus) + span,
+                .pt-text-entry:not(.empty) > textarea:invalid:not(:focus) + span {
+                    color: rgb(var(--pay-theory-primary-rgb, 237, 69, 76));
                 }
 
-                .pt-text-entry > input:valid:not(:placeholder-shown) + span::before,
-                .pt-text-entry > input:valid:not(:placeholder-shown) + span::after,
-                .pt-text-entry > textarea:valid:not(:placeholder-shown) + span::before,
-                .pt-text-entry > textarea:valid:not(:placeholder-shown) + span::after {
-                    border-top-color: var(
-                        --pay-theory-safari-valid-helper1
-                    ) !important;
-                    box-shadow: inset 0 1px
-                        var(--pay-theory-safari-valid-helper1);
+                .pt-text-entry:not(.empty) > input:invalid:not(:focus) + span::before,
+                .pt-text-entry:not(.empty) > input:invalid:not(:focus) + span::after,
+                .pt-text-entry:not(.empty) > textarea:invalid:not(:focus) + span::before,
+                .pt-text-entry:not(.empty) > textarea:invalid:not(:focus) + span::after {
+                    border-top-color: var(--pay-theory-safari-invalid-helper1) !important;
+                    box-shadow: inset 0 1px var(--pay-theory-safari-invalid-helper1);
                 }
 
                 /* Invalid */
