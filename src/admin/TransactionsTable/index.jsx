@@ -6,7 +6,7 @@ import { InnerTable, CardTable, Button } from '../../common'
 import { formatDate } from '../../common/dateUtils'
 
 const formatFee = (fee) => {
-  return `$${fee / 100}`
+  return `$${(fee / 100).toFixed(2)}`
 }
 
 const formatString = (string) => {

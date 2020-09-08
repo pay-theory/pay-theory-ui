@@ -64,7 +64,7 @@ const TransactionDetails = (props) => {
                     </div> : <div/>}
                     <div className='col-1'>
                         <h5>Amount:</h5>
-                        <div className='navy'>${transaction.amount / 100}</div>
+                        <div className='navy'>${(transaction.amount / 100).toFixed(2)}</div>
                         <h5>Transaction Type:</h5>
                         <div className='navy'>{transaction.type}</div>
                         <h5>Account:</h5>
