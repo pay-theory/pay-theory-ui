@@ -216,8 +216,8 @@ const TextEntry = (props) => {
                 }
 
                 /* Invalid */
-                .pt-text-entry > input:invalid:not(:focus),
-                .pt-text-entry > textarea:invalid:not(:focus) {
+                .pt-text-entry:not(.empty) > input:invalid:not(:focus),
+                .pt-text-entry:not(.empty) > textarea:invalid:not(:focus) {
                     border-color: rgb(
                         var(--pay-theory-primary-rgb, 237, 69, 76)
                     );
@@ -229,15 +229,15 @@ const TextEntry = (props) => {
                     outline: none;
                 }
 
-                .pt-text-entry > input:invalid:not(:focus) + span,
-                .pt-text-entry > textarea:invalid:not(:focus) + span {
+                .pt-text-entry:not(.empty) > input:invalid:not(:focus) + span,
+                .pt-text-entry:not(.empty) > textarea:invalid:not(:focus) + span {
                     color: rgb(var(--pay-theory-primary-rgb, 237, 69, 76));
                 }
 
-                .pt-text-entry > input:invalid:not(:focus) + span::before,
-                .pt-text-entry > input:invalid:not(:focus) + span::after,
-                .pt-text-entry > textarea:invalid:not(:focus) + span::before,
-                .pt-text-entry > textarea:invalid:not(:focus) + span::after {
+                .pt-text-entry:not(.empty) > input:invalid:not(:focus) + span::before,
+                .pt-text-entry:not(.empty) > input:invalid:not(:focus) + span::after,
+                .pt-text-entry:not(.empty) > textarea:invalid:not(:focus) + span::before,
+                .pt-text-entry:not(.empty) > textarea:invalid:not(:focus) + span::after {
                     border-top-color: var(
                         --pay-theory-safari-invalid-helper1
                     ) !important;
