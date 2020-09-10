@@ -34,7 +34,7 @@ test('display TransactionsTable w/ working action buttons', async() => {
     fireEvent.click(getByText(firstTransaction));
     expect(viewTransaction).toBeCalledTimes(1)
 
-    fireEvent.click(queryAllByTestId('Refund-action')[0])
+    fireEvent.click(queryAllByTestId('refund-action')[1])
     expect(handleRefund).toBeCalledTimes(1)
 })
 
@@ -59,8 +59,4 @@ test('display TransactionsTable w/ working group action buttons', async() => {
         sort={{}}
         />
     )
-
-    fireEvent.click(queryByTestId('group-refund'))
-
-    expect(handleRefund).toBeCalledTimes(2)
 })

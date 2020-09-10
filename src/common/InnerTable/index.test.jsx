@@ -20,8 +20,8 @@ const itemsArray = [
 
 const generateTableColumns = () => {
     return [
-        { className: 'item-name', label: 'name' },
-        { className: 'item-description', label: 'description' }
+        { className: 'item-name', label: 'name', sortable: true },
+        { className: 'item-description', label: 'description', sortable: true }
     ]
 }
 
@@ -29,11 +29,11 @@ const generateTableRows = (items) => {
     return items.map((item, i) => {
         return {
             columns: [{
-                    className: 'name',
+                    className: 'item-name',
                     content: item.name
                 },
                 {
-                    className: 'description',
+                    className: 'item-description',
                     content: item.description
                 }
             ],

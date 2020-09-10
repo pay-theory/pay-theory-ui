@@ -44,8 +44,8 @@ const Header = (props) => {
         <span
       className={className}
       key={`${props.className}-${props.itemKey}`}
-      data-testid={`${props.className}-${props.itemKey}`}
-      onClick={() => sortBy(props.className)}
+      data-testid={`${props.className.split(/\s/)[0]}-${props.itemKey}`}
+      onClick={() => sortBy(props.className.split(/\s/)[0])}
     >
       {props.label}
       {arrow}

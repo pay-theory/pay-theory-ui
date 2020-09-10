@@ -83,10 +83,10 @@ const TransactionsTable = (props) => {
             className: "refund",
             content: (
               <span
-                className="action view"
-                title="view"
+                className="action other"
+                title="refund"
                 onClick={() => handleRefund(item)}
-                data-testid="view-action"
+                data-testid="refund-action"
               >
                 <span>
                   <i className="fal fa-undo" />
