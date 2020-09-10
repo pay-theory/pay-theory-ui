@@ -14,7 +14,7 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-  const { transactions, viewTransaction, handleRefund, handleResendingEmail, selected, setSelected, sort, setSort } = props
+  const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewBatch } = props
 
   const bulkAction = (action) => {
     selected.forEach((index) => {
@@ -31,6 +31,7 @@ const TransactionsTable = (props) => {
       { className: 'account-type', label: 'Account Type' },
       { className: 'payment-account', label: 'Payment Account' },
       { className: 'amount numeric', label: 'Amount' },
+      { className: 'batch', label: 'Batch' },
       { className: 'status', label: 'Status' }
     ]
   }
@@ -70,6 +71,10 @@ const TransactionsTable = (props) => {
             content: formatFee(item.amount)
           },
           {
+            className: "batch",
+            content: (<span className="batch-number" onClick={() => viewBatch(item.batch)}>{item.batch}</span>)
+          },
+          {
             className: `status ${item.state.toLowerCase()}`,
             content: formatString(item.state)
           }
@@ -82,16 +87,10 @@ const TransactionsTable = (props) => {
   };
 
   const otherActions = [{
-      action: handleRefund,
-      label: "Refund",
-      icon: "fa-undo"
-    },
-    {
-      action: handleResendingEmail,
-      label: "Resend Email",
-      icon: "fa-envelope"
-    }
-  ];
+    action: handleRefund,
+    label: "Refund",
+    icon: "fa-undo"
+  }];
 
   return (
     <React.Fragment>
@@ -109,14 +108,6 @@ const TransactionsTable = (props) => {
       </InnerTable>
     </CardTable>
     <div className="group-button">
-        <Button
-          label={selected.length > 1 ? "Resend Emails" : "Resend Email"}
-          disabled={!selected.length}
-          leadingIcon="envelope"
-          onClick={() => bulkAction(handleResendingEmail)}
-          name="group-email"
-          small
-        />
         <Button
           label={selected.length > 1 ? "Refund Transactions" : "Refund Transaction"}
           disabled={!selected.length}
@@ -156,6 +147,14 @@ const TransactionsTable = (props) => {
             }
             .actions {
               width: 70px !important;
+            }
+            .batch {
+              width: 100px;
+            }
+
+            .batch .batch-number {
+              color: #0099ff,
+              cursor: pointer
             }
 
             .declined p,
@@ -236,7 +235,6 @@ TransactionsTable.propTypes = {
   transactions: PropTypes.array.isRequired,
   viewTransaction: PropTypes.func.isRequired,
   handleRefund: PropTypes.func.isRequired,
-  handleResendingEmail: PropTypes.func.isRequired,
   selected: PropTypes.array.isRequired,
   setSelected: PropTypes.func.isRequired,
   setSort: PropTypes.func,

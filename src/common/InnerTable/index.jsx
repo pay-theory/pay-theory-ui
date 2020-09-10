@@ -27,7 +27,7 @@ const InnerTable = (props) => {
     null;
 
   return (
-    <div id="body-content">
+    <div className="table-wrapper">
       <div className="inner-table">
         <children.HeaderRow
           columns={props.columns}
@@ -182,6 +182,11 @@ const InnerTable = (props) => {
             display: flex;
             align-items: center;
             justify-content: center;
+            position: absolute;
+          }
+
+          .inner-table .table-select + span {
+            margin-left: 45px;
           }
         `}
       </style>

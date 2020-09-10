@@ -8,7 +8,8 @@ import {
     FormLoginCode,
     FormLoginEmail,
     LogoHeader
-} from './auth'
+}
+from './auth'
 
 import BodyHead from './BodyHead'
 import Button from './Button'
@@ -35,6 +36,7 @@ import { PaymentItem } from './Model'
 import NavigationDrawer from './NavigationDrawer'
 import NotFound from './NotFound'
 
+import Pagination from './Pagination'
 import PortalHead from './PortalHead'
 
 import {
@@ -42,7 +44,8 @@ import {
     WarningMessage,
     SuccessMessage,
     StockTags
-} from './StatusMessage'
+}
+from './StatusMessage'
 
 import Select from './Select'
 import SubsectionHead from './SubsectionHead'
@@ -87,6 +90,7 @@ export {
     PaymentItem,
     NavigationDrawer,
     NotFound,
+    Pagination,
     PortalHead,
     Select,
     SubsectionHead,

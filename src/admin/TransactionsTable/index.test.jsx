@@ -22,7 +22,6 @@ test('display TransactionsTable w/ working action buttons', async() => {
         transactions={transactions}
         viewTransaction={viewTransaction}
         handleRefund={handleRefund}
-        handleResendingEmail={handleResendingEmail}
         handleVoid={handleVoid}
         selected={selected}
         setSelected={setSelected}
@@ -54,7 +53,6 @@ test('display TransactionsTable w/ working group action buttons', async() => {
         transactions={transactions}
         viewTransaction={viewTransaction}
         handleRefund={handleRefund}
-        handleResendingEmail={handleResendingEmail}
         handleVoid={handleVoid}
         selected={selected}
         setSelected={setSelected}
@@ -62,11 +60,7 @@ test('display TransactionsTable w/ working group action buttons', async() => {
         />
     )
 
-    fireEvent.click(queryByTestId('group-email'))
-
-    expect(handleResendingEmail).toBeCalledTimes(2)
-
     fireEvent.click(queryByTestId('group-refund'))
 
-    expect(handleResendingEmail).toBeCalledTimes(2)
+    expect(handleRefund).toBeCalledTimes(2)
 })
