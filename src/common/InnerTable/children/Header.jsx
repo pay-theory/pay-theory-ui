@@ -28,10 +28,10 @@ const Header = (props) => {
 
     useEffect(() => {
         if (props.sort) {
-            if (props.sort.ascending === props.className) {
+            if (props.sort.ascending === props.className.split(/\s/)[0]) {
                 setArrow(<i className="fas fa-caret-down" />);
             }
-            else if (props.sort.descending === props.className) {
+            else if (props.sort.descending === props.className.split(/\s/)[0]) {
                 setArrow(<i className="fas fa-caret-up" />);
             }
             else {
