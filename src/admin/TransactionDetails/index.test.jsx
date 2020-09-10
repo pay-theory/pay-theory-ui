@@ -33,3 +33,12 @@ test('display TransactionDetails without message key in the object', async() => 
 
     expect(getByText('No Messages')).toBeInTheDocument();
 })
+
+test('display TransactionDetails without message key in the object', async() => {
+    // eslint-disable-next-line no-unused-vars
+    const { getByText, queryByTestId } = render(
+        <TransactionDetails transaction={transactions[3]} />
+    )
+
+    expect(getByText('Address:')).toBeInTheDocument();
+})

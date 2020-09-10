@@ -12,6 +12,20 @@
         "messages": []
     },
     {
+        "transfer_id": "TRdun1e4LyPYryNLC7qe",
+        "source_id": "PIpTwXnrNG83d4H3NgepCqcF",
+        "name": "Aron Price",
+        "amount": 2581,
+        "type": "PAYMENT_CARD",
+        "card_brand": "VISA",
+        "last_four": "4242",
+        "state": "SUCCEEDED",
+        "statement_descriptor": "PAYTHEORY*PT-DEV",
+        "created_at": "2020-08-21T13:19:11.35Z",
+        "messages": ["test", "This is a test message"],
+        "batch_id": "test-batch-id"
+    },
+    {
         "transfer_id": "TRdun1e4LyGDW3PYryNLC7qe",
         "source_id": "PIpTwXnrNG83d4H3NgepCqcF",
         "name": "Aron Price",
@@ -22,18 +36,26 @@
         "state": "SUCCEEDED",
         "statement_descriptor": "PAYTHEORY*PT-DEV",
         "created_at": "2020-08-21T13:19:11.35Z",
-        "messages": ["test", "This is a test message"]
+        "phone": "5135555555"
     },
     {
-        "transfer_id": "TRdun1e4LFgDW3PYryNLC7qe",
+        "transfer_id": "TRdun1e4LFg3PYryNLC7qe",
         "source_id": "PIpTwXnrNG83d4H3NgepCqcF",
         "name": "Aron Price",
         "amount": 2581,
+        "ip_address": "74.115.40.110",
         "type": "PAYMENT_CARD",
         "card_brand": "VISA",
         "last_four": "4242",
         "state": "SUCCEEDED",
         "statement_descriptor": "PAYTHEORY*PT-DEV",
-        "created_at": "2020-08-21T13:19:11.35Z"
+        "created_at": "2020-08-21T13:19:11.35Z",
+        "city": "Cincinnati",
+        "state": "OH",
+        "address_line_1": "100 Reading Road",
+        "zip": "45042",
+        "email": "test@gmail.com",
+        "phone": "5135555555",
+        "batch_id": "test-batch-id"
     }
 ]

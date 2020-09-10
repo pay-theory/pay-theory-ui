@@ -54,7 +54,7 @@ test('Pagination displays with 10 pages at end', async() => {
 test('Pagination displays with 10 pages in middle', async() => {
     let page = 5;
     const setPage = jest.fn();
-    const { queryByText, queryByTestId } = render(<Pagination page={page} setPage={setPage} total={10} />)
+    const { queryByText, queryByTestId, queryAllByTestId } = render(<Pagination page={page} setPage={setPage} total={10} />)
 
     expect(queryByText('7')).toBeInTheDocument()
     expect(queryByText('1')).not.toBeInTheDocument()
@@ -68,4 +68,8 @@ test('Pagination displays with 10 pages in middle', async() => {
     fireEvent.click(queryByTestId('previous'))
 
     expect(setPage).toHaveBeenCalledWith(4)
+
+    fireEvent.click(queryAllByTestId('number')[2])
+
+    expect(setPage).toHaveBeenCalledWith(5)
 })

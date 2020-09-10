@@ -37,7 +37,8 @@ const generateTableRows = (items) => {
                     content: item.description
                 }
             ],
-            key: `test-key-${i}`
+            key: `test-key-${i}`,
+            item: item
         }
     })
 }
@@ -279,4 +280,38 @@ test('display district list with checkboxes to select columns', async() => {
 
     expect(sort.descending).toBe('')
     expect(sort.ascending).toBe('item-description')
+})
+
+test('display district list with checkboxes to select columns', async() => {
+    const actionOne = jest.fn()
+    const actionTwo = jest.fn()
+    const otherActions = [{
+            action: actionOne,
+            label: "Action One",
+            icon: "fa-envelope"
+        },
+        {
+            action: actionTwo,
+            label: "Action 2",
+            icon: "fa-envelope"
+        }
+    ]
+
+    const { queryByTestId, queryAllByTestId } = render(
+        <Router>
+            <InnerTable
+                columns={generateTableColumns()}
+                rows={generateTableRows(itemsArray)}
+                hasActions
+                otherActions={otherActions}
+            />
+        </Router>
+    )
+
+    expect(queryAllByTestId('action-one-action').length).toBe(2)
+
+    fireEvent.click(queryAllByTestId('action-one-action')[0])
+
+    expect(actionOne).toHaveBeenCalledTimes(1)
+
 })

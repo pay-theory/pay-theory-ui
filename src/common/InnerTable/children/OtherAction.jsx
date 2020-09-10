@@ -8,7 +8,7 @@ const OtherAction = (props) => {
                 return (
                     <div
                         className='action other'
-                        data-testid={`${item.label}-action`}
+                        data-testid={`${item.label.toLowerCase().replace(/\s/g, '-')}-action`}
                         key={item.label}
                         onClick={() => {
                             item.action(props.rowObject)
