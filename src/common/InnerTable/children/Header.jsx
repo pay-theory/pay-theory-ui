@@ -56,7 +56,7 @@ const Header = (props) => {
           user-select: none;
         }
 
-        .head.actions {
+         .head:not(.sortable) {
           cursor: default;
         }
 

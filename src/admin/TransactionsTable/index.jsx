@@ -14,7 +14,7 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-  const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewBatch } = props
+  const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewSettlement } = props
 
   const bulkAction = (action) => {
     selected.forEach((index) => {
@@ -25,14 +25,15 @@ const TransactionsTable = (props) => {
 
   const generateTableColumns = () => {
     return [
-      { className: 'transaction-id', label: 'Transaction ID' },
-      { className: 'update-date', label: 'Update Date' },
-      { className: 'customer-name', label: 'Customer Name' },
-      { className: 'account-type', label: 'Account Type' },
-      { className: 'payment-account', label: 'Payment Account' },
-      { className: 'amount numeric', label: 'Amount' },
-      { className: 'batch', label: 'Batch' },
-      { className: 'status', label: 'Status' }
+      { className: 'transaction-id', label: 'Transaction ID', sortable: true },
+      { className: 'update-date', label: 'Update Date', sortable: true },
+      { className: 'customer-name', label: 'Customer Name', sortable: true },
+      { className: 'account-type', label: 'Account Type', sortable: true },
+      { className: 'payment-account', label: 'Payment Account', sortable: true },
+      { className: 'amount numeric', label: 'Amount', sortable: true },
+      { className: 'settlement', label: 'Settlement', sortable: true },
+      { className: 'status', label: 'Status', sortable: true },
+      { className: "refund", label: "Refund", sortable: false }
     ]
   }
 
@@ -71,12 +72,27 @@ const TransactionsTable = (props) => {
             content: formatFee(item.amount)
           },
           {
-            className: "batch",
-            content: (<span className="batch-number" onClick={() => viewBatch(item.batch)}>{item.batch}</span>)
+            className: "settlement",
+            content: (item.settlement ? <span className="settlement-number" onClick={() => viewSettlement(item.settlement)}>{item.settlement}</span> : '')
           },
           {
             className: `status ${item.state.toLowerCase()}`,
             content: formatString(item.state)
+          },
+          {
+            className: "refund",
+            content: (
+              <span
+                className="action view"
+                title="view"
+                onClick={() => handleRefund(item)}
+                data-testid="view-action"
+              >
+                <span>
+                  <i className="fal fa-undo" />
+                </span>
+              </span>
+            )
           }
         ],
         key: item.transfer_id,
@@ -86,19 +102,11 @@ const TransactionsTable = (props) => {
     });
   };
 
-  const otherActions = [{
-    action: handleRefund,
-    label: "Refund",
-    icon: "fa-undo"
-  }];
-
   return (
     <React.Fragment>
     <CardTable>
       <InnerTable
         columns={generateTableColumns()}
-        hasActions
-        otherActions={otherActions}
         rows={generateTableRows(transactions)}
         selected={selected}
         setSelected={setSelected}
@@ -108,14 +116,7 @@ const TransactionsTable = (props) => {
       </InnerTable>
     </CardTable>
     <div className="group-button">
-        <Button
-          label={selected.length > 1 ? "Refund Transactions" : "Refund Transaction"}
-          disabled={!selected.length}
-          leadingIcon="undo"
-          onClick={() => bulkAction(handleRefund)}
-          name="group-refund"
-          small
-        />
+
         </div>
         <style global="true" jsx="true">
           {`
@@ -148,11 +149,11 @@ const TransactionsTable = (props) => {
             .actions {
               width: 70px !important;
             }
-            .batch {
+            .settlement {
               width: 100px;
             }
 
-            .batch .batch-number {
+            .settlement .settlement-number {
               color: #0099ff,
               cursor: pointer
             }

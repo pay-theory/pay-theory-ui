@@ -10,12 +10,12 @@ const HeaderRow = (props) => {
   const columns = props.columns.map((column, col) => {
     return (
       <Header
-        className={column.className}
+        className={`${column.className} ${column.sortable ? "sortable" : ""}`}
         itemKey={col}
         key={`header-${col}`}
         label={column.label}
-        sort={props.sort}
-        setSort={props.setSort}
+        sort={column.sortable ? props.sort : null}
+        setSort={column.sortable ? props.setSort : null}
       />
     );
   });
