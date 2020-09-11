@@ -17,141 +17,126 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
                 type='checkbox'
                 {...inputProps}
             />
-            <label htmlFor={id}>{label}</label>
-            <style jsx='true'>{`
-                .checkbox {
-                    position: relative;
-                    height: 1.125em;
-                    width: 1.125em;
-                }
+            <label htmlFor={id}>
+        {label}
+        <i class="fas fa-check" />
+        <i class="fas fa-minus" />
+      </label>
+      <style jsx="true">{`
+        .checkbox {
+          position: relative;
+          height: 1.125em;
+          width: 1.125em;
+        }
 
-                .checkbox label {
-                    display: block;
-                    position: relative;
-                    margin-bottom: 8px;
-                    padding: 0 28px;
-                    font-weight: 400;
-                    font-size: 16px;
-                    color: #6b7887;
-                    line-height: 1;
-                    cursor: pointer;
-                    user-select: none;
-                }
+        .checkbox label {
+          display: block;
+          position: relative;
+          margin-bottom: 8px;
+          padding: 0 28px;
+          font-weight: 400;
+          font-size: 16px;
+          color: #6b7887;
+          line-height: 1;
+          cursor: pointer;
+          user-select: none;
+        }
 
-                /* Create the Checkbox Frame with a (:before) */
+        .checkbox label i {
+          position: absolute;
+          left: 1px;
+          top: 2px;
+          color: white;
+          display: none;
+        }
 
-                .checkbox label::before {
-                    display: block;
-                    position: absolute;
-                    box-sizing: border-box;
-                    top: 0;
-                    left: 0;
-                    width: 18px;
-                    height: 18px;
-                    border: 1px solid transparent;
-                    border-radius: 2px;
-                    background-color: #e8ecef;
-                    transition: background-color 0.1s, 0.2s ease-out;
-                    content: '';
-                }
+        /* Create the Checkbox Frame with a (:before) */
 
-                /* Visually Hide Input */
+        .checkbox label::before {
+          display: block;
+          position: absolute;
+          box-sizing: border-box;
+          top: 0;
+          left: 0;
+          width: 18px;
+          height: 18px;
+          border: 1px solid transparent;
+          border-radius: 2px;
+          background-color: #e8ecef;
+          transition: background-color 0.1s, 0.2s ease-out;
+          content: "";
+        }
 
-                input[type='checkbox'] {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 0;
-                    height: 0;
-                    opacity: 0;
-                    pointer-events: none;
-                }
+        /* Visually Hide Input */
 
-                /* Hover State */
+        input[type="checkbox"] {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          opacity: 0;
+          pointer-events: none;
+        }
 
-                input[type='checkbox']:hover + label::before {
-                    background-color: #cad3dd;
-                }
+        /* Hover State */
 
-                /* Focus State */
+        input[type="checkbox"]:hover + label::before {
+          background-color: #cad3dd;
+        }
 
-                input[type='checkbox']:focus + label::before {
-                    outline: 0;
-                }
+        /* Focus State */
 
-                /* 'Checked' Blue Frame (:before) */
+        input[type="checkbox"]:focus + label::before {
+          outline: 0;
+        }
 
-                input[type='checkbox']:checked + label::before {
-                    background-color: #0199ed;
-                }
+        /* 'Checked' Blue Frame (:before) */
 
-                /* 'Checked' White Checkmark Icon (:after) */
+        input[type="checkbox"]:checked + label::before {
+          background-color: #0199ed;
+        }
 
-                input[type='checkbox']:checked + label::after {
-                    display: block;
-                    position: absolute;
-                    color: white;
-                    top: calc(6px / 2);
-                    left: calc(6px / 2);
-                    font-family: 'Font Awesome 5 Pro Light',
-                        'Font Awesome 5 Pro', 'Font Awesome 5 Pro Solid';
-                    content: '\f00c';
-                    font-size: 12px;
-                }
+        /* 'Checked' White Checkmark Icon */
 
-                /* 'Indeterminate' Blue Frame (:before) */
+        input[type="checkbox"]:checked + label i.fa-check {
+          display: block;
+        }
 
-                input[type='checkbox']:indeterminate + label::before {
-                   background-color: #ff8c00;
-                }
+        /* 'Indeterminate' Orange Frame (:before) */
 
-                /* 'Indeterminate' White Dash Icon (:after) */
+        input[type="checkbox"]:indeterminate + label::before {
+          background-color: #ff8c00;
+        }
 
-                input[type='checkbox']:indeterminate + label::after {
-                    display: block;
-                    position: absolute;
-                    color: white;
-                    top: 0.375em;
-                    left: 0.375em;
-                    font-family: 'Font Awesome 5 Pro Light',
-                        'Font Awesome 5 Pro', 'Font Awesome 5 Pro Solid';
-                    content: '\f068';
-                    font-size: 12px;
-                }
+        /* 'Indeterminate' White Dash Icon */
 
-                /* 'Disabled' Checkbox Label Text */
+        input[type="checkbox"]:indeterminate + label i.fa-minus {
+          display: block;
+          left: 2px;
+        }
 
-                input[type='checkbox']:disabled + label {
-                    color: #cad3dd;
-                    cursor: default;
-                }
+        /* 'Disabled' Checkbox Label Text */
 
-                /* 'Disabled' [but 'Checked'] Frame (:before) */
-
-                input[type='checkbox']:disabled + label::before {
-                    background-color: #f3f6f7;
-                }
-
-                /* 'Disabled' [but 'Checked'] Checkmark (:after) */
-
-                input[type='checkbox']:disabled + label::after {
-                    color: #cad3dd;
-                }
-            `}</style>
-        </div>
-    )
-}
+        input[type="checkbox"]:disabled + label {
+          color: #cad3dd;
+          cursor: default;
+        }
+      `}</style>
+    </div>
+    );
+};
 
 Checkbox.propTypes = {
     id: PropTypes.string,
     label: PropTypes.string,
     inputProps: PropTypes.object,
     indeterminate: PropTypes.any
-}
+};
 
 Checkbox.defaultProps = {
     inputProps: {},
     indeterminate: undefined
-}
+};
 
-export default Checkbox
+export default Checkbox;
