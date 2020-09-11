@@ -14,13 +14,23 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-  const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewSettlement } = props
+  const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewSettlement, total, page, setPage, exportCSV } = props
 
   const bulkAction = (action) => {
     selected.forEach((index) => {
       action(transactions[index]);
     });
     setSelected([])
+  };
+
+  const handleExportCSV = () => {
+    if (selected.length) {
+      const selectedObjects = [];
+      selected.forEach((item) =>
+        selectedObjects.push(transactions[item])
+      );
+      exportCSV(selectedObjects);
+    }
   };
 
   const generateTableColumns = () => {
@@ -115,9 +125,19 @@ const TransactionsTable = (props) => {
       >
       </InnerTable>
     </CardTable>
-    <div className="group-button">
-
+     <div className="table-footer">
+        <div
+          className={`export-csv ${selected.length ? "active" : ""}`}
+          onClick={handleExportCSV}
+          data-testid="export-csv"
+        >
+          <i className="fas fa-file-csv" />
+          <p>Export CSV</p>
         </div>
+        {total > 1 ? (
+          <Pagination page={page} setPage={setPage} total={total} />
+        ) : null}
+      </div>
         <style global="true" jsx="true">
           {`
             .transaction-id {
@@ -226,6 +246,45 @@ const TransactionsTable = (props) => {
             .group-button button {
               margin-left: 10px;
             }
+            .table-footer {
+            height: 40px;
+            margin: 10px 24px;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+          }
+
+          .table-footer .export-csv {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 30px;
+          }
+
+          .table-footer .export-csv i {
+            font-size: 20px;
+            margin-right: 10px;
+          }
+
+          .table-footer .export-csv p {
+            opacity: 0;
+            transition: visibility 0s, opacity 0.2s linear;
+            cursor: default;
+          }
+
+          .table-footer .export-csv.active p {
+            opacity: 1;
+            transition: visibility 0s, opacity 0.2s linear;
+            cursor: pointer;
+          }
+
+          .table-footer .export-csv.active:hover {
+            color: #4098eb;
+            cursor: pointer;
+          }
           `}
         </style>
     </React.Fragment>

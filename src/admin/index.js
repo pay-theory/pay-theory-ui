@@ -38,6 +38,8 @@ import RolesOverview from './RolesOverview'
 import RolesTab from './RolesTab'
 
 import SalesTab from './SalesTab'
+import SettlementDetails from '/SettlementDetails'
+import SettlementsTable from './SettlementsTable'
 
 import TransactionItems from './TransactionItems'
 import TransactionOverview from './TransactionOverview'
@@ -77,6 +79,8 @@ export {
     RolesOverview,
     RolesTab,
     SalesTab,
+    SettlementDetails,
+    SettlementsTable,
     TransactionItems,
     TransactionOverview,
     TransactionDetails,

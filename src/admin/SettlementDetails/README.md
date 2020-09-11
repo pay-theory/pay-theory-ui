@@ -1,6 +1,6 @@
-# TransactionsTable
+# SettlementDetails
 
-A UI component that creates a table to display transactions
+A UI component that displays all the details from one specific settlement
 
 ## Hooks
 
@@ -10,8 +10,8 @@ A UI component that creates a table to display transactions
 
 ### Required
 
--   **transactions**: PropTypes.array.isRequired
-    -   array of transactions that will be displayed in the table. Should be retrieved from the API.
+-   **settlement**: PropTypes.object.isRequired
+    -   object typically pulled from API that includes settlement details and an array of the transactions included in the settlement
 -   **viewTransaction**: PropTypes.func.isRequired
     -   a function that should allow you to view more details of the specific transaction by loading a page with a [TransactionDetails](https://github.com/pay-theory/pay-theory-ui/tree/master/src/admin/TransactionDetails) component
 -   **handleRefund**: PropTypes.func.isRequired

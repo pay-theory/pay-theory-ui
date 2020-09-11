@@ -10,8 +10,6 @@ import transactions from '../../test-data/transactions.json'
 test('display TransactionsTable w/ working action buttons', async() => {
     const viewTransaction = jest.fn()
     const handleRefund = jest.fn()
-    const handleResendingEmail = jest.fn()
-    const handleVoid = jest.fn()
     let selected = []
     const setSelected = newSelected => selected = newSelected
 
@@ -22,7 +20,6 @@ test('display TransactionsTable w/ working action buttons', async() => {
         transactions={transactions}
         viewTransaction={viewTransaction}
         handleRefund={handleRefund}
-        handleVoid={handleVoid}
         selected={selected}
         setSelected={setSelected}
         sort={{}}
@@ -41,8 +38,7 @@ test('display TransactionsTable w/ working action buttons', async() => {
 test('display TransactionsTable w/ working group action buttons', async() => {
     const viewTransaction = jest.fn()
     const handleRefund = jest.fn()
-    const handleResendingEmail = jest.fn()
-    const handleVoid = jest.fn()
+    const exportCSV = jest.fn()
     let selected = [0, 1]
     const setSelected = newSelected => selected = newSelected
 
@@ -53,10 +49,20 @@ test('display TransactionsTable w/ working group action buttons', async() => {
         transactions={transactions}
         viewTransaction={viewTransaction}
         handleRefund={handleRefund}
-        handleVoid={handleVoid}
         selected={selected}
         setSelected={setSelected}
         sort={{}}
+        exportCSV={exportCSV}
         />
     )
+
+    expect(exportCSV).not.toHaveBeenCalled()
+
+    fireEvent.click(queryAllByTestId('select-item')[0])
+
+    expect(selected.length).toBe(1)
+
+    fireEvent.click(queryByTestId('export-csv'))
+
+    expect(exportCSV).toHaveBeenCalled()
 })
