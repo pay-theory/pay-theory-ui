@@ -38,7 +38,7 @@ import RolesOverview from './RolesOverview'
 import RolesTab from './RolesTab'
 
 import SalesTab from './SalesTab'
-import SettlementDetails from '/SettlementDetails'
+import SettlementDetails from './SettlementDetails'
 import SettlementsTable from './SettlementsTable'
 
 import TransactionItems from './TransactionItems'
