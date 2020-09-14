@@ -86,8 +86,8 @@ const TransactionsTable = (props) => {
             content: (item.settlement ? <span className="settlement-number" onClick={() => viewSettlement(item.settlement)}>{item.settlement}</span> : '')
           },
           {
-            className: `status ${item.state === "SUCCEEDED" ? "recieved" :item.state.toLowerCase()}`,
-            content: item.state === "SUCCEEDED" ? "Recieved" : formatString(item.state)
+            className: `status ${item.state === "SUCCEEDED" ? "received" :item.state.toLowerCase()}`,
+            content: item.state === "SUCCEEDED" ? "Received" : formatString(item.state)
           },
           {
             className: "refund",
@@ -181,7 +181,7 @@ const TransactionsTable = (props) => {
             .declined p,
             .pending p,
             .settled p,
-            .recieved p {
+            .received p {
               border-radius: 14px;
               color: white;
               height: 28px;
@@ -204,7 +204,7 @@ const TransactionsTable = (props) => {
               background: #cac4ca;
             }
 
-            .recieved p {
+            .received p {
               background: #f5bd42;
             }
 
