@@ -172,6 +172,9 @@ const TransactionsTable = (props) => {
             .settlement {
               width: 100px;
             }
+            .refund {
+              width: 60px;
+            }
 
             .settlement .settlement-number {
               color: #0099ff,

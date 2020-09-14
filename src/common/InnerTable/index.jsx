@@ -117,6 +117,7 @@ const InnerTable = (props) => {
 
           .inner-table-row .numeric {
             text-align: right;
+            margin-right: 15px;
           }
 
           .inner-table-row .actions {
