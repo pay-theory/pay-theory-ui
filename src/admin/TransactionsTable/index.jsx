@@ -86,8 +86,8 @@ const TransactionsTable = (props) => {
             content: (item.settlement ? <span className="settlement-number link-column" onClick={() => viewSettlement(item.settlement)}>{item.settlement}</span> : '')
           },
           {
-            className: `status ${item.state === "SUCCEEDED" ? "received" :item.state.toLowerCase()}`,
-            content: item.state === "SUCCEEDED" ? "Received" : formatString(item.state)
+            className: `status ${item.state === "SUCCEEDED" ? "received" : item.state === 'APPROVED'? "pending" : item.state.toLowerCase()}`,
+            content: item.state === "SUCCEEDED" ? "Received" : item.state === 'APPROVED' ? "Pending" : formatString(item.state)
           },
           {
             className: "refund",

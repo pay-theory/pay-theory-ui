@@ -38,8 +38,8 @@ const TransactionDetails = (props) => {
             <CardRow>
                 <div className='cardHead'>
                     <h3>Order {transaction.transfer_id}</h3>
-                    <p className={`status-${transaction.state === "SUCCEEDED" ? "received" : transaction.state.toLowerCase()}`}>
-                        { transaction.state === "SUCCEEDED" ? "RECEIVED" : transaction.state}
+                    <p className={`status-${transaction.state === "SUCCEEDED" ? "received" : transaction.state === 'APPROVED'? "pending" : transaction.state.toLowerCase()}`}>
+                        { transaction.state === "SUCCEEDED" ? "RECEIVED" : transaction.state === 'APPROVED'? "PENDING" : transaction.state}
                     </p>
                 </div>
                 <p className='subHeader'>{`Payment via ${transaction.statement_descriptor} ${transaction.ip_address? `from IP Address: ${transaction.ip_address}`: '' }`}</p>
