@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { InnerTable, CardTable, Button } from '../../common'
+import { InnerTable, CardTable, Pagination } from '../../common'
 
 import { formatDate } from '../../common/dateUtils'
 
@@ -83,7 +83,7 @@ const TransactionsTable = (props) => {
           },
           {
             className: "settlement",
-            content: (item.settlement ? <span className="settlement-number" onClick={() => viewSettlement(item.settlement)}>{item.settlement}</span> : '')
+            content: (item.settlement ? <span className="settlement-number link-column" onClick={() => viewSettlement(item.settlement)}>{item.settlement}</span> : '')
           },
           {
             className: `status ${item.state === "SUCCEEDED" ? "received" :item.state.toLowerCase()}`,
@@ -238,14 +238,6 @@ const TransactionsTable = (props) => {
               display: flex;
             }
 
-            .group-button {
-              display: flex;
-              justify-content: flex-end;
-              margin: 10px 24px;
-            }
-            .group-button button {
-              margin-left: 10px;
-            }
             .table-footer {
             height: 40px;
             margin: 10px 24px;
