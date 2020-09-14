@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from '@testing-library/react'
 
 import SettlementDetails from '.'
-import transactions from '../../test-data/transactions.json'
+import { settlement } from '../../test-data'
 
 test('display SettlementDetails w/ working action buttons', async() => {
     const viewTransaction = jest.fn()
@@ -19,13 +19,8 @@ test('display SettlementDetails w/ working action buttons', async() => {
         newSelected.forEach(item => selected.push(item))
     }
 
-    const firstTransaction = 'TRbiLuFNX3XFREN83oZDSEdm'
+    const firstTransaction = "pt-aron-00002q"
 
-    const settlement = {
-        settlement_id: "pt-settlement-00001a",
-        date_settled: "2020-08-23T15:33:59.21Z",
-        transactions: transactions
-    };
 
     const { getByText, queryAllByTestId, queryByTestId } = render(
         <SettlementDetails
@@ -43,7 +38,7 @@ test('display SettlementDetails w/ working action buttons', async() => {
       />
     )
 
-    expect(getByText('Settlement #pt-settlement-00001a')).toBeInTheDocument()
+    expect(getByText('Settlement #15')).toBeInTheDocument()
 
     expect(selected.length).toBe(0)
 

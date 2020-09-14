@@ -2,14 +2,14 @@ import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 const Checkbox = ({ id, label, indeterminate, inputProps }) => {
-    const checkRef = useRef()
+  const checkRef = useRef()
 
-    useEffect(() => {
-        checkRef.current.indeterminate = indeterminate ? true : undefined
-    }, [indeterminate])
+  useEffect(() => {
+    checkRef.current.indeterminate = indeterminate ? true : undefined
+  }, [indeterminate])
 
-    return (
-        <div className='checkbox'>
+  return (
+    <div className='checkbox'>
             <input
                 id={id}
                 data-testid={id}
@@ -19,8 +19,8 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
             />
             <label htmlFor={id}>
         {label}
-        <i class="fas fa-check" />
-        <i class="fas fa-minus" />
+        <i className="fas fa-check" />
+        <i className="fas fa-minus" />
       </label>
       <style jsx="true">{`
         .checkbox {
@@ -124,19 +124,19 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
         }
       `}</style>
     </div>
-    );
+  );
 };
 
 Checkbox.propTypes = {
-    id: PropTypes.string,
-    label: PropTypes.string,
-    inputProps: PropTypes.object,
-    indeterminate: PropTypes.any
+  id: PropTypes.string,
+  label: PropTypes.string,
+  inputProps: PropTypes.object,
+  indeterminate: PropTypes.any
 };
 
 Checkbox.defaultProps = {
-    inputProps: {},
-    indeterminate: undefined
+  inputProps: {},
+  indeterminate: undefined
 };
 
 export default Checkbox;

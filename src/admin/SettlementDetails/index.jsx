@@ -106,7 +106,7 @@ const SettlementDetails = ({
     if (selected.length) {
       const selectedObjects = [];
       selected.forEach((item) =>
-        selectedObjects.push(settlement.transactions[item])
+        selectedObjects.push(settlement.payments[item])
       );
       exportCSV(selectedObjects);
     }
@@ -117,26 +117,21 @@ const SettlementDetails = ({
       <CardTable>
         <div className="card-head">
           <div className="id-date">
-            <h3>Settlement #{settlement.settlement_id}</h3>
-            <p>Settled on {formatDate(settlement.date_settled)}</p>
+            <h3>Settlement #{settlement.settlement.batch_id}</h3>
+            <p>Settled on {formatDate(settlement.settlement.updated_at)}</p>
           </div>
           <div className="totals">
-            <h4>Transfers: {settlement.transactions.length}</h4>
+            <h4>Transfers: {settlement.payment_count}</h4>
             <h4>
               Total Amount:{" $"}
-              {(
-                settlement.transactions.reduce(
-                  (item, { amount }) => item + amount,
-                  0
-                ) / 100
-              ).toFixed(2)}
+              {(settlement.settlement.total_amount / 100).toFixed(2)}
             </h4>
           </div>
         </div>
 
         <InnerTable
           columns={generateTableColumns()}
-          rows={generateTableRows(settlement.transactions)}
+          rows={generateTableRows(settlement.payments)}
           selected={selected}
           setSelected={setSelected}
           sort={sort}
