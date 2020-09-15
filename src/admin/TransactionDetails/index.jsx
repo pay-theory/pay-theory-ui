@@ -47,9 +47,9 @@ const TransactionDetails = (props) => {
                     <div className='col-1'>
                         <h5 className='grey'>Name on the Account:</h5>
                         <div className='navy'>{transaction.name}</div>
-                        <h5 className='grey'>Create Date:</h5>
+                        <h5 className='grey'>Last Updated:</h5>
                         <div className='navy'>
-                            {formatTimestamp(transaction.created_at)}
+                            {formatTimestamp(transaction.updated_at)}
                         </div>
                         {transaction.city ? <span><h5 className='grey'>Address:</h5>
                         <div className='navy'><p>{transaction.address_line_1}</p><p>{`${transaction.city}, ${transaction.state} ${transaction.zip}`}</p></div></span> : null}
