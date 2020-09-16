@@ -11,10 +11,10 @@ const SubsectionParent = (props) => {
             {(parentHook) => {
                 /* istanbul ignore next */
                 const response = /* istanbul ignore next */ parentHook ? (
-                    <Link
+                    <a
                         data-testid='link'
                         className='subsection-nav'
-                        to={() => history.goBack()}
+                        onClick={() => history.goBack()}
                     >
                         <i className='fal fa-chevron-left' />
                         Back to {parentHook.parent}
@@ -44,7 +44,7 @@ const SubsectionParent = (props) => {
                                 }
                             `}
                         </style>
-                    </Link>
+                    </a>
                 ) : (
                     <div />
                 )
