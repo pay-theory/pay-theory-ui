@@ -181,7 +181,8 @@ const TransactionsTable = (props) => {
             .declined p,
             .pending p,
             .settled p,
-            .received p {
+            .received p,
+            .reversed p{
               border-radius: 14px;
               color: white;
               height: 28px;
@@ -206,6 +207,10 @@ const TransactionsTable = (props) => {
 
             .received p {
               background: #f5bd42;
+            }
+            
+            .reversed p {
+              background: #EA4141;
             }
 
             .pay-theory-card-badge {

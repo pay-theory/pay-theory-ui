@@ -131,7 +131,8 @@ const TransactionDetails = (props) => {
                         .status-declined,
                         .status-pending,
                         .status-settled,
-                        .status-received {
+                        .status-received,
+                        .status-reversed {
                             border-radius: 14px;
                             color: white;
                             height: 28px;
@@ -157,6 +158,10 @@ const TransactionDetails = (props) => {
                         .status-received {
                              background: #f5bd42;
                         }
+                        
+                        .status-reversed  {
+              background: #EA4141;
+            }
                     `}
                 </style>
             </CardRow>
