@@ -14,7 +14,11 @@ const SubsectionParent = (props) => {
                     <a
                         data-testid='link'
                         className='subsection-nav'
-                        onClick={() => history.goBack()}
+                        onClick={(e) => {
+                        e.preventDefault()
+                        history.goBack()
+
+                        }}
                     >
                         <i className='fal fa-chevron-left' />
                         Back to {parentHook.parent}
