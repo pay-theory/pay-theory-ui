@@ -4,6 +4,7 @@ import AccountOverview from './AccountOverview'
 import AccountOverviewCard from './AccountOverviewCard'
 import AccountsTab from './AccountsTab'
 import AccountTable from './AccountTable'
+import ActionModal from './ActionModal'
 
 import ConnectionColumn from './ConnectionColumn'
 import * as ConnectionEntry from './ConnectionEntry'
@@ -52,6 +53,7 @@ export {
     AccountOverviewCard,
     AccountsTab,
     AccountTable,
+    ActionModal,
     ConnectionColumn,
     ConnectionEntry,
     DistrictInfoTab,
