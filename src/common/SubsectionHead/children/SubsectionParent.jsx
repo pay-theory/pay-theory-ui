@@ -16,7 +16,13 @@ const SubsectionParent = (props) => {
                         className='subsection-nav'
                         onClick={(e) => {
                         e.preventDefault()
+                        if(history.location.state){
                         history.goBack()
+                        } else {
+                        history.push({
+                            pathname: parentHook.route
+                        })
+                        }
 
                         }}
                     >
