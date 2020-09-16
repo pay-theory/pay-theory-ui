@@ -66,7 +66,7 @@ const SettlementsTable = (props) => {
             content: formatFee(item.total_amount)
           }
         ],
-        key: item.settlement_id,
+        key: item.batch_id,
         view: () => viewSettlement(item),
         item: item
       };
