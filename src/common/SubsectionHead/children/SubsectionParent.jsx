@@ -45,6 +45,7 @@ const SubsectionParent = (props) => {
                                     align-items: center;
                                     text-decoration: none;
                                     font-weight: 600;
+                                    cursor: pointer;
                                 }
 
                                 .subsection-nav i {
