@@ -8,6 +8,7 @@ import TransactionsTable from '.'
 import transactions from '../../test-data/transactions.json'
 
 test('display TransactionsTable w/ working action buttons', async() => {
+    global.URL.createObjectURL = jest.fn();
     const viewTransaction = jest.fn()
     const handleRefund = jest.fn()
     let selected = []
@@ -38,7 +39,7 @@ test('display TransactionsTable w/ working action buttons', async() => {
 test('display TransactionsTable w/ working group action buttons', async() => {
     const viewTransaction = jest.fn()
     const handleRefund = jest.fn()
-    const exportCSV = jest.fn()
+    global.URL.createObjectURL = jest.fn();
     let selected = [0, 1]
     const setSelected = newSelected => selected = newSelected
 
@@ -52,17 +53,11 @@ test('display TransactionsTable w/ working group action buttons', async() => {
         selected={selected}
         setSelected={setSelected}
         sort={{}}
-        exportCSV={exportCSV}
         />
     )
 
-    expect(exportCSV).not.toHaveBeenCalled()
 
     fireEvent.click(queryAllByTestId('select-item')[0])
 
     expect(selected.length).toBe(1)
-
-    fireEvent.click(queryByTestId('export-csv'))
-
-    expect(exportCSV).toHaveBeenCalled()
 })

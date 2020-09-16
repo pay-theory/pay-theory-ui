@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { CardTable, Pagination, InnerTable } from "../../common";
+
+import { arrayToCSV } from '../../common/generalUtils'
 
 const formatDate = (stamp) => {
   const dated = new Date(stamp);
@@ -22,8 +24,7 @@ const SettlementDetails = ({
   selected,
   setSelected,
   page,
-  setPage,
-  exportCSV
+  setPage
 }) => {
   const generateTableColumns = () => {
     return [
@@ -101,15 +102,21 @@ const SettlementDetails = ({
     });
   };
 
-  const handleExportCSV = () => {
-    if (selected.length) {
-      const selectedObjects = [];
-      selected.forEach((item) =>
-        selectedObjects.push(settlement.payments[item])
-      );
-      exportCSV(selectedObjects);
+  useEffect(() => {
+    if (selected.length > 0) {
+      const newArray = [];
+      selected.forEach((item) => newArray.push(settlement.payments[item]));
+      var text = arrayToCSV(newArray);
+      var data = new Blob([text], { type: "text/csv" });
+
+      var url = URL.createObjectURL(data);
+
+      document.getElementById("export-csv").href = url;
     }
-  };
+    else {
+      document.getElementById("export-csv").href = null;
+    }
+  }, [selected]);
 
   return (
     <div>
@@ -137,14 +144,19 @@ const SettlementDetails = ({
           setSort={setSort}
         />
         <div className="card-footer">
-          <div
+          <a
             className={`export-csv ${selected.length ? "active" : ""}`}
-            onClick={handleExportCSV}
-            data-testid="export-csv"
+            id="export-csv"
+            data-testid = "export-csv"
+            download={`PT-Settlement${settlement.settlement.batch_id}-Payments.csv`}
+            href=""
+            onClick={(e) => {
+              if (selected.length === 0) e.preventDefault();
+            }}
           >
             <i className="fas fa-file-csv" />
             <p>Export CSV</p>
-          </div>
+          </a>
           {total > 1 ? (
             <Pagination page={page} setPage={setPage} total={total} />
           ) : null}
@@ -245,12 +257,17 @@ const SettlementDetails = ({
           position: relative;
         }
 
-        .card-footer .export-csv {
+        .card-footer .export-csv,
+        .card-footer .export-csv:hover,
+        .card-footer .export-csv:active {
           display: flex;
           align-items: center;
           justify-content: center;
           position: absolute;
           left: 30px;
+          text-decoration: none;
+          cursor: default;
+          color: #666666;
         }
 
         .card-footer .export-csv i {
@@ -289,8 +306,7 @@ SettlementDetails.propTypes = {
   selected: PropTypes.array.isRequired,
   setSelected: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  setPage: PropTypes.func.isRequired,
-  exportCSV: PropTypes.func.isRequired
+  setPage: PropTypes.func.isRequired
 };
 
 export default SettlementDetails;

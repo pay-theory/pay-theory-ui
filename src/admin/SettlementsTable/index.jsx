@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { CardTable, Pagination, InnerTable } from "../../common"
+
+
+import { arrayToCSV } from '../../common/generalUtils'
 
 export const formatDate = (stamp) => {
   const dated = new Date(stamp);
@@ -21,7 +24,6 @@ const SettlementsTable = (props) => {
     page,
     setPage,
     total,
-    exportCSV,
     selected,
     setSelected
   } = props;
@@ -73,17 +75,21 @@ const SettlementsTable = (props) => {
     });
   };
 
-  const handleExportCSV = () => {
-    if (selected.length) {
-      const selectedObjects = [];
-      selected.forEach(
-        (item) =>
-        // selectedObjects.push(settlement.transactions[item])
-        null
-      );
-      exportCSV(selectedObjects);
+  useEffect(() => {
+    if (selected.length > 0) {
+      const newArray = [];
+      selected.forEach((item) => newArray.push(settlements[item]));
+      var text = arrayToCSV(newArray);
+      var data = new Blob([text], { type: "text/csv" });
+
+      var url = URL.createObjectURL(data);
+
+      document.getElementById("export-csv").href = url;
     }
-  };
+    else {
+      document.getElementById("export-csv").href = null;
+    }
+  }, [selected]);
 
   return (
     <React.Fragment>
@@ -98,14 +104,19 @@ const SettlementsTable = (props) => {
         />
       </CardTable>
       <div className="table-footer">
-        <div
-          className={`export-csv ${selected.length ? "active" : ""}`}
-          onClick={handleExportCSV}
-          data-testid="export-csv"
-        >
-          <i className="fas fa-file-csv" />
-          <p>Export CSV</p>
-        </div>
+        <a
+            className={`export-csv ${selected.length ? "active" : ""}`}
+            id="export-csv"
+            data-testid="export-csv"
+            download = { `PT-Settlements-${formatDate(new Date())}.csv` }
+            href=""
+            onClick={(e) => {
+              if (selected.length === 0) e.preventDefault();
+            }}
+          >
+            <i className="fas fa-file-csv" />
+            <p>Export CSV</p>
+          </a>
         {total > 1 ? (
           <Pagination page={page} setPage={setPage} total={total} />
         ) : null}
@@ -139,12 +150,17 @@ const SettlementsTable = (props) => {
             position: relative;
           }
 
-          .table-footer .export-csv {
+          .table-footer .export-csv,
+          .table-footer .export-csv:hover,
+          .table-footer .export-csv:active {
             display: flex;
             align-items: center;
             justify-content: center;
             position: absolute;
             left: 30px;
+            text-decoration: none;
+            cursor: default;
+            color: #666666;
           }
 
           .table-footer .export-csv i {
@@ -182,7 +198,6 @@ SettlementsTable.propTypes = {
   page: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
   total: PropTypes.number.isRequired,
-  exportCSV: PropTypes.func.isRequired,
   selected: PropTypes.array.isRequired,
   setSelected: PropTypes.func.isRequired
 };

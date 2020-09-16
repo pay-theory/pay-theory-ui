@@ -10,7 +10,7 @@ import { settlement } from '../../test-data'
 test('display SettlementDetails w/ working action buttons', async() => {
     const viewTransaction = jest.fn()
     const handleRefund = jest.fn()
-    const exportCSV = jest.fn()
+    global.URL.createObjectURL = jest.fn();
     const selected = []
     const setSelected = newSelected => {
         while (selected.length) {
@@ -27,7 +27,6 @@ test('display SettlementDetails w/ working action buttons', async() => {
         settlement={settlement}
         viewTransaction={viewTransaction}
         handleRefund={handleRefund}
-        exportCSV={exportCSV}
         total={10}
         sort={{}}
         setSort={() => {}}
@@ -44,15 +43,11 @@ test('display SettlementDetails w/ working action buttons', async() => {
 
     fireEvent.click(queryByTestId('export-csv'))
 
-    expect(exportCSV).not.toHaveBeenCalled()
+    expect(global.URL.createObjectURL).not.toHaveBeenCalled()
 
     fireEvent.click(queryAllByTestId('select-item')[0])
 
     expect(selected.length).toBe(1)
-
-    fireEvent.click(queryByTestId('export-csv'))
-
-    expect(exportCSV).toHaveBeenCalled()
 
     expect(handleRefund).not.toHaveBeenCalled()
 
@@ -65,5 +60,41 @@ test('display SettlementDetails w/ working action buttons', async() => {
     expect(handleRefund).toHaveBeenCalled()
 
     expect(viewTransaction).toHaveBeenCalled()
+
+})
+
+test('display SettlementDetails w/ working action buttons', async() => {
+    const viewTransaction = jest.fn()
+    const handleRefund = jest.fn()
+    global.URL.createObjectURL = jest.fn();
+    const selected = [1]
+    const setSelected = newSelected => {
+        while (selected.length) {
+            selected.pop();
+        }
+        newSelected.forEach(item => selected.push(item))
+    }
+
+    const firstTransaction = "pt-aron-00002q"
+
+
+    const { getByText, queryAllByTestId, queryByTestId } = render(
+        <SettlementDetails
+        settlement={settlement}
+        viewTransaction={viewTransaction}
+        handleRefund={handleRefund}
+        total={10}
+        sort={{}}
+        setSort={() => {}}
+        page={3}
+        setPage={() => {}}
+        selected={selected}
+        setSelected={setSelected}
+      />
+    )
+
+    fireEvent.click(queryByTestId('export-csv'))
+
+    expect(global.URL.createObjectURL).toHaveBeenCalled()
 
 })

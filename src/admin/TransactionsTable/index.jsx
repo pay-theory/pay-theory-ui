@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { InnerTable, CardTable, Pagination } from '../../common'
 
 import { formatDate } from '../../common/dateUtils'
+
+import { arrayToCSV } from '../../common/generalUtils'
 
 const formatFee = (fee) => {
   return fee < 0 ? `-$${(Math.abs(fee) / 100).toFixed(2)}` : `$${(fee / 100).toFixed(2)}`;
@@ -14,23 +16,13 @@ const formatString = (string) => {
 }
 
 const TransactionsTable = (props) => {
-  const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewSettlement, total, page, setPage, exportCSV } = props
+  const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewSettlement, total, page, setPag } = props
 
   const bulkAction = (action) => {
     selected.forEach((index) => {
       action(transactions[index]);
     });
     setSelected([])
-  };
-
-  const handleExportCSV = () => {
-    if (selected.length) {
-      const selectedObjects = [];
-      selected.forEach((item) =>
-        selectedObjects.push(transactions[item])
-      );
-      exportCSV(selectedObjects);
-    }
   };
 
   const generateTableColumns = () => {
@@ -109,6 +101,22 @@ const TransactionsTable = (props) => {
     });
   };
 
+  useEffect(() => {
+    if (selected.length > 0) {
+      const newArray = [];
+      selected.forEach((item) => newArray.push(transactions[item]));
+      var text = arrayToCSV(newArray);
+      var data = new Blob([text], { type: "text/csv" });
+
+      var url = URL.createObjectURL(data);
+
+      document.getElementById("export-csv").href = url;
+    }
+    else {
+      document.getElementById("export-csv").href = null;
+    }
+  }, [selected]);
+
   return (
     <React.Fragment>
     <CardTable>
@@ -123,14 +131,19 @@ const TransactionsTable = (props) => {
       </InnerTable>
     </CardTable>
      <div className="table-footer">
-        <div
-          className={`export-csv ${selected.length ? "active" : ""}`}
-          onClick={handleExportCSV}
-          data-testid="export-csv"
-        >
-          <i className="fas fa-file-csv" />
-          <p>Export CSV</p>
-        </div>
+        <a
+            className={`export-csv ${selected.length ? "active" : ""}`}
+            id="export-csv"
+            data-testid="export-csv"
+            download={`PT-Payments-${formatDate(new Date())}.csv`}
+            href=""
+            onClick={(e) => {
+              if (selected.length === 0) e.preventDefault();
+            }}
+          >
+            <i className="fas fa-file-csv" />
+            <p>Export CSV</p>
+          </a>
         {total > 1 ? (
           <Pagination page={page} setPage={setPage} total={total} />
         ) : null}
@@ -253,12 +266,17 @@ const TransactionsTable = (props) => {
             position: relative;
           }
 
-          .table-footer .export-csv {
+          .table-footer .export-csv,
+          .table-footer .export-csv:hover,
+          .table-footer .export-csv:active {
             display: flex;
             align-items: center;
             justify-content: center;
             position: absolute;
             left: 30px;
+            text-decoration: none;
+            cursor: default;
+            color: #666666;
           }
 
           .table-footer .export-csv i {
