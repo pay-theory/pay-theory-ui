@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { ModalContent, Button, closeModal, actionName } from "../../common";
+import { ModalContent, Button, closeModal } from "../../common";
 
-const ActionModal = ({ label, message, action }) => {
+const ActionModal = ({ label, message, action, actionName }) => {
   return (
     <ModalContent text={label} data-testid="confirm-action">
       <div className="confirm-action-content">
