@@ -30,7 +30,6 @@ const SettlementDetails = ({
       { className: "transaction-id", label: "Transaction ID", sortable: true },
       { className: "update-date", label: "Update Date", sortable: true },
       { className: "customer-name", label: "Customer Name", sortable: true },
-      { className: "account-type", label: "Account Type", sortable: true },
       {
         className: "payment-account",
         label: "Payment Account",
@@ -55,10 +54,6 @@ const SettlementDetails = ({
           {
             className: "customer-name",
             content: item.name
-          },
-          {
-            className: "account-type",
-            content: item.type
           },
           {
             className: "payment-account",
@@ -180,18 +175,20 @@ const SettlementDetails = ({
         .amount {
           width: 70px;
         }
-        .account-type {
-          width: 115px;
-        }
         .payment-account {
           width: 150px;
         }
         .customer-name {
           width: 130px;
         }
+
         .refund {
           width: 50px !important;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
+
         .pay-theory-card-badge {
           background-repeat: no-repeat;
           background-size: 100%;

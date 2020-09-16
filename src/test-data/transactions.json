@@ -6,7 +6,7 @@
         "type": "PAYMENT_CARD",
         "card_brand": "MASTERCARD",
         "last_four": "5454",
-        "state": "SUCCEEDED",
+        "state": "SETTLED",
         "statement_descriptor": "PAYTHEORY*PT-DEV",
         "updated_at": "2020-08-21T13:17:44.00Z",
         "messages": []
@@ -19,7 +19,7 @@
         "type": "PAYMENT_CARD",
         "card_brand": "VISA",
         "last_four": "4242",
-        "state": "SUCCEEDED",
+        "state": "SETTLED",
         "statement_descriptor": "PAYTHEORY*PT-DEV",
         "updated_at": "2020-08-21T13:19:11.35Z",
         "messages": ["test", "This is a test message"],

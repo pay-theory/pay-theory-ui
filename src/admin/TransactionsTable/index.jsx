@@ -38,11 +38,10 @@ const TransactionsTable = (props) => {
       { className: 'transaction-id', label: 'Transaction ID', sortable: true },
       { className: 'update-date', label: 'Update Date', sortable: true },
       { className: 'customer-name', label: 'Customer Name', sortable: true },
-      { className: 'account-type', label: 'Account Type', sortable: true },
       { className: 'payment-account', label: 'Payment Account', sortable: true },
-      { className: 'amount numeric', label: 'Amount', sortable: true },
       { className: 'settlement numeric', label: 'Settlement', sortable: true },
       { className: 'status', label: 'Status', sortable: true },
+      { className: 'amount numeric', label: 'Amount', sortable: true },
       { className: "refund", label: "Refund", sortable: false }
     ]
   }
@@ -63,10 +62,6 @@ const TransactionsTable = (props) => {
             content: item.name
           },
           {
-            className: "account-type",
-            content: item.type
-          },
-          {
             className: "payment-account",
             content: (
               <span className="payment-account-detail">
@@ -78,16 +73,16 @@ const TransactionsTable = (props) => {
             )
           },
           {
-            className: "amount numeric",
-            content: formatFee(item.amount)
-          },
-          {
             className: "settlement numeric",
             content: (item.settlement ? <span className="settlement-number link-column" onClick={() => viewSettlement(item.settlement)}>{item.settlement}</span> : '')
           },
           {
             className: `status ${item.state === "SUCCEEDED" ? "received" : item.state === 'APPROVED'? "pending" : item.state.toLowerCase()}`,
             content: item.state === "SUCCEEDED" ? "Received" : item.state === 'APPROVED' ? "Pending" : formatString(item.state)
+          },
+          {
+            className: "amount numeric",
+            content: formatFee(item.amount)
           },
           {
             className: "refund",
@@ -158,9 +153,6 @@ const TransactionsTable = (props) => {
             }
             .amount {
               width: 70px;
-            }
-            .account-type {
-              width: 115px;
             }
             .payment-account {
               width: 150px;
