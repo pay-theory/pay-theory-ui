@@ -31,6 +31,10 @@ const TransactionDetails = (props) => {
         )
     }
 
+    const formatFee = (fee) => {
+        return fee < 0 ? `-$${(Math.abs(fee) / 100).toFixed(2)}` : `$${(fee / 100).toFixed(2)}`;
+    };
+
     const { transaction } = props
 
     const formatCardType = type => {
@@ -52,7 +56,7 @@ const TransactionDetails = (props) => {
                 <div className='cardContent'>
                 <div className='col-1'>
                         <h5>Amount:</h5>
-                        <div className='navy'>${(transaction.amount / 100).toFixed(2)}</div>
+                        <div className='navy'>{formatFee(transaction.amount)}</div>
                         <h5>Transaction Type:</h5>
                         <div className='navy'>{transaction.type}</div>
                         <h5>Account:</h5>
@@ -158,7 +162,7 @@ const TransactionDetails = (props) => {
                         .status-received {
                              background: #f5bd42;
                         }
-                        
+
                         .status-reversed  {
               background: #EA4141;
             }

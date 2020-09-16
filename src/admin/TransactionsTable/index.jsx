@@ -6,8 +6,8 @@ import { InnerTable, CardTable, Pagination } from '../../common'
 import { formatDate } from '../../common/dateUtils'
 
 const formatFee = (fee) => {
-  return `$${(fee / 100).toFixed(2)}`
-}
+  return fee < 0 ? `-$${(Math.abs(fee) / 100).toFixed(2)}` : `$${(fee / 100).toFixed(2)}`;
+};
 
 const formatString = (string) => {
   return string ? string[0] + string.substring(1).toLowerCase() : '';
@@ -208,7 +208,7 @@ const TransactionsTable = (props) => {
             .received p {
               background: #f5bd42;
             }
-            
+
             .reversed p {
               background: #EA4141;
             }

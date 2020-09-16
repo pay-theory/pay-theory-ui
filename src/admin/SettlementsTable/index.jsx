@@ -9,7 +9,7 @@ export const formatDate = (stamp) => {
 };
 
 const formatFee = (fee) => {
-  return `$${(fee / 100).toFixed(2)}`;
+  return fee < 0 ? `-$${(Math.abs(fee) / 100).toFixed(2)}` : `$${(fee / 100).toFixed(2)}`;
 };
 
 const SettlementsTable = (props) => {
@@ -28,21 +28,21 @@ const SettlementsTable = (props) => {
 
   const generateTableColumns = () => {
     return [
-      { className: "settlement-id", label: "Settlement ID", sortable: true },
+      { className: "settlement-id", label: "Settlement ID", sortable: false },
       {
         className: "settlement-date",
         label: "Settlement Date",
-        sortable: true
+        sortable: false
       },
       {
         className: "total-transfers numeric",
         label: "Total Transfer",
-        sortable: true
+        sortable: false
       },
       {
         className: "total-amount numeric",
         label: "Total Amount",
-        sortable: true
+        sortable: false
       }
     ];
   };
@@ -51,15 +51,15 @@ const SettlementsTable = (props) => {
       return {
         columns: [{
             className: "settlement-id",
-            content: item.settlement_id
+            content: item.batch_id
           },
           {
             className: "settlement-date",
-            content: formatDate(item.settlement_date)
+            content: formatDate(item.updated_at)
           },
           {
             className: "total-transfers numeric",
-            content: item.total_transfers
+            content: item.transfer_debit_count
           },
           {
             className: "total-amount numeric",

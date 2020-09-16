@@ -9,7 +9,7 @@ const formatDate = (stamp) => {
 };
 
 const formatFee = (fee) => {
-  return `$${(fee / 100).toFixed(2)}`;
+  return fee < 0 ? `-$${(Math.abs(fee) / 100).toFixed(2)}` : `$${(fee / 100).toFixed(2)}`;
 };
 
 const SettlementDetails = ({
