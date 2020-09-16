@@ -1760,28 +1760,28 @@ const filterBarOptions = [{
 export { filterBarOptions }
 
 const settlements = [{
-        settlement_id: 'pt-settlement-00001a',
+        batch_id: 'pt-settlement-00001a',
         total_amount: 25810,
-        settlement_date: '2020-08-11T16:03:00.91Z',
-        total_transfers: 6
+        updated_at: '2020-08-11T16:03:00.91Z',
+        transfer_debit_count: 6
     },
     {
-        settlement_id: 'pt-settlement-00002a',
+        batch_id: 'pt-settlement-00002a',
         total_amount: 782934,
-        settlement_date: '2020-08-21T16:03:00.91Z',
-        total_transfers: 11
+        updated_at: '2020-08-21T16:03:00.91Z',
+        transfer_debit_count: 11
     },
     {
-        settlement_id: 'pt-settlement-00003a',
+        batch_id: 'pt-settlement-00003a',
         total_amount: 23462,
-        settlement_date: '2020-08-26T16:03:00.91Z',
-        total_transfers: 17
+        updated_at: '2020-08-26T16:03:00.91Z',
+        transfer_debit_count: 17
     },
     {
-        settlement_id: 'pt-settlement-00004a',
+        batch_id: 'pt-settlement-00004a',
         total_amount: 982342,
-        settlement_date: '2020-08-23T16:03:00.91Z',
-        total_transfers: 9
+        updated_at: '2020-08-23T16:03:00.91Z',
+        transfer_debit_count: 9
     }
 ]
 
