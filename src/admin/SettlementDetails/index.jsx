@@ -82,16 +82,20 @@ const SettlementDetails = ({
           {
             className: "refund",
             content: (
-              <span
-                className="action other"
-                title="refund"
-                onClick={() => handleRefund(item)}
-                data-testid="refund-action"
-              >
-                <span>
-                  <i className="fal fa-undo" />
+              item.state === "SETTLED" ? (
+                <span
+                  className="action other"
+                  title="refund"
+                  onClick={() => handleRefund(item)}
+                  data-testid="refund-action"
+                >
+                  <span>
+                    <i className="fal fa-undo" />
+                  </span>
                 </span>
-              </span>
+              ) : (
+                <span/>
+              )
             )
           }
         ],

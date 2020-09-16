@@ -41,7 +41,7 @@ const TransactionsTable = (props) => {
       { className: 'account-type', label: 'Account Type', sortable: true },
       { className: 'payment-account', label: 'Payment Account', sortable: true },
       { className: 'amount numeric', label: 'Amount', sortable: true },
-      { className: 'settlement', label: 'Settlement', sortable: true },
+      { className: 'settlement numeric', label: 'Settlement', sortable: true },
       { className: 'status', label: 'Status', sortable: true },
       { className: "refund", label: "Refund", sortable: false }
     ]
@@ -82,7 +82,7 @@ const TransactionsTable = (props) => {
             content: formatFee(item.amount)
           },
           {
-            className: "settlement",
+            className: "settlement numeric",
             content: (item.settlement ? <span className="settlement-number link-column" onClick={() => viewSettlement(item.settlement)}>{item.settlement}</span> : '')
           },
           {
@@ -91,17 +91,19 @@ const TransactionsTable = (props) => {
           },
           {
             className: "refund",
-            content: (
+            content: item.state === "SETTLED" ? (
               <span
-                className="action other"
-                title="refund"
-                onClick={() => handleRefund(item)}
-                data-testid="refund-action"
-              >
-                <span>
-                  <i className="fal fa-undo" />
+                  className="action other"
+                  title="refund"
+                  onClick={() => handleRefund(item)}
+                  data-testid="refund-action"
+                >
+                  <span>
+                    <i className="fal fa-undo" />
+                  </span>
                 </span>
-              </span>
+            ) : (
+              <span/>
             )
           }
         ],
@@ -173,7 +175,10 @@ const TransactionsTable = (props) => {
               width: 100px;
             }
             .refund {
-              width: 60px;
+              width: 50px !important;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
 
             .settlement .settlement-number {
