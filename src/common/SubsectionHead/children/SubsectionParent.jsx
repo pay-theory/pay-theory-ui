@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import * as BooksHooks from '../../../hooks'
 
 const SubsectionParent = (props) => {
+    const history = useHistory();
+
     return (
         <BooksHooks.context.parent.Consumer>
             {(parentHook) => {
@@ -12,17 +14,7 @@ const SubsectionParent = (props) => {
                     <Link
                         data-testid='link'
                         className='subsection-nav'
-                        to={{
-                            pathname: parentHook.route,
-                            state: {
-                                forPartner: parentHook.for_partner,
-                                partnerName: parentHook.partner_name,
-                                forDistrict: parentHook.for_district,
-                                districtName: parentHook.district_name,
-                                forAccount: parentHook.for_account,
-                                accountName: parentHook.account_name
-                            }
-                        }}
+                        to={() => history.goBack()}
                     >
                         <i className='fal fa-chevron-left' />
                         Back to {parentHook.parent}
