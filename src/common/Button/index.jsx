@@ -95,9 +95,9 @@ const Button = ({
                     }
 
                     .pt-button.primary-2 {
-                        background-color: #7c2cdd;
+                        background-color: #5BC794;
                         border: 1px solid transparent;
-                        color: #5BC794;
+                        color: #ffffff;
                     }
 
                     .pt-button.light {
