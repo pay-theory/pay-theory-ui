@@ -190,15 +190,15 @@ const TransactionsTable = (props) => {
             }
 
             .pending p {
-              background: #4098eb;
+              background: #cac4ca;
             }
 
             .received p {
-              background: #f5bd42;
+              background: #4098eb;
             }
 
             .reversed p {
-              background: #cac4ca;
+              background: #f5bd42;
             }
 
             .pay-theory-card-badge {
