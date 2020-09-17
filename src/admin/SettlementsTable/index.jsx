@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import { CardTable, Pagination, InnerTable } from "../../common"
+import { CardTable, Pagination, InnerTable, ExportCSV } from "../../common"
 
 
 import { arrayToCSV } from '../../common/generalUtils'
@@ -27,6 +27,8 @@ const SettlementsTable = (props) => {
     selected,
     setSelected
   } = props;
+
+  const [csvArray, setCsvArray] = useState([]);
 
   const generateTableColumns = () => {
     return [
@@ -76,19 +78,9 @@ const SettlementsTable = (props) => {
   };
 
   useEffect(() => {
-    if (selected.length > 0) {
-      const newArray = [];
-      selected.forEach((item) => newArray.push(settlements[item]));
-      var text = arrayToCSV(newArray);
-      var data = new Blob([text], { type: "text/csv" });
-
-      var url = URL.createObjectURL(data);
-
-      document.getElementById("export-csv").href = url;
-    }
-    else {
-      document.getElementById("export-csv").href = null;
-    }
+    const newArray = [];
+    selected.forEach((item) => newArray.push(settlements[item]));
+    setCsvArray(newArray)
   }, [selected]);
 
   return (
@@ -104,19 +96,11 @@ const SettlementsTable = (props) => {
         />
       </CardTable>
       <div className="table-footer">
-        <a
-            className={`export-csv ${selected.length ? "active" : ""}`}
-            id="export-csv"
-            data-testid="export-csv"
-            download = { `PT-Settlements-${formatDate(new Date())}.csv` }
-            href=""
-            onClick={(e) => {
-              if (selected.length === 0) e.preventDefault();
-            }}
-          >
-            <i className="fas fa-file-csv" />
-            <p>Export CSV</p>
-          </a>
+      <ExportCSV
+            id="download-link"
+            items={csvArray}
+            fileName={`PT-Settlements-${formatDate(new Date())}.csv`}
+          />
         {total > 1 ? (
           <Pagination page={page} setPage={setPage} total={total} />
         ) : null}
@@ -150,40 +134,6 @@ const SettlementsTable = (props) => {
             position: relative;
           }
 
-          .table-footer .export-csv,
-          .table-footer .export-csv:hover,
-          .table-footer .export-csv:active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            left: 30px;
-            text-decoration: none;
-            cursor: default;
-            color: #666666;
-          }
-
-          .table-footer .export-csv i {
-            font-size: 20px;
-            margin-right: 10px;
-          }
-
-          .table-footer .export-csv p {
-            opacity: 0;
-            transition: visibility 0s, opacity 0.2s linear;
-            cursor: default;
-          }
-
-          .table-footer .export-csv.active p {
-            opacity: 1;
-            transition: visibility 0s, opacity 0.2s linear;
-            cursor: pointer;
-          }
-
-          .table-footer .export-csv.active:hover {
-            color: #4098eb;
-            cursor: pointer;
-          }
         `}
       </style>
     </React.Fragment>

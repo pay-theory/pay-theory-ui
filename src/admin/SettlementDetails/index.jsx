@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import { CardTable, Pagination, InnerTable } from "../../common";
+import { CardTable, Pagination, InnerTable, ExportCSV } from "../../common";
 
 import { arrayToCSV } from '../../common/generalUtils'
 
@@ -26,6 +26,9 @@ const SettlementDetails = ({
   page,
   setPage
 }) => {
+
+  const [csvArray, setCsvArray] = useState([]);
+
   const generateTableColumns = () => {
     return [
       { className: "transaction-id", label: "Transaction ID", sortable: false },
@@ -103,19 +106,9 @@ const SettlementDetails = ({
   };
 
   useEffect(() => {
-    if (selected.length > 0) {
-      const newArray = [];
-      selected.forEach((item) => newArray.push(settlement.payments[item]));
-      var text = arrayToCSV(newArray);
-      var data = new Blob([text], { type: "text/csv" });
-
-      var url = URL.createObjectURL(data);
-
-      document.getElementById("export-csv").href = url;
-    }
-    else {
-      document.getElementById("export-csv").href = null;
-    }
+    const newArray = [];
+    selected.forEach((item) => newArray.push(settlement.payments[item]));
+    setCsvArray(newArray)
   }, [selected]);
 
   return (
@@ -144,19 +137,11 @@ const SettlementDetails = ({
           setSort={setSort}
         />
         <div className="card-footer">
-          <a
-            className={`export-csv ${selected.length ? "active" : ""}`}
-            id="export-csv"
-            data-testid = "export-csv"
-            download={`PT-Settlement${settlement.settlement.batch_id}-Payments.csv`}
-            href=""
-            onClick={(e) => {
-              if (selected.length === 0) e.preventDefault();
-            }}
-          >
-            <i className="fas fa-file-csv" />
-            <p>Export CSV</p>
-          </a>
+        <ExportCSV
+            id="download-link"
+            items={csvArray}
+            fileName={`PT-Settlement${settlement.settlement.batch_id}-Payments.csv`}
+          />
           {total > 1 ? (
             <Pagination page={page} setPage={setPage} total={total} />
           ) : null}
@@ -257,40 +242,6 @@ const SettlementDetails = ({
           position: relative;
         }
 
-        .card-footer .export-csv,
-        .card-footer .export-csv:hover,
-        .card-footer .export-csv:active {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          left: 30px;
-          text-decoration: none;
-          cursor: default;
-          color: #666666;
-        }
-
-        .card-footer .export-csv i {
-          font-size: 20px;
-          margin-right: 10px;
-        }
-
-        .card-footer .export-csv p {
-          opacity: 0;
-          transition: visibility 0s, opacity 0.2s linear;
-          cursor: default;
-        }
-
-        .card-footer .export-csv.active p {
-          opacity: 1;
-          transition: visibility 0s, opacity 0.2s linear;
-          cursor: pointer;
-        }
-
-        .card-footer .export-csv.active:hover {
-          color: #4098eb;
-          cursor: pointer;
-        }
       `}</style>
     </div>
   );

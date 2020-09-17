@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { InnerTable, CardTable, Pagination } from '../../common'
+import { InnerTable, CardTable, Pagination, ExportCSV } from '../../common'
 
 import { formatDate } from '../../common/dateUtils'
-
-import { arrayToCSV } from '../../common/generalUtils'
 
 const formatFee = (fee) => {
   return fee < 0 ? `-$${(Math.abs(fee) / 100).toFixed(2)}` : `$${(fee / 100).toFixed(2)}`;
@@ -18,12 +16,7 @@ const formatString = (string) => {
 const TransactionsTable = (props) => {
   const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewSettlement, total, page, setPage } = props
 
-  const bulkAction = (action) => {
-    selected.forEach((index) => {
-      action(transactions[index]);
-    });
-    setSelected([])
-  };
+  const [csvArray, setCsvArray] = useState([]);
 
   const generateTableColumns = () => {
     return [
@@ -102,19 +95,9 @@ const TransactionsTable = (props) => {
   };
 
   useEffect(() => {
-    if (selected.length > 0) {
-      const newArray = [];
-      selected.forEach((item) => newArray.push(transactions[item]));
-      var text = arrayToCSV(newArray);
-      var data = new Blob([text], { type: "text/csv" });
-
-      var url = URL.createObjectURL(data);
-
-      document.getElementById("export-csv").href = url;
-    }
-    else {
-      document.getElementById("export-csv").href = null;
-    }
+    const newArray = [];
+    selected.forEach((item) => newArray.push(transactions[item]));
+    setCsvArray(newArray)
   }, [selected]);
 
   return (
@@ -131,19 +114,11 @@ const TransactionsTable = (props) => {
       </InnerTable>
     </CardTable>
      <div className="table-footer">
-        <a
-            className={`export-csv ${selected.length ? "active" : ""}`}
-            id="export-csv"
-            data-testid="export-csv"
-            download={`PT-Payments-${formatDate(new Date())}.csv`}
-            href=""
-            onClick={(e) => {
-              if (selected.length === 0) e.preventDefault();
-            }}
-          >
-            <i className="fas fa-file-csv" />
-            <p>Export CSV</p>
-          </a>
+     <ExportCSV
+            id="download-link"
+            items={csvArray}
+            fileName={`PT-Payments-${formatDate(new Date())}.csv`}
+          />
         {total > 1 ? (
           <Pagination page={page} setPage={setPage} total={total} />
         ) : null}
