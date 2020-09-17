@@ -28,15 +28,15 @@ const SettlementDetails = ({
 }) => {
   const generateTableColumns = () => {
     return [
-      { className: "transaction-id", label: "Transaction ID", sortable: true },
-      { className: "update-date", label: "Update Date", sortable: true },
-      { className: "customer-name", label: "Customer Name", sortable: true },
+      { className: "transaction-id", label: "Transaction ID", sortable: false },
+      { className: "update-date", label: "Update Date", sortable: false },
+      { className: "customer-name", label: "Customer Name", sortable: false },
       {
         className: "payment-account",
         label: "Payment Account",
-        sortable: true
+        sortable: false
       },
-      { className: "amount numeric", label: "Amount", sortable: true },
+      { className: "amount numeric", label: "Amount", sortable: false },
       { className: "refund", label: "Refund", sortable: false }
     ];
   };
