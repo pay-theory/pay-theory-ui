@@ -42,7 +42,7 @@ test('display partner tab', async() => {
         </div>
     )
 
-    fireEvent.click(queryByTestId("apiKey"))
+    fireEvent.click(queryByTestId("generate"))
     expect(apiGenerator).toBeCalledTimes(1)
 
 })
