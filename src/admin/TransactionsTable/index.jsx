@@ -190,7 +190,7 @@ const TransactionsTable = (props) => {
             }
 
             .pending p {
-              background: #cac4ca;
+              background: #4098eb;
             }
 
             .received p {
@@ -198,7 +198,7 @@ const TransactionsTable = (props) => {
             }
 
             .reversed p {
-              background: #EA4141;
+              background: #cac4ca;
             }
 
             .pay-theory-card-badge {
@@ -241,40 +241,6 @@ const TransactionsTable = (props) => {
             position: relative;
           }
 
-          .table-footer .export-csv,
-          .table-footer .export-csv:hover,
-          .table-footer .export-csv:active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            left: 30px;
-            text-decoration: none;
-            cursor: default;
-            color: #666666;
-          }
-
-          .table-footer .export-csv i {
-            font-size: 20px;
-            margin-right: 10px;
-          }
-
-          .table-footer .export-csv p {
-            opacity: 0;
-            transition: visibility 0s, opacity 0.2s linear;
-            cursor: default;
-          }
-
-          .table-footer .export-csv.active p {
-            opacity: 1;
-            transition: visibility 0s, opacity 0.2s linear;
-            cursor: pointer;
-          }
-
-          .table-footer .export-csv.active:hover {
-            color: #4098eb;
-            cursor: pointer;
-          }
           `}
         </style>
     </React.Fragment>
