@@ -32,8 +32,8 @@ const ClickToCopyText = (props) => {
     const clip = (name, callback) => {
         document.getElementById(name).select()
         /* istanbul ignore else */
-        if (!document.execCommand) {
-        } else {
+        if (!document.execCommand) {}
+        else {
             document.execCommand('copy')
         }
         setCopied(true)
@@ -59,6 +59,7 @@ const ClickToCopyText = (props) => {
             onClick={() => clip(props.name)}
             data-testid='click-to-copy'
             isValid={!isReady || copied}
+            outer={props.name}
             readOnly
         />
     )

@@ -14,7 +14,7 @@ const TextEntry = (props) => {
     delete newProps.trailingIcon
 
     return (
-        <label className={`pt-text-entry ${props.outer} ${props.value ? '' : 'empty'}`}>
+        <label className={`pt-text-entry ${props.outer? props.outer : ''} ${props.value ? '' : 'empty'}`}>
             <input
                 id={props.name}
                 data-testid={props.name}

@@ -94,6 +94,12 @@ const Button = ({
                         color: #ffffff;
                     }
 
+                    .pt-button.primary-2 {
+                        background-color: #7c2cdd;
+                        border: 1px solid transparent;
+                        color: #5BC794;
+                    }
+
                     .pt-button.light {
                         background-color: #ffffff;
                         border: 1px solid #6a606d;
