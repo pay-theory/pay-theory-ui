@@ -24,7 +24,7 @@ const ActionModal = ({ label, message, action, actionName }) => {
         .confirm-action-content {
           margin: 10px;
         }
-        confirm-action-content p {
+        .confirm-action-content p {
           padding: 20px 10px;
         }
 
