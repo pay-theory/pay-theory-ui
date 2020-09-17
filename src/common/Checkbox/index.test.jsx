@@ -6,9 +6,9 @@ import { render } from '@testing-library/react'
 
 import Checkbox from '.'
 
-test('display checkbox', async () => {
+test('display checkbox', async() => {
     const { getByText, getByTestId } = render(
-        <Checkbox id='test' label='Test' />
+        <Checkbox id='test' label='Test' inputProps={{"data-testid" : "test"}} />
     )
 
     expect(getByText('Test')).toBeInTheDocument()

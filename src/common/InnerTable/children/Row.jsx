@@ -91,7 +91,7 @@ const Row = (props) => {
         key={`${props.itemKey}-select`}
       >
         <Checkbox
-          id={props.itemKey}
+          id={`checkbox-${props.itemKey}`}
           inputProps={{
             "data-testid": "select-item",
             checked: props.select.selected.includes(props.row),

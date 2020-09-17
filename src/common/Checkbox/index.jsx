@@ -12,7 +12,6 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
     <div className='checkbox'>
             <input
                 id={id}
-                data-testid={id}
                 ref={checkRef}
                 type='checkbox'
                 {...inputProps}
