@@ -106,6 +106,18 @@ const Button = ({
                         color: black;
                     }
 
+                    .pt-button.old-primary {
+                        background-color: #0199ED;
+                        border: none;
+                        color: white;
+                    }
+
+                    .pt-button.old-secondary {
+                        background-color: #ffffff;
+                        border: .5px solid black;
+                        color: black;
+                    }
+
                     .pt-button i.leading {
                         margin-right: 4px;
                     }

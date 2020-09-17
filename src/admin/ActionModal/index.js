@@ -9,13 +9,14 @@ const ActionModal = ({ label, message, action, actionName }) => {
       <div className="confirm-action-content">
         <p>{message}</p>
         <div className="buttons">
-          <Button small label={actionName} onClick={action} name="refund-button" />
+          <Button small label={actionName} onClick={action} name="refund-button" color="old-primary" />
           <Button
             small
             label="Cancel"
             onClick={() => closeModal()}
             name="cancel-button"
             color="light"
+            color="old-secondary"
           />
         </div>
       </div>
@@ -23,6 +24,10 @@ const ActionModal = ({ label, message, action, actionName }) => {
         .confirm-action-content {
           margin: 10px;
         }
+        confirm-action-content p {
+          padding: 20px 10px;
+        }
+
         .confirm-action-content .buttons {
           display: flex;
           width: auto;

@@ -120,9 +120,10 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     leadingIcon='plus-circle'
                     onClick={addFilter}
                     name='fb-add'
+                    color="old-primary"
                 />
                 <Button
-                    color='light'
+                    color='old-secondary'
                     label='Clear All'
                     onClick={clearAll}
                     name='fb-clear-all'

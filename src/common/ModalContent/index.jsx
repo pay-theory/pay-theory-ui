@@ -55,6 +55,7 @@ const ModalContent = (props) => (
           flex-direction: column;
           width: 100%;
           min-height: 56px;
+          color: #666666;
         }
         #modal-content .title {
           width: 100%;
@@ -69,7 +70,8 @@ const ModalContent = (props) => (
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-          background-color: #7c2cdd;
+          background-color: #31187f;
+          padding: 5px;
         }
         #modal-content .modal-header i {
           cursor: pointer;
