@@ -87,7 +87,7 @@ const TransactionsTable = (props) => {
             )
           }
         ],
-        key: item.transfer_id,
+        key: { `${item.transfer_id}-row` },
         view: () => viewTransaction(item),
         item: item
       };
