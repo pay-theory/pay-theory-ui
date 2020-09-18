@@ -2,30 +2,30 @@ import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 const Pagination = ({ page, setPage, total }) => {
-    const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState([]);
 
-    const updatePages = () => {
-        if (total < 6) {
-            const result = Array.from(Array(total).keys());
-            return result.map((i) => ++i);
-        }
-        else if (page < 4) {
-            return [1, 2, 3, 4, 5, "..."];
-        }
-        else if (page > total - 3) {
-            return ["...", total - 4, total - 3, total - 2, total - 1, total];
-        }
-        else {
-            return ["...", page - 2, page - 1, page, page + 1, page + 2, "..."];
-        }
-    };
+  const updatePages = () => {
+    if (total < 6) {
+      const result = Array.from(Array(total).keys());
+      return result.map((i) => ++i);
+    }
+    else if (page < 4) {
+      return [1, 2, 3, 4, 5, "..."];
+    }
+    else if (page > total - 3) {
+      return ["...", total - 4, total - 3, total - 2, total - 1, total];
+    }
+    else {
+      return ["...", page - 2, page - 1, page, page + 1, page + 2, "..."];
+    }
+  };
 
-    useEffect(() => {
-        setPages(updatePages());
-    }, [page]);
+  useEffect(() => {
+    setPages(updatePages());
+  }, [page]);
 
-    return (
-        <div className="pagination">
+  return (
+    <div className="pagination">
       {page === 1 ? (
         <div className="spacer" />
       ) : (
@@ -41,7 +41,7 @@ const Pagination = ({ page, setPage, total }) => {
               className={`number ${page === item ? "active" : ""}`}
               data-testid="number"
               onClick={() => setPage(item)}
-              key={item}
+              key={`${item}-button`}
             >
               {item}
             </p>
@@ -111,13 +111,13 @@ const Pagination = ({ page, setPage, total }) => {
         `}
       </style>
     </div>
-    );
+  );
 };
 
 Pagination.propTypes = {
-    page: PropTypes.number.isRequired,
-    setPage: PropTypes.func.isRequired,
-    total: PropTypes.number.isRequired
+  page: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired
 };
 
 export default Pagination;
