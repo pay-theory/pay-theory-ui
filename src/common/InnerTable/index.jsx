@@ -48,7 +48,7 @@ const InnerTable = (props) => {
                 delete={item.delete ? item.delete : false}
                 hasActions={props.hasActions}
                 itemKey={item.key}
-                key={item.key}
+                key={`${item.key}-${rowNum}`}
                 locked={item.locked}
                 otherActions={props.otherActions}
                 row={rowNum}
