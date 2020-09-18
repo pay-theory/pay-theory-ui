@@ -18,7 +18,7 @@ const Row = (props) => {
                     className={column.className}
                     col={col}
                     content={column.content}
-                    key={`${props.itemKey}-${col}`}
+                    key={`${props.itemKey}-column-${col}`}
                     linked
                     locked={props.locked}
                     row={props.row}
@@ -32,7 +32,7 @@ const Row = (props) => {
                     className={column.className}
                     col={col}
                     content={column.content}
-                    key={`${props.itemKey}-${col}`}
+                    key={`${props.itemKey}-column-${col}`}
                     locked={props.locked}
                     row={props.row}
                 />
