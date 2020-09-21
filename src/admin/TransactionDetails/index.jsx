@@ -57,8 +57,6 @@ const TransactionDetails = (props) => {
                 <div className='col-1'>
                         <h5>Amount:</h5>
                         <div className='navy'>{formatFee(transaction.amount)}</div>
-                        <h5>Transaction Type:</h5>
-                        <div className='navy'>{transaction.type}</div>
                         <h5>Account:</h5>
                         <div className='navy'>
                             {transaction.card_brand ? `${formatCardType(transaction.card_brand)} card ending in ${transaction.last_four}` : ''}
@@ -148,24 +146,24 @@ const TransactionDetails = (props) => {
                         }
 
                         .status-settled {
-                            background: #0bd8aa;
+                            background: #5bc794;
                         }
 
                         .status-declined {
-                            background: #ed454c;
+                            background: #ea4141;
                         }
 
                         .status-pending {
-                            background: #cad3dd;
+                            background: #cac4ca;
                         }
 
                         .status-received {
-                             background: #f5bd42;
+                             background: #4098eb;
                         }
 
                         .status-reversed  {
-              background: #EA4141;
-            }
+                            background: #f5bd42;
+                        }
                     `}
                 </style>
             </CardRow>
