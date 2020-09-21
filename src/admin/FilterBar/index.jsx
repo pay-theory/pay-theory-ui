@@ -81,7 +81,9 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
     });
 
     const clearAll = () => {
-        setFilterList([])
+        if (filterList.length > 0) {
+            setFilterList([])
+        }
         resetFilters()
     }
 
