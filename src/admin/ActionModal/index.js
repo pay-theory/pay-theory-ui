@@ -51,7 +51,7 @@ ActionModal.propTypes = {
   action: PropTypes.func.isRequired,
   actionName: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired
+  message: PropTypes.isRequired
 };
 
 export default ActionModal;
