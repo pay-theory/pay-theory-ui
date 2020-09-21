@@ -22,7 +22,7 @@ const Pagination = ({ page, setPage, total }) => {
 
   useEffect(() => {
     setPages(updatePages());
-  }, [page]);
+  }, [page, total]);
 
   return (
     <div className="pagination">
