@@ -59,7 +59,16 @@ const TransactionDetails = (props) => {
                         <div className='navy'>{formatFee(transaction.amount)}</div>
                         <h5>Account:</h5>
                         <div className='navy'>
-                            {transaction.card_brand ? `${formatCardType(transaction.card_brand)} card ending in ${transaction.last_four}` : ''}
+                            {transaction.card_brand ? <span className="payment-account-detail">
+                <span
+                  className={`pay-theory-card-badge pay-theory-card-${
+                    transaction.card_brand
+                      ? transaction.card_brand.toLowerCase().replace(/_/g, "-")
+                      : "unknown"
+                  }`}
+                />
+                ending in {transaction.last_four}
+              </span> : ''}
                         </div>
                     </div>
                     <div className='col-1'>
@@ -163,6 +172,33 @@ const TransactionDetails = (props) => {
 
                         .status-reversed  {
                             background: #f5bd42;
+                        }
+                        .pay-theory-card-badge {
+                          background-repeat: no-repeat;
+                          background-size: 100%;
+                          background-position: 50%;
+                          height: 40px;
+                          width: 45px;
+                          align-self: center;
+                          margin-right: 5px;
+                        }
+                        .payment-account-detail {
+                          display: flex;
+                        }
+                        .pay-theory-card-visa {
+                          background-image: url(https://storage.googleapis.com/pt-assets/visa-badge-icon.svg);
+                        }
+
+                        .pay-theory-card-mastercard {
+                          background-image: url(https://storage.googleapis.com/pt-assets/mastercard-badge-icon.svg);
+                        }
+
+                        .pay-theory-card-american-express {
+                          background-image: url(https://storage.googleapis.com/pt-assets/amex-badge-icon.svg);
+                        }
+
+                        .pay-theory-card-discover {
+                          background-image: url(https://storage.googleapis.com/pt-assets/discover-badge-icon.svg);
                         }
                     `}
                 </style>
