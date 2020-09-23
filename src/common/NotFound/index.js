@@ -90,7 +90,7 @@ const NotFound = () => {
                     }
 
                     .pt-logo {
-                        background-image: url(https://assets.paytheory.com/pt-logo.svg)
+                        background-image: url(https://assets.paytheory.com/pt-logo.svg);
                         background-repeat: no-repeat;
                         background-size: 85%;
                         background-position: 50%;
@@ -100,7 +100,7 @@ const NotFound = () => {
                     }
 
                     .frenchie {
-                        background-image: url(https://assets.paytheory.com/frenchie.svg)
+                        background-image: url(https://assets.paytheory.com/frenchie.svg);
                         background-repeat: no-repeat;
                         background-size: 70%;
                         background-position: 50%;
@@ -110,7 +110,7 @@ const NotFound = () => {
                     }
 
                     .number-graphic {
-                        background-image: url(https://assets.paytheory.com/404.svg)
+                        background-image: url(https://assets.paytheory.com/404.svg);
                         background-repeat: no-repeat;
                         background-size: 100%;
                         background-position: 50%;
