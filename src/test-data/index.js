@@ -1761,7 +1761,7 @@ export { filterBarOptions }
 
 const settlements = [{
         batch_id: 'pt-settlement-00001a',
-        total_amount: 25810,
+        total_amount: -25810,
         updated_at: '2020-08-11T16:03:00.91Z',
         transfer_debit_count: 6
     },
@@ -1919,7 +1919,7 @@ const settlement = {
             "transfer_id": "pt-aron-00002k",
             "source_id": "PIroTgtEG8TQW6j64YuWdxdT",
             "name": "Test2 Suite11",
-            "amount": 234,
+            "amount": -234,
             "type": "DEBIT",
             "card_brand": "MASTERCARD",
             "last_four": "1063",

@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 
 import { CardTable, Pagination, InnerTable, ExportCSV } from "../../common"
 
-
-import { arrayToCSV } from '../../common/generalUtils'
-
 export const formatDate = (stamp) => {
   const dated = new Date(stamp);
   return `${dated.getMonth() + 1}/${dated.getDate()}/${dated.getFullYear()}`;

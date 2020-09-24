@@ -6,7 +6,7 @@ import { render, fireEvent } from '@testing-library/react'
 
 import TextEntryDate from '.'
 
-test('display date entry', async () => {
+test('display date entry', async() => {
     const onChange = jest.fn()
     const { getByText, queryByTestId } = render(
         <TextEntryDate
@@ -21,4 +21,7 @@ test('display date entry', async () => {
 
     fireEvent.change(queryByTestId('test-name'), { target: { value: 999 } })
     expect(onChange).toHaveBeenCalledTimes(1)
+
+    fireEvent.change(queryByTestId('test-name'), { target: { value: "01/01/2020" } })
+    expect(onChange).toHaveBeenCalledTimes(2)
 })

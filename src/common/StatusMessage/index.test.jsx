@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
 
@@ -16,7 +17,7 @@ test('display success message row', async() => {
 
 test('display default success message row', async() => {
     const { findByTestId } = render(
-        StockTags.success({ reason: 'some reason' }, () => {})
+        StockTags.success({ reason: 'some reason' })
     )
 
     findByTestId('success-content')

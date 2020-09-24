@@ -34,11 +34,20 @@ test('display TransactionDetails without message key in the object', async() => 
     expect(getByText('No Messages')).toBeInTheDocument();
 })
 
-test('display TransactionDetails without message key in the object', async() => {
+test('display TransactionDetails with address', async() => {
     // eslint-disable-next-line no-unused-vars
     const { getByText, queryByTestId } = render(
         <TransactionDetails transaction={transactions[3]} />
     )
 
     expect(getByText('Address:')).toBeInTheDocument();
+})
+
+test('TransactionDetails loads with empty values on all keys in object', async() => {
+    // eslint-disable-next-line no-unused-vars
+    const { getByText, queryByTestId } = render(
+        <TransactionDetails transaction={transactions[4]} />
+    )
+
+    expect(getByText('Order')).toBeInTheDocument();
 })

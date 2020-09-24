@@ -8,7 +8,7 @@ import PaymentItemTable from './'
 import * as BooksHooks from '../../hooks'
 import { paymentItems } from '../../test-data'
 
-test('display payment item', async () => {
+test('display payment item', async() => {
     const viewPaymentItem = jest.fn()
     const deletePaymentItem = jest.fn()
     const { queryAllByTestId } = render(
@@ -20,9 +20,9 @@ test('display payment item', async () => {
         </BooksHooks.context.paymentItems.Provider>
     )
 
-    fireEvent.click(queryAllByTestId('view-action')[0])
+    await fireEvent.click(queryAllByTestId('view-action')[0])
     expect(viewPaymentItem).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(queryAllByTestId('delete-action')[0])
+    await fireEvent.click(queryAllByTestId('delete-action')[0])
     expect(deletePaymentItem).toHaveBeenCalledTimes(1)
 })

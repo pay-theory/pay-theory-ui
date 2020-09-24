@@ -27,23 +27,28 @@ export const formatDateString = (dateIn) => {
     const year = matched && matched[3] ? matched[3] : ''
     /* eslint-disable-next-line indent */
     const yearRemainder =
-        year.length > 1
-            ? year
-            : matched && matched[2] /* eslint-disable-next-line indent */
-            ? dated.replace(matched[0], '')
-            : '' /* eslint-disable-line indent */
+        year.length > 1 ?
+        year :
+        matched && matched[2] /* eslint-disable-next-line indent */ ?
+        dated.replace(matched[0], '') :
+        '' /* eslint-disable-line indent */
 
     if (year.length > 0) {
         return `${month} / ${day} / ${year}`
-    } else if (yearRemainder.length > 0) {
+    }
+    else if (yearRemainder.length > 0) {
         return `${month} / ${day} / ${yearRemainder}`
-    } else if (day.length > 0) {
+    }
+    else if (day.length > 0) {
         return `${month} / ${day}`
-    } else if (dayRemainder.length > 0) {
+    }
+    else if (dayRemainder.length > 0) {
         return `${month} / ${dayRemainder}`
-    } else if (month.length > 0) {
+    }
+    else if (month.length > 0) {
         return `${month}`
-    } else {
+    }
+    else {
         return `${dateIn}`
     }
 }
@@ -58,7 +63,8 @@ export const validDate = (dateIn) => {
 
     if (year && month && day) {
         return new Date(year, month, day)
-    } else {
+    }
+    else {
         return false
     }
 }
@@ -81,15 +87,18 @@ export const formatTimestamp = (stamp) => {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ 12:${mm} AM`
-    } else if (HH === 12) {
+    }
+    else if (HH === 12) {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ 12:${mm} PM`
-    } else if (HH < 12) {
+    }
+    else if (HH < 12) {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ ${HH}:${mm} AM`
-    } else {
+    }
+    else {
         result = `${monthAbbreviations[parseInt(MM)]} ${DD}, ${YY} @ ${
             HH - 12
         }:${mm} PM`
@@ -115,15 +124,18 @@ export const formatDateAndTime = (date) => {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ 12:${mm} AM`
-    } else if (HH === 12) {
+    }
+    else if (HH === 12) {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ 12:${mm} PM`
-    } else if (HH < 12) {
+    }
+    else if (HH < 12) {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ ${HH}:${mm} AM`
-    } else {
+    }
+    else {
         result = `${monthAbbreviations[parseInt(MM)]} ${DD}, ${YY} @ ${
             HH - 12
         }:${mm} PM`

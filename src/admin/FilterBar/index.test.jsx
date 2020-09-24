@@ -20,7 +20,7 @@ test('display filterBar and add a filter', async() => {
 
     expect(setFilters).toHaveBeenCalledTimes(0)
 
-    fireEvent.click(queryByTestId('fb-add'))
+    await fireEvent.click(queryByTestId('fb-add'))
 
     expect(setFilters).toHaveBeenCalledTimes(0)
 
@@ -28,7 +28,7 @@ test('display filterBar and add a filter', async() => {
         target: { value: 'id' }
     })
 
-    fireEvent.click(queryByTestId('fb-add'))
+    await fireEvent.click(queryByTestId('fb-add'))
 
     expect(setFilters).toHaveBeenCalledTimes(0)
 
@@ -75,7 +75,7 @@ test('display filterBar and remove a filter', async() => {
 
     expect(getAllByTestId('filter-tag').length).toBe(2);
 
-    await fireEvent.click(getAllByTestId('delete-filter')[0])
+    fireEvent.click(getAllByTestId('delete-filter')[0])
 
     const filters = await findAllByTestId('filter-tag')
 

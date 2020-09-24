@@ -20,7 +20,7 @@ ModalCreateAccount.propTypes = {
 }
 */
 
-test('modal create account success', async () => {
+test('modal create account success', async() => {
     // await act(async () => {
     const createNewMember = jest.fn(() => Promise.resolve())
     const setStatusMessage = jest.fn()
@@ -56,11 +56,11 @@ test('modal create account success', async () => {
     // })
 })
 
-test('modal create account invalid email', async () => {
+test('modal create account invalid email', async() => {
     const createNewMember = jest.fn(() => Promise.resolve())
     const setStatusMessage = jest.fn()
 
-    await act(async () => {
+    await act(async() => {
         const { queryByTestId } = render(
             <div className='spinner-wrapper'>
                 <div className='modal-wrapper'>
@@ -91,11 +91,11 @@ test('modal create account invalid email', async () => {
     })
 })
 
-test('modal create account fail', async () => {
+test('modal create account fail', async() => {
     // eslint-disable-next-line prefer-promise-reject-errors
     const createNewMember = jest.fn(() => Promise.reject('failed'))
     const setStatusMessage = jest.fn()
-    await act(async () => {
+    await act(async() => {
         const { queryByTestId } = render(
             <div className='spinner-wrapper'>
                 <div className='modal-wrapper'>

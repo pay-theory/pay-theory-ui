@@ -37,11 +37,11 @@ const TransactionDetails = (props) => {
 
     const { transaction } = props
 
-    const formatCardType = type => {
-        const typeArray = type.split(/_/g)
-        const result = typeArray.map(item => `${item[0]}${item.substring(1).toLowerCase()}`)
-        return result.join(' ')
-    }
+    // const formatCardType = type => {
+    //     const typeArray = type.split(/_/g)
+    //     const result = typeArray.map(item => `${item[0]}${item.substring(1).toLowerCase()}`)
+    //     return result.join(' ')
+    // }
 
     return (
         <CardTable className='details-card'>

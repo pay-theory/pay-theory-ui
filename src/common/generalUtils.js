@@ -3,7 +3,7 @@
  };
 
  const formatString = (string) => {
-  return string ? string[0] + string.substring(1).toLowerCase() : '';
+  return string ? string[0].toUpperCase() + string.substring(1).toLowerCase() : '';
  }
 
  export { formatFee, formatString }

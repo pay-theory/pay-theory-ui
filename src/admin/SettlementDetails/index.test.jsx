@@ -27,7 +27,7 @@ test('display SettlementDetails w/ working action buttons', async() => {
         settlement={settlement}
         viewTransaction={viewTransaction}
         handleRefund={handleRefund}
-        total={10}
+        total={1}
         sort={{}}
         setSort={() => {}}
         page={1}

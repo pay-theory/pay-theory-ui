@@ -7,11 +7,14 @@ import {
     formatTimestamp,
     validDate,
     formatDateString
-} from './dateUtils.js'
+}
+from './dateUtils.js'
 
 import { validCurrency } from './accountUtils'
 
-test('display card row', async () => {
+import { arrayToCSV, formatString, formatFee } from './generalUtils'
+
+test('display card row', async() => {
     let formatted = formatAccountCode('11')
     expect(formatted).toEqual('11')
     let padded = padAccountCode(formatted)
@@ -53,7 +56,7 @@ test('display card row', async () => {
     expect(padded).toEqual('111-2222-3333-444444-555')
 })
 
-test('test formatDateAndTime', async () => {
+test('test formatDateAndTime', async() => {
     let testDate = new Date(1989, 4, 31, 14, 12, 12, 12)
     let dateAndTime = formatDateAndTime(testDate)
     expect(dateAndTime).toEqual('May 31, 1989 @ 2:12 PM')
@@ -71,7 +74,7 @@ test('test formatDateAndTime', async () => {
     expect(dateAndTime).toEqual('May 31, 1989 @ 12:07 AM')
 })
 
-test('test formatTimestamp', async () => {
+test('test formatTimestamp', async() => {
     let testDate = new Date(1596053452000)
     let dateAndTime = formatTimestamp(testDate)
     expect(dateAndTime).toEqual('July 29, 2020 @ 8:10 PM')
@@ -83,9 +86,11 @@ test('test formatTimestamp', async () => {
     testDate = new Date(1596024112000)
     dateAndTime = formatTimestamp(testDate)
     expect(dateAndTime).toEqual('July 29, 2020 @ 12:01 PM')
+
+    expect(formatTimestamp("2020-07-21T08:01:11.35Z")).toEqual('July 21, 2020 @ 8:01 AM')
 })
 
-test('test validDate', async () => {
+test('test validDate', async() => {
     expect(validDate(null)).toBe(true)
 
     expect(validDate('05311989')).toBeTruthy()
@@ -93,17 +98,17 @@ test('test validDate', async () => {
     expect(validDate('13311989')).toBe(false)
 })
 
-test('test formatDateString', async () => {
+test('test formatDateString', async() => {
     expect(formatDateString('05')).toBe('05')
 
-    expect(formatDateString('052')).toBe('05 / 2')
+    expect(formatDateString('120')).toBe('12 / 0')
 
     expect(formatDateString('0522')).toBe('05 / 22')
 
     expect(formatDateString('05221999')).toBe('05 / 22 / 1999')
 })
 
-test('test validCurrency', async () => {
+test('test validCurrency', async() => {
     expect(validCurrency('asdf')).toBe(false)
 
     expect(validCurrency('$12.3333')).toBe(false)
@@ -113,4 +118,33 @@ test('test validCurrency', async () => {
     expect(validCurrency('12.22')).toBe('1222')
 
     expect(validCurrency('$12345')).toBe('1234500')
+
+    expect(validCurrency('$12.22 12.22')).toBe(false)
+
+    expect(validCurrency('$12.22wertyu')).toBe(false)
+
+    expect(validCurrency('123 123')).toBe(false)
+})
+
+test('test formatFee', async() => {
+    expect(formatFee(100)).toBe("$1.00")
+
+    expect(formatFee(-123)).toBe("-$1.23")
+})
+
+test('test formatString', async() => {
+    expect(formatString("AUSTIN")).toBe("Austin")
+
+    expect(formatString("austin")).toBe("Austin")
+
+    expect(formatString()).toBe("")
+})
+
+test('test arrayToCSV', async() => {
+    const objectArray = [{ first: "test", second: "test2" }, { first: "test3", second: "test4" }]
+    expect(arrayToCSV(objectArray)).toBe('"first","second"\r\n"test","test2"\r\n"test3","test4"\r\n')
+
+    const jsonObj = JSON.stringify(objectArray)
+
+    expect(arrayToCSV(jsonObj)).toBe('"first","second"\r\n"test","test2"\r\n"test3","test4"\r\n')
 })

@@ -15,7 +15,7 @@
         "transfer_id": "TRdun1e4LyPYryNLC7qe",
         "source_id": "PIpTwXnrNG83d4H3NgepCqcF",
         "name": "Aron Price",
-        "amount": 2581,
+        "amount": -2581,
         "type": "PAYMENT_CARD",
         "card_brand": "VISA",
         "last_four": "4242",
@@ -33,7 +33,7 @@
         "type": "PAYMENT_CARD",
         "card_brand": "VISA",
         "last_four": "4242",
-        "state": "SUCCEEDED",
+        "state": "APPROVED",
         "statement_descriptor": "PAYTHEORY*PT-DEV",
         "updated_at": "2020-08-21T13:19:11.35Z",
         "phone": "5135555555"
@@ -57,5 +57,24 @@
         "email": "test@gmail.com",
         "phone": "5135555555",
         "batch_id": "test-batch-id"
+    },
+    {
+        "transfer_id": "",
+        "source_id": "",
+        "name": "",
+        "amount": 0,
+        "ip_address": "",
+        "type": "",
+        "last_four": "",
+        "state": "",
+        "statement_descriptor": "",
+        "updated_at": "",
+        "city": "",
+        "state": "",
+        "address_line_1": "",
+        "zip": "",
+        "email": "",
+        "phone": "",
+        "batch_id": ""
     }
 ]
