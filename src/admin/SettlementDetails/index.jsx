@@ -213,7 +213,7 @@ const SettlementDetails = ({
 
          .export-csv {
             position: absolute;
-            left: 20px;
+            left: 24px;
           }
 
       `}</style>

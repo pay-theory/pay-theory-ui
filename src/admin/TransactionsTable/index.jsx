@@ -242,7 +242,7 @@ const TransactionsTable = (props) => {
           }
            .export-csv {
             position: absolute;
-            left: 30px;
+            left: 24px;
           }
 
           `}

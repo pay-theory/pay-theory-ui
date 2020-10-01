@@ -132,7 +132,7 @@ const SettlementsTable = (props) => {
           }
           .export-csv {
             position: absolute;
-            left: 30 px;
+            left: 24px;
           }
 
         `}
