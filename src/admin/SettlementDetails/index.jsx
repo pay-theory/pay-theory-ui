@@ -211,6 +211,11 @@ const SettlementDetails = ({
           position: relative;
         }
 
+         .export-csv {
+            position: absolute;
+            left: 20px;
+          }
+
       `}</style>
     </div>
   );

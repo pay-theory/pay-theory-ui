@@ -130,6 +130,10 @@ const SettlementsTable = (props) => {
             justify-content: center;
             position: relative;
           }
+          .export-csv {
+            position: absolute;
+            left: 30 px;
+          }
 
         `}
       </style>

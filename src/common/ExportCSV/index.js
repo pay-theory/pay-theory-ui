@@ -38,8 +38,6 @@ const ExportCSV = ({ id, items, fileName }) => {
             display: flex;
             align-items: center;
             justify-content: center;
-            position: absolute;
-            left: 30px;
             text-decoration: none;
             cursor: default;
             color: #666666;

@@ -240,6 +240,10 @@ const TransactionsTable = (props) => {
             justify-content: center;
             position: relative;
           }
+           .export-csv {
+            position: absolute;
+            left: 30px;
+          }
 
           `}
         </style>
