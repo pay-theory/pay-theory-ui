@@ -15,19 +15,16 @@ const formatFee = (fee) => {
 };
 
 const SettlementDetails = ({
+  csvArray,
   settlement,
   viewTransaction,
-  handleRefund,
   total,
   sort,
   setSort,
-  selected,
-  setSelected,
   page,
   setPage
 }) => {
 
-  const [csvArray, setCsvArray] = useState([]);
 
   const generateTableColumns = () => {
     return [
@@ -39,8 +36,7 @@ const SettlementDetails = ({
         label: "Payment Account",
         sortable: true
       },
-      { className: "amount numeric", label: "Amount", sortable: true },
-      { className: "refund", label: "Refund", sortable: false }
+      { className: "amount numeric", label: "Amount", sortable: true }
     ];
   };
 
@@ -77,25 +73,6 @@ const SettlementDetails = ({
           {
             className: "amount numeric",
             content: formatFee(item.amount)
-          },
-          {
-            className: "refund",
-            content: (
-              item.state === "SETTLED" ? (
-                <span
-                  className="action other"
-                  title="refund"
-                  onClick={() => handleRefund(item)}
-                  data-testid="refund-action"
-                >
-                  <span>
-                    <i className="fal fa-undo" />
-                  </span>
-                </span>
-              ) : (
-                <span/>
-              )
-            )
           }
         ],
         key: item.transfer_id,
@@ -104,12 +81,6 @@ const SettlementDetails = ({
       };
     });
   };
-
-  useEffect(() => {
-    const newArray = [];
-    selected.forEach((item) => newArray.push(settlement.payments[item]));
-    setCsvArray(newArray)
-  }, [selected]);
 
   return (
     <div>
@@ -131,8 +102,6 @@ const SettlementDetails = ({
         <InnerTable
           columns={generateTableColumns()}
           rows={generateTableRows(settlement.payments)}
-          selected={selected}
-          setSelected={setSelected}
           sort={sort}
           setSort={setSort}
         />
@@ -248,14 +217,12 @@ const SettlementDetails = ({
 };
 
 SettlementDetails.propTypes = {
+  csvArray: PropTypes.array.isRequired,
   settlement: PropTypes.object.isRequired,
   viewTransaction: PropTypes.func.isRequired,
-  handleRefund: PropTypes.func.isRequired,
   total: PropTypes.number.isRequired,
   sort: PropTypes.object.isRequired,
   setSort: PropTypes.func.isRequired,
-  selected: PropTypes.array.isRequired,
-  setSelected: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired
 };
