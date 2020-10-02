@@ -50,7 +50,7 @@
         "state": "SUCCEEDED",
         "statement_descriptor": "PAYTHEORY*PT-DEV",
         "updated_at": "2020-08-21T13:19:11.35Z",
-        "address": '{"personal_address":{"city":"Somewhere","country":"USA","region":"OH","line2":"Apartment 17","line1":"123 Street St","postal_code":"12345"}}',
+        "address": { "personal_address": { "city": "Somewhere", "country": "USA", "region": "OH", "line2": "Apartment 17", "line1": "123 Street St", "postal_code": "12345" } },
         "email": "test@gmail.com",
         "phone": "5135555555",
         "batch_id": "test-batch-id"
@@ -66,7 +66,7 @@
         "state": "",
         "statement_descriptor": "",
         "updated_at": "",
-        "address": '{"personal_address":{"city":"","country ":"","region ":"","line2 ":"","line1 ":"","postal_code ":""}}',
+        "address": { "personal_address": { "city": "", "country ": "", "region ": "", "line2 ": "", "line1 ": "", "postal_code ": "" } },
         "email": "",
         "phone": "",
         "batch_id": ""
