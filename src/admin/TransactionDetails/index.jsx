@@ -7,6 +7,8 @@ import { CardRow, CardTable } from '../../common'
 
 import { formatTimestamp } from '../../common/dateUtils'
 
+import { formatPhone } from '../../common/generalUtils'
+
 const TransactionDetails = (props) => {
     const buildMessages = () => {
         if (transaction.messages) {
@@ -85,7 +87,7 @@ const TransactionDetails = (props) => {
                         {transaction.email ? <span><h5>Email:</h5>
                         <div className='navy'>{transaction.email}</div></span> : null }
                         {transaction.phone ? <span> <h5>Phone Number:</h5>
-                        <div className='navy'>{transaction.phone}</div></span> : null }
+                        <div className='navy'>{formatPhone(transaction.phone)}</div></span> : null }
                         {transaction.batch_id ? <span><h5>Batch ID:</h5>
                         <div className='navy'>{transaction.batch_id}</div></span> : null }
                     </div> : <div/>}

@@ -6,7 +6,23 @@
   return string ? string[0].toUpperCase() + string.substring(1).toLowerCase() : '';
  }
 
- export { formatFee, formatString }
+ const formatPhone = string => {
+  const numbers = string.replace(/\D/g, '')
+  let result;
+  if (numbers.length === 7) {
+   result = `${numbers.substring(0, 3)}-${numbers.substring(3)}`
+  }
+  else if (numbers.length === 10) {
+   result = `(${numbers.substring(0, 3)})${numbers.substring(3, 6)}-${numbers.substring(6)}`
+  }
+  else if (numbers.length === 11) {
+   result = `+${numbers.substring(0,1)}(${numbers.substring(1, 4)})${numbers.substring(4, 7)}-${numbers.substring(7)}`
+  }
+
+  return result;
+ }
+
+ export { formatFee, formatString, formatPhone }
 
  function arrayToCSV(objArray) {
   const array =
