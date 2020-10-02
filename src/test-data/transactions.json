@@ -50,10 +50,7 @@
         "state": "SUCCEEDED",
         "statement_descriptor": "PAYTHEORY*PT-DEV",
         "updated_at": "2020-08-21T13:19:11.35Z",
-        "city": "Cincinnati",
-        "state": "OH",
-        "address_line_1": "100 Reading Road",
-        "zip": "45042",
+        "address": '{"personal_address":{"city":"Somewhere","country":"USA","region":"OH","line2":"Apartment 17","line1":"123 Street St","postal_code":"12345"}}',
         "email": "test@gmail.com",
         "phone": "5135555555",
         "batch_id": "test-batch-id"
@@ -69,10 +66,7 @@
         "state": "",
         "statement_descriptor": "",
         "updated_at": "",
-        "city": "",
-        "state": "",
-        "address_line_1": "",
-        "zip": "",
+        "address": '{"personal_address":{"city":"","country ":"","region ":"","line2 ":"","line1 ":"","postal_code ":""}}',
         "email": "",
         "phone": "",
         "batch_id": ""

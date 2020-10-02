@@ -78,12 +78,12 @@ const TransactionDetails = (props) => {
                         <div className='navy'>
                             {transaction.updated_at ? formatTimestamp(transaction.updated_at) : ''}
                         </div>
-                        {transaction.city ? <span><h5 className='grey'>Address:</h5>
-                        <div className='navy'><p>{transaction.address_line_1}</p><p>{`${transaction.city}, ${transaction.state} ${transaction.zip}`}</p></div></span> : null}
+                        {transaction.address ? <span><h5 className='grey'>Address:</h5>
+                        <div className='navy'><p>{transaction.address.personal_address.line1}</p>{transaction.address.personal_address.line2 ? <p>{transaction.address.personal_address.line2}</p> : ''}<p>{`${transaction.address.personal_address.city}, ${transaction.address.personal_address.region} ${transaction.address.personal_address.postal_code}`}</p></div></span> : null}
                     </div>
                    {transaction.email || transaction.phone || transaction.batch_id?  <div className='col-1'>
                         {transaction.email ? <span><h5>Email:</h5>
-                        <div className='navy'>${transaction.email}</div></span> : null }
+                        <div className='navy'>{transaction.email}</div></span> : null }
                         {transaction.phone ? <span> <h5>Phone Number:</h5>
                         <div className='navy'>{transaction.phone}</div></span> : null }
                         {transaction.batch_id ? <span><h5>Batch ID:</h5>
