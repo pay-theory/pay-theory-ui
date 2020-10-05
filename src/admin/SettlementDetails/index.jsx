@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { CardTable, Pagination, InnerTable, ExportCSV } from "../../common";
 
-import { arrayToCSV } from '../../common/generalUtils'
+import { parseAddress } from '../../common/generalUtils'
 
 const formatDate = (stamp) => {
   const dated = new Date(stamp);
@@ -108,7 +108,7 @@ const SettlementDetails = ({
         <div className="card-footer">
         <ExportCSV
             id="download-link"
-            items={csvArray}
+            items={parseAddress(csvArray)}
             fileName={`PT-Settlement${settlement.settlement.batch_id}-Payments.csv`}
           />
           {total > 1 ? (
