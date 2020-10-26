@@ -168,19 +168,19 @@ const SettlementDetails = ({
           display: flex;
         }
         .pay-theory-card-visa {
-          background-image: url(https://storage.googleapis.com/pt-assets/visa-badge-icon.svg);
+          background-image: url(https://assets.paytheory.com/visa-badge-icon.svg);
         }
 
         .pay-theory-card-mastercard {
-          background-image: url(https://storage.googleapis.com/pt-assets/mastercard-badge-icon.svg);
+          background-image: url(https://assets.paytheory.com/mastercard-badge-icon.svg);
         }
 
         .pay-theory-card-american-express {
-          background-image: url(https://storage.googleapis.com/pt-assets/amex-badge-icon.svg);
+          background-image: url(https://assets.paytheory.com/amex-badge-icon.svg);
         }
 
         .pay-theory-card-discover {
-          background-image: url(https://storage.googleapis.com/pt-assets/discover-badge-icon.svg);
+          background-image: url(https://assets.paytheory.com/discover-badge-icon.svg);
         }
 
         .card-head .totals,

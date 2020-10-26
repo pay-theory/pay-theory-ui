@@ -132,7 +132,7 @@ const ConnectionColumn = (props) => {
                     width: 100%;
                 }
                 .clever {
-                    background-image: url(https://storage.googleapis.com/pt-assets/clever-logo.png);
+                    background-image: url(https://assets.paytheory.com/clever-logo.png);
                 }
                 .pay-theory {
                     background-image: url('/paytheory-logo-dark.svg');
