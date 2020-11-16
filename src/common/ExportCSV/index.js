@@ -9,10 +9,10 @@ const LABEL = `Export CSV`
 const ExportCSV = ({ id, items, fileName }) => {
     useEffect(() => {
         if (items.length > 0) {
-            var text = arrayToCSV(items)
-            var data = new Blob([text], { type: 'text/csv' })
+            const text = arrayToCSV(items)
+            const data = new Blob([text], { type: 'text/csv' })
 
-            var url = URL.createObjectURL(data)
+            const url = URL.createObjectURL(data)
 
             document.getElementById(id).href = url
         } else {
