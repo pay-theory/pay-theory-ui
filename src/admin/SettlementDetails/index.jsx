@@ -94,7 +94,7 @@ const SettlementDetails = ({
             <h4>Transfers: {settlement.payment_count}</h4>
             <h4>
               Total Amount:{" $"}
-              {(settlement.settlement.total_amount / 100).toFixed(2)}
+              {((settlement.settlement.total_amount-settlement.settlement.total_fee_amount) / 100).toFixed(2)}
             </h4>
           </div>
         </div>

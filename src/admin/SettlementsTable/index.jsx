@@ -64,7 +64,7 @@ const SettlementsTable = (props) => {
           },
           {
             className: "total-amount numeric",
-            content: formatFee(item.total_amount)
+            content: formatFee(item.total_amount - item.total_fee_amount)
           }
         ],
         key: item.batch_id,
