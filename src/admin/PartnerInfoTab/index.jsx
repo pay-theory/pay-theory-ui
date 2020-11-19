@@ -8,10 +8,10 @@ import { ClickToCopyText, FormHead, TabPage, Button } from '../../common'
 import * as BooksHooks from '../../hooks'
 
 const PartnerInfoTab = (props) => {
-    const partner = useContext(BooksHooks.context.partner);
+  const partner = useContext(BooksHooks.context.partner);
 
-    return (
-        <TabPage id="merchant-info-tab" visibility="tab-visible">
+  return (
+    <TabPage id="merchant-info-tab" visibility="tab-visible">
       <div className="tab-content">
         <FormHead text="Merchant Details" />
         <div className="tab-row">
@@ -30,16 +30,6 @@ const PartnerInfoTab = (props) => {
                 color="old-primary"
               />
             </div>
-          </div>
-        </div>
-        <div className="tab-row">
-          <div className="tab-column">
-            <ClickToCopyText
-              label="Client ID"
-              message="Client ID"
-              name="client"
-              value={partner.identity}
-            />
           </div>
         </div>
       </div>
@@ -94,11 +84,11 @@ const PartnerInfoTab = (props) => {
         `}
       </style>
     </TabPage>
-    );
+  );
 };
 
 PartnerInfoTab.propTypes = {
-    onGenerateApiKey: PropTypes.func.isRequired
+  onGenerateApiKey: PropTypes.func.isRequired
 };
 
 export default PartnerInfoTab;
