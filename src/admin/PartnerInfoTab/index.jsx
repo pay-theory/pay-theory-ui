@@ -27,7 +27,7 @@ const PartnerInfoTab = (props) => {
                 onClick={() => props.onGenerateApiKey()}
                 label="Generate"
                 name="generate"
-                color="old-primary"
+                color="primary"
               />
             </div>
           </div>

@@ -13,6 +13,7 @@ const BodySubtitle = (props) => {
                             .body-head-subtitle {
                                 font-size: 16px;
                                 font-weight: 400;
+                                color: #6A606D;
                             }
                         `}</style>
                     </div>

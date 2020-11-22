@@ -100,7 +100,7 @@ const NavigationDrawer = ({ navStyle, listHead }) => {
 
                 .nav-drawer a:link i,
                 .nav-drawer a:visited i {
-                    color: ${navStyle.fontColor};
+                    color: #8E868F;
                     margin-left: 24px;
                     margin-right: 16px;
                 }
@@ -121,11 +121,11 @@ const NavigationDrawer = ({ navStyle, listHead }) => {
                     transition: all width 0.2s ease-in-out;
                 }
 
-                .nav-drawer a:active,
-                .nav-drawer a:hover,
-                .nav-drawer summary:hover {
+                
+                .nav-drawer a:hover:not(.active),
+                .nav-drawer summary:hover:not(.active) {
                     color: ${navStyle.hoverFontColor};
-                    border-left: 4px solid #0bd8aa;
+                    border-left: 4px solid #7C2CDD;
                     margin-top: auto;
                     margin-bottom: auto;
                     height: 46px;
@@ -138,7 +138,14 @@ const NavigationDrawer = ({ navStyle, listHead }) => {
                     position: relative;
                 }
 
-                .nav-drawer a:active i,
+                .nav-drawer li i {
+                    color: #8E868F;
+                }
+
+                .nav-drawer a.active i {
+                    color: #7C2CDD !important;
+                }
+
                 .nav-drawer a:hover i {
                     color: ${navStyle.hoverFontColor};
                 }
@@ -157,16 +164,11 @@ const NavigationDrawer = ({ navStyle, listHead }) => {
                     text-decoration: none;
                     font-weight: 600;
                     position: relative;
-                }
-
-                .nav-drawer a.active:link i,
-                .nav-drawer a.active:visited i,
-                .nav-drawer a.active:active i {
-                    color: #0199ed;
+                    background: #FFFFFF;
                 }
 
                 .nav-drawer a.active::before {
-                    background: #6ae4c9;
+                    background: #7C2CDD;
                     content: '';
                     height: 100%;
                     left: 0;
@@ -176,36 +178,36 @@ const NavigationDrawer = ({ navStyle, listHead }) => {
                     box-sizing: border-box;
                 }
 
-                details summary::-webkit-details-marker {
+                .nav-drawer details summary::-webkit-details-marker {
                     display: none;
                 }
 
-                .far.fa-angle-down {
+                .nav-drawer .far.fa-angle-down {
                     display: none;
                 }
 
-                details[open] .fa-angle-down {
+                .nav-drawer details[open] .fa-angle-down {
                     display: flex;
-                    color: #0bd8aa !important;
+                    color: #7C2CDD !important;
                     margin-right: 25px !important;
                 }
 
-                details[open] .fa-angle-right {
+                .nav-drawer details[open] .fa-angle-right {
                     display: none;
                 }
 
-                .far.fa-angle-right {
-                    color: #0bd8aa !important;
+                .nav-drawer .far.fa-angle-right {
+                    color: #7C2CDD !important;
                     margin-right: 25px !important;
                 }
 
-                .nav-header {
+                .nav-drawer .nav-header {
                     display: flex;
                     height: 46px;
                     padding-left: 24px;
                     margin-top: -20px !important;
                     list-style: none;
-                    color: #fff;
+                    color: #1F0A28;
                     margin-top: auto;
                     margin-bottom: auto;
                     align-items: center;
@@ -214,14 +216,14 @@ const NavigationDrawer = ({ navStyle, listHead }) => {
                     letter-spacing: 0.45px;
                     font-weight: 700;
                 }
-                .summary {
+                .nav-drawer .summary {
                     display: flex;
                     width: 100%;
                     justify-content: space-between;
                     align-items: center;
                     height: 46px;
                 }
-                .sub-list {
+                .nav-drawer .sub-list {
                     margin-left: 24px;
                 }
             `}</style>
@@ -241,10 +243,10 @@ NavigationDrawer.propTypes = {
 
 NavigationDrawer.defaultProps = {
     navStyle: {
-        background: '#160f3d',
-        hoverBackground: '#100a31',
-        fontColor: 'rgba(255, 255, 255, 0.5)',
-        hoverFontColor: '#fff'
+        background: '#F2F2F2',
+        hoverBackground: 'rgba(255, 255, 255, 0.3)',
+        fontColor: '#1F0A28',
+        hoverFontColor: '#1F0A28'
     }
 }
 

@@ -83,8 +83,7 @@ const SettlementDetails = ({
   };
 
   return (
-    <div>
-      <CardTable>
+    <div className="settlement-details">
         <div className="card-head">
           <div className="id-date">
             <h3>Settlement #{settlement.settlement.batch_id}</h3>
@@ -115,8 +114,10 @@ const SettlementDetails = ({
             <Pagination page={page} setPage={setPage} total={total} />
           ) : null}
         </div>
-      </CardTable>
       <style jsx="true">{`
+        .settlement-details {
+          margin: 0px 24px;
+        }
         .card-head {
           display: flex;
           margin: 18px;
@@ -198,7 +199,6 @@ const SettlementDetails = ({
         .table-wrapper {
           margin: 0px 18px !important;
           border-radius: 5px;
-          border: 1px solid #cad3dd;
         }
 
         .card-footer {

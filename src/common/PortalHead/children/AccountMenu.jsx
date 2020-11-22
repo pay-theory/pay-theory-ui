@@ -11,13 +11,19 @@ const AccountMenu = (props) => {
                     border-radius: 3px;
                     cursor: pointer;
                     padding: 5px 0px;
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none;
+                    -khtml-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
                 }
 
                 .portal-head-account-menu:focus-within
                     .portal-head-account-menu-button,
                 .portal-head-account-menu-button:hover,
                 .portal-head-account-menu-button:focus {
-                    background-color: #0199ed;
+                    background-color: rgba(255, 255, 255, 0.2);
                 }
             `}</style>
         </div>

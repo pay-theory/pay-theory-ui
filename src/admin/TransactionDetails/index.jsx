@@ -46,8 +46,7 @@ const TransactionDetails = (props) => {
     // }
 
     return (
-        <CardTable className='details-card'>
-            <CardRow>
+        <div className='transaction-details'>
                 <div className='cardHead'>
                     <h3>Order {transaction.transfer_id}</h3>
                     <p className={`status-${transaction.state === "SUCCEEDED" ? "received" : transaction.state === 'APPROVED'? "pending" : transaction.state.toLowerCase()}`}>
@@ -95,6 +94,9 @@ const TransactionDetails = (props) => {
                 </div>
                 <style global='true' jsx='true'>
                     {`
+                        .transaction-details {
+                            margin: 0px 24px; 
+                        }
                         .cardHead {
                             display: flex;
                             margin: 18px 18px 9px;
@@ -204,8 +206,7 @@ const TransactionDetails = (props) => {
                         }
                     `}
                 </style>
-            </CardRow>
-        </CardTable>
+            </div>
     )
 }
 

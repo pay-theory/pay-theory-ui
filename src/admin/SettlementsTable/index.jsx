@@ -81,7 +81,7 @@ const SettlementsTable = (props) => {
   }, [selected]);
 
   return (
-    <React.Fragment>
+    <div className="settlements-table">
       <CardTable>
         <InnerTable
           columns={generateTableColumns()}
@@ -104,6 +104,10 @@ const SettlementsTable = (props) => {
       </div>
       <style global="true" jsx="true">
         {`
+          .settlements-table {
+            margin: 0px 24px;
+          }
+
           .settlement-id {
             width: 160px;
           }
@@ -137,7 +141,7 @@ const SettlementsTable = (props) => {
 
         `}
       </style>
-    </React.Fragment>
+    </div>
   );
 };
 

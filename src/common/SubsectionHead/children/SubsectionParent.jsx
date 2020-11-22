@@ -34,7 +34,7 @@ const SubsectionParent = (props) => {
                                 a.subsection-nav:link,
                                 a.subsection-nav:visited,
                                 a.subsection-nav:active {
-                                    color: #09f;
+                                    color: #7C2CDD;
                                     display: -webkit-flex;
                                     display: flex;
                                     -webkit-flex-direction: row;
@@ -49,7 +49,7 @@ const SubsectionParent = (props) => {
                                 }
 
                                 .subsection-nav i {
-                                    color: #09f;
+                                    color: #7C2CDD;
                                     margin-left: 8px;
                                     margin-right: 8px;
                                 }

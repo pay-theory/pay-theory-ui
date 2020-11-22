@@ -70,7 +70,7 @@ const ModalContent = (props) => (
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-          background-color: #31187f;
+          background-image: linear-gradient(to right, #38117F , #7C2CDD, #A62FBA, #DB367D, #EA4141);
           padding: 5px;
         }
         #modal-content .modal-header i {

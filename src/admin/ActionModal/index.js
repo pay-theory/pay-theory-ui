@@ -10,14 +10,14 @@ const ActionModal = ({ label, message, action, actionName }) => {
                 <p>{message}</p>
                 <div className='buttons'>
                     <Button
-                        color='old-primary'
+                        color='primary'
                         label={actionName}
                         name='refund-button'
                         onClick={action}
                         small
                     />
                     <Button
-                        color='old-secondary'
+                        color='default'
                         label='Cancel'
                         name='cancel-button'
                         onClick={() => closeModal()}

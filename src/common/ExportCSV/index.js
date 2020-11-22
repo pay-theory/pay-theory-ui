@@ -42,12 +42,11 @@ const ExportCSV = ({ id, items, fileName }) => {
                         justify-content: center;
                         text-decoration: none;
                         cursor: default;
-                        color: #666666;
-                        background-color: #e8ecef;
+                        color: #CAC4CA;
+                        background-color: #F2F2F2;
                         padding: 0px 16px;
                         height: 35px;
                         border-radius: 5px;
-                        box-shadow: 1px 1px 1px #888888;
                     }
 
                     .export-csv i {
@@ -56,14 +55,12 @@ const ExportCSV = ({ id, items, fileName }) => {
                     }
 
                     .export-csv.active {
-                        color: #4098eb;
+                        color: #FFFFFF;
                         cursor: pointer;
                         font-family: inherit;
                         font-size: 16px;
-                        box-shadow: 1px 1px 1px #888888;
                         border: none;
-                        color: white;
-                        background-color: #0199ed;
+                        background-color: #7C2CDD;
                     }
                 `}
             </style>

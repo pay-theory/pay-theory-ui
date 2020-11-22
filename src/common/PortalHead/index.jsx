@@ -25,7 +25,7 @@ const PortalHead = (props) => {
             ) : null}
             <style jsx='true'>{`
                 .portal-head-header {
-                    background: #31187f;
+                    background-image: linear-gradient(to right, #38117F , #7C2CDD, #A62FBA, #DB367D, #EA4141);
                     color: #fff;
                     display: flex;
                     flex-direction: row;

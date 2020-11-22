@@ -80,7 +80,7 @@ const Pagination = ({ page, setPage, total }) => {
           .pagination p {
             padding: 5px 10px;
             cursor: pointer;
-            color: #4098eb;
+            color: #7C2CDD;
             height: 100%;
             border-radius: 5px;
           }
@@ -91,13 +91,13 @@ const Pagination = ({ page, setPage, total }) => {
             text-align: center;
           }
           .pagination .active {
-            color: #1f0a28;
-            background-color: #cac4ca !important;
+            color: #6A606D;
+            background-color: #F2F2F2 !important;
           }
 
           .pagination .elipses {
             cursor: default;
-            color: #8e868f;
+            color: #6A606D;
           }
 
           .pagination .number:hover,

@@ -8,125 +8,183 @@ import { formatDate } from '../../common/dateUtils'
 import { parseAddress } from '../../common/generalUtils'
 
 const formatFee = (fee) => {
-  return fee < 0 ? `-$${(Math.abs(fee) / 100).toFixed(2)}` : `$${(fee / 100).toFixed(2)}`;
-};
+    return fee < 0
+        ? `-$${(Math.abs(fee) / 100).toFixed(2)}`
+        : `$${(fee / 100).toFixed(2)}`
+}
 
 const formatString = (string) => {
-  return string ? string[0] + string.substring(1).toLowerCase() : '';
+    return string ? string[0] + string.substring(1).toLowerCase() : ''
 }
 
 const TransactionsTable = (props) => {
-  const { transactions, viewTransaction, handleRefund, selected, setSelected, sort, setSort, viewSettlement, total, page, setPage } = props
+    const {
+        transactions,
+        viewTransaction,
+        handleRefund,
+        selected,
+        setSelected,
+        sort,
+        setSort,
+        viewSettlement,
+        total,
+        page,
+        setPage
+    } = props
 
-  const [csvArray, setCsvArray] = useState([]);
+    const [csvArray, setCsvArray] = useState([])
 
-  const generateTableColumns = () => {
-    return [
-      { className: 'transaction-id', label: 'Transaction ID', sortable: true },
-      { className: 'update-date', label: 'Update Date', sortable: true },
-      { className: 'customer-name', label: 'Customer Name', sortable: true },
-      { className: 'payment-account', label: 'Payment Account', sortable: true },
-      { className: 'settlement numeric', label: 'Settlement', sortable: true },
-      { className: 'status', label: 'Status', sortable: true },
-      { className: 'amount numeric', label: 'Amount', sortable: true },
-      { className: "refund", label: "Refund", sortable: false }
-    ]
-  }
+    const generateTableColumns = () => {
+        return [
+            {
+                className: 'transaction-id',
+                label: 'Transaction ID',
+                sortable: true
+            },
+            { className: 'update-date', label: 'Update Date', sortable: true },
+            {
+                className: 'customer-name',
+                label: 'Customer Name',
+                sortable: true
+            },
+            {
+                className: 'payment-account',
+                label: 'Payment Account',
+                sortable: true
+            },
+            {
+                className: 'settlement numeric',
+                label: 'Settlement',
+                sortable: true
+            },
+            { className: 'status', label: 'Status', sortable: true },
+            { className: 'amount numeric', label: 'Amount', sortable: true },
+            { className: 'refund', label: 'Refund', sortable: false }
+        ]
+    }
 
-  const generateTableRows = (reports) => {
-    return reports.map((item, i) => {
-      return {
-        columns: [{
-            className: "transaction-id",
-            content: item.transfer_id
-          },
-          {
-            className: "update-date",
-            content: formatDate(item.updated_at)
-          },
-          {
-            className: "customer-name",
-            content: item.name
-          },
-          {
-            className: "payment-account",
-            content: (
-              <span className="payment-account-detail">
-                <span
-                  className={`pay-theory-card-badge pay-theory-card-${item.card_brand ? item.card_brand.toLowerCase().replace(/_/g, '-') : 'unknown'}`}
+    const generateTableRows = (reports) => {
+        return reports.map((item, i) => {
+            return {
+                columns: [
+                    {
+                        className: 'transaction-id',
+                        content: item.transfer_id
+                    },
+                    {
+                        className: 'update-date',
+                        content: formatDate(item.updated_at)
+                    },
+                    {
+                        className: 'customer-name',
+                        content: item.name
+                    },
+                    {
+                        className: 'payment-account',
+                        content: (
+                            <span className='payment-account-detail'>
+                                <span
+                                    className={`pay-theory-card-badge pay-theory-card-${
+                                        item.card_brand
+                                            ? item.card_brand
+                                                  .toLowerCase()
+                                                  .replace(/_/g, '-')
+                                            : 'unknown'
+                                    }`}
+                                />
+                                ending in {item.last_four}
+                            </span>
+                        )
+                    },
+                    {
+                        className: 'settlement numeric',
+                        content: item.settlement ? (
+                            <span
+                                className='settlement-number link-column'
+                                onClick={() => viewSettlement(item.settlement)}
+                            >
+                                {item.settlement}
+                            </span>
+                        ) : (
+                            ''
+                        )
+                    },
+                    {
+                        className: `status ${
+                            item.state === 'SUCCEEDED'
+                                ? 'received'
+                                : item.state === 'APPROVED'
+                                ? 'pending'
+                                : item.state.toLowerCase()
+                        }`,
+                        content:
+                            item.state === 'SUCCEEDED'
+                                ? 'Received'
+                                : item.state === 'APPROVED'
+                                ? 'Pending'
+                                : formatString(item.state)
+                    },
+                    {
+                        className: 'amount numeric',
+                        content: formatFee(item.amount)
+                    },
+                    {
+                        className: 'refund',
+                        content:
+                            item.state === 'SETTLED' ? (
+                                <span
+                                    className='action other'
+                                    data-testid='refund-action'
+                                    onClick={() => handleRefund(item)}
+                                    title='refund'
+                                >
+                                    <span>
+                                        <i className='fal fa-undo' />
+                                    </span>
+                                </span>
+                            ) : (
+                                <span />
+                            )
+                    }
+                ],
+                key: `${item.transfer_id}-row`,
+                view: () => viewTransaction(item),
+                item: item
+            }
+        })
+    }
+
+    useEffect(() => {
+        const newArray = []
+        selected.forEach((item) => newArray.push(transactions[item]))
+        setCsvArray(parseAddress(newArray))
+    }, [selected])
+
+    return (
+        <div className="transactions-table">
+            <InnerTable
+                columns={generateTableColumns()}
+                rows={generateTableRows(transactions)}
+                selected={selected}
+                setSelected={setSelected}
+                setSort={setSort}
+                sort={sort}
+            />
+            <div className='table-footer'>
+                <ExportCSV
+                    fileName={`PT-Payments-${formatDate(new Date())}.csv`}
+                    id='download-link'
+                    items={csvArray}
                 />
-                ending in {item.last_four}
-              </span>
-            )
-          },
-          {
-            className: "settlement numeric",
-            content: (item.settlement ? <span className="settlement-number link-column" onClick={() => viewSettlement(item.settlement)}>{item.settlement}</span> : '')
-          },
-          {
-            className: `status ${item.state === "SUCCEEDED" ? "received" : item.state === 'APPROVED'? "pending" : item.state.toLowerCase()}`,
-            content: item.state === "SUCCEEDED" ? "Received" : item.state === 'APPROVED' ? "Pending" : formatString(item.state)
-          },
-          {
-            className: "amount numeric",
-            content: formatFee(item.amount)
-          },
-          {
-            className: "refund",
-            content: item.state === "SETTLED" ? (
-              <span
-                  className="action other"
-                  title="refund"
-                  onClick={() => handleRefund(item)}
-                  data-testid="refund-action"
-                >
-                  <span>
-                    <i className="fal fa-undo" />
-                  </span>
-                </span>
-            ) : (
-              <span/>
-            )
-          }
-        ],
-        key: `${item.transfer_id}-row`,
-        view: () => viewTransaction(item),
-        item: item
-      };
-    });
-  };
-
-  useEffect(() => {
-    const newArray = [];
-    selected.forEach((item) => newArray.push(transactions[item]));
-    setCsvArray(parseAddress(newArray))
-  }, [selected]);
-
-  return (
-    <React.Fragment>
-    <CardTable>
-      <InnerTable
-        columns={generateTableColumns()}
-        rows={generateTableRows(transactions)}
-        selected={selected}
-        setSelected={setSelected}
-        sort={sort}
-        setSort={setSort}
-      >
-      </InnerTable>
-    </CardTable>
-     <div className="table-footer">
-     <ExportCSV
-            id="download-link"
-            items={csvArray}
-            fileName={`PT-Payments-${formatDate(new Date())}.csv`}
-          />
-        {total > 1 ? (
-          <Pagination page={page} setPage={setPage} total={total} />
-        ) : null}
-      </div>
-        <style global="true" jsx="true">
-          {`
+                {total > 1 ? (
+                    <Pagination page={page} setPage={setPage} total={total} />
+                ) : null}
+            </div>
+            <style global='true' jsx='true'>
+                {`
+                .transactions-table {
+                  margin: 0px 24px;
+                }
             .transaction-id {
               width: 120px;
             }
@@ -184,23 +242,23 @@ const TransactionsTable = (props) => {
             }
 
             .settled p {
-              background: #5bc794;
+              background: #5BC794;
             }
 
             .declined p {
-              background: #ea4141;
+              background: #EA4141;
             }
 
             .pending p {
-              background: #cac4ca;
+              background: #F5BD42;
             }
 
             .received p {
-              background: #4098eb;
+              background: #4098EB;
             }
 
             .reversed p {
-              background: #f5bd42;
+              background: #DB367D;
             }
 
             .pay-theory-card-badge {
@@ -248,19 +306,19 @@ const TransactionsTable = (props) => {
           }
 
           `}
-        </style>
-    </React.Fragment>
-  );
-};
+            </style>
+        </div>
+    )
+}
 
 TransactionsTable.propTypes = {
-  transactions: PropTypes.array.isRequired,
-  viewTransaction: PropTypes.func.isRequired,
-  handleRefund: PropTypes.func.isRequired,
-  selected: PropTypes.array.isRequired,
-  setSelected: PropTypes.func.isRequired,
-  setSort: PropTypes.func,
-  sort: PropTypes.object.isRequired
-};
+    transactions: PropTypes.array.isRequired,
+    viewTransaction: PropTypes.func.isRequired,
+    handleRefund: PropTypes.func.isRequired,
+    selected: PropTypes.array.isRequired,
+    setSelected: PropTypes.func.isRequired,
+    setSort: PropTypes.func,
+    sort: PropTypes.object.isRequired
+}
 
-export default TransactionsTable;
+export default TransactionsTable

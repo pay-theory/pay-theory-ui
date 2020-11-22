@@ -24,7 +24,7 @@ const GlobalStyle = (props) => {
                     -webkit-text-size-adjust: none;
                 }
                 body {
-                    background-color: #f4f5f4;
+                    background-color: #FFFFFF;
                     background-image: none;
                     height: 100%;
                     overflow: auto;
@@ -49,7 +49,7 @@ const GlobalStyle = (props) => {
                 .body-content {
                     height: 100%;
                     flex-grow: 100;
-                    color: #666666;
+                    color: #1F0A28;
                     display: flex;
                     flex-direction: column;
                     overflow: visible;

@@ -47,7 +47,6 @@ const Button = ({
                         cursor: pointer;
                         font-family: inherit;
                         font-size: 16px;
-                        box-shadow: 1px 1px 1px #888888;
                         position: relative;
                         overflow: hidden;
                     }
@@ -94,16 +93,40 @@ const Button = ({
                         color: #ffffff;
                     }
 
+                    .pt-button.primary-gradient {
+                        background-image: linear-gradient(to right, #7C2CDD, #DB367D);
+                        border: none;
+                        color: #ffffff;
+                    }
+
                     .pt-button.primary-2 {
                         background-color: #5BC794;
                         border: 1px solid transparent;
                         color: #ffffff;
                     }
 
-                    .pt-button.light {
-                        background-color: #ffffff;
-                        border: 1px solid #6a606d;
-                        color: black;
+                    .pt-button.important {
+                        background-color: #8E868F;
+                        border: 1px solid transparent;
+                        color: #FFFFFF;
+                    }
+
+                    .pt-button.delete {
+                        background-color: #EA4141;
+                        border: 1px solid transparent;
+                        color: #FFFFFF;
+                    }
+
+                    .pt-button.warning {
+                        background-color: #F5BD42;
+                        border: 1px solid transparent;
+                        color: #1F0A28;
+                    }
+
+                    .pt-button.default {
+                        background-color: #F2F2F2;
+                        border: 1px solid transparent;
+                        color: #6A606D;
                     }
 
                     .pt-button.old-primary {
@@ -128,9 +151,10 @@ const Button = ({
 
                     .pt-button.disabled {
                         cursor: default !important;
-                        color: white !important;
-                        background-color: #8e868f !important;
+                        color: #CAC4CA !important;
+                        background-color: #F2F2F2 !important;
                         box-shadow: none !important;
+                        background-image: none !important;
                     }
 
                     .pt-button.small {

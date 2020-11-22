@@ -12,12 +12,11 @@ const AccountMenuButton = (props) => {
                         tabIndex='0'
                     >
                         {accountHook.nickname}
-                        <i className={`fal fa-chevron-down}`} />
+                        <i className='far fa-angle-down' />
                         <style global='true' jsx='true'>
                             {`
                                 .portal-head-account-menu-button {
                                     color: #fff;
-                                    background: #160f3d;
                                     display: flex;
                                     font-weight: 600;
                                     border: none;
@@ -31,10 +30,19 @@ const AccountMenuButton = (props) => {
                                     margin-top: auto;
                                     margin-bottom: auto;
                                     line-height: 30px;
+                                    -webkit-touch-callout: none;
+                                    -webkit-user-select: none;
+                                    -khtml-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
                                 }
 
-                                .portal-head-account-menu-button svg {
-                                    margin: 8px;
+                                .portal-head-account-menu-button i {
+                                    margin: 3px 0px 0px 8px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
                                 }
 
                                 .portal-head-account-menu-button:hover
@@ -45,6 +53,12 @@ const AccountMenuButton = (props) => {
                                 .portal-head-account-menu-items:hover {
                                     opacity: 100;
                                     display: block;
+                                    -webkit-touch-callout: none;
+                                    -webkit-user-select: none;
+                                    -khtml-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
                                 }
                             `}
                         </style>

@@ -26,7 +26,6 @@ const AccountMenuItems = (props) => {
                                 .portal-head-account-menu-items {
                                     display: none;
                                     opacity: 0;
-                                    text-align: right;
                                     line-height: 22px;
                                     position: absolute;
                                     top: 40px;
@@ -54,8 +53,7 @@ const AccountMenuItems = (props) => {
                                 .portal-head-account-menu-items div:hover,
                                 .portal-head-account-menu-items div:focus {
                                     display: block;
-                                    background-color: #0199ed;
-                                    color: #fff;
+                                    background-color: rgba(31, 10, 40, .04);
                                 }
                             `}
                         </style>

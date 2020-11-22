@@ -36,7 +36,7 @@ const InnerTable = (props) => {
           sort={props.sort}
           setSort={props.setSort}
         />
-        <div className="inner-table inner">
+        <div>
           {props.rows.map((item, rowNum) => {
             return (
               <children.Row
@@ -64,14 +64,14 @@ const InnerTable = (props) => {
       <style global="true" jsx="true">
         {`
           .inner-table {
-            color: #6b7887;
+            color: #6A606D;
             display: flex;
             flex-direction: column;
             line-height: 36px;
           }
 
           .inner-table-row-head {
-            border-bottom: 1px solid #cad3dd;
+            border-bottom: 1px solid #CAC4CA;
             border-radius: 5px 5px 0 0;
             text-transform: capitalize;
           }
@@ -88,12 +88,10 @@ const InnerTable = (props) => {
             line-height: 50px;
           }
 
-          .inner-table-row:nth-child(even) {
+          .inner-table-row:hover:not(.inner-table-row-head) {
             background: #f8f8f8;
           }
-          .inner-table-row:nth-child(odd) {
-            background: #fff;
-          }
+
           .inner-table-row:last-child {
             border-bottom-right-radius: 5px;
             border-bottom-left-radius: 5px;
@@ -156,18 +154,18 @@ const InnerTable = (props) => {
           }
           .action.view span:hover,
           .action.other span:hover {
-            background: #0199ed;
+            background: #4098EB;
           }
           .action.copy span:hover {
-            background: #febf19;
+            background: #F5BD42;
           }
           .action.delete span:hover {
-            background: #ed454c;
+            background: #EA4141;
           }
 
           .link-column {
             cursor: pointer;
-            color: #09f;
+            color: #7C2CDD;
             text-decoration: none;
             font-weight: 600 !important;
           }
