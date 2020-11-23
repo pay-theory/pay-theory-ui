@@ -8,9 +8,9 @@ import { formatDate } from '../../common/dateUtils'
 import { parseAddress } from '../../common/generalUtils'
 
 const formatFee = (fee) => {
-    return fee < 0
-        ? `-$${(Math.abs(fee) / 100).toFixed(2)}`
-        : `$${(fee / 100).toFixed(2)}`
+    return fee < 0 ?
+        `-$${(Math.abs(fee) / 100).toFixed(2)}` :
+        `$${(fee / 100).toFixed(2)}`
 }
 
 const formatString = (string) => {
@@ -35,8 +35,7 @@ const TransactionsTable = (props) => {
     const [csvArray, setCsvArray] = useState([])
 
     const generateTableColumns = () => {
-        return [
-            {
+        return [{
                 className: 'transaction-id',
                 label: 'Transaction ID',
                 sortable: true
@@ -66,8 +65,7 @@ const TransactionsTable = (props) => {
     const generateTableRows = (reports) => {
         return reports.map((item, i) => {
             return {
-                columns: [
-                    {
+                columns: [{
                         className: 'transaction-id',
                         content: item.transfer_id
                     },
@@ -117,12 +115,11 @@ const TransactionsTable = (props) => {
                                 ? 'pending'
                                 : item.state.toLowerCase()
                         }`,
-                        content:
-                            item.state === 'SUCCEEDED'
-                                ? 'Received'
-                                : item.state === 'APPROVED'
-                                ? 'Pending'
-                                : formatString(item.state)
+                        content: item.state === 'SUCCEEDED' ?
+                            'Received' :
+                            item.state === 'APPROVED' ?
+                            'Pending' :
+                            formatString(item.state)
                     },
                     {
                         className: 'amount numeric',
@@ -130,9 +127,8 @@ const TransactionsTable = (props) => {
                     },
                     {
                         className: 'refund',
-                        content:
-                            item.state === 'SETTLED' ? (
-                                <span
+                        content: item.state === 'SETTLED' ? (
+                            <span
                                     className='action other'
                                     data-testid='refund-action'
                                     onClick={() => handleRefund(item)}
@@ -142,9 +138,9 @@ const TransactionsTable = (props) => {
                                         <i className='fal fa-undo' />
                                     </span>
                                 </span>
-                            ) : (
-                                <span />
-                            )
+                        ) : (
+                            <span />
+                        )
                     }
                 ],
                 key: `${item.transfer_id}-row`,
@@ -302,7 +298,7 @@ const TransactionsTable = (props) => {
           }
            .export-csv {
             position: absolute;
-            left: 24px;
+            left: 0px;
           }
 
           `}
