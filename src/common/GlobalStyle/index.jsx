@@ -24,7 +24,6 @@ const GlobalStyle = (props) => {
                     -webkit-text-size-adjust: none;
                 }
                 body {
-                    background-color: #FFFFFF;
                     background-image: none;
                     height: 100%;
                     overflow: auto;
@@ -38,6 +37,7 @@ const GlobalStyle = (props) => {
                     overflow: auto;
                 }
                 .body-container {
+                    background-color: #FFFFFF;
                     flex-grow: 1;
                     height: 100%;
                     display: flex;
