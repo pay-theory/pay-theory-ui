@@ -82,7 +82,6 @@ const SettlementsTable = (props) => {
 
   return (
     <div className="settlements-table">
-      <CardTable>
         <InnerTable
           columns={generateTableColumns()}
           rows={generateTableRows(settlements)}
@@ -91,7 +90,6 @@ const SettlementsTable = (props) => {
           selected={selected}
           setSelected={setSelected}
         />
-      </CardTable>
       <div className="table-footer">
       <ExportCSV
             id="download-link"
