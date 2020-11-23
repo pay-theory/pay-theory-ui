@@ -90,10 +90,10 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
           outline: 0;
         }
 
-        /* 'Checked' Blue Frame (:before) */
+        /* 'Checked' Mint Frame (:before) */
 
         input[type="checkbox"]:checked + label::before {
-          background-color: #0199ed;
+          background-color: #5BC794;
         }
 
         /* 'Checked' White Checkmark Icon */
@@ -102,10 +102,10 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
           display: block;
         }
 
-        /* 'Indeterminate' Orange Frame (:before) */
+        /* 'Indeterminate' Sunshine Frame (:before) */
 
         input[type="checkbox"]:indeterminate + label::before {
-          background-color: #ff8c00;
+          background-color: #F5BD42;
         }
 
         /* 'Indeterminate' White Dash Icon */
