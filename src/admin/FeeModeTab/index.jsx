@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { FormHead, TabPage } from '../../common'
-import { formatFee } from '../../common/generalUtils'
+import { formatFee, formatBasisPoints } from '../../common/generalUtils'
 
 const FeeModeTab = ({ feeModes }) => {
     const [fixed, setFixed] = useState({})
@@ -31,7 +31,7 @@ const FeeModeTab = ({ feeModes }) => {
                         <h4>Interchange Plus</h4>
                         <ul>
                             <li>
-                                {`${surcharge.fee / 100}% + ${formatFee(
+                                {`${formatBasisPoints(surcharge.fee)}% + ${formatFee(
                                     surcharge.additional_fixed
                                 )}`}
                             </li>
@@ -43,7 +43,7 @@ const FeeModeTab = ({ feeModes }) => {
                         <div className='tab-column'>
                             <h4>Service Fee</h4>
                             <ul>
-                                <li>{`${basis.fee / 100}%`}</li>
+                                <li>{`${formatBasisPoints(basis.fee)}%`}</li>
                                 <li>
                                     {`Minimum Fee: ${formatFee(fixed.fee)}`}
                                 </li>

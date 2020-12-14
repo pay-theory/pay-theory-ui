@@ -4,6 +4,13 @@ const formatFee = (fee) => {
         : `$${(fee / 100).toFixed(2)}`
 }
 
+const formatBasisPoints = (bp) => {
+    const originalAmount = 100000
+    const totalAmount = Math.round(originalAmount / (1 - (bp / 10000)))
+    const fee = totalAmount - originalAmount
+    return ((fee / originalAmount) * 100).toFixed(2)
+}
+
 const formatString = (string) => {
     return string
         ? string[0].toUpperCase() + string.substring(1).toLowerCase()
@@ -30,7 +37,7 @@ const formatPhone = (string) => {
     return result
 }
 
-export { formatFee, formatString, formatPhone }
+export { formatFee, formatString, formatPhone, formatBasisPoints }
 
 function arrayToCSV(objArray) {
     const array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray
