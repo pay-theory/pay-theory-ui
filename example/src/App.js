@@ -7,10 +7,13 @@ import {
     NavigationDrawer,
     GlobalStyle,
     BooksHooks,
-    TransactionsTable,
-    BodyHead,
-    FilterBar,
-    SubsectionHead
+    UtilityBar,
+    PartnerOverviewCard,
+    TabMenu,
+    PartnerInfoTab,
+    AccountsTab,
+    SubsectionHead,
+    FeeModeTab
 } from 'pay-theory-ui'
 import { BrowserRouter as Router } from 'react-router-dom'
 
@@ -129,6 +132,20 @@ const parent = { parent: "Payments", route: "test" }
         }
     }
 
+    const merchant = {
+          "id": 79,
+          "UID": "88118123-f959-52d5-8ab2-cfe8d8ce139f",
+          "sandbox_api_key_ref": "pdyjsvadk8",
+          "sandbox_api_key": "pt-sandbox-dev-126e46f25dffb17e48b1319ab0a622dd",
+          "production_api_key_ref": null,
+          "production_api_key": null,
+          "merchant_name": "Eighth Default Example",
+          "merchant_id": "",
+          "identity": "",
+          "created": "2020-11-18T21:07:07.000Z",
+          "modified": "2020-11-18T21:07:07.000Z"
+      }
+
     const generateTableColumns = () => {
         return [
             { className: 'item-name', label: 'name' },
@@ -178,6 +195,75 @@ const parent = { parent: "Payments", route: "test" }
         setPage(1)
     }
 
+    const MENU_ITEMS = {
+        MERCHANT_INFO: {
+            menu: 'merchant-info-menu',
+            tab: 'merchant-info-tab',
+        },
+        USER_ACCOUNTS: {
+            menu: 'merchant-accounts-menu',
+            tab: 'merchant-accounts-tab',
+        },
+        FEE_MODE: {
+            menu: 'fee-mode-menu',
+            tab: 'fee-mode-tab',
+        },
+    }
+
+    const selectTab = selected => {
+        const menu = document.getElementById(selected.menu)
+        const tab = document.getElementById(selected.tab)
+
+        tab.classList.remove('gone')
+        tab.classList.add('tab-visible')
+        menu.classList.add('active-tab')
+    }
+    const clearUnselected = unselected => {
+        unselected.forEach(item => {
+            const menu = document.getElementById(item.menu)
+            const tab = document.getElementById(item.tab)
+            tab.classList.remove('tab-visible')
+            tab.classList.add('gone')
+            menu.classList.remove('active-tab')
+        })
+    }
+    const changeTab = selected => {
+        /* istanbul ignore next */
+        switch (selected) {
+        case MENU_ITEMS.USER_ACCOUNTS:
+            clearUnselected([MENU_ITEMS.MERCHANT_INFO, MENU_ITEMS.FEE_MODE])
+            break
+        case MENU_ITEMS.FEE_MODE:
+            clearUnselected([MENU_ITEMS.MERCHANT_INFO, MENU_ITEMS.USER_ACCOUNTS])
+            break
+        default:
+            clearUnselected([MENU_ITEMS.USER_ACCOUNTS, MENU_ITEMS.FEE_MODE])
+        }
+        selectTab(selected)
+    }
+
+    const feeModes = [{"id":95,"UID":"MPr7rWi2XfLhJdnEohimPMaM","merchant":3,"finix_merchant_id":"MUdjKDkHUB1ty1fpP5U9EwRK","finix_identity":"IDiGfyGRsAcvV2i34tnaWBLm","finix_fee_profile":null,"merchant_profile_name":"Development Team - Surcharge","fee_type":"combined","fee":290,"additional_fixed":30,"created":"2020-11-22T13:06:42.000Z","modified":"2020-11-22T13:06:42.000Z"},{"id":15,"UID":"MPg5rDFeQfgfdY3ygDk6zyPL","merchant":3,"finix_merchant_id":"MUwbjDR4Db8cw6q9jra8vp89","finix_identity":"IDeKodEH8qK1kKfGf32TEwTM","finix_fee_profile":"FPiWjvA1LaRe44VAWnZYteTc","merchant_profile_name":"Development Team - Fixed","fee_type":"fixed","fee":195,"additional_fixed":0,"created":"2020-11-02T18:08:03.000Z","modified":"2020-11-02T18:08:03.000Z"},{"id":13,"UID":"MPwvBzTGo7eFCqZdKa31TZcL","merchant":3,"finix_merchant_id":"MUmcW7JspHKtwDMuczyZToC3","finix_identity":"ID4CEeyYSetU2e845icF8GjF","finix_fee_profile":"FPcqXfxhfhHoYP8k4ZsUF8Q8","merchant_profile_name":"Development Team - Basis","fee_type":"basis","fee":380,"additional_fixed":0,"created":"2020-11-02T18:08:05.000Z","modified":"2020-11-02T18:08:05.000Z"}]
+
+    const menuItems = [{
+        id: MENU_ITEMS.MERCHANT_INFO.menu,
+        label: 'Merchant Information',
+        active: 'active-tab',
+        action: () => changeTab(MENU_ITEMS.MERCHANT_INFO),
+    },
+    {
+        id: MENU_ITEMS.USER_ACCOUNTS.menu,
+        label: 'User Accounts',
+        active: '',
+        action: () => changeTab(MENU_ITEMS.USER_ACCOUNTS),
+    },
+    {
+        id: MENU_ITEMS.FEE_MODE.menu,
+        label: 'Fee Modes',
+        active: '',
+        action: () => changeTab(MENU_ITEMS.FEE_MODE),
+    }
+]
+
     const pageMenu = generateDocumentationMenu()
 
     const tableRows = generateTableRows(itemsArray)
@@ -208,40 +294,45 @@ const parent = { parent: "Payments", route: "test" }
                                                 listHead={pageMenu.listHead}
                                             />
                                             <div className='body-content'>
-                                            <BodyHead />
-                                            <p
-                                                className="filter-toggle"
-                                                onClick={() => {
-                                                    setShowFilters(!showFilters);
-                                                }}
-                                                >
-                                                Add filters{" "}
-                                                <i
-                                                    className={`fas fa-caret-right show-filter-${
-                                                    showFilters ? "open" : "closed"
-                                                    }`}
-                                                />
-                                                </p>
-                                                <div className={showFilters ? "show-bar" : "hide-bar"}>
-                                            <FilterBar
-                                            filterList={filterList}
-                                            setFilterList={updateFilters}
-                                            filterOptions={options}
-                                            />
-                                            </div>
-                                            <TransactionsTable
-                                                transactions={transactions}
-                                                handleRefund={() => {}}
-                                                viewTransaction={() => {}}
-                                                selected={selected}
-                                                setSelected={setSelected}
-                                                sort={sort}
-                                                setSort={updateSort}
-                                                page={page}
-                                                setPage={updatePage}
-                                                total={12}
-                                                viewSettlement={() => {}}
-                                            />
+                                            <SubsectionHead />
+                        <UtilityBar />
+                        <BooksHooks.context.partner.Provider
+                          value={merchant ? merchant : {}}
+                        >
+                          <div className="overview-detail-container">
+                            <PartnerOverviewCard />
+                            <div className="school-entry card rounded">
+                              <div className="tab-contain">
+                                <TabMenu
+                                  items={menuItems}
+                                />
+                                <hr />
+                                <PartnerInfoTab
+                                  apiPrefix="paytheory-dev"
+                                  savePartner={() => {}}
+                                  setStatusMessage={
+                                    () => {}
+                                  }
+                                  onGenerateApiKey={() => {}}
+                                />
+
+                                <BooksHooks.context.accounts.Provider
+                                  value={[]}
+                                >
+                                  <AccountsTab
+                                    id={
+                                      MENU_ITEMS.USER_ACCOUNTS.tab
+                                    }
+                                    visibility="gone"
+                                    viewAccount={() => {}}
+                                    deleteAccount={() => {}}
+                                  />
+                                </BooksHooks.context.accounts.Provider>
+                                <FeeModeTab feeModes={feeModes} />
+                              </div>
+                            </div>
+                          </div>
+                        </BooksHooks.context.partner.Provider>
                                             </div>
                                         </div>
                                     </div>

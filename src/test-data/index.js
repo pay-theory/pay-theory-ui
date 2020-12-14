@@ -2035,4 +2035,49 @@ const settlement = {
     ]
 }
 
-export { settlement }
+const feeModes = [
+    {
+        id: 95,
+        UID: 'MPr7rWi2XfLhJdnEohimPMaM',
+        merchant: 3,
+        finix_merchant_id: 'MUdjKDkHUB1ty1fpP5U9EwRK',
+        finix_identity: 'IDiGfyGRsAcvV2i34tnaWBLm',
+        finix_fee_profile: null,
+        merchant_profile_name: 'Development Team - Surcharge',
+        fee_type: 'combined',
+        fee: 290,
+        additional_fixed: 30,
+        created: '2020-11-22T13:06:42.000Z',
+        modified: '2020-11-22T13:06:42.000Z'
+    },
+    {
+        id: 15,
+        UID: 'MPg5rDFeQfgfdY3ygDk6zyPL',
+        merchant: 3,
+        finix_merchant_id: 'MUwbjDR4Db8cw6q9jra8vp89',
+        finix_identity: 'IDeKodEH8qK1kKfGf32TEwTM',
+        finix_fee_profile: 'FPiWjvA1LaRe44VAWnZYteTc',
+        merchant_profile_name: 'Development Team - Fixed',
+        fee_type: 'fixed',
+        fee: 195,
+        additional_fixed: 0,
+        created: '2020-11-02T18:08:03.000Z',
+        modified: '2020-11-02T18:08:03.000Z'
+    },
+    {
+        id: 13,
+        UID: 'MPwvBzTGo7eFCqZdKa31TZcL',
+        merchant: 3,
+        finix_merchant_id: 'MUmcW7JspHKtwDMuczyZToC3',
+        finix_identity: 'ID4CEeyYSetU2e845icF8GjF',
+        finix_fee_profile: 'FPcqXfxhfhHoYP8k4ZsUF8Q8',
+        merchant_profile_name: 'Development Team - Basis',
+        fee_type: 'basis',
+        fee: 380,
+        additional_fixed: 0,
+        created: '2020-11-02T18:08:05.000Z',
+        modified: '2020-11-02T18:08:05.000Z'
+    }
+]
+
+export { settlement, feeModes }
