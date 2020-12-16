@@ -26,7 +26,7 @@ const FeeModeTab = ({ feeModes }) => {
         <TabPage id='fee-mode-tab' visibility='gone'>
             <div className='tab-content'>
                 <FormHead text='Fee Modes' />
-                <div className='tab-row'>
+                {surcharge.fee ? <div className='tab-row'>
                     <div className='tab-column'>
                         <h4>Interchange Plus</h4>
                         <ul>
@@ -37,7 +37,7 @@ const FeeModeTab = ({ feeModes }) => {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> : null}
                 {feeModes.length > 1 ? (
                     <div className='tab-row' data-testid='service-fee'>
                         <div className='tab-column'>
