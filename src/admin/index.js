@@ -24,6 +24,9 @@ import ModalCreatePaymentItem from './ModalCreatePaymentItem'
 import ModalCreateRole from './ModalCreateRole'
 import ModalReceiptTransactions from './ModalReceiptTransactions'
 
+import NativeAppIdTab from './NativeAppIdTab'
+import NativeAppModal from './NativeAppModal'
+
 import PartnerInfoTab from './PartnerInfoTab'
 import PartnerOverviewCard from './PartnerOverviewCard'
 import PartnerTable from './PartnerTable'
@@ -69,6 +72,8 @@ export {
     ModalCreatePaymentItem,
     ModalCreateRole,
     ModalReceiptTransactions,
+    NativeAppIdTab,
+    NativeAppModal,
     PartnerInfoTab,
     PartnerOverviewCard,
     PartnerTable,

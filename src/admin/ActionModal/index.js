@@ -3,9 +3,13 @@ import PropTypes from 'prop-types'
 
 import { ModalContent, Button, closeModal } from '../../common'
 
-const ActionModal = ({ label, message, action, actionName }) => {
+const ActionModal = ({ label, message, action, actionName, type }) => {
     return (
-        <ModalContent data-testid='confirm-action' text={label}>
+        <ModalContent
+            data-testid='confirm-action'
+            identifier={type}
+            text={label}
+        >
             <div className='confirm-action-content'>
                 <p>{message}</p>
                 <div className='buttons'>
@@ -20,7 +24,7 @@ const ActionModal = ({ label, message, action, actionName }) => {
                         color='default'
                         label='Cancel'
                         name='cancel-button'
-                        onClick={() => closeModal()}
+                        onClick={() => closeModal(type)}
                         small
                     />
                 </div>
@@ -58,7 +62,8 @@ ActionModal.propTypes = {
     action: PropTypes.func.isRequired,
     actionName: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    message: PropTypes.any.isRequired
+    message: PropTypes.any.isRequired,
+    type: PropTypes.string
 }
 
 export default ActionModal

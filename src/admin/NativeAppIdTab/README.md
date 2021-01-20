@@ -1,6 +1,6 @@
-# FeeModeTab
+# NativeAppIdTab
 
-A UI element for displaying a list of Fee Modes available on a merchant.
+A UI element for displaying a list of the merchants Native App Id.
 
 ## Hooks
 
