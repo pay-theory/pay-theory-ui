@@ -8,7 +8,8 @@ import {
     InnerTable,
     openModal,
     closeModal
-} from '../../common'
+}
+from '../../common'
 import NativeAppModal from '../NativeAppModal'
 import ActionModal from '../ActionModal'
 
@@ -28,8 +29,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     const generateAndroidRows = (array) => {
         return array.map((item, i) => {
             return {
-                columns: [
-                    {
+                columns: [{
                         className: 'apk-digest-prod',
                         content: item.apk_digest_prod
                     },
@@ -74,8 +74,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     const generateAppleRows = (array) => {
         return array.map((item, i) => {
             return {
-                columns: [
-                    {
+                columns: [{
                         className: 'cf-bundle-identifier',
                         content: item.cf_bundle_identifier
                     },
@@ -107,7 +106,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     }
     return (
         <TabPage id='native-app-id-tab' visibility='gone'>
-            <div className='tab-content'>
+            <div className='tab-content' data-testid='native-app-id-tab'>
                 <FormHead text='Native App Credentials' />
                 <div className='tab-row'>
                     <div className='tab-column'>
@@ -196,7 +195,9 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
 }
 
 NativeAppIdTab.propTypes = {
+    addAction: PropTypes.func.isRequired,
     android: PropTypes.array.isRequired,
+    deleteAction: PropTypes.func.isRequired,
     ios: PropTypes.array.isRequired
 }
 
