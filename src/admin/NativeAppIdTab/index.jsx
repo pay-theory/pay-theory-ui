@@ -8,7 +8,8 @@ import {
     InnerTable,
     openModal,
     closeModal
-} from '../../common'
+}
+from '../../common'
 import NativeAppModal from '../NativeAppModal'
 import ActionModal from '../ActionModal'
 
@@ -28,8 +29,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     const generateAndroidRows = (array) => {
         return array.map((item, i) => {
             return {
-                columns: [
-                    {
+                columns: [{
                         className: 'apk-digest-prod',
                         content: (
                             <p title={item.apk_digest_prod}>
@@ -56,7 +56,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 className='action delete'
                                 data-testid='delete-action'
                                 onClick={() => {
-                                    setActionable(item)
+                                    setActionable({ platform: 'android', data: item})
                                     openModal(ACTION_ID)
                                 }}
                             >
@@ -82,8 +82,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     const generateAppleRows = (array) => {
         return array.map((item, i) => {
             return {
-                columns: [
-                    {
+                columns: [{
                         className: 'cf-bundle-identifier',
                         content: item.cf_bundle_identifier
                     },
@@ -98,7 +97,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 className='action delete'
                                 data-testid='delete-action'
                                 onClick={() => {
-                                    setActionable(item)
+                                    setActionable({ platform: 'ios', data: item})
                                     openModal(ACTION_ID)
                                 }}
                             >
@@ -115,7 +114,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     }
     return (
         <TabPage id='native-app-id-tab' visibility='gone'>
-            <div className='tab-content'>
+            <div className='tab-content' data-testid='native-app-id-tab'>
                 <FormHead text='Native App Credentials' />
                 <div className='tab-row'>
                     <div className='tab-column'>
@@ -163,9 +162,11 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                 actionName='Delete'
                 label='Delete App Credentials'
                 message={`Are you sure you want to delete credentials with ${
-                    actionable.cf_bundle_identifier
-                        ? `Bundle Identifier: ${actionable.cf_bundle_identifier} and Team ID: ${actionable.apple_team_id}`
-                        : `Production APK Digest: ${actionable.apk_digest_prod}, Debug APK Digest: ${actionable.apk_digest_debug} and Package Name: ${actionable.apk_package_name}`
+                    actionable.platform === 'ios'
+                        ? `Bundle Identifier: ${actionable.data.cf_bundle_identifier} and Team ID: ${actionable.data.apple_team_id}`
+                        : actionable.platform === 'android'
+                        ? `Production APK Digest: ${actionable.data.apk_digest_prod}, Debug APK Digest: ${actionable.data.apk_digest_debug} and Package Name: ${actionable.data.apk_package_name}`
+                        : ""
                 } ?`}
                 type={ACTION_ID}
             />
@@ -213,7 +214,9 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
 }
 
 NativeAppIdTab.propTypes = {
+    addAction: PropTypes.func.isRequired,
     android: PropTypes.array.isRequired,
+    deleteAction: PropTypes.func.isRequired,
     ios: PropTypes.array.isRequired
 }
 
