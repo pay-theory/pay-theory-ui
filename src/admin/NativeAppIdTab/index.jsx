@@ -8,8 +8,7 @@ import {
     InnerTable,
     openModal,
     closeModal
-}
-from '../../common'
+} from '../../common'
 import NativeAppModal from '../NativeAppModal'
 import ActionModal from '../ActionModal'
 
@@ -29,7 +28,8 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     const generateAndroidRows = (array) => {
         return array.map((item, i) => {
             return {
-                columns: [{
+                columns: [
+                    {
                         className: 'apk-digest-prod',
                         content: (
                             <p title={item.apk_digest_prod}>
@@ -56,7 +56,10 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 className='action delete'
                                 data-testid='delete-action'
                                 onClick={() => {
-                                    setActionable({ platform: 'android', data: item})
+                                    setActionable({
+                                        platform: 'android',
+                                        data: item
+                                    })
                                     openModal(ACTION_ID)
                                 }}
                             >
@@ -82,7 +85,8 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     const generateAppleRows = (array) => {
         return array.map((item, i) => {
             return {
-                columns: [{
+                columns: [
+                    {
                         className: 'cf-bundle-identifier',
                         content: item.cf_bundle_identifier
                     },
@@ -97,7 +101,10 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 className='action delete'
                                 data-testid='delete-action'
                                 onClick={() => {
-                                    setActionable({ platform: 'ios', data: item})
+                                    setActionable({
+                                        platform: 'ios',
+                                        data: item
+                                    })
                                     openModal(ACTION_ID)
                                 }}
                             >
@@ -161,13 +168,25 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                 }}
                 actionName='Delete'
                 label='Delete App Credentials'
-                message={`Are you sure you want to delete credentials with ${
-                    actionable.platform === 'ios'
-                        ? `Bundle Identifier: ${actionable.data.cf_bundle_identifier} and Team ID: ${actionable.data.apple_team_id}`
-                        : actionable.platform === 'android'
-                        ? `Production APK Digest: ${actionable.data.apk_digest_prod}, Debug APK Digest: ${actionable.data.apk_digest_debug} and Package Name: ${actionable.data.apk_package_name}`
-                        : ""
-                } ?`}
+                message={
+                    <div>
+                        <p>Are you sure you want to delete credentials with:</p>
+                        {actionable.platform === 'ios' ? (
+                            <div>
+                                <p>{`Bundle Identifier: ${actionable.data.cf_bundle_identifier}`}</p>{' '}
+                                <p>{`Team ID: ${actionable.data.apple_team_id}`}</p>
+                            </div>
+                        ) : actionable.platform === 'android' ? (
+                            <div>
+                                <p>{`Production APK Digest: ${actionable.data.apk_digest_prod}`}</p>{' '}
+                                <p>{`Debug APK Digest: ${actionable.data.apk_digest_debug}`}</p>
+                                <p>{`Package Name: ${actionable.data.apk_package_name}`}</p>
+                            </div>
+                        ) : (
+                            ''
+                        )}
+                    </div>
+                }
                 type={ACTION_ID}
             />
             <style global='true' jsx='true'>
