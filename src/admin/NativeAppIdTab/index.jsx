@@ -31,11 +31,19 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                 columns: [
                     {
                         className: 'apk-digest-prod',
-                        content: item.apk_digest_prod
+                        content: (
+                            <p title={item.apk_digest_prod}>
+                                {item.apk_digest_prod}
+                            </p>
+                        )
                     },
                     {
                         className: 'apk-digest-debug',
-                        content: item.apk_digest_debug
+                        content: (
+                            <p title={item.apk_digest_debug}>
+                                {item.apk_digest_debug}
+                            </p>
+                        )
                     },
                     {
                         className: 'apk-package-name',
@@ -177,17 +185,26 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                     .apk-digest-prod,
                     .apk-digest-debug,
                     .apk-package-name {
-                        width: 33%;
+                        width: 200px;
                     }
 
                     .cf-bundle-identifier,
                     .apple-team-id {
-                        width: 50%;
+                        width: 300px;
                     }
 
                     .android-delete,
                     .ios-delete {
                         width: 55px;
+                    }
+
+                    .cell.apk-digest-prod p,
+                    .cell.apk-digest-debug p {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        padding: 0px 5px 0px 0px;
+                        max-width: 250px;
                     }
                 `}
             </style>

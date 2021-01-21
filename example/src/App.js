@@ -299,8 +299,8 @@ const parent = { parent: "Payments", route: "test" }
         ],
         android: [
             {
-              apk_digest_prod: "com.paytheory.app",
-              apk_digest_debug: "com.paytheory.app",
+              apk_digest_prod: "B2:7E:E6:53:91:3A:47:2D:82:DA:F5:7A:DE:86:96:DF:9D:01:DA:96:90:5B:1B:93:58:5E:23:F1:CA:D7:FB:47",
+              apk_digest_debug: "B2:7E:E6:53:91:3A:47:2D:82:DA:F5:7A:DE:86:96:DF:9D:01:DA:96:90:5B:1B:93:58:5E:23:F1:CA:D7:FB:47",
               apk_package_name: "paytheory"
             },
             {
