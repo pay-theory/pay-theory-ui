@@ -155,8 +155,8 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                 label='Delete App Credentials'
                 message={`Are you sure you want to delete credentials with ${
                     actionable.platform === 'ios'
-                        ? `Bundle Identifier: ${actionable.cf_bundle_identifier} and Team ID: ${actionable.apple_team_id}`
-                        : `Production APK Digest: ${actionable.apk_digest_prod}, Debug APK Digest: ${actionable.apk_digest_debug} and Package Name: ${actionable.apk_package_name}`
+                        ? `Bundle Identifier: ${actionable.data.cf_bundle_identifier} and Team ID: ${actionable.data.apple_team_id}`
+                        : `Production APK Digest: ${actionable.data.apk_digest_prod}, Debug APK Digest: ${actionable.data.apk_digest_debug} and Package Name: ${actionable.data.apk_package_name}`
                 } ?`}
                 type={ACTION_ID}
             />
