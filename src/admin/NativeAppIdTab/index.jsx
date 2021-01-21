@@ -48,7 +48,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 className='action delete'
                                 data-testid='delete-action'
                                 onClick={() => {
-                                    setActionable(item)
+                                    setActionable({ platform: 'android', data: item})
                                     openModal(ACTION_ID)
                                 }}
                             >
@@ -89,7 +89,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 className='action delete'
                                 data-testid='delete-action'
                                 onClick={() => {
-                                    setActionable(item)
+                                    setActionable({ platform: 'ios', data: item})
                                     openModal(ACTION_ID)
                                 }}
                             >
@@ -154,7 +154,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                 actionName='Delete'
                 label='Delete App Credentials'
                 message={`Are you sure you want to delete credentials with ${
-                    actionable.cf_bundle_identifier
+                    actionable.platform === 'ios'
                         ? `Bundle Identifier: ${actionable.cf_bundle_identifier} and Team ID: ${actionable.apple_team_id}`
                         : `Production APK Digest: ${actionable.apk_digest_prod}, Debug APK Digest: ${actionable.apk_digest_debug} and Package Name: ${actionable.apk_package_name}`
                 } ?`}
