@@ -169,19 +169,19 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                 actionName='Delete'
                 label='Delete App Credentials'
                 message={
-                    <div>
-                        <p>Are you sure you want to delete credentials with:</p>
+                    <div className='delete-message'>
+                        <p>Are you sure you want to delete the native credentials:</p>
                         {actionable.platform === 'ios' ? (
-                            <div>
+                            <span>
                                 <p>{`Bundle Identifier: ${actionable.data.cf_bundle_identifier}`}</p>{' '}
                                 <p>{`Team ID: ${actionable.data.apple_team_id}`}</p>
-                            </div>
+                            </span>
                         ) : actionable.platform === 'android' ? (
-                            <div>
+                            <span>
                                 <p>{`Production APK Digest: ${actionable.data.apk_digest_prod}`}</p>{' '}
                                 <p>{`Debug APK Digest: ${actionable.data.apk_digest_debug}`}</p>
                                 <p>{`Package Name: ${actionable.data.apk_package_name}`}</p>
-                            </div>
+                            </span>
                         ) : (
                             ''
                         )}
@@ -225,6 +225,10 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                         text-overflow: ellipsis;
                         padding: 0px 5px 0px 0px;
                         max-width: 250px;
+                    }
+
+                    .delete-message p {
+                        padding: 10px;
                     }
                 `}
             </style>
