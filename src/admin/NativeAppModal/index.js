@@ -141,6 +141,7 @@ const NativeCredentialsModal = ({ action }) => {
                         name='add-button'
                         onClick={() => {
                             action(formatedData())
+                            resetState()
                         }}
                         small
                     />
