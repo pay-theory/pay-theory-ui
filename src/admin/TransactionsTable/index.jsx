@@ -125,7 +125,7 @@ const TransactionsTable = (props) => {
                     },
                     {
                         className: 'refund',
-                        content: item.state === 'SETTLED' || item.state === 'SUCCEEDED' ? (
+                        content: item.state === 'SETTLED' || item.state === 'RECEIVED' || item.state === 'SUCCEEDED' ? (
                             <span
                                     className='action other'
                                     data-testid='refund-action'
