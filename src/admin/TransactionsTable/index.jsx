@@ -116,10 +116,8 @@ const TransactionsTable = (props) => {
                                 : item.state.toLowerCase()
                         }`,
                         content: item.state === 'SUCCEEDED' ?
-                            'Received' :
-                            item.state === 'APPROVED' ?
-                            'Pending' :
-                            formatString(item.state)
+                            'Received' : item.state === 'APPROVED' ?
+                            'Pending' : formatString(item.state)
                     },
                     {
                         className: 'amount numeric',
@@ -127,7 +125,7 @@ const TransactionsTable = (props) => {
                     },
                     {
                         className: 'refund',
-                        content: item.state === 'SETTLED' ? (
+                        content: item.state === 'SETTLED' || item.state === 'RECEIVED' || item.state === 'SUCCEEDED' ? (
                             <span
                                     className='action other'
                                     data-testid='refund-action'
