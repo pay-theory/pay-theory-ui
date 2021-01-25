@@ -23,3 +23,5 @@ A UI component that creates a styled select element for forms
 
 -   **className**: PropTypes.string
     -   string that allows you to set an additional class name on the outer wrapper of the element
+-   **className**: PropTypes.string
+    -   string that sets the id and data-testid of the select element

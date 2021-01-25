@@ -230,6 +230,7 @@ const Select = (props) => {
 Select.propTypes = {
     className: PropTypes.string,
     label: PropTypes.string.isRequired,
+    name: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.array.isRequired,
     value: PropTypes.string.isRequired
