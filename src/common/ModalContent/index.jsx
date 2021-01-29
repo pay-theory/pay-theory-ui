@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const closeModal = (identifier) => {
+const closeModal = (identifier = false) => {
     const mf = identifier ? `${identifier}-modal-form` : 'modal-form'
     const m = identifier ? `${identifier}-modal` : 'modal'
 
@@ -17,7 +17,7 @@ const closeModal = (identifier) => {
     modal.classList.remove('modal-on')
 }
 
-const openModal = (identifier) => {
+const openModal = (identifier = false) => {
     const mf = identifier ? `${identifier}-modal-form` : 'modal-form'
     const m = identifier ? `${identifier}-modal` : 'modal'
 
