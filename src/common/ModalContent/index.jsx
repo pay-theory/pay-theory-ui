@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const closeModal = (identifier = false) => {
-    const mf = identifier ? `${identifier}-modal-form` : 'modal-form'
-    const m = identifier ? `${identifier}-modal` : 'modal'
+const closeModal = (identifier) => {
+    const id = identifier === undefined ? false : identifier
+    const mf = id ? `${identifier}-modal-form` : 'modal-form'
+    const m = id ? `${identifier}-modal` : 'modal'
 
     const container = document.getElementById('container')
     container.classList.remove('blurred')
@@ -17,9 +18,10 @@ const closeModal = (identifier = false) => {
     modal.classList.remove('modal-on')
 }
 
-const openModal = (identifier = false) => {
-    const mf = identifier ? `${identifier}-modal-form` : 'modal-form'
-    const m = identifier ? `${identifier}-modal` : 'modal'
+const openModal = (identifier) => {
+    const id = identifier === undefined ? false : identifier
+    const mf = id ? `${identifier}-modal-form` : 'modal-form'
+    const m = id ? `${identifier}-modal` : 'modal'
 
     const container = document.getElementById('container')
     container.classList.add('blurred')
