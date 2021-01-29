@@ -34,7 +34,7 @@ const AccountsTab = (props) => (
                             data-testid='add-account-button'
                             className='primary-button'
                             raised
-                            onClick={openModal}
+                            onClick={() => openModal()}
                         >
                             <i className='fal fa-plus-circle' />
                             Create Account
