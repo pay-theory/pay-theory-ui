@@ -11,7 +11,7 @@ const ActionModal = ({ label, message, action, actionName, type }) => {
             text={label}
         >
             <div className='confirm-action-content'>
-                <p>{message}</p>
+                <span>{message}</span>
                 <div className='buttons'>
                     <Button
                         color='primary'
