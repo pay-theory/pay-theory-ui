@@ -1,4 +1,4 @@
-# AccountsTab
+# FeeModeTab
 
 A UI element for displaying a list of Fee Modes available on a merchant.
 

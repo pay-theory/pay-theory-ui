@@ -13,7 +13,8 @@ import {
     PartnerInfoTab,
     AccountsTab,
     SubsectionHead,
-    FeeModeTab
+    FeeModeTab,
+    NativeAppIdTab
 } from 'pay-theory-ui'
 import { BrowserRouter as Router } from 'react-router-dom'
 
@@ -208,6 +209,10 @@ const parent = { parent: "Payments", route: "test" }
             menu: 'fee-mode-menu',
             tab: 'fee-mode-tab',
         },
+        NATIVE_ID: {
+            menu: 'native-app-id-menu',
+            tab: 'native-app-id-tab',
+        },
     }
 
     const selectTab = selected => {
@@ -231,13 +236,16 @@ const parent = { parent: "Payments", route: "test" }
         /* istanbul ignore next */
         switch (selected) {
         case MENU_ITEMS.USER_ACCOUNTS:
-            clearUnselected([MENU_ITEMS.MERCHANT_INFO, MENU_ITEMS.FEE_MODE])
+            clearUnselected([MENU_ITEMS.MERCHANT_INFO, MENU_ITEMS.FEE_MODE, MENU_ITEMS.NATIVE_ID])
             break
         case MENU_ITEMS.FEE_MODE:
-            clearUnselected([MENU_ITEMS.MERCHANT_INFO, MENU_ITEMS.USER_ACCOUNTS])
+            clearUnselected([MENU_ITEMS.MERCHANT_INFO, MENU_ITEMS.USER_ACCOUNTS, MENU_ITEMS.NATIVE_ID])
+            break
+        case MENU_ITEMS.NATIVE_ID:
+            clearUnselected([MENU_ITEMS.MERCHANT_INFO, MENU_ITEMS.USER_ACCOUNTS, MENU_ITEMS.FEE_MODE])
             break
         default:
-            clearUnselected([MENU_ITEMS.USER_ACCOUNTS, MENU_ITEMS.FEE_MODE])
+            clearUnselected([MENU_ITEMS.USER_ACCOUNTS, MENU_ITEMS.FEE_MODE, MENU_ITEMS.NATIVE_ID])
         }
         selectTab(selected)
     }
@@ -261,6 +269,12 @@ const parent = { parent: "Payments", route: "test" }
         label: 'Fee Modes',
         active: '',
         action: () => changeTab(MENU_ITEMS.FEE_MODE),
+    },
+    {
+        id: MENU_ITEMS.NATIVE_ID.menu,
+        label: 'Native Credentials',
+        active: '',
+        action: () => changeTab(MENU_ITEMS.NATIVE_ID),
     }
 ]
 
@@ -272,8 +286,33 @@ const parent = { parent: "Payments", route: "test" }
         nickname: "Demo Account"
       };
 
+      const appIds = {
+        ios: [
+            {
+                cf_bundle_identifier: "com.paytheory.app",
+                apple_team_id: "paytheory"
+            },
+            {
+                cf_bundle_identifier: "com.test.app",
+                apple_team_id: "Test"
+            },
+        ],
+        android: [
+            {
+              apk_digest_prod: "B2:7E:E6:53:91:3A:47:2D:82:DA:F5:7A:DE:86:96:DF:9D:01:DA:96:90:5B:1B:93:58:5E:23:F1:CA:D7:FB:47",
+              apk_digest_debug: "B2:7E:E6:53:91:3A:47:2D:82:DA:F5:7A:DE:86:96:DF:9D:01:DA:96:90:5B:1B:93:58:5E:23:F1:CA:D7:FB:47",
+              apk_package_name: "paytheory"
+            },
+            {
+                apk_digest_prod: "com.test.app",
+                apk_digest_debug: "com.paytheory.app",
+                apk_package_name: "Test"
+            },
+        ],          
+      }
+
     return (
-        <div id='app'>
+        <div id='app' className='modal-wrapper'>
             <Router>
             <BooksHooks.context.parent.Provider value={parent}>
             <BooksHooks.context.account.Provider value={demoAccount}>
@@ -329,6 +368,12 @@ const parent = { parent: "Payments", route: "test" }
                                   />
                                 </BooksHooks.context.accounts.Provider>
                                 <FeeModeTab feeModes={feeModes} />
+                                <NativeAppIdTab 
+                                addAction={e => {console.log(e)}}
+                                android={appIds.android} 
+                                deleteAction={e => {console.log(e)}}
+                                ios={appIds.ios}
+                                />
                               </div>
                             </div>
                           </div>

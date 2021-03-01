@@ -16,10 +16,10 @@ const Button = ({
         <button
             className={`pt-button ${color || 'primary'}
             ${disabled ? 'disabled' : ''}
-            ${small? 'small' : ''}`}
-            id={name}
+            ${small ? 'small' : ''}`}
             data-testid={name}
             disabled={disabled}
+            id={name}
             onClick={onClick}
             // eslint-disable-next-line react/button-has-type
             type={
@@ -31,11 +31,17 @@ const Button = ({
             }
         >
             {leadingIcon ? (
-                <i className={`fal fa-${leadingIcon} leading`} data-testid='button-leading'/>
+                <i
+                    className={`fal fa-${leadingIcon} leading`}
+                    data-testid='button-leading'
+                />
             ) : null}
             {label}
             {trailingIcon ? (
-                <i className={`fal fa-${trailingIcon} trailing`} data-testid='button-trailing' />
+                <i
+                    className={`fal fa-${trailingIcon} trailing`}
+                    data-testid='button-trailing'
+                />
             ) : null}
             <style jsx='true'>
                 {`
@@ -94,50 +100,54 @@ const Button = ({
                     }
 
                     .pt-button.primary-gradient {
-                        background-image: linear-gradient(to right, #7C2CDD, #DB367D);
+                        background-image: linear-gradient(
+                            to right,
+                            #7c2cdd,
+                            #db367d
+                        );
                         border: none;
                         color: #ffffff;
                     }
 
                     .pt-button.primary-2 {
-                        background-color: #5BC794;
+                        background-color: #5bc794;
                         border: 1px solid transparent;
                         color: #ffffff;
                     }
 
                     .pt-button.important {
-                        background-color: #8E868F;
+                        background-color: #8e868f;
                         border: 1px solid transparent;
-                        color: #FFFFFF;
+                        color: #ffffff;
                     }
 
                     .pt-button.delete {
-                        background-color: #EA4141;
+                        background-color: #ea4141;
                         border: 1px solid transparent;
-                        color: #FFFFFF;
+                        color: #ffffff;
                     }
 
                     .pt-button.warning {
-                        background-color: #F5BD42;
+                        background-color: #f5bd42;
                         border: 1px solid transparent;
-                        color: #1F0A28;
+                        color: #1f0a28;
                     }
 
                     .pt-button.default {
-                        background-color: #F2F2F2;
+                        background-color: #f2f2f2;
                         border: 1px solid transparent;
-                        color: #6A606D;
+                        color: #6a606d;
                     }
 
                     .pt-button.old-primary {
-                        background-color: #0199ED;
+                        background-color: #0199ed;
                         border: none;
                         color: white;
                     }
 
                     .pt-button.old-secondary {
                         background-color: #ffffff;
-                        border: .5px solid black;
+                        border: 0.5px solid black;
                         color: black;
                     }
 
@@ -151,8 +161,8 @@ const Button = ({
 
                     .pt-button.disabled {
                         cursor: default !important;
-                        color: #CAC4CA !important;
-                        background-color: #F2F2F2 !important;
+                        color: #cac4ca !important;
+                        background-color: #f2f2f2 !important;
                         box-shadow: none !important;
                         background-image: none !important;
                     }

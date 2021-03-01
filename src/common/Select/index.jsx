@@ -12,13 +12,13 @@ const Select = (props) => {
     }, [value])
 
     return (
-        <div className={`pt-select ${className} ${value ? '' : 'empty'}`}>
+        <div className={`pt-select ${className || ''} ${value ? '' : 'empty'}`}>
             <select
                 className={value ? '' : 'empty'}
+                data-testid={name}
                 id={name}
                 onChange={onChange}
                 ref={select}
-                data-testid={name}
             >
                 <option className='filler-option' value='' />
                 {options.map((option) => {
@@ -65,8 +65,8 @@ const Select = (props) => {
                     }
 
                     .pt-select select {
-                        width: inherit;
-                        height: inherit;
+                        width: 100%;
+                        height: 100%;
                         line-height: inherit;
                         border: none;
                         padding: 15px 30px 15px 13px;
@@ -230,6 +230,7 @@ const Select = (props) => {
 Select.propTypes = {
     className: PropTypes.string,
     label: PropTypes.string.isRequired,
+    name: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.array.isRequired,
     value: PropTypes.string.isRequired
