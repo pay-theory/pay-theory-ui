@@ -2,6 +2,7 @@
 
 UI component library for use in Pay Theory web apps
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea05aec44a6745aa875c3383ee6580f5)](https://app.codacy.com/gh/pay-theory/pay-theory-ui?utm_source=github.com&utm_medium=referral&utm_content=pay-theory/pay-theory-ui&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/12e6359efcbf47aeae8aa84dfc3e0d92)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=pay-theory/pay-theory-ui&utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/12e6359efcbf47aeae8aa84dfc3e0d92)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=pay-theory/pay-theory-ui&utm_campaign=Badge_Coverage) [![Known Vulnerabilities](https://snyk.io/test/github/pay-theory/payments/badge.svg?targetFile=package.json)](https://snyk.io/test/github/pay-theory/payments?targetFile=package.json) [![NPM](https://img.shields.io/npm/v/test.svg)](https://www.npmjs.com/package/test) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
