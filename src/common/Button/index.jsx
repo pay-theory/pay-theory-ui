@@ -183,10 +183,14 @@ Button.propTypes = {
     label: PropTypes.string.isRequired,
     leadingIcon: PropTypes.string,
     name: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     small: PropTypes.bool,
     trailingIcon: PropTypes.string,
     type: PropTypes.string
+}
+
+Button.defaultProps = {
+    onClick: () => {}
 }
 
 export default Button

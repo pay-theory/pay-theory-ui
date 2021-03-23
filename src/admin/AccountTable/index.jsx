@@ -17,9 +17,7 @@ const AccountTable = (props) => {
                 return (
                     <CardTable>
                         <InnerTable
-                            canDelete
                             columns={generateTableColumns()}
-                            hasActions
                             rows={generateTableRows(
                                 accounts,
                                 props.deleteAccount
@@ -52,8 +50,7 @@ const AccountTable = (props) => {
 }
 
 AccountTable.propTypes = {
-    deleteAccount: PropTypes.func.isRequired,
-    viewAccount: PropTypes.func.isRequired
+    deleteAccount: PropTypes.func.isRequired
 }
 
 export default AccountTable

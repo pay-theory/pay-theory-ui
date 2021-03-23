@@ -19,12 +19,13 @@ test('modal create role success', async() => {
                         actionName="Refund"
                         label='refund'
                         message="Are you sure you want to refund?"
+                        type='refund'
                     />
                 </div>
             </div>
     )
     expect(queryByText('refund')).not.toBeVisible()
-    openModal()
+    openModal('refund')
     expect(queryByText('refund')).toBeVisible()
 
     fireEvent.click(queryByTestId('refund-button'))

@@ -17,7 +17,7 @@ ModalCreateAccount.propTypes = {
 }
 */
 
-test('modal open and close', async () => {
+test('modal open and close', async() => {
     const { queryByTestId } = render(
         <div className='modal-wrapper'>
             <div id='container' />
@@ -31,5 +31,22 @@ test('modal open and close', async () => {
     openModal()
     expect(queryByTestId('am-i-open')).toBeVisible()
     closeModal()
+    expect(queryByTestId('am-i-open')).not.toBeVisible()
+})
+
+test('modal open and close with custom identifier', async() => {
+    const { queryByTestId } = render(
+        <div className='modal-wrapper'>
+            <div id='container' />
+            <ModalContent text='test modal' identifier='test'>
+                <div data-testid='am-i-open' />
+            </ModalContent>
+        </div>
+    )
+
+    expect(queryByTestId('am-i-open')).not.toBeVisible()
+    openModal('test')
+    expect(queryByTestId('am-i-open')).toBeVisible()
+    closeModal('test')
     expect(queryByTestId('am-i-open')).not.toBeVisible()
 })

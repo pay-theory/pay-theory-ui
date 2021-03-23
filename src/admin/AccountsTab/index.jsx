@@ -23,8 +23,6 @@ const AccountsTab = (props) => (
                                 accounts,
                                 props.deleteAccount
                             )}
-                            canDelete
-                            hasActions
                         />
                     </div>
                     <hr />
@@ -60,7 +58,6 @@ const AccountsTab = (props) => (
 AccountsTab.propTypes = {
     id: PropTypes.string.isRequired,
     visibility: PropTypes.string.isRequired,
-    viewAccount: PropTypes.func.isRequired,
     deleteAccount: PropTypes.func.isRequired
 }
 

@@ -54,7 +54,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                         content: (
                             <span
                                 className='action delete'
-                                data-testid='delete-action'
+                                data-testid='delete-android'
                                 onClick={() => {
                                     setActionable({
                                         platform: 'android',
@@ -98,7 +98,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                         content: (
                             <span
                                 className='action delete'
-                                data-testid='delete-action'
+                                data-testid='delete-ios'
                                 onClick={() => {
                                     setActionable({
                                         platform: 'ios',

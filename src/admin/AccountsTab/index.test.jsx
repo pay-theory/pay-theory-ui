@@ -24,7 +24,6 @@ test('display accounts tab', async() => {
                         <AccountsTab
                             id='test-id'
                             visibility='visible'
-                            viewAccount={viewAccount}
                             deleteAccount={deleteAccount}
                         />
                         <ModalCreateAccount
@@ -38,9 +37,6 @@ test('display accounts tab', async() => {
             </div>
         </div>
     )
-
-    fireEvent.click(queryAllByTestId('view-action')[0])
-    expect(viewAccount).toHaveBeenCalledTimes(1)
 
     fireEvent.click(queryAllByTestId('delete-action')[0])
     expect(deleteAccount).toHaveBeenCalledTimes(1)

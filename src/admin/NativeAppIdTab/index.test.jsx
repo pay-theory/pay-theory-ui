@@ -10,14 +10,15 @@ import { nativeCredentials } from '../../test-data'
 
 test('display NativeAppId tab', async() => {
     const add = jest.fn()
-    const { queryByTestId, queryByText } = render(
+    const remove = jest.fn()
+    const { queryByTestId, queryByText, queryAllByTestId } = render(
         <div className='spinner-wrapper'>
                                 <div className='modal-wrapper'>
                                     <div id='container' />
                                     <NativeAppIdTab
                                     addAction={add}
                                     android={nativeCredentials.android}
-                                    deleteAction={() => {}}
+                                    deleteAction={remove}
                                     ios={nativeCredentials.ios}
                                     />
                                     </div>
@@ -42,4 +43,24 @@ test('display NativeAppId tab', async() => {
     fireEvent.click(queryByTestId('add-button'))
 
     expect(add).toHaveBeenCalledTimes(1)
+
+    expect(queryByText('Are you sure you want to delete the native credentials:')).not.toBeVisible()
+
+    fireEvent.click(queryAllByTestId('delete-ios')[0])
+
+    expect(queryByText('Are you sure you want to delete the native credentials:')).toBeVisible()
+
+    fireEvent.click(queryAllByTestId('delete-credentials-button')[0])
+
+    expect(remove).toHaveBeenCalledTimes(1)
+
+    expect(queryByText('Are you sure you want to delete the native credentials:')).not.toBeVisible()
+
+    fireEvent.click(queryAllByTestId('delete-android')[0])
+
+    expect(queryByText('Are you sure you want to delete the native credentials:')).toBeVisible()
+
+    fireEvent.click(queryAllByTestId('delete-credentials-button')[0])
+
+    expect(remove).toHaveBeenCalledTimes(2)
 })

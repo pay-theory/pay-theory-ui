@@ -16,7 +16,7 @@ const ActionModal = ({ label, message, action, actionName, type }) => {
                     <Button
                         color='primary'
                         label={actionName}
-                        name='refund-button'
+                        name={`${type}-button`}
                         onClick={action}
                         small
                     />
