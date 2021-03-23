@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from '@material/react-button'
+import Button from '../../Button'
 import TextEntry from '../../TextEntry'
 import { StockTags } from '../../StatusMessage'
 
@@ -39,13 +39,12 @@ const FormLoginAlternative = (props) => {
                 <br />
                 {error}
                 <Button
-                    className='primary-auth-button'
-                    raised
+                    color='primary'
+                    label='Sign In'
                     type='submit'
-                    data-testid='password-login-link'
-                >
-                    Sign In
-                </Button>
+                    onClick={() => {}}
+                    name='password-login-link'
+                />
             </form>
             <style jsx='true'>{`
                 .helper-link {

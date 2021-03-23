@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '@material/react-button'
-import Select from '@material/react-select'
-
 // components root
-import { ModalContent, TextEntry, openSpinner } from '../../common'
+import { ModalContent, TextEntry, openSpinner, Button, Select } from '../../common'
 
 import { ACCESS } from '../RoleInfoTab/const'
+
+const options = [{
+    label: 'Limited Access',
+    value: ACCESS.LIMITED
+}, {
+    label: 'Full Access',
+    value: ACCESS.FULL
+}]
 
 const ModalCreateRole = (props) => {
     const [state, setState] = useState({
@@ -46,16 +51,12 @@ const ModalCreateRole = (props) => {
                     onChange={onChange}
                 />
                 <Select
-                    id='role_access'
                     name='role_access'
                     label='Access Level'
                     value={state.role_access}
                     onChange={onChange}
-                    outlined
-                >
-                    <option value={ACCESS.LIMITED}>Limited Access</option>
-                    <option value={ACCESS.FULL}>Full Access</option>
-                </Select>
+                    options={options}
+                />
                 <input
                     id='role_type'
                     name='role_type'
@@ -65,13 +66,12 @@ const ModalCreateRole = (props) => {
                 <br />
                 <div className='modal-submit'>
                     <Button
-                        data-testid='save-button'
-                        className='primary-button'
-                        raised
+                        name='save-button'
+                        color='primary'
+                        label='Save Role'
+                        onClick={() => {}}
                         type='submit'
-                    >
-                        Save Role
-                    </Button>
+                    />
                 </div>
             </form>
         </ModalContent>

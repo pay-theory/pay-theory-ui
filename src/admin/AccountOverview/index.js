@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '@material/react-button'
 
-import { FormHead, TextEntry } from '../../common'
+import { FormHead, TextEntry, Button } from '../../common'
 import * as BooksHooks from '../../hooks'
 
 const AccountOverview = (props) => {
@@ -61,13 +60,11 @@ const AccountOverview = (props) => {
                             <div className='page-content'>
                                 {/* eslint-disable react/forbid-component-props */}
                                 <Button
-                                    className='primary-button save-account-button'
-                                    data-testid='submit-account-detail'
+                                    color='primary save-account-button'
+                                    name='submit-account-detail'
                                     onClick={() => props.saveAccount(member)}
-                                    raised
-                                >
-                                    {`Save `}
-                                </Button>
+                                    label='save'
+                                />
                                 {/* eslint-enable react/forbid-component-props */}
                             </div>
                         </div>

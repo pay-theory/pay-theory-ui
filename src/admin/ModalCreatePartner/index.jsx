@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '@material/react-button'
-
 // components root
-import { ModalContent, TextEntry, openSpinner } from '../../common'
+import { ModalContent, TextEntry, openSpinner, Button } from '../../common'
 
 const INITIAL_STATE = {
     partner_name: ''
@@ -46,13 +44,12 @@ const ModalCreatePartner = (props) => {
                 <br />
                 <div className='modal-submit'>
                     <Button
-                        data-testid='save-button'
-                        className='primary-button'
-                        raised
+                        name='save-button'
+                        color='primary'
+                        label='Save Partner'
+                        onClick={() => {}}
                         type='submit'
-                    >
-                        Save Partner
-                    </Button>
+                    />
                 </div>
             </form>
         </ModalContent>

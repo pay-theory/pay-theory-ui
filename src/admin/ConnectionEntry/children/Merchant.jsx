@@ -1,15 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '@material/react-button'
-
-import TextEntry from '../../../common/TextEntry'
+import { Button, TextEntry } from '../../../common'
 
 const Usas = (props) => (
     <form data-testid='merchant-connection-form'>
         <TextEntry
-            label='Username'
-            name='merchant_user_name'
+            label='Username'name = 'merchant_user_name'
             value={props.connection.merchant_user_name}
             onChange={props.changeConnectionData}
             required
@@ -40,14 +37,12 @@ const Usas = (props) => (
         <br />
         <div className='modal-submit'>
             <Button
-                data-testid='save-button'
-                className='primary-button'
-                raised
+                name='save-button'
+                color='primary'
+                label='Save Connection'
                 onClick={props.postMerchant}
                 type='submit'
-            >
-                Save Connection
-            </Button>
+            />
         </div>
     </form>
 )

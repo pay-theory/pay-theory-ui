@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '@material/react-button'
+import { Button } from '../../common/'
 
 import * as BooksHooks from '../../hooks'
 
@@ -20,29 +20,26 @@ const PaymentItemPublishCard = (props) => {
                                 Status: <b>{paymentHook.item_status}</b>
                             </div>
                             <Button
-                                className='secondary-button'
+                                color='primary-2'
                                 onClick={props.onPreview}
-                                data-testid='preview-payment-draft'
-                            >
-                                Preview
-                            </Button>
+                                name='preview-payment-draft'
+                                label='Preview'
+                            />
                         </div>
                         <div className='publish-card-actions'>
                             <Button
-                                className='secondary-button'
+                                color='primary-2'
                                 onClick={props.onSave}
-                                data-testid='save-payment-draft'
-                            >
-                                Save Draft
-                            </Button>
+                                name='save-payment-draft'
+                                label='Save Draft'
+                            />
                             <Button
-                                className='primary-button'
-                                data-testid='publish-payment-draft'
+                                color='primary'
+                                name='publish-payment-draft'
                                 onClick={props.onPublish}
                                 disabled={paymentHook.item_status === 'active'}
-                            >
-                                Publish
-                            </Button>
+                                label='Publish'
+                            />
                         </div>
                         <style jsx='true'>{`
                             :root {

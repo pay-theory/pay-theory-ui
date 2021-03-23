@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '@material/react-button'
-
 // components root
-import { ModalContent, TextEntry } from '../../common'
+import { ModalContent, TextEntry, Button } from '../../common'
 
 import {
     formatAccountCode,
     padAccountCode
-} from '../../common/accountCodeUtils'
+}
+from '../../common/accountCodeUtils'
 
 const INITIAL_STATE = {
     item_title: '',
@@ -26,9 +25,9 @@ const ModalCreatePaymentItem = (props) => {
     const onChange = (event) => {
         const changed = { ...state }
         changed[event.target.name] =
-            event.target.name === 'item_account_code'
-                ? formatAccountCode(event.target.value)
-                : event.target.value
+            event.target.name === 'item_account_code' ?
+            formatAccountCode(event.target.value) :
+            event.target.value
         setState(changed)
     }
 
@@ -36,9 +35,9 @@ const ModalCreatePaymentItem = (props) => {
         const changed = { ...state }
         changed[event.target.name] =
             /* istanbul ignore next */
-            event.target.name === 'item_account_code'
-                ? padAccountCode(event.target.value)
-                : event.target.value
+            event.target.name === 'item_account_code' ?
+            padAccountCode(event.target.value) :
+            event.target.value
         setState(changed)
     }
     return (
@@ -75,13 +74,12 @@ const ModalCreatePaymentItem = (props) => {
                 <br />
                 <div className='modal-submit'>
                     <Button
-                        data-testid='save-button'
-                        className='primary-button'
-                        raised
+                        name='save-button'
+                        color='primary'
+                        label={`Save ${props.itemType}`}
+                        onClick={() => {}}
                         type='submit'
-                    >
-                        Save {props.itemType}
-                    </Button>
+                    />
                 </div>
             </form>
         </ModalContent>

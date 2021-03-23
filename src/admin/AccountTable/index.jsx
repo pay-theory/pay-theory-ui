@@ -22,7 +22,6 @@ const AccountTable = (props) => {
                             hasActions
                             rows={generateTableRows(
                                 accounts,
-                                props.viewAccount,
                                 props.deleteAccount
                             )}
                         />
@@ -39,6 +38,9 @@ const AccountTable = (props) => {
                                 }
                                 .account-title {
                                     width: 140px;
+                                }
+                                .account-delete {
+                                    width: 55px;
                                 }
                             `}
                         </style>

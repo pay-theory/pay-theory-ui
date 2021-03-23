@@ -1,9 +1,7 @@
 // node modules
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Button from '@material/react-button'
-
-import TextEntry from '../../common/TextEntry'
+import { Button, TextEntry } from '../../common'
 
 const INITIAL_STATE = {
     fund: '',
@@ -103,16 +101,14 @@ const AccountCodeBar = (props) => {
             />
             <div className='spacer' />
             <Button
-                data-testid='searchButton'
-                innerclass='primary-button'
+                name='searchButton'
+                color='primary'
+                label='Search USAS'
+                leadingIcon='search'
                 onClick={(e) => {
                     props.searchHandler(searchState)
                 }}
-                raised
-            >
-                <i className='fal fa-search' />
-                {`Search USAS `}
-            </Button>
+            />
             <style jsx='true'>
                 {`
                     .search-account-codes {

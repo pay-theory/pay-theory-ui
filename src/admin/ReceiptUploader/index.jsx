@@ -1,7 +1,7 @@
 // node modules
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
-import Button from '@material/react-button'
+import { Button } from '../../common'
 import PropTypes from 'prop-types'
 
 const ReceiptUploader = (props) => {
@@ -45,9 +45,11 @@ const ReceiptUploader = (props) => {
                                 Drag and drop files here
                             </div>
                             <div>Or</div>
-                            <Button raised className='primary-button'>
-                                Browse Files
-                            </Button>
+                            <Button label='Browse Files'
+                                    colors='primary'
+                                    onClick={() => {}}
+                                    name='browse-files'
+                            />
                         </div>
                     )
                 }}

@@ -1,9 +1,8 @@
 // node modules
 import React, { useState, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Button from '@material/react-button'
 
-import { FormHead, TextEntry, TabPage, CardTable } from '../../common'
+import { FormHead, TextEntry, TabPage, CardTable, Button } from '../../common'
 import * as BooksHooks from '../../hooks'
 import { StockTags } from '../../common/StatusMessage'
 import { ACCESS } from './const'
@@ -136,16 +135,14 @@ const RoleInfoTab = (props) => {
                             </div>
                             <div className={saveClass}>
                                 <Button
-                                    className='primary-button'
+                                    color='primary'
                                     disabled={state.role_locked}
-                                    data-testid='save-role-button'
-                                    raised
+                                    name='save-role-button'
+                                    label='Save'
                                     onClick={(e) => {
                                         props.saveRole(state)
                                     }}
-                                >
-                                    Save
-                                </Button>
+                                />
                             </div>
                             <style jsx='true'>{`
                                 .pages-gone {

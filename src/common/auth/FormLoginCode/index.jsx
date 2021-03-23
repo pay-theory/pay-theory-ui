@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Button from '@material/react-button'
+import Button from '../../Button'
 import TextEntry from '../../TextEntry'
 import { StockTags } from '../../StatusMessage'
 
@@ -33,13 +33,12 @@ const FormLoginCode = (props) => {
                 <br />
                 {error}
                 <Button
-                    className='primary-auth-button'
-                    raised
+                    color='primary'
+                    label='Log In'
                     type='submit'
-                    data-testid='code-login-link'
-                >
-                    Log In
-                </Button>
+                    name='code-login-link'
+                    onClick={() => {}}
+                />
                 <br />
                 <div className='divider grey'>
                     <hr className='left' />
@@ -48,12 +47,11 @@ const FormLoginCode = (props) => {
                 </div>
                 <br />
                 <Button
-                    className='secondary-auth-button'
-                    data-testid='password-link'
+                    color='primary-2'
+                    name='password-link'
                     onClick={props.onPassword}
-                >
-                    Sign In With Password
-                </Button>
+                    label='Sign In With Password'
+                />
             </form>
         </div>
     )

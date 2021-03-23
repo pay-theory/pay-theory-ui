@@ -1,10 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Select from '@material/react-select'
 
-import Button from '@material/react-button'
+import { TextEntry, Button, Select } from '../../../common'
 
-import TextEntry from '../../../common/TextEntry'
+const options = [{
+    disabled: true,
+    value: '',
+    label: ''
+}, {
+    value: 'Classic',
+    label: 'Classic'
+}, {
+    value: 'Redesign',
+    label: 'Redesign'
+}]
 
 const Usas = (props) => (
     <form data-testid='usas-connection-form'>
@@ -24,13 +33,12 @@ const Usas = (props) => (
             required
         />
         <Select
-            data-testid='usas_version'
             name='usas_version'
             label='Version'
             className='connection-control'
             value={props.connection.usas_version}
             onChange={props.changeConnectionData}
-            outlined
+            options={options}
         >
             <option value='' disabled />
             <option value='Classic'>Classic</option>
@@ -54,14 +62,12 @@ const Usas = (props) => (
         <br />
         <div className='modal-submit'>
             <Button
-                data-testid='save-button'
-                className='primary-button connection-control'
-                raised
+                name='save-button'
+                color='primary connection-control'
+                label='Save Connection'
                 onClick={props.postUSAS}
                 type='submit'
-            >
-                Save Connection
-            </Button>
+            />
         </div>
         <style jsx='true' global='true'>{`
             .connection-control {

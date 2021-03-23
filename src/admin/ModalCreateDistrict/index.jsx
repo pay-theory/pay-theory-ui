@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '@material/react-button'
-
 // components root
-import { ModalContent, TextEntry } from '../../common'
+import { ModalContent, TextEntry, Button } from '../../common'
 
 const INITIAL_STATE = {
     district_name: ''
@@ -49,13 +47,12 @@ const ModalCreateDistrict = (props) => {
                 <br />
                 <div className='modal-submit'>
                     <Button
-                        data-testid='save-button'
-                        className='primary-button'
-                        raised
+                        name='save-button'
+                        color='primary'
+                        label='Save District'
+                        onClick = {() => {}}
                         type='submit'
-                    >
-                        Save District
-                    </Button>
+                    />
                 </div>
             </form>
         </ModalContent>

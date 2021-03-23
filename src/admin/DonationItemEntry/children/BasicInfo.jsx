@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TextField, { Input } from '@material/react-text-field'
-
 import { FormHead, TextEntry } from '../../../common'
 
 import * as BooksHooks from '../../../hooks'
@@ -69,23 +67,15 @@ const BasicInfo = (props) => {
                                                     <div id='published-link'>
                                                         {linkPreview}
                                                     </div>
-                                                    <TextField
-                                                        className='text-entry'
+                                                    <TextEntry
+                                                        outer='text-entry'
                                                         label='Description'
-                                                        textarea
-                                                    >
-                                                        <Input
-                                                            id='item_description'
-                                                            name='item_description'
-                                                            value={
-                                                                paymentHook.item_description
-                                                            }
-                                                            inputType='textarea'
-                                                            autoComplete='off'
-                                                            onChange={onChange}
-                                                            data-testid='item_description'
-                                                        />
-                                                    </TextField>
+                                                        name='item_description'
+                                                        value={paymentHook.item_description}
+                                                        onChange={onChange}
+                                                        autoComplete='off'
+                                                        type='textarea'
+                                                    />
                                                     <TextEntry
                                                         label='USAS Account Code'
                                                         name='item_account_code'

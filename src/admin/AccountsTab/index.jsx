@@ -1,14 +1,14 @@
 // node modules
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '@material/react-button'
 // ui root
 import * as BooksHooks from '../../hooks'
-import { FormHead, InnerTable, TabPage, openModal } from '../../common'
+import { FormHead, InnerTable, TabPage, openModal, Button } from '../../common'
 import {
     generateTableColumns,
     generateTableRows
-} from '../../common/accountUtils'
+}
+from '../../common/accountUtils'
 
 const AccountsTab = (props) => (
     <BooksHooks.context.accounts.Consumer>
@@ -21,7 +21,6 @@ const AccountsTab = (props) => (
                             columns={generateTableColumns()}
                             rows={generateTableRows(
                                 accounts,
-                                props.viewAccount,
                                 props.deleteAccount
                             )}
                             canDelete
@@ -31,14 +30,12 @@ const AccountsTab = (props) => (
                     <hr />
                     <div className='tab-content'>
                         <Button
-                            data-testid='add-account-button'
-                            className='primary-button'
-                            raised
+                            name='add-account-button'
+                            color='primary'
+                            label='Create Account'
                             onClick={() => openModal()}
-                        >
-                            <i className='fal fa-plus-circle' />
-                            Create Account
-                        </Button>
+                            leadingIcon='plus-circle'
+                        />
                     </div>
                     <style jsx='true' global='true'>{`
                         .account-name {
@@ -49,6 +46,9 @@ const AccountsTab = (props) => (
                         }
                         .account-email {
                             width: 140px;
+                        }
+                        .account-delete {
+                            width: 55px;
                         }
                     `}</style>
                 </TabPage>

@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '@material/react-button'
-
 // components root
 import {
     ModalContent,
     TextEntry,
     openSpinner,
-    closeSpinner
-} from '../../common'
+    closeSpinner,
+    Button
+}
+from '../../common'
 import { validEmail } from '../../common/accountUtils'
 import { StockTags } from '../../common/StatusMessage'
 
@@ -97,13 +97,12 @@ const ModalCreateAccount = (props) => {
                 <br />
                 <div className='modal-submit'>
                     <Button
-                        data-testid='save-button'
-                        className='primary-button'
-                        raised
+                        name='save-button'
+                        color='primary'
+                        onClick={() => {}}
+                        label='Save Account'
                         type='submit'
-                    >
-                        Save Account
-                    </Button>
+                    />
                 </div>
             </form>
         </ModalContent>

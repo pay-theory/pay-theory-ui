@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '@material/react-button'
+import { Button } from '../../common/'
 
 import * as BooksHooks from '../../hooks'
 import { formatTimestamp } from '../../common/dateUtils'
@@ -35,19 +35,17 @@ const PaymentItemDiscontinueCard = (props) => {
                             </div>
                             <div className='discontinue-card-actions'>
                                 <Button
-                                    className='negative-button'
-                                    data-testid='discontinue-payment-publication'
+                                    color='default'
+                                    name='discontinue-payment-publication'
                                     onClick={props.onDiscontinue}
-                                >
-                                    Discontinue
-                                </Button>
+                                    label='Discontinue'
+                                />
                                 <Button
-                                    className='secondary-button'
+                                    color='primary'
                                     onClick={props.copyLink}
-                                    data-testid='copy-published-link'
-                                >
-                                    Copy Link
-                                </Button>
+                                    name='copy-published-link'
+                                    label='Copy Link'
+                                />
                             </div>
                             <style jsx='true'>{`
                                 :root {

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '@material/react-button'
+import Button from '../Button'
 
 const UtilityBar = (props) => {
     return (
@@ -8,14 +8,12 @@ const UtilityBar = (props) => {
             {props.children}
             {props.addButton ? (
                 <Button
-                    raised
-                    className='primary-button'
+                    label={props.addButton}
+                    leadingIcon='plus-circle'
+                    color='primary'
                     onClick={props.clickAction}
-                    data-testid='addButton'
-                >
-                    <i className='fal fa-plus-circle' />
-                    {props.addButton}
-                </Button>
+                    name='addButton'
+                />
             ) : (
                 ''
             )}

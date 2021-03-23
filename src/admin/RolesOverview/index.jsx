@@ -1,9 +1,8 @@
 // node modules
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '@material/react-button'
 // ui root
-import { TabMenu, InnerTable, CardTable, FormHead } from '../../common'
+import { TabMenu, InnerTable, CardTable, FormHead, Button } from '../../common'
 import RolesTab from '../RolesTab'
 
 const MENU_ITEMS = {
@@ -55,23 +54,22 @@ const RolesOverview = (props) => {
     const changeTab = (selected) => {
         /* istanbul ignore next */
         switch (selected) {
-            case MENU_ITEMS.SYSTEM:
-                props.roleTypeChanged(MENU_ITEMS.SYSTEM.label.toLowerCase())
-                clearUnselected([MENU_ITEMS.DISTRICT, MENU_ITEMS.PARTNER])
-                break
-            case MENU_ITEMS.PARTNER:
-                props.roleTypeChanged(MENU_ITEMS.PARTNER.label.toLowerCase())
-                clearUnselected([MENU_ITEMS.DISTRICT, MENU_ITEMS.SYSTEM])
-                break
-            default:
-                props.roleTypeChanged(MENU_ITEMS.DISTRICT.label.toLowerCase())
-                clearUnselected([MENU_ITEMS.SYSTEM, MENU_ITEMS.PARTNER])
+        case MENU_ITEMS.SYSTEM:
+            props.roleTypeChanged(MENU_ITEMS.SYSTEM.label.toLowerCase())
+            clearUnselected([MENU_ITEMS.DISTRICT, MENU_ITEMS.PARTNER])
+            break
+        case MENU_ITEMS.PARTNER:
+            props.roleTypeChanged(MENU_ITEMS.PARTNER.label.toLowerCase())
+            clearUnselected([MENU_ITEMS.DISTRICT, MENU_ITEMS.SYSTEM])
+            break
+        default:
+            props.roleTypeChanged(MENU_ITEMS.DISTRICT.label.toLowerCase())
+            clearUnselected([MENU_ITEMS.SYSTEM, MENU_ITEMS.PARTNER])
         }
         selectTab(selected)
     }
 
-    const menuItems = [
-        {
+    const menuItems = [{
             id: MENU_ITEMS.SYSTEM.menu,
             label: 'System',
             active: 'active-tab',
@@ -125,16 +123,14 @@ const RolesOverview = (props) => {
                     <hr />
                     <br />
                     <Button
-                        className='primary-button'
-                        data-testid='create-system-role-button'
-                        raised
+                        color='primary'
+                        name='create-system-role-button'
+                        label='Create Role'
                         onClick={() =>
                             props.createRole(MENU_ITEMS.SYSTEM.label)
                         }
-                    >
-                        <i className='fal fa-plus-circle' />
-                        Create Role
-                    </Button>
+                        leadingIcon='plus-circle'
+                    />
                 </RolesTab>
                 <RolesTab id={MENU_ITEMS.DISTRICT.tab} visibility='gone'>
                     <FormHead
@@ -150,16 +146,14 @@ const RolesOverview = (props) => {
                     <hr />
                     <br />
                     <Button
-                        className='primary-button'
-                        data-testid='create-district-role-button'
-                        raised
+                        color='primary'
+                        name='create-district-role-button'
+                        label='Create Role'
                         onClick={() =>
                             props.createRole(MENU_ITEMS.DISTRICT.label)
                         }
-                    >
-                        <i className='fal fa-plus-circle' />
-                        Create Role
-                    </Button>
+                        leadingIcon='plus-circle'
+                    />
                 </RolesTab>
                 <RolesTab id={MENU_ITEMS.PARTNER.tab} visibility='gone'>
                     <FormHead
@@ -175,16 +169,14 @@ const RolesOverview = (props) => {
                     <hr />
                     <br />
                     <Button
-                        className='primary-button'
-                        data-testid='create-partner-role-button'
-                        raised
+                        color='primary'
+                        name='create-partner-role-button'
+                        label='Create Role'
                         onClick={() =>
                             props.createRole(MENU_ITEMS.PARTNER.label)
                         }
-                    >
-                        <i className='fal fa-plus-circle' />
-                        Create Role
-                    </Button>
+                        leadingIcon='plus-circle'
+                    />
                 </RolesTab>
             </div>
             <style jsx='true' global='true'>{`

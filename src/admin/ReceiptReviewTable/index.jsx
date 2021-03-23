@@ -1,9 +1,8 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
-import Button from '@material/react-button'
 
-import { InnerTable, FormHead } from '../../common'
+import { InnerTable, FormHead, Button } from '../../common'
 import * as BooksHooks from '../../hooks'
 import { StockTags } from '../../common/StatusMessage'
 import { parse, formatFee } from './excelUtils'
@@ -151,14 +150,12 @@ const ReceiptReviewTable = (props) => {
             <br />
             {props.isPreview ? (
                 <Button
-                    className='primary-button'
-                    data-testid='upload-button'
+                    color='primary'
+                    name='upload-button'
                     onClick={() => props.onAccept()}
-                    raised
-                >
-                    <i className='fal fa-paper-plane' />
-                    Accept & Send
-                </Button>
+                    label='Accept & Send'
+                    leadingIcon='paper-plane'
+                />
             ) : (
                 <div />
             )}

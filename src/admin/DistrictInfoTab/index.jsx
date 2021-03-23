@@ -1,10 +1,8 @@
 // node modules
 import React, { useState, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Button from '@material/react-button'
-import Select from '@material/react-select'
 
-import { FormHead, TextEntry, TabPage, closeSpinner } from '../../common'
+import { FormHead, TextEntry, TabPage, closeSpinner, Button, Select } from '../../common'
 import * as BooksHooks from '../../hooks'
 import { formatPhone, validPhone, validEmail } from '../../common/accountUtils'
 import { StockTags } from '../../common/StatusMessage'
@@ -23,6 +21,48 @@ const INITIAL_STATE = {
     district_state: '',
     district_zipcode: ''
 }
+
+const options = [{
+    disabled: true,
+    value: '',
+    label: ''
+}, {
+    value: 'GMT+5',
+    label: '(GMT +5:00) Eastern Time'
+}, {
+    value: 'GMT+6',
+    label: '(GMT +6:00) Central Time'
+}, {
+    value: 'GMT+7',
+    label: '(GMT +7:00) Mountain Time'
+}, {
+    value: 'GMT+8',
+    label: '(GMT +8:00) Pacific Time'
+}, {
+    value: 'GMT+9',
+    label: '(GMT +9:00) Alaska Time'
+}, {
+    value: 'GMT+10',
+    label: '(GMT +10:00) Hawaii Time'
+}]
+
+const stateOptions = [{
+    disabled: true,
+    value: '',
+    label: ''
+}, {
+    value: 'OH',
+    label: 'Ohio'
+}]
+
+const countryOptions = [{
+    disabled: true,
+    value: '',
+    label: ''
+}, {
+    value: 'US',
+    label: 'United States of America'
+}]
 
 const DistrictInfoTab = (props) => {
     const district = useContext(BooksHooks.context.district)
@@ -118,46 +158,21 @@ const DistrictInfoTab = (props) => {
                 <div className='tab-row' id='country-timezone'>
                     <div className='tab-column'>
                         <Select
-                            id='district_country'
                             label='Country'
                             name='district_country'
                             onChange={onChange}
-                            outlined
+                            options={countryOptions}
                             value={state.district_country}
-                        >
-                            <option disabled value='' />
-                            <option value='US'>United States of America</option>
-                        </Select>
+                        />
                     </div>
                     <div className='tab-column'>
                         <Select
-                            id='district_timezone'
-                            label='Timezone'
                             name='district_timezone'
+                            label='Timezone'
                             onChange={onChange}
-                            outlined
+                            options={options}
                             value={state.district_timezone}
-                        >
-                            <option disabled value='' />
-                            <option value='GMT+5'>
-                                (GMT +5:00) Eastern Time
-                            </option>
-                            <option value='GMT+6'>
-                                (GMT +6:00) Central Time
-                            </option>
-                            <option value='GMT+7'>
-                                (GMT +7:00) Mountain Time
-                            </option>
-                            <option value='GMT+8'>
-                                (GMT +8:00) Pacific Time
-                            </option>
-                            <option value='GMT+9'>
-                                (GMT +9:00) Alaska Time
-                            </option>
-                            <option value='GMT+10'>
-                                (GMT +10:00) Hawaii Time
-                            </option>
-                        </Select>
+                        />
                     </div>
                 </div>
                 <div className='tab-row' id='street-city'>
@@ -184,12 +199,9 @@ const DistrictInfoTab = (props) => {
                             label='State'
                             name='district_state'
                             onChange={onChange}
-                            outlined
+                            options={stateOptions}
                             value={state.district_state}
-                        >
-                            <option disabled value='' />
-                            <option value='OH'>Ohio</option>
-                        </Select>
+                        />
                     </div>
                     <div className='tab-column'>
                         <TextEntry
@@ -204,8 +216,8 @@ const DistrictInfoTab = (props) => {
             <hr />
             <div className='tab-content'>
                 <Button
-                    className='primary-button'
-                    data-testid='save-district-button'
+                    color='primary'
+                    name='save-district-button'
                     onClick={(e) => {
                         if (
                             validPhone(state.district_phone) &&
@@ -218,10 +230,8 @@ const DistrictInfoTab = (props) => {
                             setError('phone is not valid')
                         }
                     }}
-                    raised
-                >
-                    Save
-                </Button>
+                    label='Save'
+                />
             </div>
         </TabPage>
     )
