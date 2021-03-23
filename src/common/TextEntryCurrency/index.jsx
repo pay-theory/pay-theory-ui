@@ -1,24 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TextEntry from '../TextEntry'
+import TextField, { Input } from '@material/react-text-field'
 
 const TextEntryCurrency = (props) => {
     return (
         <div className='text-box'>
-            <TextEntry
-                name={`text-entry-${props.name}`}
+            <TextField
+                id={`text-entry-${props.name}`}
+                data-testid={`text-entry-${props.name}`}
                 label={props.label}
-                outer='text-entry'
+                className='text-entry'
                 leadingIcon={<i className='fal fa-dollar-sign fa-lg' />}
-                value={
-                        isNaN(parseFloat(props.value))
-                            ? props.value
-                            : parseFloat(props.value)
-                }
-                autoComplete={props.autoComplete || 'off'}
-                    onChange={props.onChange}
-                    onBlur={props.onBlur}
+                outlined
             >
                 <Input
                     id={props.name}
