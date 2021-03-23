@@ -1,3 +1,5 @@
+import React from 'react'
+
 const generateTableColumns = () => {
     return [
         { className: 'account-name', label: 'account name' },
