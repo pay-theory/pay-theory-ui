@@ -45,6 +45,7 @@ import RolesTab from './RolesTab'
 import SalesTab from './SalesTab'
 import SettlementDetails from './SettlementDetails'
 import SettlementsTable from './SettlementsTable'
+import SystemTransactions from './SystemTransactions'
 
 import TransactionItems from './TransactionItems'
 import TransactionOverview from './TransactionOverview'
@@ -90,6 +91,7 @@ export {
     SalesTab,
     SettlementDetails,
     SettlementsTable,
+    SystemTransactions,
     TransactionItems,
     TransactionOverview,
     TransactionDetails,

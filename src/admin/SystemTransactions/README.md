@@ -1,6 +1,6 @@
-# TransactionsTable
+# SystemTransactions
 
-A UI component that creates a table to display transactions
+A UI component that creates a table to display transactions for all merchants in the system portal
 
 ## Hooks
 

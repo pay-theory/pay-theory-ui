@@ -61,16 +61,21 @@ const TransactionDetails = (props) => {
                         <h5>Account:</h5>
                         <div className='navy'>
                             {transaction.card_brand ? <span className="payment-account-detail">
-                <span
-                  className={`pay-theory-card-badge pay-theory-card-${
-                    transaction.card_brand
-                      ? transaction.card_brand.toLowerCase().replace(/_/g, "-")
-                      : "unknown"
-                  }`}
-                />
-                ending in {transaction.last_four}
-              </span> : ''}
+                                                        <span
+                                                          className={`pay-theory-card-badge pay-theory-card-${
+                                                            transaction.card_brand
+                                                              ? transaction.card_brand.toLowerCase().replace(/_/g, "-")
+                                                              : "unknown"
+                                                          }`}
+                                                        />
+                                                        ending in {transaction.last_four}
+                                                      </span>
+                                                      : ''
+                            }
                         </div>
+                        {transaction.merchant_name ? <h5>Merchant:</h5> : null}
+                        {transaction.merchant_name ? <div className='navy'>{transaction.merchant_name}</div> : null}
+
                     </div>
                     <div className='col-1'>
                         {transaction.name ? <span><h5 className='grey'>Name on the Account:</h5>
@@ -95,7 +100,7 @@ const TransactionDetails = (props) => {
                 <style global='true' jsx='true'>
                     {`
                         .transaction-details {
-                            margin: 0px 24px; 
+                            margin: 0px 24px;
                         }
                         .cardHead {
                             display: flex;

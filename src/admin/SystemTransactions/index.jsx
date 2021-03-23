@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { InnerTable, CardTable, Pagination, ExportCSV } from '../../common'
+import { InnerTable, Pagination, ExportCSV } from '../../common'
 
 import { formatDate } from '../../common/dateUtils'
 
-import { parseAddress } from '../../common/generalUtils'
-
-const formatFee = (fee) => {
-    return fee < 0 ?
-        `-$${(Math.abs(fee) / 100).toFixed(2)}` :
-        `$${(fee / 100).toFixed(2)}`
-}
-
-const formatString = (string) => {
-    return string ? string[0] + string.substring(1).toLowerCase() : ''
-}
+import { parseAddress, formatFee, formatString } from '../../common/generalUtils'
 
 const SystemTransactions = (props) => {
     const {
