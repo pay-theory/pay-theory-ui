@@ -41,8 +41,8 @@ const SystemTransactions = (props) => {
                 sortable: true
             },
             {
-                className: 'settlement numeric',
-                label: 'Settlement',
+                className: 'merchant-name',
+                label: 'Merchant',
                 sortable: true
             },
             { className: 'status', label: 'Status', sortable: true },
