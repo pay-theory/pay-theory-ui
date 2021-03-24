@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import * as BooksHooks from '../../hooks'
 
 const AccountOverviewCard = (props) => {
-    const account = useContext(BooksHooks.context.member)
+    const account = useContext(BooksHooks.Context.Member)
 
     return (
         <div

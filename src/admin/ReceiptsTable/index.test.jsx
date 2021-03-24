@@ -11,9 +11,9 @@ import { receipts } from '../../test-data'
 test('display district table with content', async () => {
     const viewUpload = jest.fn()
     const { queryAllByTestId } = render(
-        <BooksHooks.context.receipts.Provider value={receipts}>
+        <BooksHooks.Context.Receipts.Provider value={receipts}>
             <ReceiptsTable viewUpload={viewUpload} />
-        </BooksHooks.context.receipts.Provider>
+        </BooksHooks.Context.Receipts.Provider>
     )
 
     fireEvent.click(queryAllByTestId('view-action')[0])
@@ -23,9 +23,9 @@ test('display district table with content', async () => {
 test('display district table without content', async () => {
     const viewUpload = jest.fn()
     const { queryAllByTestId } = render(
-        <BooksHooks.context.receipts.Provider value={[]}>
+        <BooksHooks.Context.Receipts.Provider value={[]}>
             <ReceiptsTable viewUpload={viewUpload} />
-        </BooksHooks.context.receipts.Provider>
+        </BooksHooks.Context.Receipts.Provider>
     )
     expect(queryAllByTestId('view-action')).toEqual([])
 })

@@ -6,7 +6,7 @@ import * as BooksHooks from '../../hooks'
 
 const PaymentItemTable = (props) => {
     return (
-        <BooksHooks.context.paymentItems.Consumer>
+        <BooksHooks.Context.PaymentItems.Consumer>
             {(paymentItems) => {
                 const generateTableColumns = () => {
                     return [
@@ -115,7 +115,7 @@ const PaymentItemTable = (props) => {
                     </CardTable>
                 )
             }}
-        </BooksHooks.context.paymentItems.Consumer>
+        </BooksHooks.Context.PaymentItems.Consumer>
     )
 }
 

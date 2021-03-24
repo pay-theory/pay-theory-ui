@@ -33,7 +33,7 @@ const formatDate = (stamp) => {
 
 const ReceiptsTable = (props) => {
     return (
-        <BooksHooks.context.receipts.Consumer>
+        <BooksHooks.Context.Receipts.Consumer>
             {(receipts) => {
                 const generateTableColumns = () => {
                     return [
@@ -127,7 +127,7 @@ const ReceiptsTable = (props) => {
                     </InnerTable>
                 )
             }}
-        </BooksHooks.context.receipts.Consumer>
+        </BooksHooks.Context.Receipts.Consumer>
     )
 }
 

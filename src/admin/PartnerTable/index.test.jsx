@@ -12,12 +12,12 @@ test('display partner table', async () => {
     const viewPartner = jest.fn()
     const deletePartner = jest.fn()
     const { queryAllByTestId } = render(
-        <BooksHooks.context.partners.Provider value={partners}>
+        <BooksHooks.Context.Partners.Provider value={partners}>
             <PartnerTable
                 viewPartner={viewPartner}
                 deletePartner={deletePartner}
             />
-        </BooksHooks.context.partners.Provider>
+        </BooksHooks.Context.Partners.Provider>
     )
 
     fireEvent.click(queryAllByTestId('view-action')[0])

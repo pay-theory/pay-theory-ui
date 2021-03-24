@@ -12,12 +12,12 @@ test('display payment item', async() => {
     const viewPaymentItem = jest.fn()
     const deletePaymentItem = jest.fn()
     const { queryAllByTestId } = render(
-        <BooksHooks.context.paymentItems.Provider value={paymentItems}>
+        <BooksHooks.Context.PaymentItems.Provider value={paymentItems}>
             <PaymentItemTable
                 viewPaymentItem={viewPaymentItem}
                 deletePaymentItem={deletePaymentItem}
             />
-        </BooksHooks.context.paymentItems.Provider>
+        </BooksHooks.Context.PaymentItems.Provider>
     )
 
     await fireEvent.click(queryAllByTestId('view-action')[0])

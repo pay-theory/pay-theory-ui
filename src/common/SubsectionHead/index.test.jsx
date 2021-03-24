@@ -12,11 +12,11 @@ import { parent, page } from '../../test-data'
 test('display subsection head', async () => {
     const { getByText } = render(
         <Router>
-            <BooksHooks.context.page.Provider value={page}>
-                <BooksHooks.context.parent.Provider value={parent}>
+            <BooksHooks.Context.Page.Provider value={page}>
+                <BooksHooks.Context.Parent.Provider value={parent}>
                     <SubsectionHead />
-                </BooksHooks.context.parent.Provider>
-            </BooksHooks.context.page.Provider>
+                </BooksHooks.Context.Parent.Provider>
+            </BooksHooks.Context.Page.Provider>
         </Router>
     )
 

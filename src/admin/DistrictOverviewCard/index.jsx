@@ -3,7 +3,7 @@ import * as BooksHooks from '../../hooks'
 import { formatPhone } from '../../common/accountUtils'
 
 const DistrictOverviewCard = (props) => (
-    <BooksHooks.context.district.Consumer>
+    <BooksHooks.Context.District.Consumer>
         {(district) => {
             const maps = `https://maps.google.com/?q=${district.districtData.district_street}, ${district.districtData.district_city}, ${district.districtData.district_state}, ${district.districtData.district_zipcode}`
             return (
@@ -113,7 +113,7 @@ const DistrictOverviewCard = (props) => (
                 </div>
             )
         }}
-    </BooksHooks.context.district.Consumer>
+    </BooksHooks.Context.District.Consumer>
 )
 
 export default DistrictOverviewCard

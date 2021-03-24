@@ -45,25 +45,7 @@
         "deploy-beta": "npm run post-commit && npm run predeploy-package && npm publish --tag beta",
         "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --tag release"
     },
-    "peerDependencies": {
-        "@material/react-button": "^0.15.0",
-        "@material/react-radio": "^0.15.0",
-        "@material/react-select": "^0.15.0",
-        "@material/react-text-field": "^0.15.0",
-        "moment": "^2.29.1",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-dropzone": "^11.3.1",
-        "react-router-dom": "^5.2.0",
-        "webfontloader": "^1.6.28",
-        "xlsx": "^0.16.9"
-    },
     "devDependencies": {
-        "@auth0/auth0-spa-js": "^1.14.0",
-        "@material/react-button": "^0.15.0",
-        "@material/react-radio": "^0.15.0",
-        "@material/react-select": "^0.15.0",
-        "@material/react-text-field": "^0.15.0",
         "@testing-library/jest-dom": "^5.11.9",
         "@testing-library/react": "^11.2.5",
         "babel-eslint": "^10.1.0",
@@ -79,7 +61,7 @@
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-promise": "^4.3.1",
         "eslint-plugin-prototype-pollution-security-rules": "^1.0.6",
-        "eslint-plugin-react": "^7.23.0",
+        "eslint-plugin-react": "^7.23.1",
         "eslint-plugin-scanjs-rules": "^0.2.1",
         "eslint-plugin-standard": "^4.1.0",
         "gh-pages": "^3.1.0",
@@ -96,7 +78,8 @@
         "react-router-dom": "^5.2.0",
         "react-scripts": "^4.0.3",
         "webfontloader": "^1.6.28",
-        "xlsx": "^0.16.6"
+        "xlsx": "^0.16.6",
+        "eslint-plugin-security": "^1.4.0"
     },
     "files": [
         "dist"
@@ -120,10 +103,13 @@
         }
     },
     "homepage": "https://github.com/pay-theory/pay-theory-ui#readme",
-    "directories": {
-        "example": "example"
-    },
     "dependencies": {
-        "eslint-plugin-security": "^1.4.0"
+        "moment": "^2.29.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-dropzone": "^11.3.1",
+        "react-router-dom": "^5.2.0",
+        "webfontloader": "^1.6.28",
+        "xlsx": "^0.16.9"
     }
 }

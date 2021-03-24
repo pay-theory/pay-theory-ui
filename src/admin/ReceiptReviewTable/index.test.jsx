@@ -13,8 +13,8 @@ test('display receipt review preview table with content', async () => {
     const viewDetails = jest.fn()
     const onAccept = jest.fn()
     const { queryByTestId, queryAllByTestId, findByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
-            <BooksHooks.context.receiptReview.Provider value={receipt_excel}>
+        <BooksHooks.Context.District.Provider value={classicDistrict}>
+            <BooksHooks.Context.ReceiptReview.Provider value={receipt_excel}>
                 <ReceiptReviewTable
                     goBackTo='/'
                     history={[]}
@@ -22,8 +22,8 @@ test('display receipt review preview table with content', async () => {
                     onAccept={onAccept}
                     isPreview
                 />
-            </BooksHooks.context.receiptReview.Provider>
-        </BooksHooks.context.district.Provider>
+            </BooksHooks.Context.ReceiptReview.Provider>
+        </BooksHooks.Context.District.Provider>
     )
     findByTestId('success-content')
     // await waitForElement(() => queryByTestId('status-cleared'))
@@ -43,16 +43,16 @@ test('display csv receipt review table with content', async () => {
     const viewDetails = jest.fn()
     const onAccept = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
-            <BooksHooks.context.receiptReview.Provider value={receipt_csv}>
+        <BooksHooks.Context.District.Provider value={classicDistrict}>
+            <BooksHooks.Context.ReceiptReview.Provider value={receipt_csv}>
                 <ReceiptReviewTable
                     goBackTo='/'
                     history={[]}
                     viewDetails={viewDetails}
                     onAccept={onAccept}
                 />
-            </BooksHooks.context.receiptReview.Provider>
-        </BooksHooks.context.district.Provider>
+            </BooksHooks.Context.ReceiptReview.Provider>
+        </BooksHooks.Context.District.Provider>
     )
 
     expect(queryByTestId('upload-button')).not.toBeInTheDocument()
@@ -62,16 +62,16 @@ test('display excel receipt review table with content', async () => {
     const viewDetails = jest.fn()
     const onAccept = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
-            <BooksHooks.context.receiptReview.Provider value={receipt_excel}>
+        <BooksHooks.Context.District.Provider value={classicDistrict}>
+            <BooksHooks.Context.ReceiptReview.Provider value={receipt_excel}>
                 <ReceiptReviewTable
                     goBackTo='/'
                     history={[]}
                     viewDetails={viewDetails}
                     onAccept={onAccept}
                 />
-            </BooksHooks.context.receiptReview.Provider>
-        </BooksHooks.context.district.Provider>
+            </BooksHooks.Context.ReceiptReview.Provider>
+        </BooksHooks.Context.District.Provider>
     )
 
     expect(queryByTestId('upload-button')).not.toBeInTheDocument()
@@ -81,8 +81,8 @@ test('display receipt review table with invalid content', async () => {
     const viewDetails = jest.fn()
     const onAccept = jest.fn()
     const { findByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
-            <BooksHooks.context.receiptReview.Provider
+        <BooksHooks.Context.District.Provider value={classicDistrict}>
+            <BooksHooks.Context.ReceiptReview.Provider
                 // eslint-disable-next-line no-undef
                 value={btoa('invalid-receipt')}
             >
@@ -93,8 +93,8 @@ test('display receipt review table with invalid content', async () => {
                     onAccept={onAccept}
                     isPreview
                 />
-            </BooksHooks.context.receiptReview.Provider>
-        </BooksHooks.context.district.Provider>
+            </BooksHooks.Context.ReceiptReview.Provider>
+        </BooksHooks.Context.District.Provider>
     )
     findByTestId('error-content')
     // await waitForElement(() => queryByTestId('status-cleared'))

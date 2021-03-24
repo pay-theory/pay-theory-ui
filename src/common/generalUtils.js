@@ -6,7 +6,7 @@ const formatFee = (fee) => {
 
 const formatBasisPoints = (bp) => {
     const originalAmount = 100000
-    const totalAmount = Math.round(originalAmount / (1 - (bp / 10000)))
+    const totalAmount = Math.round(originalAmount / (1 - bp / 10000))
     const fee = totalAmount - originalAmount
     return ((fee / originalAmount) * 100).toFixed(2)
 }

@@ -12,7 +12,7 @@ const formatDate = (stamp) => {
 
 const PaymentItemDiscontinueCard = (props) => {
     return (
-        <BooksHooks.context.paymentItem.Consumer>
+        <BooksHooks.Context.PaymentItem.Consumer>
             {(paymentHook) => {
                 if (paymentHook.item_published > 0) {
                     return (
@@ -92,7 +92,7 @@ const PaymentItemDiscontinueCard = (props) => {
                     return <div />
                 }
             }}
-        </BooksHooks.context.paymentItem.Consumer>
+        </BooksHooks.Context.PaymentItem.Consumer>
     )
 }
 

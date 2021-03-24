@@ -14,7 +14,7 @@ test('display district info tab', async () => {
     const saveDistrict = jest.fn()
     const setStatusMessage = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
+        <BooksHooks.Context.District.Provider value={classicDistrict}>
             <div id='container'>
                 <DistrictInfoTab
                     saveDistrict={saveDistrict}
@@ -22,7 +22,7 @@ test('display district info tab', async () => {
                 />
                 <ModalSpinner />
             </div>
-        </BooksHooks.context.district.Provider>
+        </BooksHooks.Context.District.Provider>
     )
     fireEvent.change(queryByTestId('district_phone'), {
         target: { value: '614-596-8965' }
@@ -40,7 +40,7 @@ test('save invalid district info phone', async () => {
     const saveDistrict = jest.fn()
     const setStatusMessage = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.district.Provider value={invalidPhoneDistrict}>
+        <BooksHooks.Context.District.Provider value={invalidPhoneDistrict}>
             <div id='container'>
                 <DistrictInfoTab
                     saveDistrict={saveDistrict}
@@ -48,7 +48,7 @@ test('save invalid district info phone', async () => {
                 />
                 <ModalSpinner />
             </div>
-        </BooksHooks.context.district.Provider>
+        </BooksHooks.Context.District.Provider>
     )
     fireEvent.click(queryByTestId('save-district-button'))
 
@@ -62,7 +62,7 @@ test('save invalid district info email', async () => {
     const saveDistrict = jest.fn()
     const setStatusMessage = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.district.Provider value={invalidEmailDistrict}>
+        <BooksHooks.Context.District.Provider value={invalidEmailDistrict}>
             <div id='container'>
                 <DistrictInfoTab
                     saveDistrict={saveDistrict}
@@ -70,7 +70,7 @@ test('save invalid district info email', async () => {
                 />
                 <ModalSpinner />
             </div>
-        </BooksHooks.context.district.Provider>
+        </BooksHooks.Context.District.Provider>
     )
     fireEvent.click(queryByTestId('save-district-button'))
 

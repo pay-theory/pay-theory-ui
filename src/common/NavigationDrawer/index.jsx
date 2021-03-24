@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import * as BooksHooks from '../../hooks'
 
 const NavigationDrawer = ({ navStyle, listHead }) => {
-    const partner = useContext(BooksHooks.context.partner);
-    const menuItems = useContext(BooksHooks.context.menu);
+    const partner = useContext(BooksHooks.Context.Partner);
+    const menuItems = useContext(BooksHooks.Context.Menu);
     const createItem = (item) => {
         return <NavigationItem item={item} className='' key={item.tag} />
     }

@@ -1,3 +1,3 @@
 /* istanbul ignore file */
-import * as context from './context'
-export { context }
+import * as Context from './context'
+export { Context }

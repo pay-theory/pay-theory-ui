@@ -25,7 +25,7 @@ const INITIAL_STATE = {
 }
 
 const RoleInfoTab = (props) => {
-    const roleContext = useContext(BooksHooks.context.role)
+    const roleContext = useContext(BooksHooks.Context.Role)
     const role = roleContext ? roleContext : INITIAL_STATE
 
     const [state, setState] = useState(role)

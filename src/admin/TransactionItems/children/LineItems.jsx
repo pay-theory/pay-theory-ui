@@ -42,10 +42,10 @@ const LineItems = (props) => {
             <div data-testid='selection-inactive' />
         )
     return (
-        <BooksHooks.context.payment.Consumer>
+        <BooksHooks.Context.Payment.Consumer>
             {(paymentHook) => {
                 return (
-                    <BooksHooks.context.paymentItems.Consumer>
+                    <BooksHooks.Context.PaymentItems.Consumer>
                         {(itemsHook) => {
                             paymentHook.items.forEach((pItem) => {
                                 prepareditems[pItem.invoice_item_uid] = {}
@@ -385,10 +385,10 @@ const LineItems = (props) => {
                                 </CardRow>
                             )
                         }}
-                    </BooksHooks.context.paymentItems.Consumer>
+                    </BooksHooks.Context.PaymentItems.Consumer>
                 )
             }}
-        </BooksHooks.context.payment.Consumer>
+        </BooksHooks.Context.Payment.Consumer>
     )
 }
 

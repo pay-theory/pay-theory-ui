@@ -11,11 +11,11 @@ import { classicDistrict } from '../../test-data'
 
 test('display district overview card', async () => {
     const { getByText } = render(
-        <BooksHooks.context.district.Provider value={classicDistrict}>
+        <BooksHooks.Context.District.Provider value={classicDistrict}>
             <div id='container'>
                 <DistrictOverview />
             </div>
-        </BooksHooks.context.district.Provider>
+        </BooksHooks.Context.District.Provider>
     )
     expect(getByText(classicDistrict.districtData.UID)).toBeInTheDocument()
     expect(

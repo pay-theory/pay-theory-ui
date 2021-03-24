@@ -2,12 +2,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { formatAccountCode, padAccountCode } from './accountCodeUtils'
 
-import {
-    formatDateAndTime,
-    formatTimestamp,
-    validDate,
-    formatDateString
-} from './dateUtils.js'
+import { formatDateAndTime, validDate, formatDateString } from './dateUtils.js'
 
 import { validCurrency } from './accountUtils'
 

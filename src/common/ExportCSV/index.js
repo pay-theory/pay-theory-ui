@@ -14,9 +14,9 @@ const ExportCSV = ({ id, items, fileName }) => {
 
             const url = URL.createObjectURL(data)
 
-            document.getElementById(id).href = url
+            document.getElementById(id).href = url // eslint-disable-line scanjs-rules/assign_to_href
         } else {
-            document.getElementById(id).href = null
+            document.getElementById(id).href = null // eslint-disable-line scanjs-rules/assign_to_href
         }
     }, [items])
     return (
@@ -42,8 +42,8 @@ const ExportCSV = ({ id, items, fileName }) => {
                         justify-content: center;
                         text-decoration: none;
                         cursor: default;
-                        color: #CAC4CA;
-                        background-color: #F2F2F2;
+                        color: #cac4ca;
+                        background-color: #f2f2f2;
                         padding: 0px 16px;
                         height: 35px;
                         border-radius: 5px;
@@ -55,12 +55,12 @@ const ExportCSV = ({ id, items, fileName }) => {
                     }
 
                     .export-csv.active {
-                        color: #FFFFFF;
+                        color: #ffffff;
                         cursor: pointer;
                         font-family: inherit;
                         font-size: 16px;
                         border: none;
-                        background-color: #7C2CDD;
+                        background-color: #7c2cdd;
                     }
                 `}
             </style>

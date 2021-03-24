@@ -11,11 +11,11 @@ import { member } from '../../test-data'
 
 test('display district overview card', async() => {
     const { getByText } = render(
-        <BooksHooks.context.member.Provider value={member}>
+        <BooksHooks.Context.Member.Provider value={member}>
             <div id='container'>
                 <AccountOverviewCard />
             </div>
-        </BooksHooks.context.member.Provider>
+        </BooksHooks.Context.Member.Provider>
     )
     expect(getByText(member.user_id)).toBeInTheDocument()
     expect(

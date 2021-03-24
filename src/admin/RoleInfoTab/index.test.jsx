@@ -15,9 +15,9 @@ import { roles } from '../../test-data'
 test('display role info tab (locked)', async() => {
     const saveRole = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.role.Provider value={roles.systemRoles[0]}>
+        <BooksHooks.Context.Role.Provider value={roles.systemRoles[0]}>
             <RoleInfoTab setStatusMessage={() => {}} saveRole={saveRole} />
-        </BooksHooks.context.role.Provider>
+        </BooksHooks.Context.Role.Provider>
     )
 
 
@@ -29,9 +29,9 @@ test('display role info tab (unlocked)', async() => {
     const promise = Promise.resolve()
     const saveRole = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.role.Provider value={roles.systemRoles[1]}>
+        <BooksHooks.Context.Role.Provider value={roles.systemRoles[1]}>
             <RoleInfoTab setStatusMessage={() => {}} saveRole={saveRole} />
-        </BooksHooks.context.role.Provider>
+        </BooksHooks.Context.Role.Provider>
     )
 
     fireEvent.click(queryByTestId('manage-districts'))
@@ -66,9 +66,9 @@ test('display role info tab (unlocked)', async() => {
     roles.systemRoles[1].permissions[0].enabled = true
     roles.systemRoles[1].permissions[0].accessType = 'read-write'
     const { queryByTestId } = render(
-        <BooksHooks.context.role.Provider value={roles.systemRoles[1]}>
+        <BooksHooks.Context.Role.Provider value={roles.systemRoles[1]}>
             <RoleInfoTab setStatusMessage={() => {}} saveRole={saveRole} />
-        </BooksHooks.context.role.Provider>
+        </BooksHooks.Context.Role.Provider>
     )
 
     fireEvent.click(queryByTestId('manage-districts'))
@@ -100,9 +100,9 @@ test('display role info tab (unlocked)', async() => {
 test('display role info tab (locked) without context', async() => {
     const saveRole = jest.fn()
     const { getByText } = render(
-        <BooksHooks.context.role.Provider value={undefined}>
+        <BooksHooks.Context.Role.Provider value={undefined}>
             <RoleInfoTab setStatusMessage={() => {}} saveRole={saveRole} />
-        </BooksHooks.context.role.Provider>
+        </BooksHooks.Context.Role.Provider>
     )
 
 

@@ -6,7 +6,7 @@ import * as BooksHooks from '../../hooks'
 
 const AccountOverview = (props) => {
     return (
-        <BooksHooks.context.member.Consumer>
+        <BooksHooks.Context.Member.Consumer>
             {(member) => {
                 return (
                     <div className='card rounded' id='account-entry'>
@@ -61,9 +61,9 @@ const AccountOverview = (props) => {
                                 {/* eslint-disable react/forbid-component-props */}
                                 <Button
                                     color='primary save-account-button'
+                                    label='save'
                                     name='submit-account-detail'
                                     onClick={() => props.saveAccount(member)}
-                                    label='save'
                                 />
                                 {/* eslint-enable react/forbid-component-props */}
                             </div>
@@ -107,7 +107,7 @@ const AccountOverview = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.member.Consumer>
+        </BooksHooks.Context.Member.Consumer>
     )
 }
 

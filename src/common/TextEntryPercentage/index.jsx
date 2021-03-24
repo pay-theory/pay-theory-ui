@@ -1,8 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TextField, { Input } from '@material/react-text-field'
-
+// <Input
+//                     id={props.name}
+//                     data-testid={props.name}
+//                     name={props.name}
+//                     value={
+//                         isNaN(parseFloat(props.value))
+//                             ? props.value
+//                             : parseFloat(props.value)
+//                     }
+//                     required={props.required || false}
+//                     autoComplete={props.autoComplete || 'off'}
+//                     onChange={props.onChange}
+//                     onBlur={props.onBlur}
+//                     className='trailing'
+//                     type='number'
+//                     min='0.01'
+//                     step='0.01'
+//                 />
 const TextEntryPercentage = (props) => {
     return (
         <div className='percentage-text-box'>
@@ -14,24 +30,7 @@ const TextEntryPercentage = (props) => {
                 trailingIcon={<i className='fal fa-percentage fa-lg' />}
                 outlined
             >
-                <Input
-                    id={props.name}
-                    data-testid={props.name}
-                    name={props.name}
-                    value={
-                        isNaN(parseFloat(props.value))
-                            ? props.value
-                            : parseFloat(props.value)
-                    }
-                    required={props.required || false}
-                    autoComplete={props.autoComplete || 'off'}
-                    onChange={props.onChange}
-                    onBlur={props.onBlur}
-                    className='trailing'
-                    type='number'
-                    min='0.01'
-                    step='0.01'
-                />
+
             </TextField>
             <style jsx='true' global='true'>{`
                 .percentage-text-box {

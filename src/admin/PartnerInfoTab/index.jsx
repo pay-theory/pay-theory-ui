@@ -8,7 +8,7 @@ import { ClickToCopyText, FormHead, TabPage, Button } from '../../common'
 import * as BooksHooks from '../../hooks'
 
 const PartnerInfoTab = (props) => {
-  const partner = useContext(BooksHooks.context.partner);
+  const partner = useContext(BooksHooks.Context.Partner);
 
   return (
     <TabPage id="merchant-info-tab" visibility="tab-visible">

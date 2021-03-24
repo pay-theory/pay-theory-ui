@@ -14,13 +14,13 @@ test('display payment publish card', async () => {
     const onSave = jest.fn()
     // eslint-disable-next-line no-unused-vars
     const { getByText, queryByTestId } = render(
-        <BooksHooks.context.paymentItem.Provider value={paymentItem}>
+        <BooksHooks.Context.PaymentItem.Provider value={paymentItem}>
             <PaymentItemPublishCard
                 onPreview={onPreview}
                 onPublish={onPublish}
                 onSave={onSave}
             />
-        </BooksHooks.context.paymentItem.Provider>
+        </BooksHooks.Context.PaymentItem.Provider>
     )
 })
 
@@ -33,12 +33,12 @@ test('display inactive payment publish card', async () => {
     const onSave = jest.fn()
     // eslint-disable-next-line no-unused-vars
     const { getByText, queryByTestId } = render(
-        <BooksHooks.context.paymentItem.Provider value={payment}>
+        <BooksHooks.Context.PaymentItem.Provider value={payment}>
             <PaymentItemPublishCard
                 onPreview={onPreview}
                 onPublish={onPublish}
                 onSave={onSave}
             />
-        </BooksHooks.context.paymentItem.Provider>
+        </BooksHooks.Context.PaymentItem.Provider>
     )
 })

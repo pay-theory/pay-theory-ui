@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Radio, { NativeRadioControl } from '@material/react-radio'
 
 import { TextEntryCurrency, FormHead, Checkbox } from '../../../common'
 
@@ -16,7 +15,7 @@ const showOptions = (show) => {
 
 const PaymentOptions = (props) => {
     return (
-        <BooksHooks.context.paymentItem.Consumer>
+        <BooksHooks.Context.PaymentItem.Consumer>
             {(paymentHook) => {
                 const changeOptions = (event, index, changePayment) => {
                     const paymentItem = { ...paymentHook }
@@ -68,20 +67,7 @@ const PaymentOptions = (props) => {
                             <FormHead text='Payment Options' />
 
                             <div className='radio-option'>
-                                <Radio label='Fixed Amount' key='fixed'>
-                                    <NativeRadioControl
-                                        name='pay-option'
-                                        data-testid='fixed-pay-option'
-                                        value='fixed'
-                                        checked={
-                                            paymentHook.item_has_fixed_amount
-                                        }
-                                        id='fixed-pay-option'
-                                        onChange={(e) =>
-                                            amountOptionSelected(e)
-                                        }
-                                    />
-                                </Radio>
+
                             </div>
 
                             <div
@@ -101,20 +87,7 @@ const PaymentOptions = (props) => {
                             </div>
 
                             <div className='radio-option'>
-                                <Radio label='Custom Amount' key='custom'>
-                                    <NativeRadioControl
-                                        name='pay-option'
-                                        data-testid='custom-pay-option'
-                                        value='custom'
-                                        checked={
-                                            !paymentHook.item_has_fixed_amount
-                                        }
-                                        id='custom-pay-option'
-                                        onChange={(e) =>
-                                            amountOptionSelected(e)
-                                        }
-                                    />
-                                </Radio>
+
                             </div>
 
                             <div
@@ -255,7 +228,7 @@ const PaymentOptions = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.paymentItem.Consumer>
+        </BooksHooks.Context.PaymentItem.Consumer>
     )
 }
 

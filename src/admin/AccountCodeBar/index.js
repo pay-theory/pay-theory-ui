@@ -101,10 +101,10 @@ const AccountCodeBar = (props) => {
             />
             <div className='spacer' />
             <Button
-                name='searchButton'
                 color='primary'
                 label='Search USAS'
                 leadingIcon='search'
+                name='searchButton'
                 onClick={(e) => {
                     props.searchHandler(searchState)
                 }}

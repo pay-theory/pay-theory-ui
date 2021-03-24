@@ -5,7 +5,7 @@ import * as BooksHooks from '../../../hooks'
 
 const Meta = (props) => {
     return (
-        <BooksHooks.context.payment.Consumer>
+        <BooksHooks.Context.Payment.Consumer>
             {(paymentHook) => {
                 const getStatusDate = (dated) => {
                     const date = new Date(dated)
@@ -123,7 +123,7 @@ const Meta = (props) => {
                     </CardRow>
                 )
             }}
-        </BooksHooks.context.payment.Consumer>
+        </BooksHooks.Context.Payment.Consumer>
     )
 }
 

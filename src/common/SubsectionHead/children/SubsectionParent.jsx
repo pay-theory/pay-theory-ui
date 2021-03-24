@@ -7,7 +7,7 @@ const SubsectionParent = (props) => {
     const history = useHistory();
 
     return (
-        <BooksHooks.context.parent.Consumer>
+        <BooksHooks.Context.Parent.Consumer>
             {(parentHook) => {
                 /* istanbul ignore next */
                 const response = /* istanbul ignore next */ parentHook ? (
@@ -61,7 +61,7 @@ const SubsectionParent = (props) => {
                 )
                 return response
             }}
-        </BooksHooks.context.parent.Consumer>
+        </BooksHooks.Context.Parent.Consumer>
     )
 }
 

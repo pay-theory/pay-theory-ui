@@ -12,13 +12,13 @@ from '../../../common/accountCodeUtils'
 
 const BasicInfo = (props) => {
     return (
-        <BooksHooks.context.page.Consumer>
+        <BooksHooks.Context.Page.Consumer>
             {(checkoutHook) => {
                 return (
-                    <BooksHooks.context.district.Consumer>
+                    <BooksHooks.Context.District.Consumer>
                         {(districtHook) => {
                             return (
-                                <BooksHooks.context.paymentItem.Consumer>
+                                <BooksHooks.Context.PaymentItem.Consumer>
                                     {(paymentHook) => {
                                         const linkPreview = `${checkoutHook.domain}/${districtHook.districtSlug}/donation/${paymentHook.item_slug}`
 
@@ -110,13 +110,13 @@ const BasicInfo = (props) => {
                                             </div>
                                         )
                                     }}
-                                </BooksHooks.context.paymentItem.Consumer>
+                                </BooksHooks.Context.PaymentItem.Consumer>
                             )
                         }}
-                    </BooksHooks.context.district.Consumer>
+                    </BooksHooks.Context.District.Consumer>
                 )
             }}
-        </BooksHooks.context.page.Consumer>
+        </BooksHooks.Context.Page.Consumer>
     )
 }
 

@@ -14,12 +14,12 @@ const deleteAccount = jest.fn()
 
 test('display account table', async() => {
     const { queryAllByTestId } = render(
-        <BooksHooks.context.accounts.Provider value={accounts}>
+        <BooksHooks.Context.Accounts.Provider value={accounts}>
             <AccountTable
                 deleteAccount={deleteAccount}
                 id='test-id'
             />
-        </BooksHooks.context.accounts.Provider>
+        </BooksHooks.Context.Accounts.Provider>
     )
 
     fireEvent.click(queryAllByTestId('delete-action')[0])

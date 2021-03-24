@@ -3,7 +3,7 @@ import * as BooksHooks from '../../../hooks'
 
 const PortalLabel = (props) => {
     return (
-        <BooksHooks.context.page.Consumer>
+        <BooksHooks.Context.Page.Consumer>
             {(pageHook) => {
                 return (
                     <div
@@ -23,7 +23,7 @@ const PortalLabel = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.page.Consumer>
+        </BooksHooks.Context.Page.Consumer>
     )
 }
 

@@ -1,8 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import TextField, { Input } from '@material/react-text-field'
-
+// < Input
+//                     id={props.name}
+//                     data-testid={props.name}
+//                     name={props.name}
+//                     value={
+//                         isNaN(parseFloat(props.value))
+//                             ? props.value
+//                             : parseFloat(props.value)
+//                     }
+//                     required={props.required || false}
+//                     autoComplete={props.autoComplete || 'off'}
+//                     onChange={props.onChange}
+//                     onBlur={props.onBlur}
+//                     className='leading'
+//                     type='number'
+//                     min='0.01'
+//                     step='0.01'
+//                 />
 const TextEntryCurrency = (props) => {
     return (
         <div className='text-box'>
@@ -14,24 +29,7 @@ const TextEntryCurrency = (props) => {
                 leadingIcon={<i className='fal fa-dollar-sign fa-lg' />}
                 outlined
             >
-                <Input
-                    id={props.name}
-                    data-testid={props.name}
-                    name={props.name}
-                    value={
-                        isNaN(parseFloat(props.value))
-                            ? props.value
-                            : parseFloat(props.value)
-                    }
-                    required={props.required || false}
-                    autoComplete={props.autoComplete || 'off'}
-                    onChange={props.onChange}
-                    onBlur={props.onBlur}
-                    className='leading'
-                    type='number'
-                    min='0.01'
-                    step='0.01'
-                />
+
             </TextField>
             <style jsx='true' global='true'>{`
                 .text-box {

@@ -1,7 +1,6 @@
 // node modules
 import React from 'react'
 import PropTypes from 'prop-types'
-import Radio, { NativeRadioControl } from '@material/react-radio'
 import { ACCESS } from '../const'
 
 const AccessOptions = (props) => {
@@ -12,33 +11,13 @@ const AccessOptions = (props) => {
             </div>
             <div className='access-options'>
                 <div className='radio-option'>
-                    <Radio key='full-access-option'>
-                        <NativeRadioControl
-                            name='access-option'
-                            value='full-access'
-                            id='full-access-radio'
-                            data-testid='full-access-radio'
-                            checked={props.roleAccess === ACCESS.FULL}
-                            onChange={(e) => props.setRoleAccess(e)}
-                            disabled={props.locked}
-                        />
-                    </Radio>
+
                     <label htmlFor='full-access-radio'>
                         Full portal access
                     </label>
                 </div>
                 <div className='radio-option'>
-                    <Radio key='limited-access-option'>
-                        <NativeRadioControl
-                            name='access-option'
-                            value='limited-access'
-                            id='limited-access-radio'
-                            data-testid='limited-access-radio'
-                            checked={props.roleAccess === ACCESS.LIMITED}
-                            onChange={(e) => props.setRoleAccess(e)}
-                            disabled={props.locked}
-                        />
-                    </Radio>
+
                     <label htmlFor='limited-access-radio'>
                         Limited portal access
                     </label>

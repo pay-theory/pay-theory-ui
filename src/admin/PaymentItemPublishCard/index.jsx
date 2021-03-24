@@ -7,7 +7,7 @@ import * as BooksHooks from '../../hooks'
 
 const PaymentItemPublishCard = (props) => {
     return (
-        <BooksHooks.context.paymentItem.Consumer>
+        <BooksHooks.Context.PaymentItem.Consumer>
             {(paymentHook) => {
                 return (
                     <div
@@ -83,7 +83,7 @@ const PaymentItemPublishCard = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.paymentItem.Consumer>
+        </BooksHooks.Context.PaymentItem.Consumer>
     )
 }
 

@@ -4,7 +4,7 @@ import * as BooksHooks from '../../../hooks'
 
 const SubsectionSubtitle = (props) => {
     return (
-        <BooksHooks.context.page.Consumer>
+        <BooksHooks.Context.Page.Consumer>
             {(pageHook) => {
                 return (
                     <div className='subtitle' data-testid='subtitle'>
@@ -13,7 +13,7 @@ const SubsectionSubtitle = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.page.Consumer>
+        </BooksHooks.Context.Page.Consumer>
     )
 }
 

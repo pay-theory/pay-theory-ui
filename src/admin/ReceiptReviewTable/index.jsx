@@ -8,8 +8,8 @@ import { StockTags } from '../../common/StatusMessage'
 import { parse, formatFee } from './excelUtils'
 
 const ReceiptReviewTable = (props) => {
-    const districtHook = useContext(BooksHooks.context.district)
-    const receiptReview = useContext(BooksHooks.context.receiptReview)
+    const districtHook = useContext(BooksHooks.Context.District)
+    const receiptReview = useContext(BooksHooks.Context.ReceiptReview)
 
     const [statusMessage, setStatusMessage] = useState(<div />)
     const [schoolData, setSchoolData] = useState(<div />)

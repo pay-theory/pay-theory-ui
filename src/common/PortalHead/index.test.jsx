@@ -13,11 +13,11 @@ import { AccountMenuButton, AccountMenuItems, PortalLabel } from './children'
 test('display portal head', async() => {
     const logout = jest.fn()
     const { getByText, getAllByText, queryByTestId } = render(
-        <BooksHooks.context.account.Provider value={account}>
-            <BooksHooks.context.page.Provider value={page}>
+        <BooksHooks.Context.Account.Provider value={account}>
+            <BooksHooks.Context.Page.Provider value={page}>
                 <PortalHead logout={logout} />
-            </BooksHooks.context.page.Provider>
-        </BooksHooks.context.account.Provider>
+            </BooksHooks.Context.Page.Provider>
+        </BooksHooks.Context.Account.Provider>
     )
 
     expect(getByText(page.title)).toBeInTheDocument()
@@ -34,9 +34,9 @@ test('display portal head', async() => {
 
 test('PortalLabel shows title from page context', async() => {
     const { getByText } = render(
-        <BooksHooks.context.page.Provider value={page}>
+        <BooksHooks.Context.Page.Provider value={page}>
             <PortalLabel />
-        </BooksHooks.context.page.Provider>
+        </BooksHooks.Context.Page.Provider>
     )
 
     expect(getByText(page.title)).toBeInTheDocument()
@@ -44,9 +44,9 @@ test('PortalLabel shows title from page context', async() => {
 
 test('AccountMenuButton shows display name from account context', async() => {
     const { getByText } = render(
-        <BooksHooks.context.account.Provider value={account}>
+        <BooksHooks.Context.Account.Provider value={account}>
             <AccountMenuButton />
-        </BooksHooks.context.account.Provider>
+        </BooksHooks.Context.Account.Provider>
     )
 
     expect(getByText(account.nickname)).toBeInTheDocument()
@@ -55,9 +55,9 @@ test('AccountMenuButton shows display name from account context', async() => {
 test('AccountMenuButton shows display name from account context', async() => {
     const logout = jest.fn()
     const { getByText, queryByTestId } = render(
-        <BooksHooks.context.account.Provider value={account}>
+        <BooksHooks.Context.Account.Provider value={account}>
             <AccountMenuItems logout={logout} />
-        </BooksHooks.context.account.Provider>
+        </BooksHooks.Context.Account.Provider>
     )
 
     expect(getByText(account.nickname)).toBeInTheDocument()
@@ -69,11 +69,11 @@ test('AccountMenuButton shows display name from account context', async() => {
 test('display portal head without account menu', async() => {
     const logout = jest.fn()
     const { getByText, getAllByText, queryByTestId } = render(
-        <BooksHooks.context.account.Provider value={account}>
-            <BooksHooks.context.page.Provider value={page}>
+        <BooksHooks.Context.Account.Provider value={account}>
+            <BooksHooks.Context.Page.Provider value={page}>
                 <PortalHead />
-            </BooksHooks.context.page.Provider>
-        </BooksHooks.context.account.Provider>
+            </BooksHooks.Context.Page.Provider>
+        </BooksHooks.Context.Account.Provider>
     )
 
     expect(queryByTestId("account-menu")).not.toBeInTheDocument()

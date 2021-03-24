@@ -12,10 +12,10 @@ import * as BooksHooks from '../../hooks'
 
 const AccountTable = (props) => {
     return (
-        <BooksHooks.context.accounts.Consumer>
+        <BooksHooks.Context.Accounts.Consumer>
             {(accounts) => {
                 return (
-                    <CardTable>
+                    <div className='account-table'>
                         <InnerTable
                             columns={generateTableColumns()}
                             rows={generateTableRows(
@@ -40,12 +40,15 @@ const AccountTable = (props) => {
                                 .account-delete {
                                     width: 55px;
                                 }
+                                .account-table {
+                                    margin: 0px 24px;
+                                }
                             `}
                         </style>
-                    </CardTable>
+                    </div>
                 )
             }}
-        </BooksHooks.context.accounts.Consumer>
+        </BooksHooks.Context.Accounts.Consumer>
     )
 }
 

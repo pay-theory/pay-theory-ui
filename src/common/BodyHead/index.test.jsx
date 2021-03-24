@@ -13,9 +13,9 @@ import { page } from '../../test-data'
 
 test('display body head', async () => {
     const { getByText } = render(
-        <BooksHooks.context.page.Provider value={page}>
+        <BooksHooks.Context.Page.Provider value={page}>
             <BodyHead />
-        </BooksHooks.context.page.Provider>
+        </BooksHooks.Context.Page.Provider>
     )
 
     expect(getByText(page.subtitle)).toBeInTheDocument()
@@ -25,9 +25,9 @@ test('display body head', async () => {
 
 test('display body subtitle', async () => {
     const { getByText } = render(
-        <BooksHooks.context.page.Provider value={page}>
+        <BooksHooks.Context.Page.Provider value={page}>
             <BodySubtitle />
-        </BooksHooks.context.page.Provider>
+        </BooksHooks.Context.Page.Provider>
     )
 
     expect(getByText(page.subtitle)).toBeInTheDocument()
@@ -35,9 +35,9 @@ test('display body subtitle', async () => {
 
 test('display body title', async () => {
     const { getByText } = render(
-        <BooksHooks.context.page.Provider value={page}>
+        <BooksHooks.Context.Page.Provider value={page}>
             <BodyTitle />
-        </BooksHooks.context.page.Provider>
+        </BooksHooks.Context.Page.Provider>
     )
 
     expect(getByText(page.title)).toBeInTheDocument()

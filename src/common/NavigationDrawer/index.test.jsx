@@ -18,9 +18,9 @@ test('nav drawer with list head renders', async() => {
     }
     const { queryByTestId, getByText } = render(
         <Router>
-            <BooksHooks.context.menu.Provider value={menu}>
+            <BooksHooks.Context.Menu.Provider value={menu}>
                 <NavigationDrawer style={menuStyle} listHead="header"/>
-            </BooksHooks.context.menu.Provider>
+            </BooksHooks.Context.Menu.Provider>
         </Router>
     )
 
@@ -35,9 +35,9 @@ test('nav drawer renders expanded', async() => {
     }
     const { queryByTestId, getByText } = render(
         <Router>
-            <BooksHooks.context.menu.Provider value={menu}>
+            <BooksHooks.Context.Menu.Provider value={menu}>
                 <NavigationDrawer style={menuStyle} />
-            </BooksHooks.context.menu.Provider>
+            </BooksHooks.Context.Menu.Provider>
         </Router>
     )
 
@@ -49,9 +49,9 @@ test('nav drawer empty menu renders', async() => {
 
     const { queryByTestId, getByText } = render(
         <Router>
-            <BooksHooks.context.menu.Provider value={undefined}>
+            <BooksHooks.Context.Menu.Provider value={undefined}>
                 <NavigationDrawer style={menuStyle} />
-            </BooksHooks.context.menu.Provider>
+            </BooksHooks.Context.Menu.Provider>
         </Router>
     )
 

@@ -11,16 +11,16 @@ import { member, roles } from '../../test-data'
 const saveAccount = jest.fn()
 const onChange = jest.fn()
 
-test('display account overview', async () => {
+test('display account overview', async() => {
     const { queryByTestId } = render(
-        <BooksHooks.context.roles.Provider value={roles.systemRoles}>
-            <BooksHooks.context.member.Provider value={member}>
+        <BooksHooks.Context.Roles.Provider value={roles.systemRoles}>
+            <BooksHooks.Context.Member.Provider value={member}>
                 <AccountOverview
                     onChange={onChange}
                     saveAccount={saveAccount}
                 />
-            </BooksHooks.context.member.Provider>
-        </BooksHooks.context.roles.Provider>
+            </BooksHooks.Context.Member.Provider>
+        </BooksHooks.Context.Roles.Provider>
     )
 
     expect(queryByTestId('nickname').value).toBe(member.nickname)

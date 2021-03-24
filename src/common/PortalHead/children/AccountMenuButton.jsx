@@ -3,7 +3,7 @@ import * as BooksHooks from '../../../hooks'
 
 const AccountMenuButton = (props) => {
     return (
-        <BooksHooks.context.account.Consumer>
+        <BooksHooks.Context.Account.Consumer>
             {(accountHook) => {
                 return (
                     <div
@@ -65,7 +65,7 @@ const AccountMenuButton = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.account.Consumer>
+        </BooksHooks.Context.Account.Consumer>
     )
 }
 

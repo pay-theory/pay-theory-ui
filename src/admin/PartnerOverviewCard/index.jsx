@@ -2,7 +2,7 @@ import React from 'react'
 import * as BooksHooks from '../../hooks'
 
 const PartnerOverviewCard = (props) => (
-    <BooksHooks.context.partner.Consumer>
+    <BooksHooks.Context.Partner.Consumer>
         {(partner) => {
             return (
                 <div
@@ -50,7 +50,7 @@ const PartnerOverviewCard = (props) => (
                 </div>
             )
         }}
-    </BooksHooks.context.partner.Consumer>
+    </BooksHooks.Context.Partner.Consumer>
 )
 
 export default PartnerOverviewCard

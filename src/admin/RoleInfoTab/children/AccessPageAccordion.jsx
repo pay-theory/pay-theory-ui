@@ -1,7 +1,6 @@
 // node modules
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Radio, { NativeRadioControl } from '@material/react-radio'
 import AccessSubPage from './AccessSubPage'
 const AccessPageAccordion = (props) => {
     const [paged, setPaged] = useState(props.page)
@@ -108,27 +107,11 @@ const AccessPageAccordion = (props) => {
                         </div>
                         <div className='permission-options'>
                             <div className='radio-option'>
-                                <Radio key='perm-access'>
-                                    <NativeRadioControl
-                                        id={`perm-option-${props.page.tag}`}
-                                        name={`perm-option-${props.page.tag}`}
-                                        data-testid={`read-write-${props.page.tag}`}
-                                        value='read-write'
-                                        onChange={changeAccessType}
-                                    />
-                                </Radio>
+
                                 <label>Read & write</label>
                             </div>
                             <div className='radio-option'>
-                                <Radio key='perm-access'>
-                                    <NativeRadioControl
-                                        id={`perm-option-${props.page.tag}`}
-                                        name={`perm-option-${props.page.tag}`}
-                                        data-testid={`read-only-${props.page.tag}`}
-                                        value='read-only'
-                                        onChange={changeAccessType}
-                                    />
-                                </Radio>
+
                                 <label>Read only</label>
                             </div>
                         </div>

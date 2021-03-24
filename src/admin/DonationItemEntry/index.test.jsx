@@ -11,13 +11,13 @@ import { classicDistrict, checkout, paymentItem } from '../../test-data'
 test('display indefinite donation item entry with custom amount and no quick pay', async() => {
     const changePayment = jest.fn()
     const { queryByTestId, findByTestId, queryByLabelText } = render(
-        <BooksHooks.context.checkout.Provider value={checkout}>
-            <BooksHooks.context.district.Provider value={classicDistrict}>
-                <BooksHooks.context.paymentItem.Provider value={paymentItem}>
+        <BooksHooks.Context.Checkout.Provider value={checkout}>
+            <BooksHooks.Context.District.Provider value={classicDistrict}>
+                <BooksHooks.Context.PaymentItem.Provider value={paymentItem}>
                     <DonationItemEntry changePayment={changePayment} />
-                </BooksHooks.context.paymentItem.Provider>
-            </BooksHooks.context.district.Provider>
-        </BooksHooks.context.checkout.Provider>
+                </BooksHooks.Context.PaymentItem.Provider>
+            </BooksHooks.Context.District.Provider>
+        </BooksHooks.Context.Checkout.Provider>
     )
     fireEvent.change(queryByTestId('item_title'), {
         target: { value: 'invalid' }
@@ -66,13 +66,13 @@ test('display donation item entry with custom amount and quick pay', async() => 
 
     const changePayment = jest.fn()
     const { queryByTestId, queryByLabelText } = render(
-        <BooksHooks.context.checkout.Provider value={checkout}>
-            <BooksHooks.context.district.Provider value={classicDistrict}>
-                <BooksHooks.context.paymentItem.Provider value={payment}>
+        <BooksHooks.Context.Checkout.Provider value={checkout}>
+            <BooksHooks.Context.District.Provider value={classicDistrict}>
+                <BooksHooks.Context.PaymentItem.Provider value={payment}>
                     <DonationItemEntry changePayment={changePayment} />
-                </BooksHooks.context.paymentItem.Provider>
-            </BooksHooks.context.district.Provider>
-        </BooksHooks.context.checkout.Provider>
+                </BooksHooks.Context.PaymentItem.Provider>
+            </BooksHooks.Context.District.Provider>
+        </BooksHooks.Context.Checkout.Provider>
     )
 
     fireEvent.change(queryByTestId('payment_option_1'), {
@@ -105,13 +105,13 @@ test('display donation item entry with fixed amount', async() => {
 
     const changePayment = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.checkout.Provider value={checkout}>
-            <BooksHooks.context.district.Provider value={classicDistrict}>
-                <BooksHooks.context.paymentItem.Provider value={payment}>
+        <BooksHooks.Context.Checkout.Provider value={checkout}>
+            <BooksHooks.Context.District.Provider value={classicDistrict}>
+                <BooksHooks.Context.PaymentItem.Provider value={payment}>
                     <DonationItemEntry changePayment={changePayment} />
-                </BooksHooks.context.paymentItem.Provider>
-            </BooksHooks.context.district.Provider>
-        </BooksHooks.context.checkout.Provider>
+                </BooksHooks.Context.PaymentItem.Provider>
+            </BooksHooks.Context.District.Provider>
+        </BooksHooks.Context.Checkout.Provider>
     )
 
     fireEvent.change(queryByTestId('fixed_amount'), {
@@ -132,13 +132,13 @@ test('display finite donation item entry', async() => {
 
     const changePayment = jest.fn()
     const { queryByLabelText } = render(
-        <BooksHooks.context.checkout.Provider value={checkout}>
-            <BooksHooks.context.district.Provider value={classicDistrict}>
-                <BooksHooks.context.paymentItem.Provider value={payment}>
+        <BooksHooks.Context.Checkout.Provider value={checkout}>
+            <BooksHooks.Context.District.Provider value={classicDistrict}>
+                <BooksHooks.Context.PaymentItem.Provider value={payment}>
                     <DonationItemEntry changePayment={changePayment} />
-                </BooksHooks.context.paymentItem.Provider>
-            </BooksHooks.context.district.Provider>
-        </BooksHooks.context.checkout.Provider>
+                </BooksHooks.Context.PaymentItem.Provider>
+            </BooksHooks.Context.District.Provider>
+        </BooksHooks.Context.Checkout.Provider>
     )
     // fireEvent.change(queryByLabelText('Begin Date'), {
     //     target: { value: moment() },

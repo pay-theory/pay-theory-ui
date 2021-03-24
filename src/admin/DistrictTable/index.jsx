@@ -7,7 +7,7 @@ import * as BooksHooks from '../../hooks'
 
 const DistrictTable = (props) => {
     return (
-        <BooksHooks.context.districts.Consumer>
+        <BooksHooks.Context.Districts.Consumer>
             {(districts) => {
                 const generateTableColumns = () => {
                     return [{ className: 'district-name', label: 'district' }]
@@ -77,7 +77,7 @@ const DistrictTable = (props) => {
                     </CardTable>
                 )
             }}
-        </BooksHooks.context.districts.Consumer>
+        </BooksHooks.Context.Districts.Consumer>
     )
 }
 

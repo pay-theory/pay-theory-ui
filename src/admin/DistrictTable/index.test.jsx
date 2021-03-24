@@ -24,12 +24,12 @@ test('display district table with content', async () => {
     const viewDistrict = jest.fn()
     const deleteDistrict = jest.fn()
     const { queryAllByTestId } = render(
-        <BooksHooks.context.districts.Provider value={districts}>
+        <BooksHooks.Context.Districts.Provider value={districts}>
             <DistrictTable
                 viewDistrict={viewDistrict}
                 deleteDistrict={deleteDistrict}
             />
-        </BooksHooks.context.districts.Provider>
+        </BooksHooks.Context.Districts.Provider>
     )
 
     fireEvent.click(queryAllByTestId('view-action')[0])
@@ -43,11 +43,11 @@ test('display district table without content', async () => {
     const viewDistrict = jest.fn()
     const deleteDistrict = jest.fn()
     const { getByText, queryAllByTestId } = render(
-        <BooksHooks.context.districts.Provider value={[]}>
+        <BooksHooks.Context.Districts.Provider value={[]}>
             <DistrictTable
                 viewDistrict={viewDistrict}
                 deleteDistrict={deleteDistrict}
             />
-        </BooksHooks.context.districts.Provider>
+        </BooksHooks.Context.Districts.Provider>
     )
 })

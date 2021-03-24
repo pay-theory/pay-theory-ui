@@ -12,12 +12,12 @@ test('display payment discontinue card', async () => {
     const onDiscontinue = jest.fn()
     const copyLink = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.paymentItem.Provider value={paymentItem}>
+        <BooksHooks.Context.PaymentItem.Provider value={paymentItem}>
             <PaymentItemDiscontinueCard
                 onDiscontinue={onDiscontinue}
                 copyLink={copyLink}
             />
-        </BooksHooks.context.paymentItem.Provider>
+        </BooksHooks.Context.PaymentItem.Provider>
     )
     expect(queryByTestId('discontinue-payment-publication')).toBeInTheDocument()
     fireEvent.click(queryByTestId('discontinue-payment-publication'))
@@ -33,12 +33,12 @@ test('hide unpublished payment discontinue card', async () => {
     const onDiscontinue = jest.fn()
     const copyLink = jest.fn()
     const { queryByTestId } = render(
-        <BooksHooks.context.paymentItem.Provider value={payment}>
+        <BooksHooks.Context.PaymentItem.Provider value={payment}>
             <PaymentItemDiscontinueCard
                 onDiscontinue={onDiscontinue}
                 copyLink={copyLink}
             />
-        </BooksHooks.context.paymentItem.Provider>
+        </BooksHooks.Context.PaymentItem.Provider>
     )
     expect(
         queryByTestId('discontinue-payment-publication')

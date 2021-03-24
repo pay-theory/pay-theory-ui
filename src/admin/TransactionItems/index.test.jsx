@@ -11,11 +11,11 @@ import { invoiceItems, payment } from '../../test-data'
 test('display transaction line items select all', async() => {
     const onRefund = jest.fn()
     const { getByText, queryByTestId, findByTestId } = render(
-        <BooksHooks.context.payment.Provider value={payment}>
-            <BooksHooks.context.paymentItems.Provider value={invoiceItems}>
+        <BooksHooks.Context.Payment.Provider value={payment}>
+            <BooksHooks.Context.PaymentItems.Provider value={invoiceItems}>
                 <TransactionItems onRefund={onRefund} />
-            </BooksHooks.context.paymentItems.Provider>
-        </BooksHooks.context.payment.Provider>
+            </BooksHooks.Context.PaymentItems.Provider>
+        </BooksHooks.Context.Payment.Provider>
     )
 
     expect(getByText('test-item')).toBeInTheDocument()
@@ -45,11 +45,11 @@ test('display transaction line items select all', async() => {
 test('display transaction line items select one', async() => {
     const onRefund = jest.fn()
     const { getByText, queryByTestId, queryAllByTestId, findByTestId } = render(
-        <BooksHooks.context.payment.Provider value={payment}>
-            <BooksHooks.context.paymentItems.Provider value={invoiceItems}>
+        <BooksHooks.Context.Payment.Provider value={payment}>
+            <BooksHooks.Context.PaymentItems.Provider value={invoiceItems}>
                 <TransactionItems onRefund={onRefund} />
-            </BooksHooks.context.paymentItems.Provider>
-        </BooksHooks.context.payment.Provider>
+            </BooksHooks.Context.PaymentItems.Provider>
+        </BooksHooks.Context.Payment.Provider>
     )
 
     expect(getByText('test-item')).toBeInTheDocument()

@@ -14,21 +14,13 @@ const Button = ({
 }) => {
     return (
         <button
-            className={`pt-button ${color || 'primary'}
-            ${disabled ? 'disabled' : ''}
-            ${small ? 'small' : ''}`}
+            className={`pt-button ${color || 'primary'} ${disabled ? 'disabled' : ''} ${small ? 'small' : ''}`}
             data-testid={name}
             disabled={disabled}
             id={name}
             onClick={onClick}
             // eslint-disable-next-line react/button-has-type
-            type={
-                type === 'submit'
-                    ? 'submit'
-                    : type === 'reset'
-                    ? 'reset'
-                    : 'button'
-            }
+            type={ type === 'submit' || type === 'reset' ? type : 'button' }
         >
             {leadingIcon ? (
                 <i

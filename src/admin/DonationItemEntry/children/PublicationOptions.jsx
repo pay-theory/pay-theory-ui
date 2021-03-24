@@ -14,7 +14,7 @@ const showOptions = (show) => {
 
 const PublicationOptions = (props) => {
     return (
-        <BooksHooks.context.paymentItem.Consumer>
+        <BooksHooks.Context.PaymentItem.Consumer>
             {(paymentHook) => {
                 const startDate = paymentHook.item_start_date
                     ? moment(paymentHook.item_start_date)
@@ -239,7 +239,7 @@ const PublicationOptions = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.paymentItem.Consumer>
+        </BooksHooks.Context.PaymentItem.Consumer>
     )
 }
 

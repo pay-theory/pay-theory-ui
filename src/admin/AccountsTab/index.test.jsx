@@ -20,7 +20,7 @@ test('display accounts tab', async() => {
         <div className='spinner-wrapper'>
             <div className='modal-wrapper'>
                 <div id='container' />
-                    <BooksHooks.context.accounts.Provider value={accounts}>
+                    <BooksHooks.Context.Accounts.Provider value={accounts}>
                         <AccountsTab
                             id='test-id'
                             visibility='visible'
@@ -33,7 +33,7 @@ test('display accounts tab', async() => {
                                 setStatusMessage={() => {}}
                                 merchant='test-district'
                             />
-                    </BooksHooks.context.accounts.Provider>
+                    </BooksHooks.Context.Accounts.Provider>
             </div>
         </div>
     )

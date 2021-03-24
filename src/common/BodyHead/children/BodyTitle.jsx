@@ -4,7 +4,7 @@ import * as BooksHooks from '../../../hooks'
 
 const BodyTitle = (props) => {
     return (
-        <BooksHooks.context.page.Consumer>
+        <BooksHooks.Context.Page.Consumer>
             {(parentHook) => {
                 return (
                     <div className='body-head-title' data-testid='title'>
@@ -18,7 +18,7 @@ const BodyTitle = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.page.Consumer>
+        </BooksHooks.Context.Page.Consumer>
     )
 }
 

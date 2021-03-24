@@ -6,7 +6,7 @@ const AccountMenuItems = (props) => {
         props.logout()
     }
     return (
-        <BooksHooks.context.account.Consumer>
+        <BooksHooks.Context.Account.Consumer>
             {(accountHook) => {
                 return (
                     <div className='portal-head-account-menu-items'>
@@ -60,7 +60,7 @@ const AccountMenuItems = (props) => {
                     </div>
                 )
             }}
-        </BooksHooks.context.account.Consumer>
+        </BooksHooks.Context.Account.Consumer>
     )
 }
 

@@ -11,7 +11,7 @@ import {
 from '../../common/accountUtils'
 
 const AccountsTab = (props) => (
-    <BooksHooks.context.accounts.Consumer>
+    <BooksHooks.Context.Accounts.Consumer>
         {(accounts) => {
             return (
                 <TabPage id={props.id} visibility={props.visibility}>
@@ -33,6 +33,7 @@ const AccountsTab = (props) => (
                             label='Create Account'
                             onClick={() => openModal()}
                             leadingIcon='plus-circle'
+                            small
                         />
                     </div>
                     <style jsx='true' global='true'>{`
@@ -52,7 +53,7 @@ const AccountsTab = (props) => (
                 </TabPage>
             )
         }}
-    </BooksHooks.context.accounts.Consumer>
+    </BooksHooks.Context.Accounts.Consumer>
 )
 
 AccountsTab.propTypes = {

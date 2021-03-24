@@ -28,14 +28,14 @@ test('display partner tab', async() => {
         <div className='spinner-wrapper'>
             <div className='modal-wrapper'>
                 <div id='container'>
-                    <BooksHooks.context.partner.Provider value={partner}>
+                    <BooksHooks.Context.Partner.Provider value={partner}>
                         <PartnerInfoTab
                             apiPrefix='testing'
                             setStatusMessage={setStatusMessage}
                             savePartner={savePartner}
                             onGenerateApiKey={apiGenerator}
                         />
-                    </BooksHooks.context.partner.Provider>
+                    </BooksHooks.Context.Partner.Provider>
                 </div>
             </div>
             <ModalSpinner />

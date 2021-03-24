@@ -58,6 +58,10 @@ const ActionModal = ({ label, message, action, actionName, type }) => {
     )
 }
 
+ActionModal.defaultProps = {
+    type: 'default'
+}
+
 ActionModal.propTypes = {
     action: PropTypes.func.isRequired,
     actionName: PropTypes.string.isRequired,

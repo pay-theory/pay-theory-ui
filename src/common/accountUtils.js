@@ -25,14 +25,16 @@ const generateTableRows = (accounts, deleteAccount) => {
                     className: 'account-delete',
                     content: (
                         <span
-                                className='action delete'
-                                data-testid='delete-action'
-                                onClick={() => deleteAccount(item.user_id, item.nickname)}
-                            >
-                                <span>
-                                    <i className='fal fa-trash-alt' />
-                                </span>
+                            className='action delete'
+                            data-testid='delete-action'
+                            onClick={() =>
+                                deleteAccount(item.user_id, item.nickname)
+                            }
+                        >
+                            <span>
+                                <i className='fal fa-trash-alt' />
                             </span>
+                        </span>
                     )
                 }
             ],
@@ -43,9 +45,9 @@ const generateTableRows = (accounts, deleteAccount) => {
 
 const validEmail = (emailIn) => {
     emailIn = emailIn || ''
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn) ?
-        emailIn :
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn)
+        ? emailIn
+        : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailIn)
 }
 
 const formatPhone = (incoming) => {
@@ -54,12 +56,12 @@ const formatPhone = (incoming) => {
     const areaCode = incoming.substring(0, 3)
     const prefix = incoming.substring(3, 6)
     const line = incoming.substring(6, 10)
-    const phone = /* istanbul ignore next */ line ?
-        `${areaCode}-${prefix}-${line}` :
-        /* istanbul ignore next */
-        prefix ?
-        `${areaCode}-${prefix}` :
-        areaCode
+    const phone = /* istanbul ignore next */ line
+        ? `${areaCode}-${prefix}-${line}`
+        : /* istanbul ignore next */
+        prefix
+        ? `${areaCode}-${prefix}`
+        : areaCode
 
     return phone
 }
@@ -92,18 +94,17 @@ const validCurrency = (input) => {
         const match = userInput.match(/\d+\.\d{2}\b/g)
         if (match) {
             if (match.length === 1)
-                return match[0].length === userInput.length ?
-                    match[0].replace(/\./g, '') :
-                    false
+                return match[0].length === userInput.length
+                    ? match[0].replace(/\./g, '')
+                    : false
         }
-    }
-    else {
+    } else {
         const match = userInput.match(/\d+/g)
         if (match) {
             if (match.length === 1)
-                return match[0].length === userInput.length ?
-                    `${match[0]}00` :
-                    false
+                return match[0].length === userInput.length
+                    ? `${match[0]}00`
+                    : false
         }
     }
     return false

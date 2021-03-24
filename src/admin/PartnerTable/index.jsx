@@ -6,7 +6,7 @@ import * as BooksHooks from '../../hooks'
 
 const PartnerTable = (props) => {
     return (
-        <BooksHooks.context.partners.Consumer>
+        <BooksHooks.Context.Partners.Consumer>
             {(partners) => {
                 const generateTableColumns = () => {
                     return [{ className: 'partner-name', label: 'partner' }]
@@ -51,7 +51,7 @@ const PartnerTable = (props) => {
                     </CardTable>
                 )
             }}
-        </BooksHooks.context.partners.Consumer>
+        </BooksHooks.Context.Partners.Consumer>
     )
 }
 
