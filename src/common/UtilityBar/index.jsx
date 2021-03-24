@@ -13,6 +13,7 @@ const UtilityBar = (props) => {
                     color='primary'
                     onClick={props.clickAction}
                     name='addButton'
+                    small
                 />
             ) : (
                 ''
