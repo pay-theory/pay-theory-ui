@@ -12,7 +12,6 @@ import * as ConnectionEntry from './ConnectionEntry'
 import DistrictInfoTab from './DistrictInfoTab'
 import DistrictOverviewCard from './DistrictOverviewCard'
 import DistrictTable from './DistrictTable'
-import DonationItemEntry from './DonationItemEntry'
 
 import FilterBar from './FilterBar'
 import FeeModeTab from './FeeModeTab'
@@ -21,7 +20,6 @@ import ModalCreateAccount from './ModalCreateAccount'
 import ModalCreateDistrict from './ModalCreateDistrict'
 import ModalCreatePartner from './ModalCreatePartner'
 import ModalCreatePaymentItem from './ModalCreatePaymentItem'
-import ModalCreateRole from './ModalCreateRole'
 import ModalReceiptTransactions from './ModalReceiptTransactions'
 
 import NativeAppIdTab from './NativeAppIdTab'
@@ -38,8 +36,6 @@ import PaymentsOverview from './PaymentsOverview'
 import ReceiptReviewTable from './ReceiptReviewTable'
 import ReceiptsTable from './ReceiptsTable'
 import ReceiptUploader from './ReceiptUploader'
-import RoleInfoTab from './RoleInfoTab'
-import RolesOverview from './RolesOverview'
 import RolesTab from './RolesTab'
 
 import SalesTab from './SalesTab'
@@ -66,12 +62,10 @@ export {
     DistrictTable,
     FilterBar,
     FeeModeTab,
-    DonationItemEntry,
     ModalCreateAccount,
     ModalCreateDistrict,
     ModalCreatePartner,
     ModalCreatePaymentItem,
-    ModalCreateRole,
     ModalReceiptTransactions,
     NativeAppIdTab,
     NativeAppModal,
@@ -85,8 +79,6 @@ export {
     ReceiptReviewTable,
     ReceiptsTable,
     ReceiptUploader,
-    RoleInfoTab,
-    RolesOverview,
     RolesTab,
     SalesTab,
     SettlementDetails,

@@ -53,9 +53,7 @@ import SubsectionHead from './SubsectionHead'
 import TabMenu from './TabMenu'
 import TabPage from './TabPage'
 import TextEntry from './TextEntry'
-import TextEntryCurrency from './TextEntryCurrency'
 import TextEntryDate from './TextEntryDate'
-import TextEntryPercentage from './TextEntryPercentage'
 import TextEntryPhone from './TextEntryPhone'
 
 import Unauthorized from './Unauthorized'
@@ -102,9 +100,7 @@ export {
     TabMenu,
     TabPage,
     TextEntry,
-    TextEntryCurrency,
     TextEntryDate,
-    TextEntryPercentage,
     TextEntryPhone,
     Unauthorized,
     UtilityBar
