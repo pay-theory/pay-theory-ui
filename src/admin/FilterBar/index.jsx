@@ -76,9 +76,9 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
     };
 
     useEffect(() => {
-        window.addEventListener("keyup", handleKeyUp, { capture: true });
-        return () => window.removeEventListener("keyup", handleKeyUp, { capture: true });
-    });
+        document.addEventListener("keyup", handleKeyUp, { capture: true });
+        return () => document.removeEventListener("keyup", handleKeyUp, { capture: true });
+    }, []);
 
     useEffect(() => {
         console.log('filter text change', filterText)
