@@ -27,7 +27,6 @@ const TextEntry = (props) => {
                 disabled={props.disabled}
                 autoComplete={props.autoComplete}
                 onChange={(e) => {
-                    console.log('TextEntry',e.target.value)
                     return props.onChange(e)
                 }}
                 onClick={props.onClick}
