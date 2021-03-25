@@ -18,14 +18,16 @@ const AccountsTab = (props) => (
                     <div className='tab-content'>
                         <div className='account-tab-header'>
                             <FormHead text='User Accounts' />
-                            <Button
-                                name='add-account-button'
-                                color='primary'
-                                label='Create Account'
-                                onClick={() => openModal()}
-                                leadingIcon='plus-circle'
-                                small
-                            />
+                            <div className='cardHead'>
+                                <Button
+                                                                    name='add-account-button'
+                                                                    color='primary'
+                                                                    label='Create Account'
+                                                                    onClick={() => openModal()}
+                                                                    leadingIcon='plus-circle'
+                                                                    small
+                                                                />
+                            </div>
                         </div>
                         <InnerTable
                             columns={generateTableColumns()}
