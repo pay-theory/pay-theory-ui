@@ -80,6 +80,10 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
         return () => window.removeEventListener("keyup", handleKeyUp);
     });
 
+    useEffect(() => {
+        console.log('filter text change', filterText)
+    }, [filterText])
+
     const clearAll = () => {
         if (filterList.length > 0) {
             setFilterList([])
