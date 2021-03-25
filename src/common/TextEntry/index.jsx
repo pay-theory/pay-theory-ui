@@ -26,7 +26,10 @@ const TextEntry = (props) => {
                 required={props.required}
                 disabled={props.disabled}
                 autoComplete={props.autoComplete}
-                onChange={props.onChange}
+                onChange={(e) => {
+                    console.log('TextEntry',e.target.value)
+                    return props.onChange(e)
+                }}
                 onClick={props.onClick}
                 pattern={props.pattern}
                 {...newProps}
