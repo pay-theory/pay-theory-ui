@@ -75,10 +75,11 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
         }
     };
 
-    useEffect(() => {
-        document.addEventListener("keyup", handleKeyUp, { capture: true });
-        return () => document.removeEventListener("keyup", handleKeyUp, { capture: true });
-    }, []);
+    // useEffect(() => {
+    //     let bar = document.getElementById('fb-search')
+    //     bar.addEventListener("keyup", handleKeyUp, { capture: true });
+    //     return () => bar.removeEventListener("keyup", handleKeyUp, { capture: true });
+    // }, [filterCategory]);
 
     useEffect(() => {
         console.log('filter text change', filterText)
@@ -109,6 +110,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     outer="search-bar"
                     value={filterText}
                     onChange={(e) => setFilterText(e)}
+                    onKeyUp={e => handleKeyUp(e)}
                   />
                 ) : (
                   <TextEntry
@@ -118,6 +120,7 @@ const FilterBar = ({ filterOptions, filterList, setFilterList }) => {
                     outer="search-bar"
                     value={filterText}
                     onChange={(e) => setFilterText(e.target.value)}
+                    onKeyUp={e => handleKeyUp(e)}
                   />
                 )}
                 <Button

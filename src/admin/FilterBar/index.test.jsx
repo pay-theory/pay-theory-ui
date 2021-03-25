@@ -111,11 +111,13 @@ test('display filterBar and add a filter with return', async() => {
         target: { value: 'search' }
     })
 
-    await fireEvent.keyUp(window, { key: 'A', code: 'KeyA' })
+    let bar = queryByTestId('fb-search')
+
+    await fireEvent.keyUp(bar, { key: 'A', code: 'KeyA' })
 
     expect(queryAllByTestId('filter-tag').length).toBe(1);
 
-    await fireEvent.keyUp(window, { key: 'Enter', code: 'Enter' })
+    await fireEvent.keyUp(bar, { key: 'Enter', code: 'Enter' })
 
     expect(queryAllByTestId('filter-tag').length).toBe(2);
 
@@ -153,7 +155,9 @@ test('filterBar cant add invalid dates or currency', async() => {
         target: { value: 'search' }
     })
 
-    await fireEvent.keyUp(window, { key: 'Enter', code: 'Enter' })
+    let bar = queryByTestId('fb-search')
+
+    await fireEvent.keyUp(bar, { key: 'Enter', code: 'Enter' })
 
     expect(queryAllByTestId('filter-tag').length).not.toBeTruthy;
 })
