@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // ui root
 import * as BooksHooks from '../../hooks'
-import { FormHead, InnerTable, TabPage, openModal, Button, UtilityBar } from '../../common'
+import { ActionHead, InnerTable, TabPage, openModal, Button, UtilityBar } from '../../common'
 import {
     generateTableColumns,
     generateTableRows
@@ -16,19 +16,13 @@ const AccountsTab = (props) => (
             return (
                 <TabPage id={props.id} visibility={props.visibility}>
                     <div className='tab-content'>
-                        <div className='account-tab-header'>
-                            <FormHead text='User Accounts' />
-                            <div className='cardHead'>
-                                <Button
-                                    name='add-account-button'
-                                    color='primary'
-                                    label='Create Account'
-                                    onClick={() => openModal()}
-                                    leadingIcon='plus-circle'
-                                    small
-                                />
-                            </div>
-                        </div>
+                        <ActionHead
+                            header='User Accounts'
+                            action={() => openModal()}
+                            label='Create Account'
+                            actionId='create-account'
+                            icon='plus-circle'
+                        />
                         <InnerTable
                             columns={generateTableColumns()}
                             rows={generateTableRows(

@@ -8,7 +8,10 @@ import {
     FormLoginCode,
     FormLoginEmail,
     LogoHeader
-} from './auth'
+}
+from './auth'
+
+import ActionHead from './ActionHead'
 
 import BodyHead from './BodyHead'
 import Button from './Button'
@@ -45,7 +48,8 @@ import {
     WarningMessage,
     SuccessMessage,
     StockTags
-} from './StatusMessage'
+}
+from './StatusMessage'
 
 import Select from './Select'
 import SubsectionHead from './SubsectionHead'
@@ -63,6 +67,7 @@ export {
     AuthBG,
     AuthBox,
     AuthStyle,
+    ActionHead,
     FormHeader,
     FormLoginAlternative,
     FormLoginCode,

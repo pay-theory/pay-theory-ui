@@ -121,20 +121,17 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
     return (
         <TabPage id='native-app-id-tab' visibility='gone'>
             <div className='tab-content' data-testid='native-app-id-tab'>
-                <FormHead text='Native App Credentials' />
+                <ActionHead
+                    text='Native App Credentials'
+                    action={() =>  openModal('native-credentials')}
+                    label='Add Credentials'
+                    actionId='add-ios'
+                    icon='plus-circle'
+                />
                 <div className='tab-row'>
                     <div className='tab-column'>
                         <div className='platform-header'>
                             <h3>iOS</h3>
-                            <Button
-                                label='Add Credentials'
-                                leadingIcon='plus-circle'
-                                name='add-ios'
-                                onClick={() => {
-                                    openModal('native-credentials')
-                                }}
-                                small
-                            />
                         </div>
                         <InnerTable
                             columns={generateAppleColumns()}
