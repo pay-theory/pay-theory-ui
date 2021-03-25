@@ -20,13 +20,13 @@ const AccountsTab = (props) => (
                             <FormHead text='User Accounts' />
                             <div className='cardHead'>
                                 <Button
-                                                                    name='add-account-button'
-                                                                    color='primary'
-                                                                    label='Create Account'
-                                                                    onClick={() => openModal()}
-                                                                    leadingIcon='plus-circle'
-                                                                    small
-                                                                />
+                                    name='add-account-button'
+                                    color='primary'
+                                    label='Create Account'
+                                    onClick={() => openModal()}
+                                    leadingIcon='plus-circle'
+                                    small
+                                />
                             </div>
                         </div>
                         <InnerTable

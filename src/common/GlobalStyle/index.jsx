@@ -10,6 +10,7 @@ const GlobalStyle = (props) => {
                     --mdc-theme-secondary: #0199ed;
                 }
                 #app,
+                #root,
                 html,
                 body {
                     height: 100%;
