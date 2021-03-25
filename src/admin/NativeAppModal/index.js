@@ -7,8 +7,7 @@ import {
     closeModal,
     TextEntry,
     Select
-}
-from '../../common'
+} from '../../common'
 
 const NativeCredentialsModal = ({ action }) => {
     const [platform, setPlatform] = useState('')
@@ -28,7 +27,8 @@ const NativeCredentialsModal = ({ action }) => {
         setTeamId()
     }
 
-    const platforms = [{
+    const platforms = [
+        {
             label: 'Android',
             value: 'android'
         },
@@ -43,12 +43,10 @@ const NativeCredentialsModal = ({ action }) => {
         if (platform === 'ios') {
             if (teamId && bundleId) setActionable(true)
             else setActionable(false)
-        }
-        else if (platform === 'android') {
+        } else if (platform === 'android') {
             if (prodDigest && debugDigest && apkPackage) setActionable(true)
             else setActionable(false)
-        }
-        else {
+        } else {
             setActionable(false)
         }
     }, [platform, teamId, bundleId, prodDigest, debugDigest, apkPackage])
@@ -63,8 +61,7 @@ const NativeCredentialsModal = ({ action }) => {
                     apple_team_id: teamId
                 }
             }
-        }
-        else if (platform === 'android') {
+        } else if (platform === 'android') {
             result = result = {
                 platform: 'android',
                 data: {
