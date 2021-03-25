@@ -40,6 +40,6 @@ test('display accounts tab', async() => {
     fireEvent.click(queryAllByTestId('delete-action')[0])
     expect(deleteAccount).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(queryByTestId('add-account - button'))
+    fireEvent.click(queryByTestId('add-account-button'))
     expect(queryByTestId('modal-form')).toBeVisible()
 })
