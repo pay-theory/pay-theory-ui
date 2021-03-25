@@ -59,7 +59,7 @@ const ActionModal = ({ label, message, action, actionName, type }) => {
 }
 
 ActionModal.defaultProps = {
-    type: 'default'
+    type: ''
 }
 
 ActionModal.propTypes = {
