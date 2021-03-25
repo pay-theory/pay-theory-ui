@@ -5,8 +5,8 @@ import Button from '../Button'
 
 const ActionHead = ({ header, action, label, actionId, icon }) => {
     return (
-        <div className='form-head'>
-            <div className='cardHead'>
+        <div className='action-tab-head'>
+            <div className='actionHead'>
                 <h3 className='title' data-testid='form-head-text'>
                     {header}
                 </h3>
@@ -19,19 +19,19 @@ const ActionHead = ({ header, action, label, actionId, icon }) => {
                 />
             </div>
             <style jsx='true'>{`
-                .action-head {
+                .action-tab-head {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
                 }
-                .cardHead {
+                .actionHead {
                     padding: 24px 24px 14px 24px;
                     border-radius: 6px 6px 0px 0px;
                     display: flex;
                     justify-content: space-between;
                     align-content: center;
                 }
-                .action-head .title {
+                .action-tab-head .title {
                     font-size: 22px;
                     font-weight: 600;
                     margin: 0;
