@@ -2,9 +2,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
-    FormHead,
+    ActionHead,
     TabPage,
-    Button,
     InnerTable,
     openModal,
     closeModal
@@ -122,7 +121,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
         <TabPage id='native-app-id-tab' visibility='gone'>
             <div className='tab-content' data-testid='native-app-id-tab'>
                 <ActionHead
-                    text='Native App Credentials'
+                    header='Native App Credentials'
                     action={() =>  openModal('native-credentials')}
                     label='Add Credentials'
                     actionId='add-ios'

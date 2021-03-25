@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../Button'
+
 const ActionHead = ({ header, action, label, actionId, icon }) => {
     return (
-        <div class='form-head'>
+        <div className='form-head'>
             <div className='cardHead'>
                 <h3 className='title' data-testid='form-head-text'>
                     {header}
