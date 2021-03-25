@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // ui root
 import * as BooksHooks from '../../hooks'
-import { FormHead, InnerTable, TabPage, openModal, Button } from '../../common'
+import { FormHead, InnerTable, TabPage, openModal, Button, UtilityBar } from '../../common'
 import {
     generateTableColumns,
     generateTableRows
@@ -16,7 +16,17 @@ const AccountsTab = (props) => (
             return (
                 <TabPage id={props.id} visibility={props.visibility}>
                     <div className='tab-content'>
-                        <FormHead text='User Accounts' />
+                        <div className='account-tab-header'>
+                            <FormHead text='User Accounts' />
+                            <Button
+                                name='add-account-button'
+                                color='primary'
+                                label='Create Account'
+                                onClick={() => openModal()}
+                                leadingIcon='plus-circle'
+                                small
+                            />
+                        </div>
                         <InnerTable
                             columns={generateTableColumns()}
                             rows={generateTableRows(
@@ -26,16 +36,6 @@ const AccountsTab = (props) => (
                         />
                     </div>
                     <hr />
-                    <div className='tab-content'>
-                        <Button
-                            name='add-account-button'
-                            color='primary'
-                            label='Create Account'
-                            onClick={() => openModal()}
-                            leadingIcon='plus-circle'
-                            small
-                        />
-                    </div>
                     <style jsx='true' global='true'>{`
                         .account-name {
                             width: 140px;
@@ -48,6 +48,15 @@ const AccountsTab = (props) => (
                         }
                         .account-delete {
                             width: 55px;
+                        }
+                        .account-tab-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                        }
+
+                        .account-tab-header #add-account-button {
+                            min-width: 155px;
                         }
                     `}</style>
                 </TabPage>

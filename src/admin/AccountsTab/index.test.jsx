@@ -12,7 +12,6 @@ import * as BooksHooks from '../../hooks'
 
 import { accounts } from '../../test-data'
 
-const viewAccount = jest.fn()
 const deleteAccount = jest.fn()
 
 test('display accounts tab', async() => {
@@ -41,6 +40,6 @@ test('display accounts tab', async() => {
     fireEvent.click(queryAllByTestId('delete-action')[0])
     expect(deleteAccount).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(queryByTestId('add-account-button'))
+    fireEvent.click(queryByTestId('add-account - button'))
     expect(queryByTestId('modal-form')).toBeVisible()
 })
