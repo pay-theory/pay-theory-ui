@@ -1,5 +1,5 @@
 // eslint-disable-next-line security/detect-unsafe-regex
-const dateSplit = /^([0-1]?(?:(?<=1)[0-2]|(?<!1)[1-9]))([0-3]?(?:(?<=[1-2])[0-9]|(?<=[3])[0-1]|(?<!1)[1-9]))?([1-2](?:(?<=1)9[0-9][0-9]|(?<=2)0[0-2][0-9]))?$/
+// const dateSplit = /^([0-1]?(?:(?<=1)[0-2]|(?<!1)[1-9]))([0-3]?(?:(?<=[1-2])[0-9]|(?<=[3])[0-1]|(?<!1)[1-9]))?([1-2](?:(?<=1)9[0-9][0-9]|(?<=2)0[0-2][0-9]))?$/
 const monthAbbreviations = [
     'Jan',
     'Feb',
@@ -27,52 +27,57 @@ const daysInMonth = {
     9: 30,
     10: 31,
     11: 30,
-    12: 31,
+    12: 31
 }
 
 const findMonth = (string) => {
-    let month = parseInt(string.substring(0, 2));
+    const month = parseInt(string.substring(0, 2))
 
     if (month > 0 && month < 13) {
-        let dayAndYear = string.length > 1 ?
-            findDayAndYear(string.substring(2), month) :
-            findDayAndYear(string.substring(1), month);
-        return [string.substring(0, 2), ...dayAndYear];
+        const dayAndYear =
+            string.length > 1
+                ? findDayAndYear(string.substring(2), month)
+                : findDayAndYear(string.substring(1), month)
+        return [string.substring(0, 2), ...dayAndYear]
+    } else {
+        const month = parseInt(string.charAt(0))
+        const dayAndYear = findDayAndYear(string.substring(1), month)
+        return [month, ...dayAndYear]
     }
-    else {
-        let month = parseInt(string.charAt(0));
-        let dayAndYear = findDayAndYear(string.substring(1), month);
-        return [month, ...dayAndYear];
-    }
-};
+}
 
 const findDayAndYear = (string, month) => {
-    if (string.length === 0) return [];
+    if (string.length === 0) return []
 
-    let day = parseInt(string.substring(0, 2));
+    const day = parseInt(string.substring(0, 2))
 
-    if (day > 0 && day <= daysInMonth[month]) {
-        let result = string.substring(2) !== "" ? [day, parseInt(string.substring(2, 6))] : [day];
-        return result;
+    if (day > 0 && day <= daysInMonth[parseInt(month)]) {
+        const result =
+            string.substring(2) !== ''
+                ? [day, parseInt(string.substring(2, 6))]
+                : [day]
+        return result
+    } else {
+        const day = parseInt(string.charAt(0))
+        const result =
+            string.substring(1) !== '' && day > 0
+                ? [day, parseInt(string.substring(1, 5))]
+                : [day]
+        return result
     }
-    else {
-        let day = parseInt(string.charAt(0));
-        let result = string.substring(1) !== "" && day > 0 ? [day, parseInt(string.substring(1, 5))] : [day];
-        return result;
-    }
-};
+}
 
 export const formatDateString = (dateIn, previousDate) => {
-    let value = dateIn;
-    if (previousDate.length > dateIn.length && previousDate.endsWith("/")) {
-        value = dateIn.substring(0, dateIn.length - 1);
+    let value = dateIn
+    if (previousDate.length > dateIn.length && previousDate.endsWith('/')) {
+        value = dateIn.substring(0, dateIn.length - 1)
     }
-    const dated = value.replace(/\D/g, "");
-    if (dated.length === 0) return "";
+    const dated = value.replace(/\D/g, '')
+    if (dated.length === 0) return ''
 
-    const dateArray = findMonth(dated);
-    return dateArray.length > 1 ? dateArray.join("/") : `${dateArray[0]}`;
-};
+    const dateArray = findMonth(dated)
+    return dateArray.length > 1 ? dateArray.join('/') : `${dateArray[0]}`
+}
 
 // export const formatDateString = (dateIn) => {
 //     const dated = dateIn.replace(/\D/g, '')
@@ -117,24 +122,26 @@ export const validDate = (dateIn) => {
     if (dateIn === '') return true
     const dateArray = dateIn.split('/')
 
-    const getDateIndex = number => {
-        let value = dateArray[number].replace(/\D/g, "");
-        return value.length > 0 ? parseInt(value) : 0;
+    const getDateIndex = (number) => {
+        const value = dateArray[parseInt(number)].replace(/\D/g, '')
+        return value.length > 0 ? parseInt(value) : 0
     }
 
-    const month = getDateIndex(0) > 0 && getDateIndex(0) < 13 ? getDateIndex(0) : false
+    const month =
+        getDateIndex(0) > 0 && getDateIndex(0) < 13 ? getDateIndex(0) : false
 
     if (month === false) return false
 
-    const day = getDateIndex(1) > 0 && getDateIndex(1) <= daysInMonth[month] ?
-        getDateIndex(1) : false
+    const day =
+        getDateIndex(1) > 0 && getDateIndex(1) <= daysInMonth[parseInt(month)]
+            ? getDateIndex(1)
+            : false
 
     const year = dateArray[2].length === 4 ? getDateIndex(2) : false
 
     if (year && month && day) {
         return new Date(year, month, day)
-    }
-    else {
+    } else {
         return false
     }
 }
@@ -157,18 +164,15 @@ export const formatTimestamp = (stamp) => {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ 12:${mm} AM`
-    }
-    else if (HH === 12) {
+    } else if (HH === 12) {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ 12:${mm} PM`
-    }
-    else if (HH < 12) {
+    } else if (HH < 12) {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ ${HH}:${mm} AM`
-    }
-    else {
+    } else {
         result = `${monthAbbreviations[parseInt(MM)]} ${DD}, ${YY} @ ${
             HH - 12
         }:${mm} PM`
@@ -194,18 +198,15 @@ export const formatDateAndTime = (date) => {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ 12:${mm} AM`
-    }
-    else if (HH === 12) {
+    } else if (HH === 12) {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ 12:${mm} PM`
-    }
-    else if (HH < 12) {
+    } else if (HH < 12) {
         result = `${
             monthAbbreviations[parseInt(MM)]
         } ${DD}, ${YY} @ ${HH}:${mm} AM`
-    }
-    else {
+    } else {
         result = `${monthAbbreviations[parseInt(MM)]} ${DD}, ${YY} @ ${
             HH - 12
         }:${mm} PM`
