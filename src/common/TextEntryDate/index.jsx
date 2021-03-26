@@ -15,7 +15,7 @@ const TextEntryDate = (props) => {
             value={props.value}
             isValid={(() => validDate(props.value))? true : false}
             onChange={(e) => {
-                const formatted = formatDateString(e.target.value)
+                const formatted = formatDateString(e.target.value, props.value)
                 props.onChange(formatted)
             }}
         />

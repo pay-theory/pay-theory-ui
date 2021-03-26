@@ -8,7 +8,7 @@ import { validCurrency } from './accountUtils'
 
 import { arrayToCSV, formatString, formatFee } from './generalUtils'
 
-test('display card row', async () => {
+test('display card row', async() => {
     let formatted = formatAccountCode('11')
     expect(formatted).toEqual('11')
     let padded = padAccountCode(formatted)
@@ -50,7 +50,7 @@ test('display card row', async () => {
     expect(padded).toEqual('111-2222-3333-444444-555')
 })
 
-test('test formatDateAndTime', async () => {
+test('test formatDateAndTime', async() => {
     let testDate = new Date(1989, 4, 31, 14, 12, 12, 12)
     let dateAndTime = formatDateAndTime(testDate)
     expect(dateAndTime).toEqual('May 31, 1989 @ 2:12 PM')
@@ -86,25 +86,25 @@ test('test formatDateAndTime', async () => {
 //     )
 // })
 
-test('test validDate', async () => {
+test('test validDate', async() => {
     expect(validDate(null)).toBe(true)
 
-    expect(validDate('05311989')).toBeTruthy()
+    expect(validDate('05/31/1989')).toBeTruthy()
 
-    expect(validDate('13311989')).toBe(false)
+    expect(validDate('13/31/1989')).toBe(false)
 })
 
-test('test formatDateString', async () => {
-    expect(formatDateString('05')).toBe('05')
+test('test formatDateString', async() => {
+    expect(formatDateString('05', '')).toBe('05')
 
-    expect(formatDateString('120')).toBe('12 / 0')
+    expect(formatDateString('120', '')).toBe('12/0')
 
-    expect(formatDateString('0522')).toBe('05 / 22')
+    expect(formatDateString('0522', '')).toBe('05/22')
 
-    expect(formatDateString('05221999')).toBe('05 / 22 / 1999')
+    expect(formatDateString('05221999', '')).toBe('05/22/1999')
 })
 
-test('test validCurrency', async () => {
+test('test validCurrency', async() => {
     expect(validCurrency('asdf')).toBe(false)
 
     expect(validCurrency('$12.3333')).toBe(false)
@@ -122,13 +122,13 @@ test('test validCurrency', async () => {
     expect(validCurrency('123 123')).toBe(false)
 })
 
-test('test formatFee', async () => {
+test('test formatFee', async() => {
     expect(formatFee(100)).toBe('$1.00')
 
     expect(formatFee(-123)).toBe('-$1.23')
 })
 
-test('test formatString', async () => {
+test('test formatString', async() => {
     expect(formatString('AUSTIN')).toBe('Austin')
 
     expect(formatString('austin')).toBe('Austin')
@@ -136,7 +136,7 @@ test('test formatString', async () => {
     expect(formatString()).toBe('')
 })
 
-test('test arrayToCSV', async () => {
+test('test arrayToCSV', async() => {
     const objectArray = [
         { first: 'test', second: 'test2' },
         { first: 'test3', second: 'test4' }
