@@ -1,3 +1,4 @@
 /* istanbul ignore file */
 import * as Context from './context'
-export { Context }
+import useTimedLogout from './TimedLogout'
+export { Context, useTimedLogout }
