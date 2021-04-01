@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
-export const useTimedLogout = (minutes, logout) => {
-
+const useTimedLogout = (minutes, logout) => {
     const [timeout] = useState(minutes * 60)
     const [isTracking, setIsTracking] = useState(false)
     const [expiredTime, setExpiredTime] = useState(Date.now() + timeout * 1000)
@@ -12,26 +11,37 @@ export const useTimedLogout = (minutes, logout) => {
     }, [timeout])
 
     const tracker = useCallback(() => {
-        document.addEventListener("mousemove", updateExpiredTime, { capture: false, passive: true })
-        document.addEventListener("scroll", updateExpiredTime, { capture: false, passive: true })
-        document.addEventListener("keydown", updateExpiredTime, { capture: false, passive: true })
+        document.addEventListener('mousemove', updateExpiredTime, {
+            capture: false,
+            passive: true
+        })
+        document.addEventListener('scroll', updateExpiredTime, {
+            capture: false,
+            passive: true
+        })
+        document.addEventListener('keydown', updateExpiredTime, {
+            capture: false,
+            passive: true
+        })
     }, [updateExpiredTime])
 
     const cleanUp = useCallback(() => {
-        document.removeEventListener("mousemove", updateExpiredTime)
-        document.removeEventListener("scroll", updateExpiredTime)
-        document.removeEventListener("keydown", updateExpiredTime)
-        window.localStorage.removeItem("pt-merchant")
+        document.removeEventListener('mousemove', updateExpiredTime)
+        document.removeEventListener('scroll', updateExpiredTime)
+        document.removeEventListener('keydown', updateExpiredTime)
+        window.localStorage.removeItem('pt-merchant')
         window.clearInterval(timerInterval)
     }, [updateExpiredTime, timerInterval])
 
     const startInterval = useCallback(() => {
         updateExpiredTime()
-        setTimerInterval(setInterval(() => {
-            if (expiredTime < Date.now()) {
-                logout()
-            }
-        }, 10000))
+        setTimerInterval(
+            setInterval(() => {
+                if (expiredTime < Date.now()) {
+                    logout()
+                }
+            }, 10000)
+        )
     }, [updateExpiredTime, expiredTime, logout])
 
     useEffect(() => {
@@ -49,3 +59,5 @@ export const useTimedLogout = (minutes, logout) => {
         return cleanUp
     }, [tracker, startInterval, cleanUp, isTracking])
 }
+
+export default useTimedLogout
