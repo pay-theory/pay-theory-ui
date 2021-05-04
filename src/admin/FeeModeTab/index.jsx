@@ -5,8 +5,8 @@ import { FormHead, TabPage } from '../../common'
 import { formatFee, formatBasisPoints } from '../../common/generalUtils'
 
 const FeeModeTab = ({ feeModes }) => {
-    const [fixed, setFixed] = useState({})
-    const [basis, setBasis] = useState({})
+    const [fixed, setFixed] = useState({ fixedFee: 0 })
+    const [basis, setBasis] = useState({ basisPoints: 0 })
     const [surcharge, setSurcharge] = useState({})
 
     useEffect(() => {
@@ -39,14 +39,14 @@ const FeeModeTab = ({ feeModes }) => {
                         </ul>
                     </div>
                 </div> : null}
-                {feeModes.length > 1 ? (
+                {basis.basisPoints > 0 ? (
                     <div className='tab-row' data-testid='service-fee'>
                         <div className='tab-column'>
                             <h4>Service Fee</h4>
                             <ul>
                                 <li>{`${formatBasisPoints(basis.basisPoints)}%`}</li>
                                 <li>
-                                    {`Minimum Fee: ${formatFee(fixed.fixedFee)}`}
+                                    { fixed.fixedFee > 0 ? `Minimum Fee: ${formatFee(fixed.fixedFee)}` : ''}
                                 </li>
                             </ul>
                         </div>
