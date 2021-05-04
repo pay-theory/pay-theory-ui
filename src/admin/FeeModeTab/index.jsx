@@ -10,14 +10,15 @@ const FeeModeTab = ({ feeModes }) => {
     const [surcharge, setSurcharge] = useState({})
 
     useEffect(() => {
-        feeModes.forEach((mode) => {
-            if (mode.fee_type === 'fixed') {
+        Object.keys(feeModes).forEach((identity) => {
+            const mode = feeModes[identity]
+            if (mode.feeType === 'fixed') {
                 setFixed(mode)
             }
-            if (mode.fee_type === 'basis') {
+            if (mode.feeType === 'basis') {
                 setBasis(mode)
             }
-            if (mode.fee_type === 'combined') {
+            if (mode.feeType === 'combined') {
                 setSurcharge(mode)
             }
         })
@@ -26,13 +27,13 @@ const FeeModeTab = ({ feeModes }) => {
         <TabPage id='fee-mode-tab' visibility='gone'>
             <div className='tab-content'>
                 <FormHead text='Fee Modes' />
-                {surcharge.fee ? <div className='tab-row'>
+                {surcharge.basisPoints ? <div className='tab-row'>
                     <div className='tab-column'>
                         <h4>Interchange Plus</h4>
                         <ul>
                             <li>
-                                {`${formatBasisPoints(surcharge.fee)}% + ${formatFee(
-                                    surcharge.additional_fixed
+                                {`${formatBasisPoints(surcharge.basisPoints)}% + ${formatFee(
+                                    surcharge.additionalFee
                                 )}`}
                             </li>
                         </ul>
@@ -43,9 +44,9 @@ const FeeModeTab = ({ feeModes }) => {
                         <div className='tab-column'>
                             <h4>Service Fee</h4>
                             <ul>
-                                <li>{`${formatBasisPoints(basis.fee)}%`}</li>
+                                <li>{`${formatBasisPoints(basis.basisPoints)}%`}</li>
                                 <li>
-                                    {`Minimum Fee: ${formatFee(fixed.fee)}`}
+                                    {`Minimum Fee: ${formatFee(fixed.fixedFee)}`}
                                 </li>
                             </ul>
                         </div>
