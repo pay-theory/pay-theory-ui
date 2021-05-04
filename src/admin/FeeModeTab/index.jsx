@@ -39,19 +39,17 @@ const FeeModeTab = ({ feeModes }) => {
                         </ul>
                     </div>
                 </div> : null}
-                {basis.basisPoints > 0 ? (
-                    <div className='tab-row' data-testid='service-fee'>
-                        <div className='tab-column'>
-                            <h4>Service Fee</h4>
-                            <ul>
-                                <li>{`${formatBasisPoints(basis.basisPoints)}%`}</li>
-                                <li>
-                                    { fixed.fixedFee > 0 ? `Minimum Fee: ${formatFee(fixed.fixedFee)}` : ''}
-                                </li>
-                            </ul>
-                        </div>
+                <div className='tab-row' data-testid='service-fee'>
+                    <div className='tab-column'>
+                        <h4>Service Fee</h4>
+                        <ul>
+                            <li>{ basis.basisPoints > 0 ? `${formatBasisPoints(basis.basisPoints)}%`: '' }</li>
+                            <li>
+                                { fixed.fixedFee > 0 ? `Minimum Fee: ${formatFee(fixed.fixedFee)}` : '' }
+                            </li>
+                        </ul>
                     </div>
-                ) : null}
+                </div>
             </div>
             <hr />
             <style global='true' jsx='true'>
