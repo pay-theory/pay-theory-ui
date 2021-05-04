@@ -21,7 +21,7 @@ const PartnerInfoTab = (props) => {
                 label="API Key"
                 message="API key"
                 name="apiKey"
-                value={partner.apiKey}
+                value={partner.APIKey}
               />
               <Button
                 onClick={() => props.onGenerateApiKey()}
