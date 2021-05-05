@@ -57,7 +57,11 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 onClick={() => {
                                     setActionable({
                                         platform: 'android',
-                                        data: packageName
+                                        data: {
+                                            'apk_package_name': packageName,
+                                            'apk_digest_prod': androidApps[packageName]['productionDigest'] ,
+                                            'apk_digest_debug': androidApps[packageName]['debugDigest']
+                                        }
                                     })
                                     openModal(ACTION_ID)
                                 }}
@@ -69,7 +73,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                         )
                     }
                 ],
-                key: `${item.apk_digest}-${item.apk_package_name}`
+                key: packageName
             }
         })
     }
@@ -101,7 +105,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 onClick={() => {
                                     setActionable({
                                         platform: 'ios',
-                                        data: bundleIdentifier
+                                        data: { 'cf_bundle_identifier': bundleIdentifier, 'apple_team_id': iosApps[bundleIdentifier] }
                                     })
                                     openModal(ACTION_ID)
                                 }}

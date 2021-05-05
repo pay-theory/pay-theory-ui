@@ -51,7 +51,7 @@ const NativeCredentialsModal = ({ action }) => {
         }
     }, [platform, teamId, bundleId, prodDigest, debugDigest, apkPackage])
 
-    const formatedData = () => {
+    const formattedData = () => {
         let result
         if (platform === 'ios') {
             result = {
@@ -137,7 +137,7 @@ const NativeCredentialsModal = ({ action }) => {
                         leadingIcon='plus-circle'
                         name='add-button'
                         onClick={() => {
-                            action(formatedData())
+                            action(formattedData())
                             resetState()
                         }}
                         small

@@ -19,7 +19,7 @@ test('display NativeAppId tab', async() => {
                                     addAction={add}
                                     android={nativeCredentials.android}
                                     deleteAction={remove}
-                                    ios={nativeCredentials.ios}
+                                    ios = { nativeCredentials.ios }
                                     />
                                     </div>
                                     </div>
