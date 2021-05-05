@@ -35,7 +35,7 @@ const NavigationDrawer = ({ navStyle, listHead }) => {
                 {/* If list head is present it take priority if not it checks for a merchant name and if none is present nothing is rendered */}
                 {listHead ? (
                   <p className="nav-header">{listHead}</p>): partner.merchantName ? (
-                      <p className="nav-header">{partner.merchant_name}</p>
+                      <p className="nav-header">{partner.merchantName}</p>
                   ) : null
                   }
                 {Array.isArray(menuItems) ? (
