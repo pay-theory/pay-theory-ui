@@ -180,7 +180,7 @@ const TransactionsTable = (props) => {
                   margin: 0px 24px;
                 }
             .transaction-id {
-              width: 120px;
+              width: 140px;
             }
             .transaction-id p {
               white-space: nowrap;
