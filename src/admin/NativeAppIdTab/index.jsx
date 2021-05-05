@@ -237,9 +237,9 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
 
 NativeAppIdTab.propTypes = {
     addAction: PropTypes.func.isRequired,
-    android: PropTypes.array.isRequired,
+    android: PropTypes.object.isRequired,
     deleteAction: PropTypes.func.isRequired,
-    ios: PropTypes.array.isRequired
+    ios: PropTypes.object.isRequired
 }
 
 export default NativeAppIdTab
