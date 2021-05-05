@@ -25,28 +25,28 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
             { className: 'android-delete', label: 'delete' }
         ]
     }
-    const generateAndroidRows = (array) => {
-        return array.map((item, i) => {
+    const generateAndroidRows = (androidApps) => {
+        return Object.keys(androidApps).map((packageName, i) => {
             return {
                 columns: [{
                         className: 'apk-digest-prod',
                         content: (
-                            <span title={item.apk_digest_prod}>
-                                {item.apk_digest_prod}
+                            <span title={androidApps[packageName].productionDigest}>
+                                {androidApps[packageName].productionDigest}
                             </span>
                         )
                     },
                     {
                         className: 'apk-digest-debug',
                         content: (
-                            <span title={item.apk_digest_debug}>
-                                {item.apk_digest_debug}
+                            <span title={androidApps[packageName].debugDigest}>
+                                {androidApps[packageName].debugDigest}
                             </span>
                         )
                     },
                     {
                         className: 'apk-package-name',
-                        content: item.apk_package_name
+                        content: packageName
                     },
                     {
                         className: 'android-delete',
@@ -57,7 +57,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 onClick={() => {
                                     setActionable({
                                         platform: 'android',
-                                        data: item
+                                        data: packageName
                                     })
                                     openModal(ACTION_ID)
                                 }}
@@ -81,16 +81,16 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
             { className: 'ios-delete', label: 'delete' }
         ]
     }
-    const generateAppleRows = (array) => {
-        return array.map((item, i) => {
+    const generateAppleRows = (iosApps) => {
+        return Object.keys(iosApps).map((bundleIdentifier, i) => {
             return {
                 columns: [{
                         className: 'cf-bundle-identifier',
-                        content: item.cf_bundle_identifier
+                        content: bundleIdentifier
                     },
                     {
                         className: 'apple-team-id',
-                        content: item.apple_team_id
+                        content: iosApps[bundleIdentifier]
                     },
                     {
                         className: 'ios-delete',
@@ -101,7 +101,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                                 onClick={() => {
                                     setActionable({
                                         platform: 'ios',
-                                        data: item
+                                        data: bundleIdentifier
                                     })
                                     openModal(ACTION_ID)
                                 }}
@@ -113,7 +113,7 @@ const NativeAppIdTab = ({ android, ios, deleteAction, addAction }) => {
                         )
                     }
                 ],
-                key: `${item.cf_bundle_identifier}-${item.apple_team_id}`
+                key: bundleIdentifier
             }
         })
     }
