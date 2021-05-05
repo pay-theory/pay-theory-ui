@@ -12,7 +12,7 @@ const PartnerOverviewCard = (props) => (
                     <div className='circle'>
                         <i className='fal fa-building fa-5x' />
                     </div>
-                    <div className='proper-name'>{partner.merchant_name}</div>
+                    <div className='proper-name'>{partner.merchantName}</div>
                     <div className='note'>{partner.UID}</div>
                     <hr />
                     <style jsx='true'>{`
