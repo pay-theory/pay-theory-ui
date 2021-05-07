@@ -63,7 +63,7 @@ import TextEntryPhone from './TextEntryPhone'
 import Unauthorized from './Unauthorized'
 import UtilityBar from './UtilityBar'
 
-import { timedLogout } from 'utilities'
+import { timedLogout } from './utilities'
 
 export {
     AuthBG,

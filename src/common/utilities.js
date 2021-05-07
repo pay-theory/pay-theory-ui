@@ -1,20 +1,20 @@
 export const timedLogout = (minutes, logout) => {
-    let actions = ['mousemove', 'scroll', 'keydown', 'click', 'mousedown']
-    let timeout = minutes * 60000
+    const actions = ['mousemove', 'scroll', 'keydown', 'click', 'mousedown']
+    const timeout = minutes * 60000
 
-    let finalLogout = () => {
+    const finalLogout = () => {
         logout()
         window.localStorage.removeItem('pt-merchant')
     }
 
-    var t = setTimeout(finalLogout, timeout)
+    let t = setTimeout(finalLogout, timeout)
 
-    let updateTimeout = () => {
+    const updateTimeout = () => {
         clearTimeout(t)
         t = setTimeout(finalLogout, timeout)
     }
 
-    actions.forEach(action => {
+    actions.forEach((action) => {
         document.addEventListener(action, updateTimeout, {
             capture: false,
             passive: true
