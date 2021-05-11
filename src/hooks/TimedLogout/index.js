@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 
-const useTimedLogout = (minutes, logout) => {
+const useTimedLogout = (minutes, logout, returnTo) => {
     const [timeout] = useState(minutes * 60)
     const [isTracking, setIsTracking] = useState(false)
     const [expiredTime, setExpiredTime] = useState(Date.now() + timeout * 1000)
@@ -38,7 +38,7 @@ const useTimedLogout = (minutes, logout) => {
         setTimerInterval(
             setInterval(() => {
                 if (expiredTime < Date.now()) {
-                    logout()
+                    logout({ returnTo: window.location.origin })
                 }
             }, 10000)
         )
@@ -46,7 +46,7 @@ const useTimedLogout = (minutes, logout) => {
 
     useEffect(() => {
         if (expiredTime > 0 && expiredTime < Date.now()) {
-            logout()
+            logout({ returnTo: window.location.origin })
         }
     }, [expiredTime, logout])
 
