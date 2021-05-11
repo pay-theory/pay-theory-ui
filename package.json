@@ -26,7 +26,7 @@
         "build-default": "microbundle-crl --no-compress --format modern,cjs",
         "build": "npm run build-default && npm run build-common && npm run build-font",
         "start": "microbundle-crl watch --no-compress --format modern,cjs",
-        "postinstall": "echo building ui && run-s build",
+        "postinstall": "echo building ui && ls && run-s build",
         "format": "prettier-eslint --write \"$PWD/src/**/*.js\"",
         "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
         "ops-test": "react-scripts test --watchAll=false --env=jest-environment-jsdom-sixteen --coverage",
