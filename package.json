@@ -12,7 +12,7 @@
         "url": "git+https://github.com/pay-theory/pay-theory-ui.git"
     },
     "main": "src/index.js",
-    "module": "dist/index.modern.js",
+    "module": "src/index.js",
     "source": "src/index.js",
     "engines": {
         "node": ">=12"
