@@ -180,11 +180,12 @@ const parse = (uploaded, forDistrict) => {
 
             const empty_fee = { fees: 0.0, receipts: [] }
 
-            usas_submissions[school.toString()][
-                account_code.toString()
-            ] = usas_submissions[school.toString()][account_code.toString()]
-                ? usas_submissions[school.toString()][account_code.toString()]
-                : empty_fee
+            usas_submissions[school.toString()][account_code.toString()] =
+                usas_submissions[school.toString()][account_code.toString()]
+                    ? usas_submissions[school.toString()][
+                          account_code.toString()
+                      ]
+                    : empty_fee
 
             const paymentMade = useConvenienceAsDate
                 ? row.ConvenienceFee
