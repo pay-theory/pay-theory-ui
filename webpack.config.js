@@ -20,7 +20,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         library: '@paytheory/pay-theory-ui',
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'umd'
     },
     devServer: {
         contentBase: path.resolve(__dirname, './dist'),
