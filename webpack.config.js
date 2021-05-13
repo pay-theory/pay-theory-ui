@@ -1,4 +1,5 @@
 const path = require('path');
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
     entry: {
@@ -14,6 +15,7 @@ module.exports = {
             use: ['babel-loader']
         }]
     },
+    externals: [nodeExternals()],
     resolve: {
         extensions: ['*', '.js', '.jsx']
     },
