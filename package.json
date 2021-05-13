@@ -11,8 +11,8 @@
         "type": "git",
         "url": "git+https://github.com/pay-theory/pay-theory-ui.git"
     },
-    "main": "dist/index.html",
-    "module": "dist/index.modern.html",
+    "main": "dist/index.js",
+    "module": "dist/index.modern.js",
     "source": "src/index.js",
     "font": "dist/Font/index.js",
 
