@@ -11,18 +11,22 @@
         "type": "git",
         "url": "git+https://github.com/pay-theory/pay-theory-ui.git"
     },
-    "main": "dist/index.js",
-    "module": "dist/index.modern.js",
+    "main": "dist/index.html",
+    "module": "dist/index.modern.html",
     "source": "src/index.js",
+    "font": "dist/Font/index.js",
+
+    "babel": {
+        "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react"
+        ]
+    },
     "engines": {
         "node": ">=12"
     },
     "scripts": {
-        "build-admin": "parcel build src/admin/index.js --out-file admin.js",
-        "build-common": "parcel build  src/common/index.js --out-file common.js",
-        "build-font": "parcel build src/common/Font/index.js --out-file Font.js",
-        "build-default": "parcel build src/index.js",
-        "build": "npm run build-admin && npm run build-common && npm run build-font && npm run build-default",
+        "build": "webpack",
         "start": "parcel serve src/index.js",
         "format": "prettier-eslint --write \"$PWD/src/**/*.js\"",
         "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
@@ -43,8 +47,12 @@
         "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --tag release"
     },
     "devDependencies": {
+        "@babel/core": "^7.14.2",
+        "@babel/preset-env": "^7.14.2",
+        "@babel/preset-react": "^7.13.13",
         "@testing-library/jest-dom": "^5.12.0",
         "@testing-library/react": "^11.2.6",
+        "babel-loader": "^8.1.0",
         "cross-env": "^7.0.3",
         "eslint": "^7.26.0",
         "eslint-config-prettier": "^8.3.0",
@@ -65,7 +73,10 @@
         "npm-run-all": "^4.1.5",
         "parcel": "^2.0.0-beta.2",
         "prettier-eslint": "^12.0.0",
-        "prettier-eslint-cli": "^5.0.1"
+        "prettier-eslint-cli": "^5.0.1",
+        "webpack": "^4.44.2",
+        "webpack-cli": "^4.7.0",
+        "webpack-dev-server": "^3.11.1"
     },
     "files": [
         "dist"
