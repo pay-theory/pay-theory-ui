@@ -18,7 +18,9 @@ module.exports = {
         extensions: ['*', '.js', '.jsx']
     },
     output: {
-        path: path.resolve(__dirname, './dist')
+        path: path.resolve(__dirname, './dist'),
+        library: '@paytheory/pay-theory-ui',
+        libraryTarget: 'commonjs2'
     },
     devServer: {
         contentBase: path.resolve(__dirname, './dist'),
