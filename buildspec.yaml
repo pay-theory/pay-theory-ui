@@ -14,9 +14,9 @@ phases:
       - npm install
       - apt-get install jq
       - export NPM_TOKEN=$NPM_TOKEN
-  post_build:
-    commands:
       - LATEST=$( npm view @paytheory/pay-theory-ui  versions --json | jq -r '.[-1]')
       - npm version ${LATEST} --allow-same-version
       - npm version prepatch
+  build:
+    commands:
       - npm publish --tag $ENVIRONMENT
