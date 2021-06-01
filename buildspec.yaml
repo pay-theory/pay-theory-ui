@@ -12,11 +12,11 @@ phases:
       - echo Installing dependencies...
       - echo $ENVIRONMENT Install started on `date`
       - npm install
+      - npm i webpack-cli
       - apt-get install jq
       - export NPM_TOKEN=$NPM_TOKEN
   build:
     commands:
-      - echo $REACT_APP_ENV $REACT_APP_SECURE_ENDPOINT Build started on `date`
       - npm run build
   post_build:
     commands:
