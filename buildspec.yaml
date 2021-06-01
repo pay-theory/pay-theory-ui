@@ -19,4 +19,4 @@ phases:
       - npm version prepatch
   build:
     commands:
-      - npm publish --tag $ENVIRONMENT
+      - npm publish --tag austin-dev
