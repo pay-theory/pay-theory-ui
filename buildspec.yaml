@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - echo $ENVIRONMENT Install started on `date`
+      - npm install
+      - sudo yum install jq
+      - export NPM_TOKEN = $NPM_TOKEN
+  build:
+    commands:
+      - LATEST=$(npm view @paytheory/pay-theory-ui  versions --json | jq -r ‘.[-1]’)
+      - npm version ${LATEST}
+      - npm run predeploy-package
+      - npm publish --tag $ENVIRONMENT
