@@ -12,7 +12,7 @@ phases:
       - echo Installing dependencies...
       - echo $ENVIRONMENT Install started on `date`
       - npm install
-      - yum install jq
+      - apt-get install jq
       - export NPM_TOKEN = $NPM_TOKEN
   build:
     commands:
