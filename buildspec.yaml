@@ -16,7 +16,7 @@ phases:
       - export NPM_TOKEN=$NPM_TOKEN
   build:
     commands:
-      - LATEST=$(npm view @paytheory/pay-theory-ui  versions --json | jq -r ‘.[-1]’)
+      - LATEST=$( npm view @paytheory/pay-theory-ui  versions --json | jq -r '.[-1]')
       - npm version ${LATEST}
       - npm run predeploy-package
       - npm publish --tag $ENVIRONMENT
