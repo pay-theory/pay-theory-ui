@@ -13,7 +13,7 @@ phases:
       - echo $ENVIRONMENT Install started on `date`
       - npm install
       - apt-get install jq
-      - export NPM_TOKEN = $NPM_TOKEN
+      - export NPM_TOKEN=$NPM_TOKEN
   build:
     commands:
       - LATEST=$(npm view @paytheory/pay-theory-ui  versions --json | jq -r ‘.[-1]’)
