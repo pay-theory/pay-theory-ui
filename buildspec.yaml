@@ -18,7 +18,7 @@ phases:
     commands:
       - echo $REACT_APP_ENV $REACT_APP_SECURE_ENDPOINT Build started on `date`
       - npm run build
-  pos_build:
+  post_build:
     commands:
       - LATEST=$( npm view @paytheory/pay-theory-ui  versions --json | jq -r '.[-1]')
       - npm version ${LATEST} --allow-same-version
