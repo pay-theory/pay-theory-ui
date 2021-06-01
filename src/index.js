@@ -1,5 +1,6 @@
 /* istanbul ignore file */
-export * from './pt-hooks'
+import * as Context from './pt-hooks'
+export { Context }
 
 export * from './common'
 

@@ -1,6 +1,6 @@
 {
     "name": "@paytheory/pay-theory-ui",
-    "version": "0.1.171-0",
+    "version": "0.1.175-0",
     "description": "Made with create-react-library",
     "author": "austinzani",
     "license": "MIT",
@@ -14,17 +14,19 @@
     "main": "dist/index.js",
     "module": "dist/index.modern.js",
     "source": "src/index.js",
+    "font": "dist/Font/index.js",
+    "babel": {
+        "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react"
+        ]
+    },
     "engines": {
         "node": ">=12"
     },
     "scripts": {
-        "build-admin": "microbundle-crl --no-compress --format modern,cjs src/admin/index.js -o dist/admin.js",
-        "build-documentation": "microbundle-crl --no-compress --format modern,cjs src/documentation/index.js -o dist/documentation.js",
-        "build-common": "microbundle-crl --no-compress --format modern,cjs src/common/index.js -o dist/common.js",
-        "build-font": "microbundle-crl --no-compress --format modern,cjs src/common/Font/index.js -o dist/Font.js",
-        "build-default": "microbundle-crl --no-compress --format modern,cjs",
-        "build": "npm run build-default && npm run build-common && npm run build-font",
-        "start": "microbundle-crl watch --no-compress --format modern,cjs",
+        "build": "webpack",
+        "start": "parcel serve src/index.js",
         "format": "prettier-eslint --write \"$PWD/src/**/*.js\"",
         "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
         "ops-test": "react-scripts test --watchAll=false --env=jest-environment-jsdom-sixteen --coverage",
@@ -36,7 +38,6 @@
         "test:unit": "cross-env CI=1 react-scripts test --env=jest-environment-jsdom-sixteen",
         "test:watch": "react-scripts test --env=jest-environment-jsdom-sixteen",
         "predeploy": "cd example && npm install && npm run build",
-        "deploy": "gh-pages -d example/build",
         "prepare-commit": "npm run format && npm run test:lint && npm run build",
         "post-commit": "npm run ops-test && npm run test-report",
         "predeploy-package": "npm version prepatch && git push",
@@ -45,10 +46,12 @@
         "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --tag release"
     },
     "devDependencies": {
+        "@babel/core": "^7.14.2",
+        "@babel/preset-env": "^7.14.2",
+        "@babel/preset-react": "^7.13.13",
         "@testing-library/jest-dom": "^5.12.0",
         "@testing-library/react": "^11.2.6",
-        "@typescript-eslint/parser": "^4.23.0",
-        "babel-eslint": "^10.1.0",
+        "babel-loader": "^8.1.0",
         "cross-env": "^7.0.3",
         "eslint": "^7.26.0",
         "eslint-config-prettier": "^8.3.0",
@@ -59,20 +62,21 @@
         "eslint-plugin-no-wildcard-postmessage": "^0.2.0",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-prettier": "^3.4.0",
-        "eslint-plugin-promise": "^5.1.0",
+        "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-prototype-pollution-security-rules": "^1.0.6",
         "eslint-plugin-react": "^7.23.2",
         "eslint-plugin-scanjs-rules": "^0.2.1",
         "eslint-plugin-security": "^1.4.0",
         "eslint-plugin-standard": "^4.1.0",
-        "jest-environment-jsdom-sixteen": "^1.0.3",
-        "microbundle-crl": "^0.13.11",
-        "mini-create-react-context": "^0.4.1",
+        "jest-environment-jsdom-sixteen": "^2.0.0",
         "npm-run-all": "^4.1.5",
-        "postcss": "^8.2.15",
-        "prettier": "^2.3.0",
+        "parcel": "^2.0.0-beta.2",
+        "prettier-eslint": "^12.0.0",
         "prettier-eslint-cli": "^5.0.1",
-        "react-scripts": "^4.0.3"
+        "webpack": "^4.44.2",
+        "webpack-cli": "^4.7.0",
+        "webpack-dev-server": "^3.11.1",
+        "webpack-node-externals": "^3.0.0"
     },
     "files": [
         "dist"
@@ -96,8 +100,11 @@
         }
     },
     "homepage": "https://github.com/pay-theory/pay-theory-ui#readme",
-    "dependencies": {
+    "peerDependencies": {
+        "jsdom": "^16.5.3",
         "moment": "^2.29.1",
+        "prop-types": "^15.7.2",
+        "react-scripts": "^4.0.3",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-dropzone": "^11.3.2",

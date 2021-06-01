@@ -109,7 +109,6 @@ export {
     TextEntry,
     TextEntryDate,
     TextEntryPhone,
-    timedLogout,
     Unauthorized,
     UtilityBar
 }
