@@ -30,8 +30,10 @@ const toDate = (input) => {
     let hour = parseInt(time_parts[0])
 
     hour =
-        /* istanbul ignore next */ ampm === 'pm'
-            ? /* istanbul ignore next */ hour > 12
+        /* istanbul ignore next */
+        ampm === 'pm'
+            ? /* istanbul ignore next */
+              hour > 12
                 ? hour + 12
                 : hour
             : hour
@@ -176,24 +178,22 @@ const parse = (uploaded, forDistrict) => {
             const fee_type = findFeeType(row)
             const fee = findFee(row)
 
-            const account_code = row.AccountCode
+            const account_code = row.AccountCode.toString()
+            const school_str = school.toString()
 
             const empty_fee = { fees: 0.0, receipts: [] }
-
-            usas_submissions[school.toString()][account_code.toString()] =
-                usas_submissions[school.toString()][account_code.toString()]
-                    ? usas_submissions[school.toString()][
-                          account_code.toString()
-                      ]
-                    : empty_fee
+            usas_submissions[school_str][account_code] = usas_submissions[
+                school_str
+            ][account_code]
+                ? usas_submissions[school_str][account_code]
+                : empty_fee
 
             const paymentMade = useConvenienceAsDate
                 ? row.ConvenienceFee
                 : row.PaymentMadeDate
 
-            const receipts =
-                usas_submissions[school.toString()][account_code.toString()]
-                    .receipts
+            const receipts = usas_submissions[school_str][account_code].receipts
+
             receipts.push({
                 school: school,
                 student_id: row.StudentID,

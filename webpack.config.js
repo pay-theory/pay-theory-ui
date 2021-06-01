@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
@@ -9,11 +9,13 @@ module.exports = {
         Font: path.resolve(__dirname, './src/common/Font/index.js')
     },
     module: {
-        rules: [{
-            test: /\.(jsx?)$/,
-            exclude: /node_modules/,
-            use: ['babel-loader']
-        }]
+        rules: [
+            {
+                test: /\.(jsx?)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            }
+        ]
     },
     externals: [nodeExternals()],
     resolve: {
@@ -25,7 +27,7 @@ module.exports = {
         libraryTarget: 'umd'
     },
     devServer: {
-        contentBase: path.resolve(__dirname, './dist'),
+        contentBase: path.resolve(__dirname, './dist')
     },
-    devtool: "source-map"
-};
+    devtool: 'source-map'
+}

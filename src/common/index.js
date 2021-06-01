@@ -8,8 +8,7 @@ import {
     FormLoginCode,
     FormLoginEmail,
     LogoHeader
-}
-from './auth'
+} from './auth'
 
 import ActionHead from './ActionHead'
 
@@ -48,8 +47,7 @@ import {
     WarningMessage,
     SuccessMessage,
     StockTags
-}
-from './StatusMessage'
+} from './StatusMessage'
 
 import Select from './Select'
 import SubsectionHead from './SubsectionHead'
@@ -109,6 +107,7 @@ export {
     TextEntry,
     TextEntryDate,
     TextEntryPhone,
+    timedLogout,
     Unauthorized,
     UtilityBar
 }
