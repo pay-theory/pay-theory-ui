@@ -20,4 +20,7 @@ phases:
       - npm version prepatch
   build:
     commands:
+      - npm run build
+  post_build:
+    commands:
       - npm publish --tag $ENVIRONMENT
