@@ -11,6 +11,7 @@ phases:
     commands:
       - echo Installing dependencies...
       - echo $ENVIRONMENT Install started on `date`
+      - npm install -D webpack-cli
       - npm install
       - apt-get install jq
       - export NPM_TOKEN=$NPM_TOKEN
@@ -19,4 +20,4 @@ phases:
       - npm version prepatch
   build:
     commands:
-      - npm publish --tag austin-dev
+      - npm publish --tag $ENVIRONMENT
