@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import * as BooksHooks from '../../../hooks'
 const AccountMenuItems = (props) => {
     const handleKeyPress = (e) => {
-        props.logout()
+        props.logout({ returnTo: window.location.origin })
     }
     return (
         <BooksHooks.Context.Account.Consumer>

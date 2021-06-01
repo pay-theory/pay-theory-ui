@@ -14,18 +14,19 @@
     "main": "dist/index.js",
     "module": "dist/index.modern.js",
     "source": "src/index.js",
+    "font": "dist/Font/index.js",
+    "babel": {
+        "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react"
+        ]
+    },
     "engines": {
         "node": ">=12"
     },
     "scripts": {
-        "build-admin": "microbundle-crl --no-compress --format modern,cjs src/admin/index.js -o dist/admin.js",
-        "build-documentation": "microbundle-crl --no-compress --format modern,cjs src/documentation/index.js -o dist/documentation.js",
-        "build-common": "microbundle-crl --no-compress --format modern,cjs src/common/index.js -o dist/common.js",
-        "build-font": "microbundle-crl --no-compress --format modern,cjs src/common/Font/index.js -o dist/Font.js",
-        "build-default": "microbundle-crl --no-compress --format modern,cjs",
-        "build": "npm run build-default && npm run build-common && npm run build-font",
-        "start": "microbundle-crl watch --no-compress --format modern,cjs",
-        "prepare": "run-s build",
+        "build": "webpack",
+        "start": "parcel serve src/index.js",
         "format": "prettier-eslint --write \"$PWD/src/**/*.js\"",
         "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
         "ops-test": "react-scripts test --watchAll=false --env=jest-environment-jsdom-sixteen --coverage",
@@ -37,7 +38,6 @@
         "test:unit": "cross-env CI=1 react-scripts test --env=jest-environment-jsdom-sixteen",
         "test:watch": "react-scripts test --env=jest-environment-jsdom-sixteen",
         "predeploy": "cd example && npm install && npm run build",
-        "deploy": "gh-pages -d example/build",
         "prepare-commit": "npm run format && npm run test:lint && npm run build",
         "post-commit": "npm run ops-test && npm run test-report",
         "predeploy-package": "npm version prepatch && git push",
@@ -46,40 +46,37 @@
         "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --tag release"
     },
     "devDependencies": {
-        "@testing-library/jest-dom": "^5.11.9",
-        "@testing-library/react": "^11.2.5",
-        "babel-eslint": "^10.1.0",
+        "@babel/core": "^7.14.3",
+        "@babel/preset-env": "^7.14.4",
+        "@babel/preset-react": "^7.13.13",
+        "@testing-library/jest-dom": "^5.12.0",
+        "@testing-library/react": "^11.2.7",
+        "babel-loader": "^8.2.2",
         "cross-env": "^7.0.3",
-        "eslint": "^7.22.0",
-        "eslint-config-prettier": "^8.1.0",
-        "eslint-config-standard": "^16.0.2",
+        "eslint": "^7.27.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-config-standard": "^16.0.3",
         "eslint-config-standard-react": "^11.0.1",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-no-unsanitized": "^3.1.4",
+        "eslint-plugin-import": "^2.23.4",
+        "eslint-plugin-no-unsanitized": "^3.1.5",
         "eslint-plugin-no-wildcard-postmessage": "^0.2.0",
         "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-prettier": "^3.3.1",
-        "eslint-plugin-promise": "^4.3.1",
+        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-promise": "^5.1.0",
         "eslint-plugin-prototype-pollution-security-rules": "^1.0.6",
-        "eslint-plugin-react": "^7.23.1",
+        "eslint-plugin-react": "^7.24.0",
         "eslint-plugin-scanjs-rules": "^0.2.1",
         "eslint-plugin-security": "^1.4.0",
         "eslint-plugin-standard": "^4.1.0",
-        "gh-pages": "^3.1.0",
-        "install-peers": "^1.0.3",
-        "jest-environment-jsdom-sixteen": "^1.0.3",
-        "microbundle-crl": "^0.13.11",
-        "moment": "^2.29.1",
+        "jest-environment-jsdom-sixteen": "^2.0.0",
         "npm-run-all": "^4.1.5",
-        "prettier": "^2.2.1",
+        "parcel": "^2.0.0-beta.2",
+        "prettier-eslint": "^12.0.0",
         "prettier-eslint-cli": "^5.0.1",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-dropzone": "^11.0.3",
-        "react-router-dom": "^5.2.0",
-        "react-scripts": "^4.0.3",
-        "webfontloader": "^1.6.28",
-        "xlsx": "^0.16.6"
+        "webpack": "^4.44.2",
+        "webpack-cli": "^4.7.0",
+        "webpack-dev-server": "^3.11.2",
+        "webpack-node-externals": "^3.0.0"
     },
     "files": [
         "dist"
@@ -103,13 +100,16 @@
         }
     },
     "homepage": "https://github.com/pay-theory/pay-theory-ui#readme",
-    "dependencies": {
+    "peerDependencies": {
+        "jsdom": "^16.6.0",
         "moment": "^2.29.1",
+        "prop-types": "^15.7.2",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
-        "react-dropzone": "^11.3.1",
+        "react-dropzone": "^11.3.2",
         "react-router-dom": "^5.2.0",
+        "react-scripts": "^4.0.3",
         "webfontloader": "^1.6.28",
-        "xlsx": "^0.16.9"
+        "xlsx": "^0.17.0"
     }
 }
