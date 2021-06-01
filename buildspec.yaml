@@ -1,9 +1,12 @@
 version: 0.2
 
+env:
+  shell: bash
 phases:
   install:
     runtime-versions:
       nodejs: latest
+      
   pre_build:
     commands:
       - echo Installing dependencies...
