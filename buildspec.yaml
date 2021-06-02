@@ -19,8 +19,7 @@ phases:
       - npm version prepatch
   build:
     commands:
-      - npm run build
-      - echo yes
+      - npm run build --yes
   post_build:
     commands:
       - npm publish --tag $ENVIRONMENT
