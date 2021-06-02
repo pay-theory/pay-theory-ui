@@ -11,7 +11,7 @@ phases:
     commands:
       - echo Installing dependencies...
       - echo $ENVIRONMENT Install started on `date`
-      - npm install -D webpack-cli
+      - npm install --global webpack
       - npm install
       - apt-get install jq
       - export NPM_TOKEN=$NPM_TOKEN
