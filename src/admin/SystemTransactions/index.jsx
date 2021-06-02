@@ -224,7 +224,7 @@ const SystemTransactions = (props) => {
             }
 
             .pending p {
-              background: #F5BD42;
+              background: #F2F2F2;
             }
 
             .received p {
@@ -232,7 +232,7 @@ const SystemTransactions = (props) => {
             }
 
             .reversed p {
-              background: #DB367D;
+              background: #F5BD42;
             }
 
             .pay-theory-card-badge {
