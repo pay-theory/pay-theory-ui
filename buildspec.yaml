@@ -17,9 +17,6 @@ phases:
       - LATEST=$( npm view @paytheory/pay-theory-ui  versions --json | jq -r '.[-1]')
       - npm version ${LATEST} --allow-same-version
       - npm version prepatch
-  build:
-    commands:
-      - npm run build --yes
   post_build:
     commands:
       - npm publish --tag $ENVIRONMENT
