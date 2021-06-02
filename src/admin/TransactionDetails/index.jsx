@@ -172,7 +172,7 @@ const TransactionDetails = (props) => {
                         }
 
                         .status-pending {
-                            background: #cac4ca;
+                            background: #F2F2F2;
                         }
 
                         .status-received {
