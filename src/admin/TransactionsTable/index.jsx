@@ -5,8 +5,6 @@ import { InnerTable, CardTable, Pagination, ExportCSV } from '../../common'
 
 import { formatDate } from '../../common/dateUtils'
 
-import { parseAddress } from '../../common/generalUtils'
-
 const formatFee = (fee) => {
     return fee < 0 ?
         `-$${(Math.abs(fee) / 100).toFixed(2)}` :
@@ -151,7 +149,7 @@ const TransactionsTable = (props) => {
     useEffect(() => {
         const newArray = []
         selected.forEach((item) => newArray.push(transactions[item]))
-        setCsvArray(parseAddress(newArray))
+        setCsvArray(newArray)
     }, [selected])
 
     return (
