@@ -1,0 +1,22 @@
+version: 0.2
+
+env:
+  shell: bash
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+      
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - echo $ENVIRONMENT Install started on `date`
+      - npm install
+      - apt-get install jq
+      - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - LATEST=$( npm view @paytheory/pay-theory-ui  versions --json | jq -r '.[-1]')
+      - npm version ${LATEST} --allow-same-version
+      - npm version prepatch
+  post_build:
+    commands:
+      - npm publish --tag $ENVIRONMENT

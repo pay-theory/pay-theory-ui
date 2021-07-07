@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 import { CardTable, Pagination, InnerTable, ExportCSV } from "../../common";
 
-import { parseAddress } from '../../common/generalUtils'
-
 const formatDate = (stamp) => {
   const dated = new Date(stamp);
   return `${dated.getMonth() + 1}/${dated.getDate()}/${dated.getFullYear()}`;
@@ -107,7 +105,7 @@ const SettlementDetails = ({
         <div className="card-footer">
         <ExportCSV
             id="download-link"
-            items={parseAddress(csvArray)}
+            items={csvArray}
             fileName={`PT-Settlement${settlement.settlement.batch_id}-Payments.csv`}
           />
           {total > 1 ? (
