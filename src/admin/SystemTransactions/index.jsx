@@ -5,7 +5,7 @@ import { InnerTable, Pagination, ExportCSV } from '../../common'
 
 import { formatDate } from '../../common/dateUtils'
 
-import { parseAddress, formatFee, formatString } from '../../common/generalUtils'
+import { formatFee, formatString } from '../../common/generalUtils'
 
 const SystemTransactions = (props) => {
     const {
@@ -131,7 +131,7 @@ const SystemTransactions = (props) => {
     useEffect(() => {
         const newArray = []
         selected.forEach((item) => newArray.push(transactions[item]))
-        setCsvArray(parseAddress(newArray))
+        setCsvArray(newArray)
     }, [selected])
 
     return (
