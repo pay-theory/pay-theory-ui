@@ -29,6 +29,7 @@ import FormHead from './FormHead'
 
 import GlobalStyle from './GlobalStyle'
 
+import Icon from './Icon'
 import InnerTable from './InnerTable'
 
 import ModalContent, { closeModal, openModal } from './ModalContent'
@@ -84,6 +85,7 @@ export {
     Font,
     FormHead,
     GlobalStyle,
+    Icon,
     InnerTable,
     ModalContent,
     closeModal,
