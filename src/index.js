@@ -1,5 +1,6 @@
 /* istanbul ignore file */
-export * from './pt-hooks'
+import * as BooksHooks from './hooks'
+export { BooksHooks }
 
 export * from './common'
 
