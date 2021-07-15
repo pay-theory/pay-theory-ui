@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 import * as Context from './pt-hooks'
-export { Context }
+const BooksHooks = { Context }
+export { BooksHooks }
 
 export * from './common'
 
