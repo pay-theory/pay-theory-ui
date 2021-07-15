@@ -47,13 +47,13 @@
         "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --tag release"
     },
     "devDependencies": {
-        "@babel/core": "^7.14.3",
-        "@babel/preset-env": "^7.14.4",
-        "@babel/preset-react": "^7.13.13",
-        "@testing-library/jest-dom": "^5.12.0",
-        "@testing-library/react": "^11.2.7",
+        "@babel/core": "^7.14.6",
+        "@babel/preset-env": "^7.14.7",
+        "@babel/preset-react": "^7.14.5",
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^12.0.0",
         "cross-env": "^7.0.3",
-        "eslint": "^7.27.0",
+        "eslint": "^7.30.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-config-standard": "^16.0.3",
         "eslint-config-standard-react": "^11.0.1",
@@ -70,8 +70,9 @@
         "eslint-plugin-standard": "^4.1.0",
         "jest-environment-jsdom-sixteen": "^2.0.0",
         "npm-run-all": "^4.1.5",
-        "parcel": "^2.0.0-beta.2",
-        "webpack-cli": "^4.7.0",
+        "parcel": "^2.0.0-nightly.769",
+        "react-scripts": "^4.0.3",
+        "webpack-cli": "^4.7.2",
         "webpack-node-externals": "^3.0.0"
     },
     "files": [
@@ -102,9 +103,8 @@
         "prop-types": "^15.7.2",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
-        "react-dropzone": "^11.3.2",
+        "react-dropzone": "^11.3.4",
         "react-router-dom": "^5.2.0",
-        "react-scripts": "^4.0.3",
         "webfontloader": "^1.6.28",
         "xlsx": "^0.17.0"
     }
