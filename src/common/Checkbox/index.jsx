@@ -1,50 +1,51 @@
-import React, { useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { useRef, useEffect } from "react";
+import PropTypes from "prop-types";
+import Icon from "../Icon";
 
-const Checkbox = ({ id, label, indeterminate, inputProps }) => {
-  const checkRef = useRef()
+const Checkbox = ({ id, indeterminate, inputProps }) => {
+  const checkRef = useRef();
 
   useEffect(() => {
-    checkRef.current.indeterminate = indeterminate ? true : undefined
-  }, [indeterminate])
+    checkRef.current.indeterminate = indeterminate ? true : undefined;
+  }, [indeterminate]);
 
   return (
-    <div className='checkbox'>
-            <input
-                id={id}
-                ref={checkRef}
-                type='checkbox'
-                {...inputProps}
-            />
-            <label htmlFor={id}>
-        {label}
-        <i className="fas fa-check" />
-        <i className="fas fa-minus" />
+    <div className="checkbox">
+      <input id={id} ref={checkRef} type="checkbox" {...inputProps} />
+      <label htmlFor={id}>
+        <Icon name="check" label="check" />
+        <Icon name="minus" label="minus" />
       </label>
       <style jsx="true">{`
         .checkbox {
           position: relative;
-          height: 1.125em;
-          width: 1.125em;
+          height: 40px;
+          width: 40px;
+          border-radius: 12px;
+        }
+
+        .checkbox:hover {
+          background-color: #cac4ca29;
         }
 
         .checkbox label {
           display: block;
           position: relative;
           margin-bottom: 8px;
-          padding: 0 28px;
+          padding: 20px;
           font-weight: 400;
           font-size: 16px;
           color: #6b7887;
           line-height: 1;
           cursor: pointer;
           user-select: none;
+          border-radius: 16px;
         }
 
         .checkbox label i {
           position: absolute;
-          left: 1px;
-          top: 2px;
+          left: 3px;
+          top: 3px;
           color: white;
           display: none;
         }
@@ -57,12 +58,12 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
           box-sizing: border-box;
           top: 0;
           left: 0;
-          width: 18px;
-          height: 18px;
-          border: 1px solid transparent;
-          border-radius: 2px;
-          background-color: #e8ecef;
-          transition: background-color 0.1s, 0.2s ease-out;
+          width: 20px;
+          height: 20px;
+          margin: 10px;
+          border: 1px solid black;
+          border-radius: 6px;
+          transition: all 0.1s, 0.2s ease-out;
           content: "";
         }
 
@@ -78,12 +79,6 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
           pointer-events: none;
         }
 
-        /* Hover State */
-
-        input[type="checkbox"]:hover + label::before {
-          background-color: #cad3dd;
-        }
-
         /* Focus State */
 
         input[type="checkbox"]:focus + label::before {
@@ -93,33 +88,39 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
         /* 'Checked' Mint Frame (:before) */
 
         input[type="checkbox"]:checked + label::before {
-          background-color: #5BC794;
+          background-color: #9139d2;
+          transition: all 0.1s, 0.2s ease-out;
+          border: 0px;
         }
 
         /* 'Checked' White Checkmark Icon */
 
-        input[type="checkbox"]:checked + label i.fa-check {
+        input[type="checkbox"]:checked + label .pt-icon.check {
           display: block;
+          left: 13px;
+          top: 12px;
         }
 
         /* 'Indeterminate' Sunshine Frame (:before) */
 
         input[type="checkbox"]:indeterminate + label::before {
-          background-color: #F5BD42;
+          background-color: #9139d2;
+          transition: all 0.1s, 0.2s ease-out;
+          border: 0px;
         }
 
         /* 'Indeterminate' White Dash Icon */
-
-        input[type="checkbox"]:indeterminate + label i.fa-minus {
+        input[type="checkbox"]:indeterminate + label .pt-icon.minus {
           display: block;
-          left: 2px;
+          left: 14px;
+          top: 12px;
         }
 
         /* 'Disabled' Checkbox Label Text */
 
-        input[type="checkbox"]:disabled + label {
-          color: #cad3dd;
+        input[type="checkbox"]:disabled + label::before {
           cursor: default;
+          border: 1px solid #00000029;
         }
       `}</style>
     </div>
@@ -127,15 +128,15 @@ const Checkbox = ({ id, label, indeterminate, inputProps }) => {
 };
 
 Checkbox.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string,
-  inputProps: PropTypes.object,
+  inputProps: PropTypes.object.isRequired,
   indeterminate: PropTypes.any
 };
 
 Checkbox.defaultProps = {
-  inputProps: {},
-  indeterminate: undefined
+  indeterminate: undefined,
+  label: undefined
 };
 
 export default Checkbox;

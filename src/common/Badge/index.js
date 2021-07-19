@@ -1,29 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Badge = ({ number }) => {
+const Badge = ({ number, color }) => {
   return (
-    <div className="badge-atom">
-      {number}
-      <style jsx="true" global="true">
-        {`
-          .badge-atom {
-            display: inline-block;
-            font-size: 0.55rem;
-            font-family: Halyard Micro;
-            color: white;
-            background-color: #ff6976;
-            border-radius: 500px;
-            padding: 0.55em;
-            line-height: 0.55em;
-          }
-        `}
-      </style>
+    <div className="pt-badge">
+      <div className="badge-atom">
+        {number}
+        <style jsx="true" global="true">
+          {`
+            .badge-atom {
+              display: inline-block;
+              font-size: 0.55rem;
+              color: white;
+              background-color: var(--${color});
+              border-radius: 500px;
+              padding: 0.55em;
+              line-height: 0.55em;
+              font-weight: var(--black-weight);
+            }
+
+            .pt-badge {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          `}
+        </style>
+      </div>
     </div>
   );
 };
 Badge.propTypes = {
-  number: PropTypes.string.isRequired
+  number: PropTypes.string.isRequired,
+  color: PropTypes.string
 };
 
+Badge.defaultProps = {
+  color: "raspberry"
+}
+
 export default Badge;
+
