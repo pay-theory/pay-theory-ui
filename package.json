@@ -96,7 +96,7 @@
         "react-router-dom": "^5.2.0",
         "react-scripts": "^4.0.1",
         "webfontloader": "^1.6.28",
-        "xlsx": "^0.16.6"
+        "xlsx": "^0.17.0"
     },
     "files": [
         "dist"
