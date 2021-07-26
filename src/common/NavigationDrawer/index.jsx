@@ -161,6 +161,14 @@ const NavigationDrawer = ({ background, listHead }) => {
           cursor: pointer;
         }
 
+        .nav-drawer summary {
+          outline: none;
+        }
+
+        .nav-drawer details summary::-webkit-details-marker {
+          display: none;
+        }
+
         .summary-trailing {
           display: flex;
           align-items: center;

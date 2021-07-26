@@ -98,7 +98,7 @@ const GlobalStyle = (props) => {
           flex-direction: column;
           overflow: visible;
         }
-        
+
         #container {
           display: flex;
           flex-direction: column;
@@ -186,6 +186,14 @@ const GlobalStyle = (props) => {
           font-weight: var(--black-weight);
         }
 
+        h1.alt-text {
+          font-weight: var(--book-weight);
+          font-size: 56px;
+          color: var(--black);
+          line-height: 52px;
+          text-transform: uppercase;
+        }
+
         .pt-icon.h1 {
           font-weight: var(--light-weight);
           font-size: 54px;
@@ -204,6 +212,14 @@ const GlobalStyle = (props) => {
           font-weight: var(--black-weight);
         }
 
+        h2.alt-text {
+          font-weight: var(--book-weight);
+          font-size: 32px;
+          color: var(--black);
+          line-height: 30px;
+          text-transform: uppercase;
+        }
+
         .pt-icon.h2 {
           font-weight: var(--light-weight);
           font-size: 31px;
@@ -216,6 +232,18 @@ const GlobalStyle = (props) => {
           font-size: 26px;
           color: var(--black);
           line-height: 26px;
+        }
+
+        h3.strong {
+          font-weight: var(--black-weight);
+        }
+
+        h3.alt-text {
+          font-weight: var(--book-weight);
+          font-size: 22px;
+          color: var(--black);
+          line-height: 22px;
+          text-transform: uppercase;
         }
 
         .pt-icon.h3 {
@@ -232,6 +260,18 @@ const GlobalStyle = (props) => {
           line-height: 20px;
         }
 
+        h4.strong {
+          font-weight: var(--medium-weight);
+        }
+
+        h4.alt-text {
+          font-weight: var(--regular-weight);
+          font-size: 16px;
+          color: var(--black);
+          line-height: 18px;
+          text-transform: uppercase;
+        }
+
         .pt-icon.h4 {
           font-weight: var(--light-weight);
           font-size: 18px;
@@ -240,34 +280,54 @@ const GlobalStyle = (props) => {
         }
 
         h5 {
-          font-weight: var(--regular-weight);
-          font-size: 16px;
+          font-weight: var(--book-weight);
+          font-size: 11px;
           color: var(--black);
-          line-height: 18px;
+          line-height: 13px;
         }
 
-        h5.light {
-          font-weight: var(--light-weight);
+        h5.strong {
+          font-weight: var(--medium-weight);
+        }
+
+        h5.alt-text {
+          font-weight: var(--regular-weight);
+          font-size: 12px;
+          color: var(--black);
+          line-height: 14px;
+          text-transform: uppercase;
         }
 
         .pt-icon.h5 {
           font-weight: var(--light-weight);
-          font-size: 16px;
+          font-size: 13px;
           color: var(--black);
-          line-height: 22px;
+          line-height: 18px;
         }
 
         h6 {
           font-weight: var(--book-weight);
-          font-size: 11px;
-          color: var(--dark-grey);
+          font-size: 10px;
+          color: var(--black);
+          line-height: 10px;
+        }
+
+        h6.strong {
+          font-weight: var(--medium-weight);
+        }
+
+        h6.alt-text {
+          font-weight: var(--regular-weight);
+          font-size: 10px;
+          color: var(--black);
           line-height: 13px;
+          text-transform: uppercase;
         }
 
         .pt-icon.h6 {
           font-weight: var(--light-weight);
-          font-size: 11px;
-          color: var(--dark-grey);
+          font-size: 10px;
+          color: var(--black);
           line-height: 14pxpx;
         }
 
@@ -280,7 +340,14 @@ const GlobalStyle = (props) => {
 
         p.strong {
           font-weight: var(--medium-weight);
-          line-height: 20px;
+        }
+
+        p.alt-text {
+          font-weight: var(--regular-weight);
+          font-size: 14px;
+          color: var(--black);
+          line-height: 16px;
+          text-transform: uppercase;
         }
 
         .pt-icon.p {
@@ -295,14 +362,16 @@ const GlobalStyle = (props) => {
         }
 
         .alt-text {
-          font-family: var(--secondary-font)
+          font-family: var(--secondary-font);
         }
 
         a {
-          color: var(--pt-purple)
+          color: var(--pt-purple);
         }
 
-
+        .grey {
+          color: var(--dark-grey);
+        }
       `}</style>
     </div>
   );

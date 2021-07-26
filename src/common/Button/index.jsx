@@ -21,12 +21,14 @@ const Button = ({
   const [width, setWidth] = useState(0);
   const button = useRef(null);
 
+  //Enables ripple effect for cta button
   useEffect(() => {
     if (isRippling) {
       setTimeout(() => setIsRippling(false), 700);
     }
   }, [isRippling]);
 
+  //tracks location for background gradient and ripple effect for cta
   useEffect(() => {
     let setRippleLocation = (e) => {
       let rect = e.target.getBoundingClientRect();
@@ -67,17 +69,7 @@ const Button = ({
       // eslint-disable-next-line react/button-has-type
       type={submit ? "submit" : reset ? "reset" : "button"}
     >
-      {isRippling ? (
-        <span
-          className="ripple"
-          style={{
-            left: rippleCoords.x,
-            top: rippleCoords.y
-          }}
-        />
-      ) : (
-        ""
-      )}
+      {isRippling ? <span className="ripple" /> : ""}
       <span className="content">
         {leadingIcon ? (
           <Icon
@@ -99,22 +91,31 @@ const Button = ({
         {`
           .pt-button {
             position: relative;
-            overflow: hidden;
+            align-self: flex-start;
             transition: background 400ms;
             outline: 0;
             height: 40px;
             padding: 0px 16px;
             border-radius: 12px;
-            border: 0px solid #8643cb;
+            border: 0px solid transparent;
             cursor: pointer;
             font-family: inherit;
             font-size: 16px;
-            transition: opacity 0.1s ease-in-out;
+            color: var(--black);
+            background-color: var(--grey-2);
+            transition: background 0.15s ease-in-out;
           }
 
-          // .pt-button:hover {
-          //   background-color: #00000029;
-          // }
+          .pt-button .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .pt-button:hover {
+            background-color: var(--grey-3);
+            transition: background 0.15s ease-in-out;
+          }
 
           .pt-button .pt-icon.leading {
             margin-right: 8px;
@@ -128,8 +129,8 @@ const Button = ({
 
           .pt-button.disabled {
             cursor: default !important;
-            color: #cac4ca !important;
-            background-color: #f2f2f2 !important;
+            color: var(--grey-1) !important;
+            background-color: var(--grey-2) !important;
             box-shadow: none !important;
             background-image: none !important;
           }
@@ -139,29 +140,31 @@ const Button = ({
           .pt-button.primary {
             background: var(--pt-purple);
             color: var(--white);
-            opacity: var(--no-opacity);
           }
 
           .pt-button.primary:hover {
-            opacity: var(--hover-opacity);
+            background: var(--pt-purple-opaque);
           }
 
           /*CTA Button Styling*/
 
           .pt-button.cta {
+            overflow: hidden;
             background: var(--pt-purple);
             color: var(--white);
           }
 
           .pt-button.cta > .ripple {
-            width: 20px;
-            height: 20px;
+            width: 200px;
+            height: 200px;
             position: absolute;
-            background: var(--pt-pink);
+            background: var(--pink);
             display: block;
             content: "";
             border-radius: 9999px;
             opacity: 1;
+            left: ${coords.x}px;
+            top: ${coords.y}px;
             animation: 2s ease 1 forwards ripple-effect;
             pointer-events: none;
           }
@@ -194,38 +197,51 @@ const Button = ({
           }
 
           .pt-button.cta:before {
-            --size: ${width}px;
             content: "";
             position: absolute;
-            left: ${width / 2}px;
-            top: 20px;
-            width: var(--size);
-            height: var(--size);
+            width: 0px;
+            height: 0px;
+            left: ${coords.x}px;
+            top: ${coords.y}px;
             background: radial-gradient(
               circle closest-side,
-              var(--pt-pink),
+              var(--pink),
               transparent
             );
             transform: translate(-50%, -50%);
-            transition: left 0.3s ease, top 0.3s ease;
+            transition: width 0.3s ease, height 0.3s ease;
           }
 
           .pt-button.cta:hover:before {
+            width: ${width}px;
+            height: ${width}px;
             left: ${coords.x}px;
             top: ${coords.y}px;
-            transition: left 0s ease, top 0s ease;
+            transition: width 0.3s ease, height 0.3s ease;
           }
 
           /*Text Button Styling*/
 
           .pt-button.text {
-            display: block;
-            position: relative;
             height: auto;
             padding: 0px;
             background: transparent;
             color: var(--pt-purple);
-            overflow: hidden;
+            transition: border 0.5s ease;
+          }
+
+          .pt-button.text:after {
+            content: "";
+            display: block;
+            margin: auto;
+            height: 1px;
+            width: 0px;
+            background: transparent;
+            transition: width 0.5s ease, background-color 0.5s ease;
+          }
+          .pt-button.text:hover:after {
+            width: 100%;
+            background: var(--pt-purple);
           }
         `}
       </style>

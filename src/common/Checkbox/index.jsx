@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import Icon from "../Icon";
 
-const Checkbox = ({ id, indeterminate, inputProps }) => {
+const Checkbox = ({ id, indeterminate, disabled, inputProps }) => {
   const checkRef = useRef();
 
   useEffect(() => {
@@ -10,8 +10,14 @@ const Checkbox = ({ id, indeterminate, inputProps }) => {
   }, [indeterminate]);
 
   return (
-    <div className="checkbox">
-      <input id={id} ref={checkRef} type="checkbox" {...inputProps} />
+    <div className={`checkbox ${disabled ? "disabled" : ""}`}>
+      <input
+        id={id}
+        ref={checkRef}
+        disabled={disabled}
+        type="checkbox"
+        {...inputProps}
+      />
       <label htmlFor={id}>
         <Icon name="check" label="check" />
         <Icon name="minus" label="minus" />
@@ -25,7 +31,7 @@ const Checkbox = ({ id, indeterminate, inputProps }) => {
         }
 
         .checkbox:hover {
-          background-color: #cac4ca29;
+          background-color: var(--grey-3);
         }
 
         .checkbox label {
@@ -35,7 +41,7 @@ const Checkbox = ({ id, indeterminate, inputProps }) => {
           padding: 20px;
           font-weight: 400;
           font-size: 16px;
-          color: #6b7887;
+          color: var(--dark-grey);
           line-height: 1;
           cursor: pointer;
           user-select: none;
@@ -46,7 +52,7 @@ const Checkbox = ({ id, indeterminate, inputProps }) => {
           position: absolute;
           left: 3px;
           top: 3px;
-          color: white;
+          color: var(--white);
           display: none;
         }
 
@@ -61,7 +67,7 @@ const Checkbox = ({ id, indeterminate, inputProps }) => {
           width: 20px;
           height: 20px;
           margin: 10px;
-          border: 1px solid black;
+          border: 1px solid var(--black);
           border-radius: 6px;
           transition: all 0.1s, 0.2s ease-out;
           content: "";
@@ -88,7 +94,7 @@ const Checkbox = ({ id, indeterminate, inputProps }) => {
         /* 'Checked' Mint Frame (:before) */
 
         input[type="checkbox"]:checked + label::before {
-          background-color: #9139d2;
+          background-color: var(--pt-purple);
           transition: all 0.1s, 0.2s ease-out;
           border: 0px;
         }
@@ -104,7 +110,7 @@ const Checkbox = ({ id, indeterminate, inputProps }) => {
         /* 'Indeterminate' Sunshine Frame (:before) */
 
         input[type="checkbox"]:indeterminate + label::before {
-          background-color: #9139d2;
+          background-color: var(--pt-purple);
           transition: all 0.1s, 0.2s ease-out;
           border: 0px;
         }
@@ -120,7 +126,15 @@ const Checkbox = ({ id, indeterminate, inputProps }) => {
 
         input[type="checkbox"]:disabled + label::before {
           cursor: default;
-          border: 1px solid #00000029;
+          border: 1px solid var(--grey-1);
+        }
+
+        .checkbox.disabled label {
+          cursor: default;
+        }
+
+        .checkbox.disabled:hover {
+          background: transparent;
         }
       `}</style>
     </div>
@@ -140,3 +154,4 @@ Checkbox.defaultProps = {
 };
 
 export default Checkbox;
+
