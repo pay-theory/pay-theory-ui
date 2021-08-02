@@ -83,13 +83,14 @@ const TextEntry = ({
             .pt-text-field {
               position: relative;
               font-size: 16px;
-              width: 100%;
               border: 1px solid var(--grey);
               border-radius: 14px;
               height: 56px;
               display: flex;
               align-items: center;
               transition: border 0.3s ease;
+              background: var(--white);
+              min-width: 288px;
             }
 
             .pt-text-field.focused {
@@ -107,8 +108,7 @@ const TextEntry = ({
               font-size: 16px;
               font-family: Europa, Segoe UI, Trebuchet MS, Arial, Helvetica,
                 sans-serif;
-              min-width: 288px;
-              width: 100%;
+              flex: 1;
               height: 56px;
               background: var(--white);
               padding: 8px 0px 0px 16px;
@@ -194,7 +194,7 @@ const TextEntry = ({
             }
 
             .pt-text-field.leading label {
-              left: 45px;
+              left: 48px;
             }
 
             .pt-text-field.leading input {

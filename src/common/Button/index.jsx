@@ -94,16 +94,18 @@ const Button = ({
             align-self: flex-start;
             transition: background 400ms;
             outline: 0;
-            height: 40px;
+            height: 48px;
             padding: 0px 16px;
             border-radius: 12px;
             border: 0px solid transparent;
             cursor: pointer;
-            font-family: inherit;
+            font-family: var(--secondary-font);
+            text-transform: uppercase;
             font-size: 16px;
             color: var(--black);
             background-color: var(--grey-2);
-            transition: background 0.15s ease-in-out;
+            transition: background 0.15s ease-in-out, border 0.15s ease-in-out,
+              padding 0.15s ease-in-out;
           }
 
           .pt-button .content {
@@ -114,7 +116,13 @@ const Button = ({
 
           .pt-button:hover {
             background-color: var(--grey-3);
-            transition: background 0.15s ease-in-out;
+            transition: background 0.15s ease-in-out, padding 0.15s ease-in-out;
+          }
+
+          .pt-button:not(.text):focus-visible {
+            border: 4px solid var(--pt-purple);
+            padding: 0px 12px;
+            transition: border 0.15s ease-in-out;
           }
 
           .pt-button .pt-icon.leading {
@@ -128,33 +136,40 @@ const Button = ({
           /*Disabled Styling*/
 
           .pt-button.disabled {
-            cursor: default !important;
-            color: var(--grey-1) !important;
-            background-color: var(--grey-2) !important;
-            box-shadow: none !important;
-            background-image: none !important;
+            cursor: default;
+            color: var(--grey-1);
+            background-color: var(--grey-2);
+            box-shadow: none;
+            background-image: none;
           }
 
           /*Primary Button Styling*/
 
-          .pt-button.primary {
+          .pt-button.primary:not(.disabled) {
             background: var(--pt-purple);
             color: var(--white);
           }
 
-          .pt-button.primary:hover {
-            background: var(--pt-purple-opaque);
+          .pt-button.primary:not(.disabled):hover {
+            background: var(--pt-purple-opaque-56);
+          }
+
+          .pt-button.cta:focus-visible,
+          .pt-button.primary:focus-visible {
+            border: 4px solid var(--pink);
+            padding: 0px 12px;
+            transition: border 0.15s ease-in-out, padding 0.15s ease-in-out;
           }
 
           /*CTA Button Styling*/
 
-          .pt-button.cta {
+          .pt-button.cta:not(.disabled) {
             overflow: hidden;
             background: var(--pt-purple);
             color: var(--white);
           }
 
-          .pt-button.cta > .ripple {
+          .pt-button.cta:not(.disabled) > .ripple {
             width: 200px;
             height: 200px;
             position: absolute;
@@ -184,19 +199,19 @@ const Button = ({
             }
           }
 
-          .pt-button.cta > .content {
+          .pt-button.cta:not(.disabled) > .content {
             position: relative;
             z-index: 1;
             pointer-events: none;
           }
 
-          .pt-button.cta > .content .pt-icon {
+          .pt-button.cta:not(.disabled) > .content .pt-icon {
             position: relative;
             z-index: 1;
             pointer-events: none;
           }
 
-          .pt-button.cta:before {
+          .pt-button.cta:not(.disabled):before {
             content: "";
             position: absolute;
             width: 0px;
@@ -212,7 +227,7 @@ const Button = ({
             transition: width 0.3s ease, height 0.3s ease;
           }
 
-          .pt-button.cta:hover:before {
+          .pt-button.cta:not(.disabled):hover:before {
             width: ${width}px;
             height: ${width}px;
             left: ${coords.x}px;
@@ -222,7 +237,7 @@ const Button = ({
 
           /*Text Button Styling*/
 
-          .pt-button.text {
+          .pt-button.text:not(.disabled) {
             height: auto;
             padding: 0px;
             background: transparent;
@@ -239,9 +254,19 @@ const Button = ({
             background: transparent;
             transition: width 0.5s ease, background-color 0.5s ease;
           }
-          .pt-button.text:hover:after {
+          .pt-button.text:not(.disabled):hover:after,
+          .pt-button.text:not(.disabled):focus-visible:after {
             width: 100%;
             background: var(--pt-purple);
+          }
+
+          .pt-button.text.disabled {
+            cursor: default;
+            color: var(--grey-1);
+            box-shadow: none;
+            height: auto;
+            padding: 0px;
+            background: transparent;
           }
         `}
       </style>
