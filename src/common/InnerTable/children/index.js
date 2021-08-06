@@ -1,20 +1,22 @@
 /* istanbul ignore file */
-import Column from './Column'
-import CopyAction from './CopyAction'
-import Header from './Header'
-import HeaderRow from './HeaderRow'
-import Row from './Row'
-import ViewAction from './ViewAction'
-import ViewDeleteAction from './ViewDeleteAction'
-import OtherAction from './OtherAction'
+import BasicCol from "./BasicCol";
+import ActionCol from "./ActionCol";
+import LinkCol from "./LinkCol";
+import ChipCol from "./ChipCol";
+import CurrencyCol from "./CurrencyCol";
+import Header from "./Header";
+import HeaderRow from "./HeaderRow";
+import Row from "./Row";
+import ActionBar from "./ActionBar";
 
 export {
-    Column,
-    CopyAction,
-    Header,
-    HeaderRow,
-    Row,
-    ViewAction,
-    ViewDeleteAction,
-    OtherAction
-}
+  BasicCol,
+  ActionCol,
+  LinkCol,
+  ChipCol,
+  CurrencyCol,
+  Header,
+  HeaderRow,
+  Row,
+  ActionBar
+};

@@ -65,7 +65,7 @@ const Checkbox = ({
         }
 
         .pt-checkbox-box:not(.disabled):hover {
-          background: var(--grey-3);
+          background: var(--grey-1-opaque);
           transition: background 0.2s ease;
         }
         /* Visually Hide Input */
@@ -73,7 +73,6 @@ const Checkbox = ({
           display: none;
         }
 
-        /* Create checkbox with icons */
         .pt-checkbox-box .icons {
           border: 1px solid var(--black);
           height: 20px;
@@ -102,7 +101,6 @@ const Checkbox = ({
           transition: border 0.2s ease, background 0.2s ease;
         }
 
-        /* Styling the label location */
         .pt-checkbox.left {
           flex-direction: row-reverse;
         }
@@ -134,7 +132,7 @@ const Checkbox = ({
         }
 
         .pt-checkbox.disabled p {
-          color: var(--grey-1)
+          color: var(--grey-1);
         }
 
         .pt-checkbox-box.disabled .icons {

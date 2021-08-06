@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Badge = ({ number, color }) => {
   return (
     <div className="pt-badge">
-      <div className="badge-atom">
+      <p className="badge-atom">
         {number}
         <style jsx="true" global="true">
           {`
@@ -16,7 +16,7 @@ const Badge = ({ number, color }) => {
               border-radius: 500px;
               padding: 0.55em;
               line-height: 0.55em;
-              font-weight: var(--black-weight);
+              font-weight: var(--medium-weight);
             }
 
             .pt-badge {
@@ -26,7 +26,7 @@ const Badge = ({ number, color }) => {
             }
           `}
         </style>
-      </div>
+      </p>
     </div>
   );
 };
@@ -37,7 +37,6 @@ Badge.propTypes = {
 
 Badge.defaultProps = {
   color: "raspberry"
-}
+};
 
 export default Badge;
-

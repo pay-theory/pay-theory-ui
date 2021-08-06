@@ -1,79 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 
-const Header = (props) => {
-    const [arrow, setArrow] = useState(null);
-    const className = `head ${props.className}`;
+const Header = ({ className, itemKey, label, type, width, minWidth }) => {
+  const header = useRef();
+  const [widthState, setWidthState] = useState(
+    width ? width : type === "action" ? 48 : 150
+  );
+  const [start, setStart] = useState(null);
+  const [resizing, isResizing] = useState(false);
+  const [minWidthState] = useState(
+    minWidth ? minWidth : type === "action" ? 48 : 100
+  );
+  const name = `head ${className} no-select`;
 
-    const sortBy = (name) => {
-        const newSort = {};
-        if (props.sort) {
-            if (props.sort.ascending !== name && props.sort.descending !== name) {
-                newSort.ascending = name;
-                newSort.descending = "";
-                props.setSort(newSort)
-            }
-            else if (props.sort.ascending === name) {
-                newSort.ascending = "";
-                newSort.descending = name;
-                props.setSort(newSort)
-            }
-            else {
-                newSort.descending = "";
-                newSort.ascending = "";
-                props.setSort(newSort)
-            }
-        }
+  const mouseDown = (e) => {
+    isResizing(widthState);
+    setStart(e.screenX);
+  };
+
+  const mouseUp = (e) => {
+    isResizing(false);
+    setStart(null);
+  };
+
+  const mouseMove = useCallback(
+    (e) => {
+      if (start && resizing) {
+        const newLocation = e.screenX;
+        const diff = newLocation - start;
+        const newWidth = resizing + diff;
+        setWidthState(newWidth > minWidthState ? newWidth : minWidthState);
+      }
+    },
+    [start, resizing, minWidthState]
+  );
+
+  useEffect(() => {
+    document.addEventListener("mousemove", mouseMove);
+    document.addEventListener("mouseup", mouseUp);
+    return () => {
+      document.removeEventListener("mousemove", mouseMove);
+      document.removeEventListener("mouseup", mouseUp);
     };
+  }, [mouseMove, resizing]);
 
-    useEffect(() => {
-        if (props.sort) {
-            if (props.sort.ascending === props.className.split(/\s/)[0]) {
-                setArrow(<i className="fas fa-caret-down" />);
-            }
-            else if (props.sort.descending === props.className.split(/\s/)[0]) {
-                setArrow(<i className="fas fa-caret-up" />);
-            }
-            else {
-                setArrow(null);
-            }
-        }
-    }, [props.sort]);
-
-    return (
-        <span
-      className={className}
-      key={`${props.className}-${props.itemKey}`}
-      data-testid={`${props.className.split(/\s/)[0]}-${props.itemKey}`}
-      onClick={() => sortBy(props.className.split(/\s/)[0])}
+  return (
+    <th
+      className={name}
+      ref={header}
+      key={`${className}-${itemKey}`}
+      data-testid={`${className.split(/\s/)[0]}-${itemKey}`}
+      style={{ width: `${widthState}px` }}
     >
-      {props.label}
-      {arrow}
-      <style jsx="true">{`
-        .head {
-          font-size: 11pt;
-          cursor: pointer;
-          user-select: none;
-        }
-
-         .head:not(.sortable) {
-          cursor: default;
-        }
-
-        .head i {
-          margin-left: 7px;
-        }
-      `}</style>
-    </span>
-    );
+      <p className="content">{label}</p>
+      <span
+        className="header-divider"
+        onMouseDown={mouseDown}
+        onMouseUp={mouseUp}
+      />
+    </th>
+  );
 };
 
 Header.propTypes = {
-    className: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    itemKey: PropTypes.any,
-    setSort: PropTypes.func,
-    sort: PropTypes.object
+  type: PropTypes.string.isRequired,
+  width: PropTypes.number,
+  minWidth: PropTypes.number,
+  className: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  itemKey: PropTypes.any
 };
 
 export default Header;

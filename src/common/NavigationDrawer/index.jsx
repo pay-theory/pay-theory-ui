@@ -28,7 +28,7 @@ const NavigationDrawer = ({ background, listHead }) => {
   return (
     <div id="drawer" data-testid="nav-drawer" className="nav-drawer">
       <ul>
-        {/* If list head is present it take priority if not it checks for a merchant name and if none is present nothing is rendered */}
+        {/* If list head is present it takes priority if not it checks for a merchant name and if none is present nothing is rendered */}
         {listHead ? (
           <p className="nav-header">{listHead}</p>
         ) : partner.merchantName ? (
@@ -55,6 +55,7 @@ const NavigationDrawer = ({ background, listHead }) => {
           padding-top: 20px;
           top: 52px;
           overflow-y: scroll;
+          scrollbar-width: none;
         }
 
         .nav-drawer::-webkit-scrollbar {
@@ -130,8 +131,12 @@ const NavigationDrawer = ({ background, listHead }) => {
         .nav-drawer a.active:link,
         .nav-drawer a.active:visited {
           color: var(--black);
-          font-weight: var(--black-weight);
           background: var(--grey-1-opaque);
+        }
+
+        .nav-drawer a.active:link .label,
+        .nav-drawer a.active:visited .label {
+          font-weight: var(--black-weight);
         }
 
         /* Header Styling */
@@ -159,6 +164,7 @@ const NavigationDrawer = ({ background, listHead }) => {
           align-items: center;
           height: 46px;
           cursor: pointer;
+          outline: none;
         }
 
         .nav-drawer summary {
@@ -177,7 +183,7 @@ const NavigationDrawer = ({ background, listHead }) => {
 
         .nav-drawer .sub-list a {
           margin-left: 40px;
-          padding-left: 16px;
+          padding-left: 24px;
           width: 234px;
           height: 40px;
         }

@@ -22,12 +22,12 @@ const NavigationCategory = (props) => {
       >
         <summary>
           <div className="summary">
-            <div id={`${props.item.tag}-link`} className="summary-title">
+            <p id={`${props.item.tag}-link`} className="summary-title">
               <Icon name={props.item.icon} label="leading" />
               {props.item.label}
-            </div>
+            </p>
             <div className="summary-trailing">
-              {badgeNumber ? <Badge number={badgeNumber} /> : ""}
+              {badgeNumber ? <Badge number={`${badgeNumber}`} /> : ""}
               <Icon name="chevron-right" label="summary-chevron" />
             </div>
           </div>

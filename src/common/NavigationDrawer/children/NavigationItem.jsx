@@ -25,14 +25,14 @@ const NavigationItem = (props) => {
         className={className}
         id={`${props.item.tag}-link`}
       >
-        <div>
+        <p className="label">
           {props.item.icon ? (
             <Icon name={props.item.icon} label="leading" />
           ) : null}
           {props.item.label}
-        </div>
+        </p>
         {props.item.badgeNumber ? (
-          <Badge number={props.item.badgeNumber} />
+          <Badge number={`${props.item.badgeNumber}`} />
         ) : (
           ""
         )}

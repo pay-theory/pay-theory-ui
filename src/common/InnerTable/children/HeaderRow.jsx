@@ -1,70 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-
-import Checkbox from "../../Checkbox";
 
 import Header from "./Header";
 
-const HeaderRow = (props) => {
-
-  const columns = props.columns.map((column, col) => {
+const HeaderRow = ({ columns, hasActions }) => {
+  const mappedColumns = columns.map((column, col) => {
     return (
       <Header
-        className={`${column.className} ${column.sortable ? "sortable" : ""}`}
+        className={`${column.className} ${column.type} ${
+          column.sortable ? "sortable" : ""
+        }`}
         itemKey={col}
         key={`header-${col}`}
         label={column.label}
-        sort={column.sortable ? props.sort : null}
-        setSort={column.sortable ? props.setSort : null}
+        type={column.type}
+        width={column.width}
+        minWidth={column.minWidth}
       />
     );
   });
-  if (props.hasActions) {
-    columns.push(
-      <Header
-        className="actions"
-        itemKey="actions"
-        key="header-actions"
-        label="actions"
-      />
+  if (hasActions) {
+    mappedColumns.unshift(
+      <th className="head select" key="select-header" style={{ width: `48px` }}>
+        <span className="header-divider" />
+      </th>
     );
   }
-  if (props.select) {
-    const { selected, setSelected, tableData } = props.select;
-    columns.unshift(
-      <span className="table-select" key="header-select">
-        <Checkbox
-          id="header-checkbox"
-          indeterminate={
-            selected.length < tableData.length && selected.length > 0
-              ? true
-              : undefined
-          }
-          inputProps={{
-            "data-testid": "header-select-item",
-            checked:
-              selected.length > 0 && selected.length === tableData.length,
-            onChange: (e) => {
-              if (e.target.checked) {
-                setSelected(Array.from(Array(tableData.length).keys()));
-              } else {
-                setSelected([]);
-              }
-            }
-          }}
-        />
-      </span>
-    );
-  }
-  return <div className="inner-table-row inner-table-row-head">{columns}</div>;
+  return (
+    <tr className="inner-table-row inner-table-row-head">{mappedColumns}</tr>
+  );
 };
 
 HeaderRow.propTypes = {
   columns: PropTypes.array.isRequired,
-  hasActions: PropTypes.bool,
-  select: PropTypes.object,
-  setSort: PropTypes.func,
-  sort: PropTypes.object
+  hasActions: PropTypes.bool
 };
 
 export default HeaderRow;

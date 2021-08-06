@@ -1,209 +1,191 @@
-// node modules
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { createContext, useState } from "react";
+import PropTypes from "prop-types";
 
-import * as children from './children'
+import * as children from "./children";
 
-const InnerTable = (props) => {
-  const establishSelection = (event, item) => {
-    const selection = props.selected.slice(0);
-    if (event.target.checked) {
-      selection.push(item);
-    }
-    else {
-      var toGo = selection.indexOf(item);
+export const TableContext = createContext();
 
-      selection.splice(toGo, 1);
-    }
-    return selection;
-  };
-
-  const selected = props.selected ? {
-      onChange: establishSelection,
-      selected: props.selected,
-      setSelected: props.setSelected,
-      tableData: props.rows
-    } :
-    null;
+const InnerTable = ({ groupActions, rows, columns, id }) => {
+  const [selected, setSelected] = useState({});
+  const hasActions = groupActions ? true : false;
 
   return (
-    <div className="table-wrapper">
-      <div className="inner-table">
-        <children.HeaderRow
-          columns={props.columns}
-          hasActions={props.hasActions}
-          select={selected}
-          sort={props.sort}
-          setSort={props.setSort}
-        />
-        <div>
-          {props.rows.map((item, rowNum) => {
-            return (
-              <children.Row
-                canDelete={props.canDelete}
-                columns={item.columns}
-                copyCallback={item.copyCallback ? item.copyCallback : false}
-                copyOnly={props.copyOnly}
-                copyText={item.copyText}
-                delete={item.delete ? item.delete : false}
-                hasActions={props.hasActions}
-                itemKey={item.key}
-                key={`${item.key}-row-${rowNum}`}
-                locked={item.locked}
-                otherActions={props.otherActions}
-                row={rowNum}
-                rowObject={item.item}
-                view={item.view ? item.view : false}
-                select={selected}
-              />
-            );
-          })}
-        </div>
+    <TableContext.Provider value={{ selected, setSelected, id }}>
+      <div id={id} className="table-wrapper">
+        {hasActions ? (
+          <children.ActionBar actions={groupActions} rows={rows} />
+        ) : (
+          ""
+        )}
+        <table className="inner-table" style={{ width: `10px` }}>
+          <thead className="table-head">
+            <children.HeaderRow columns={columns} hasActions={hasActions} />
+          </thead>
+          <tbody>
+            {rows.map((item, rowNum) => {
+              return (
+                <children.Row
+                  columns={item.columns}
+                  itemKey={item.key}
+                  key={`${item.key}-row-${rowNum}`}
+                  row={rowNum}
+                  rowObject={item.item}
+                  hasActions={hasActions}
+                />
+              );
+            })}
+          </tbody>
+          <style global="true" jsx="true">
+            {`
+              .inner-table {
+                border-collapse: collapse;
+                table-layout: fixed;
+                width: 100%;
+                cursor: default;
+                display: table;
+              }
+
+              .inner-table-row-head {
+                border-bottom: 1px solid var(--black-opaque-8);
+                text-transform: capitalize;
+                height: 40px !important;
+                background: var(--grey-3);
+              }
+
+              .inner-table-row {
+                height: 48px;
+              }
+
+              .inner-table-row:hover:not(.inner-table-row-head) {
+                background: var(--grey-3);
+              }
+
+              .inner-table-row .head {
+                font-size: 11pt;
+                text-align: left;
+              }
+
+              .inner-table-row .head,
+              .inner-table-row .cell {
+                white-space: nowrap;
+                min-width: 50px;
+                padding: 0px 10px !important;
+                vertical-align: inherit;
+                position: relative;
+                overflow: hidden;
+                display: table-cell;
+              }
+
+              .inner-table-row .cell:last-child {
+                border-bottom-right-radius: 15px;
+                border-top-right-radius: 15px;
+              }
+
+              .inner-table-row .cell:first-child {
+                border-bottom-left-radius: 15px;
+                border-top-left-radius: 15px;
+              }
+
+              /*Styling the dividers*/
+              .inner-table-row .cell:not(:last-child)::after {
+                content: " ";
+                position: absolute;
+                right: 0px;
+                top: 25%;
+                height: 24px;
+                border-left: 1px solid var(--black-opaque-8);
+              }
+
+              /* Styling the Header Di*/
+              .inner-table-row .head .header-divider {
+                position: absolute;
+                right: -10px;
+                top: 25%;
+                height: 24px;
+                width: 20px;
+              }
+
+              .inner-table-row .head .header-divider::after {
+                content: " ";
+                position: absolute;
+                right: 10px;
+                top: 0px;
+                height: 24px;
+                border-left: 1px solid var(--black-opaque-8);
+              }
+
+              .inner-table-row .head:not(.select) .header-divider:hover {
+                cursor: col-resize;
+              }
+
+              .inner-table-row .head:not(.select) .header-divider:hover::after {
+                border-left: 1px solid var(--black);
+              }
+
+              .inner-table-row .numeric {
+                text-align: right;
+                margin-right: 15px;
+              }
+
+              /* Styling the Link Col*/
+              .cell .link {
+                cursor: pointer;
+                color: var(--pt-purple);
+                text-decoration: none;
+              }
+
+              /* Styling the Action Col*/
+              .cell.action {
+                min-width: 48px;
+                padding: 0px !important;
+                overflow: visible;
+              }
+              .cell.action .content {
+                padding: 4px;
+              }
+
+              /* Styling the Chip Col*/
+              .cell.chip .content {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+
+              /* Styling the Currenct Col*/
+              .cell.currency .content {
+                display: flex;
+                justify-content: space-between;
+              }
+
+              /* Styling the row Selection*/
+              .cell.select .content {
+                padding: 4px;
+              }
+
+              .inner-table-row .cell.select {
+                padding: 0px !important;
+              }
+
+              /* Styling the Action Bar*/
+              .table-wrapper .action-bar {
+                display: flex;
+              }
+              .table-wrapper .action-bar > * {
+                padding: 4px;
+              }
+            `}
+          </style>
+        </table>
       </div>
-      {props.children}
-      <style global="true" jsx="true">
-        {`
-          .inner-table {
-            color: #6A606D;
-            display: flex;
-            flex-direction: column;
-            line-height: 36px;
-          }
-
-          .inner-table-row-head {
-            border-bottom: 1px solid #CAC4CA;
-            border-radius: 5px 5px 0 0;
-            text-transform: capitalize;
-          }
-
-          .inner-table-row {
-            padding: 0px 24px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            min-height: 36px;
-            max-height: 50px;
-            line-height: 50px;
-          }
-
-          .inner-table-row:hover:not(.inner-table-row-head) {
-            background: #f8f8f8;
-          }
-
-          .inner-table-row:last-child {
-            border-bottom-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-          }
-
-          .inner-table-row .head {
-            font-size: 11pt;
-          }
-          .inner-table-row .cell {
-            font-weight: 400;
-            font-size: 11pt;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-
-          .inner-table-row .cell,
-          .card-table-row .head {
-            font-size: 11pt;
-          }
-
-          .inner-table-row .numeric {
-            text-align: right;
-            margin-right: 15px;
-          }
-
-          .inner-table-row .actions {
-            width: 85px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-          }
-
-          .inner-table-row .action {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-          }
-
-          .inner-table-row .action svg {
-            cursor: pointer;
-          }
-
-          .action span {
-            width: 36px;
-            height: 36px;
-            text-align: center;
-            padding: 6px 0;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            border-radius: 18px;
-            cursor: pointer;
-          }
-          .action span:hover {
-            color: #fff;
-            -webkit-transition: all 0.2s ease-in-out;
-            transition: all width 0.2s ease-in-out;
-          }
-          .action.view span:hover,
-          .action.other span:hover {
-            background: #4098EB;
-          }
-          .action.copy span:hover {
-            background: #F5BD42;
-          }
-          .action.delete span:hover {
-            background: #EA4141;
-          }
-
-          .link-column {
-            cursor: pointer;
-            color: #7C2CDD;
-            text-decoration: none;
-            font-weight: 600 !important;
-          }
-          .disabled {
-            color: #ccc;
-            cursor: auto;
-          }
-          .locked {
-            margin: 0 0.5em;
-          }
-          .inner-table .table-select {
-            width: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-          }
-
-          .inner-table .table-select + span {
-            margin-left: 45px;
-          }
-        `}
-      </style>
-    </div>
+    </TableContext.Provider>
   );
 };
 
 InnerTable.propTypes = {
   columns: PropTypes.array.isRequired,
   rows: PropTypes.array.isRequired,
-  visibility: PropTypes.bool,
-  hasActions: PropTypes.bool,
-  canDelete: PropTypes.bool,
-  copyOnly: PropTypes.bool,
-  otherActions: PropTypes.array,
-  selected: PropTypes.array,
-  setSelected: PropTypes.func,
-  sort: PropTypes.object
+  groupActions: PropTypes.array,
+  id: PropTypes.string.isRequired
 };
 
 export default InnerTable;
