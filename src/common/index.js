@@ -12,12 +12,14 @@ import {
 
 import ActionHead from './ActionHead'
 
+import Badge from './Badge'
 import BodyHead from './BodyHead'
 import Button from './Button'
 
 import CardRow from './CardRow'
 import CardTable from './CardTable'
 import Checkbox from './Checkbox'
+import Chip from './Chip'
 import ClickToCopyText from './ClickToCopyText'
 
 import DynamicList from './DynamicList'
@@ -30,6 +32,7 @@ import FormHead from './FormHead'
 import GlobalStyle from './GlobalStyle'
 
 import Icon from './Icon'
+import IconButton from './IconButton'
 import InnerTable from './InnerTable'
 
 import ModalContent, { closeModal, openModal } from './ModalContent'
@@ -58,6 +61,7 @@ import TabPage from './TabPage'
 import TextEntry from './TextEntry'
 import TextEntryDate from './TextEntryDate'
 import TextEntryPhone from './TextEntryPhone'
+import ToolTip from './Tooltip'
 
 import Unauthorized from './Unauthorized'
 import UtilityBar from './UtilityBar'
@@ -74,11 +78,13 @@ export {
     FormLoginCode,
     FormLoginEmail,
     LogoHeader,
+    Badge,
     BodyHead,
     Button,
     CardRow,
     CardTable,
     Checkbox,
+    Chip,
     ClickToCopyText,
     DynamicList,
     ExportCSV,
@@ -86,6 +92,7 @@ export {
     FormHead,
     GlobalStyle,
     Icon,
+    IconButton,
     InnerTable,
     ModalContent,
     closeModal,
@@ -109,6 +116,7 @@ export {
     TextEntry,
     TextEntryDate,
     TextEntryPhone,
+    ToolTip,
     timedLogout,
     Unauthorized,
     UtilityBar
