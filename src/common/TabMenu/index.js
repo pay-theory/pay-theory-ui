@@ -1,18 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Icon from '../Icon'
 /* eslint react/jsx-handler-names:0 */
 const TabMenu = ({ items }) => {
     const menuItems = items.map((item) => {
         return (
-            <div
+            <p
                 className={`tab-menu-item ${item.active}`}
                 data-testid={item.id}
                 id={item.id}
                 key={item.id}
                 onClick={item.action}
             >
+                {item.icon ? <Icon name={item.icon} /> : ''}
                 {item.label}
-            </div>
+            </p>
         )
     })
     return (
@@ -24,18 +26,34 @@ const TabMenu = ({ items }) => {
                         display: flex;
                         flex-direction: row;
                         justify-content: flex-start;
-                        align-items: center;
-                        margin: 16px 0 0 0;
                     }
                     .tab-menu-item {
-                        color: #6b7887;
-                        margin: 0 16px;
-                        font-weight: 500;
+                        padding: 14px 16px 12px;
+                        margin: 0px 8px 0px 0px;
                         cursor: pointer;
+                        border-bottom: 2px solid var(--grey);
                     }
 
-                    .active-tab {
-                        border-bottom: 4px solid #66cccc;
+                    .tab-menu-item:not(.active-tab):hover {
+                        color: var(--grey);
+                        background: var(--grey-3);
+                        border-radius: 16px 16px 0px 0px;
+                    }
+
+                    .tab-menu-item:focus {
+                        color: var(--grey);
+                        border-radius: 16px 16px 0px 0px;
+                        border-left: 4px solid var(--pt-purple);
+                        border-top: 4px solid var(--pt-purple);
+                        border-right: 4px solid var(--pt-purple);
+                    }
+
+                    .tab-menu-item.active-tab {
+                        border-bottom: 2px solid var(--pt-purple);
+                    }
+
+                    .tab-menu-item .pt-icon {
+                        margin-right: 8px;
                     }
                 `}
             </style>
