@@ -33,7 +33,6 @@ import PaymentItemPublishCard from './PaymentItemPublishCard'
 import PaymentItemTable from './PaymentItemTable'
 import PaymentsOverview from './PaymentsOverview'
 
-import ReceiptReviewTable from './ReceiptReviewTable'
 import ReceiptsTable from './ReceiptsTable'
 import ReceiptUploader from './ReceiptUploader'
 import RolesTab from './RolesTab'
@@ -76,7 +75,6 @@ export {
     PaymentItemPublishCard,
     PaymentItemTable,
     PaymentsOverview,
-    ReceiptReviewTable,
     ReceiptsTable,
     ReceiptUploader,
     RolesTab,
