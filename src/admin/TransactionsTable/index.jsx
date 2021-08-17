@@ -60,6 +60,49 @@ const TransactionsTable = (props) => {
         ]
     }
 
+    const cards = ["VISA", "DISCOVER", "MASTERCARD", "AMERICAN_EXPRESS"];
+
+    const cardLogoGenerator = (brand) => {
+        if (cards.includes(brand)) {
+            return (
+                <span
+          className={`pay-theory-card-badge pay-theory-card-${brand
+            .toLowerCase()
+            .replace(/_/g, "-")}`}
+        />
+            );
+        }
+        else {
+            return <i className={`fal fa-credit-card`} />;
+        }
+    };
+
+    const createAccountDetail = (item) => {
+        switch (item.card_brand) {
+        case "CASH":
+            return (
+                <span className="payment-account-detail">
+            <i className={`fal fa-money-bill-wave`} />
+            Cash
+          </span>
+            );
+        case "ACH":
+            return (
+                <span className="payment-account-detail">
+            <i className={`fal fa-money-check-alt`} />
+            XX{item.last_four}
+          </span>
+            );
+        default:
+            return (
+                <span className="payment-account-detail">
+            {cardLogoGenerator(item.card_brand)}
+            XX{item.last_four}
+          </span>
+            );
+        }
+    };
+
     const generateTableRows = (reports) => {
         return reports.map((item, i) => {
             return {
@@ -77,20 +120,7 @@ const TransactionsTable = (props) => {
                     },
                     {
                         className: 'payment-account',
-                        content: (
-                            <span className='payment-account-detail'>
-                                <span
-                                    className={`pay-theory-card-badge pay-theory-card-${
-                                        item.card_brand
-                                            ? item.card_brand
-                                                  .toLowerCase()
-                                                  .replace(/_/g, '-')
-                                            : 'unknown'
-                                    }`}
-                                />
-                                ending in {item.last_four}
-                            </span>
-                        )
+                        content: createAccountDetail(item)
                     },
                     {
                         className: 'settlement numeric',
@@ -262,6 +292,13 @@ const TransactionsTable = (props) => {
               align-self: center;
               margin-right: 5px;
             }
+                    
+            .payment-account-detail i {
+              margin-right: 5px;
+              width: 45px;
+              font-size: 25px;
+              text-align: center;
+            }
 
             .pay-theory-card-visa {
               background-image: url(https://assets.paytheory.com/visa-badge-icon.svg);
@@ -281,6 +318,7 @@ const TransactionsTable = (props) => {
 
             .payment-account-detail {
               display: flex;
+              align-items: center;
             }
 
             .table-footer {
