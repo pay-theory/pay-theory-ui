@@ -90,7 +90,7 @@ const TransactionsTable = (props) => {
             return (
                 <span className="payment-account-detail">
             <i className={`fal fa-money-check-alt`} />
-            XX{item.last_four}
+            X{item.last_four}
           </span>
             );
         default:
