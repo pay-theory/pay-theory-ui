@@ -44,7 +44,7 @@ const GlobalStyle = (props) => {
                     display: flex;
                     justify-content: stretch;
                     flex-direction: row;
-                    flex-grow: 100;
+                    overflow: auto;
                 }
 
                 .body-content {
