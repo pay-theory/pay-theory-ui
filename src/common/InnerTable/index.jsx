@@ -86,6 +86,7 @@ const InnerTable = (props) => {
             min-height: 36px;
             max-height: 50px;
             line-height: 50px;
+            position: relative;
           }
 
           .inner-table-row:hover:not(.inner-table-row-head) {
