@@ -1,239 +1,278 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
+import Icon from '../Icon'
+import Dropdown from './children/Dropdown'
 
-const Select = (props) => {
-    const select = useRef()
-    const { options, label, value, onChange, className, name } = props
+const TextEntry = ({
+    label,
+    onChange,
+    value,
+    disabled,
+    leadingIcon,
+    options
+}) => {
+    const wrapper = useRef(null)
+    const select = useRef(null)
+    const dropdown = useRef(null)
+    const [focused, setFocused] = useState(false)
+    const [selectedLabel, setSelectedLabel] = useState('')
+
+    const focus = useCallback(() => {
+        setFocused(true)
+        select.current.style = 'z-index: 1300;'
+        dropdown.current.style = 'z-index: 1299;'
+    }, [select, dropdown])
+
+    const blur = useCallback(() => {
+        setFocused(false)
+        select.current.style = 'z-index: 0;'
+        dropdown.current.style = 'z-index: 0;'
+    }, [select, dropdown])
+
+    const click = useCallback(() => {
+        if (!disabled) {
+            if (focused) {
+                blur()
+            } else {
+                focus()
+            }
+        }
+    }, [focus, focused, blur, disabled])
 
     useEffect(() => {
-        if (!value) {
-            select.current.selectedIndex = null
+        let inputRef
+
+        if (select.current && dropdown.current && wrapper.current) {
+            inputRef = wrapper.current
+            inputRef.addEventListener('click', click)
+            inputRef.addEventListener('blur', blur)
         }
-    }, [value])
+
+        return () => {
+            if (inputRef) {
+                inputRef.removeEventListener('click', click)
+                inputRef.removeEventListener('blur', blur)
+            }
+        }
+    }, [select, blur, dropdown, wrapper, click])
+
+    useEffect(() => {
+        const setLabel = (items) => {
+            items.forEach((item) => {
+                if (item.value === value) {
+                    setSelectedLabel(item.label)
+                }
+            })
+        }
+        setLabel(options)
+    }, [value, options])
+
+    const selectedValueClassList = `${value ? '' : 'empty'} selected-value`
+    const divClassList = `pt-select ${focused ? 'focused' : ''} ${
+        disabled ? 'disabled' : ''
+    } ${leadingIcon ? 'leading' : ''}`
 
     return (
-        <div className={`pt-select ${className || ''} ${value ? '' : 'empty'}`}>
-            <select
-                className={value ? '' : 'empty'}
-                data-testid={name}
-                id={name}
-                onChange={onChange}
-                ref={select}
-            >
-                <option className='filler-option' value='' />
-                {options.map((option) => {
-                    return (
-                        <option
-                            disabled={!!option.disabled}
-                            key={option.value}
-                            value={option.value}
-                        >
-                            {option.label}
-                        </option>
-                    )
-                })}
-            </select>
-            <label htmlFor={name}>{label}</label>
-            <i className='fas fa-caret-down' />
-            <i className='fas fa-caret-up' />
-            <style jsx='true'>
-                {`
-                    .pt-select {
-                        box-sizing: border-box;
-                        position: relative;
-                        font-size: 16px;
-                        width: auto;
-                        padding-top: 6px;
-                        display: flex;
-                        align-items: center;
-                        line-height: 1.5;
-                        max-height: 62px;
-                    }
+        <div className='pt-select-wrapper' ref={wrapper} tabIndex='0'>
+            <div className={divClassList} ref={select}>
+                {leadingIcon ? (
+                    <Icon brand={leadingIcon.brand} name={leadingIcon.name} />
+                ) : (
+                    ''
+                )}
+                <p className={selectedValueClassList}>{selectedLabel}</p>
+                <span className='select-label'>{label}</span>
+                <Icon label='dropdown-chevron' name='chevron-right' />
+                <style jsx='true'>
+                    {`
+                        .pt-select-wrapper {
+                            outline: none;
+                            align-self: flex-start;
+                            position: relative;
+                        }
 
-                    /* SELECT ELEMENT */
-                    .pt-select select:hover,
-                    .pt-select select:not(.empty) {
-                        border: 1px solid black;
-                    }
+                        .pt-select {
+                            position: relative;
+                            align-self: flex-start;
+                            font-size: 16px;
+                            border: 1px solid var(--grey);
+                            border-radius: 14px;
+                            height: 56px;
+                            display: flex;
+                            align-items: center;
+                            transition: border 0.3s ease;
+                            background: var(--white);
+                            min-width: 200px;
+                            cursor: pointer;
+                            outline: none;
+                        }
 
-                    .pt-select select:focus,
-                    .pt-select select:not(.empty) {
-                        border-top-color: transparent !important;
-                        border: 1px solid black;
-                        box-shadow: inset 0 -1px black, inset 1px 0 black,
-                            inset -1px 0 black;
-                    }
+                        .pt-select:hover {
+                            border: 1px solid var(--black);
+                        }
 
-                    .pt-select select {
-                        width: 100%;
-                        height: 100%;
-                        line-height: inherit;
-                        border: none;
-                        padding: 15px 30px 15px 13px;
-                        background-color: transparent;
-                        border: 1px solid #626262;
-                        border-radius: 4px;
-                        outline: none;
-                        font-size: 16px;
-                        color: black;
-                        font-family: var(
-                            --pay-theory-font,
-                            'Roboto',
-                            'Segoe UI',
-                            BlinkMacSystemFont,
-                            system-ui,
-                            -apple-system
-                        );
-                        -webkit-appearance: none;
-                        -moz-appearance: none;
-                        appearance: none;
-                        -ms-appearance: none;
-                        transition: border-color 0.2s, border 0.2s;
-                    }
+                        .pt-select.focused {
+                            border: 1px solid var(--pt-purple);
+                            transition: border 0.3s ease;
+                        }
 
-                    .pt-select.empty select {
-                        color: #7a7b7a;
-                    }
+                        .pt-select .selected-value {
+                            border: none;
+                            font-size: 16px;
+                            font-family: Europa, Segoe UI, Trebuchet MS, Arial,
+                                Helvetica, sans-serif;
+                            flex: 1;
+                            height: 56px;
+                            background: transparent;
+                            padding: 8px 0px 0px 16px;
+                            border-radius: 16px;
+                            border: 1px solid transparent;
+                            height: 54px;
+                            display: flex;
+                            align-items: center;
+                        }
 
-                    .pt-select option {
-                        color: black !important;
-                    }
+                        .pt-select .select-label {
+                            position: absolute;
+                            left: 16px;
+                            font-size: 16px;
+                            font-family: Europa, Segoe UI, Trebuchet MS, Arial,
+                                Helvetica, sans-serif;
+                            color: var(--grey);
+                            transition-property: font, top;
+                            transition-duration: 0.5s;
+                            transition-timing-function: cubic-bezier(
+                                0.165,
+                                0.84,
+                                0.44,
+                                1
+                            );
+                        }
 
-                    .filler-option {
-                        display: none;
-                    }
+                        .pt-select .selected-value:not(.empty) + .select-label {
+                            top: 6px;
+                            font-size: 11px;
+                        }
 
-                    /* Label */
-                    .pt-select label,
-                    .pt-select.empty:focus-within > select + label {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        display: flex;
-                        align-items: center;
-                        pointer-events: none;
-                        width: 100%;
-                        padding: 0px;
-                        max-height: 100%;
-                        font-size: 75%;
-                        font-family: var(
-                            --pay-theory-font,
-                            'Roboto',
-                            'Segoe UI',
-                            BlinkMacSystemFont,
-                            system-ui,
-                            -apple-system
-                        );
-                        line-height: 15px;
-                        transition: color 0.2s, font-size 0.2s, line-height 0.2s;
-                    }
+                        /* Disabled Styling */
+                        .pt-select.disabled {
+                            background: var(--grey-2);
+                            border: 1px solid var(--grey-1);
+                            cursor: default;
+                        }
 
-                    /* Temporary fix for 1px border diff */
-                    .pt-select:not(.empty) label {
-                        margin-top: -1px;
-                    }
+                        .pt-select.disabled .select-label,
+                        .pt-select.disabled .pt-icon {
+                            color: var(--grey-1);
+                        }
 
-                    .pt-select label::before,
-                    .pt-select.empty:focus-within > select + label::before {
-                        content: '';
-                        width: 16px;
-                        height: 15px;
-                        margin-right: 4px;
-                        border-left: solid 1px transparent;
-                        border-radius: 4px 0;
-                        border-top: 1px solid black;
-                        box-shadow: inset 0 1px black;
-                    }
+                        /* Icon Styling */
+                        .pt-select .pt-icon {
+                            height: 48px;
+                            width: 48px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
 
-                    .pt-select label::after,
-                    .pt-select.empty:focus-within > select + label::after {
-                        content: '';
-                        width: auto;
-                        height: 15px;
-                        margin-left: 4px;
-                        border-right: solid 1px transparent;
-                        border-radius: 0 4px;
-                        border-top: 1px solid black;
-                        box-shadow: inset 0 1px black;
-                    }
+                        .pt-select.leading .select-label {
+                            left: 48px;
+                        }
 
-                    /* Corners */
-                    .pt-select > select + label::before,
-                    .pt-select > select + label::after {
-                        content: '';
-                        display: block;
-                        box-sizing: border-box;
-                        margin-top: 6px;
-                        border-top: solid 1px black;
-                        box-shadow: inset 0 1px black;
-                        min-width: 10px;
-                        height: 8px;
-                        pointer-events: none;
-                        transition: border-color 0.2s, border 0.2s;
-                    }
+                        .pt-select.leading .selected-value {
+                            padding-left: 0px;
+                        }
 
-                    .pt-select > select + label::before {
-                        margin-right: 4px;
-                        border-left: solid 1px transparent;
-                        border-radius: 4px 0;
-                    }
+                        .pt-select .dropdown-chevron {
+                            transition: transform 0.3s ease;
+                        }
 
-                    .pt-select > select + label::after {
-                        flex-grow: 1;
-                        margin-left: 4px;
-                        border-right: solid 1px transparent;
-                        border-radius: 0 4px;
-                    }
+                        .pt-select.focused .dropdown-chevron {
+                            transform: rotate(90deg);
+                            color: var(--pt-purple);
+                            transition: all 0.3s ease;
+                        }
 
-                    /*Not Selected*/
-                    .pt-select.empty select + label {
-                        font-size: inherit;
-                        line-height: 62px;
-                        margin: 0;
-                        padding-top: 6px;
-                    }
-                    .pt-select.empty select + label::before {
-                        border-color: transparent;
-                        box-shadow: inset 0 1px transparent;
-                        height: 56px;
-                    }
-                    .pt-select.empty select + label::after {
-                        border-color: transparent;
-                        box-shadow: inset 0 1px transparent;
-                        height: 56px;
-                    }
+                        /* Dropdown Styling */
+                        .pt-select-wrapper .pt-select + .select-dropdown {
+                            flex-direction: column;
+                            position: absolute;
+                            top: 0px;
+                            border: 1px solid var(--pt-purple);
+                            border-radius: 16px;
+                            width: 100%;
+                            height: 0px;
+                            overflow: hidden;
+                            opacity: 0;
+                            background: var(--white);
+                        }
 
-                    /*Arrow Icons*/
-                    .pt-select i {
-                        position: absolute;
-                        right: 10px;
-                        pointer-events: none;
-                    }
+                        .pt-select-wrapper
+                            .pt-select.focused
+                            + .select-dropdown {
+                            opacity: 1;
+                            height: auto;
+                            padding: 60px 4px 4px;
+                            transition: all 0.3s ease;
+                        }
 
-                    .pt-select:focus-within .fa-caret-down {
-                        display: none;
-                    }
+                        .pt-select-wrapper .select-dropdown .select-item {
+                            height: 40px;
+                            border-radius: 12px;
+                            display: flex;
+                            align-items: center;
+                            padding: 0px 16px;
+                            cursor: pointer;
+                        }
 
-                    .pt-select .fa-caret-up {
-                        display: none;
-                    }
+                        .pt-select-wrapper
+                            .select-dropdown
+                            .select-item:not(.disabled):hover {
+                            background: var(--grey-2);
+                        }
 
-                    .pt-select:focus-within .fa-caret-up {
-                        display: flex;
-                    }
-                `}
-            </style>
+                        .pt-select-wrapper
+                            .select-dropdown
+                            .select-item.active {
+                            background: var(--grey-2);
+                            font-weight: var(--black-weight);
+                        }
+
+                        .pt-select-wrapper
+                            .select-dropdown
+                            .select-item.disabled {
+                            cursor-events: none;
+                            cursor: default;
+                            color: var(--grey-1);
+                        }
+                    `}
+                </style>
+            </div>
+            <Dropdown
+                items={options}
+                onClick={onChange}
+                reference={dropdown}
+                value={value}
+            />
         </div>
     )
 }
 
-Select.propTypes = {
-    className: PropTypes.string,
+TextEntry.propTypes = {
+    disabled: PropTypes.bool,
     label: PropTypes.string.isRequired,
-    name: PropTypes.string,
+    leadingIcon: PropTypes.shape({
+        name: PropTypes.string,
+        brand: PropTypes.bool
+    }),
     onChange: PropTypes.func.isRequired,
-    options: PropTypes.array.isRequired,
-    value: PropTypes.string.isRequired
+    value: PropTypes.string.isRequired,
+    inputProps: PropTypes.object,
+    options: PropTypes.array
 }
 
-export default Select
+TextEntry.defaultProps = {
+    onClick: () => {}
+}
+
+export default TextEntry

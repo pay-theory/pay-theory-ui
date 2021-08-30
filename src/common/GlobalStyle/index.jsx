@@ -73,30 +73,28 @@ const GlobalStyle = (props) => {
           body {
             background-image: none;
             height: 100%;
-            overflow: auto;
             margin: 0;
             padding: 0;
             font-family: var(--primary-font);
             font-display: swap;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow: auto;
           }
           .body-container {
             background-color: var(--white);
             flex-grow: 1;
             height: 100%;
             display: flex;
-            justify-content: stretch;
-            flex-direction: row;
+            overflow: auto;
           }
 
           .body-content {
-            height: 100%;
-            flex-grow: 100;
+            height: auto;
+            width: 100%;
+            flex: 1;
             display: flex;
             flex-direction: column;
-            overflow: visible;
+            padding: 16px;
           }
 
           #container {

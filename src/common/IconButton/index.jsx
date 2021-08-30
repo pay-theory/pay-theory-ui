@@ -15,46 +15,58 @@ const IconButton = ({
   right,
   bottom
 }) => {
-  return (
-    <Tooltip text={label} left={left} right={right} bottom={bottom}>
-      <button
-        className={`pt-icon-button ${disabled ? "disabled" : ""}`}
-        data-testid={icon}
-        disabled={disabled}
-        onClick={onClick}
-        // eslint-disable-next-line react/button-has-type
-        type={submit ? "submit" : reset ? "reset" : "button"}
-      >
-        <Icon name={icon} brand={brand} />
-        <style jsx="true">{`
-          .pt-icon-button {
-            align-self: flex-start;
-            outline: 0;
-            height: 40px;
-            width: 40px;
-            border-radius: 12px;
-            border: 0px solid transparent;
-            cursor: pointer;
-            font-size: 18px;
-            color: var(--black);
-            background: transparent;
-            transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
-          }
+  const button = (
+    <button
+      className={`pt-icon-button ${disabled ? "disabled" : ""}`}
+      data-testid={icon}
+      disabled={disabled}
+      onClick={onClick}
+      // eslint-disable-next-line react/button-has-type
+      type={submit ? "submit" : reset ? "reset" : "button"}
+    >
+      <Icon name={icon} brand={brand} />
+      <style jsx="true">{`
+        .pt-icon-button {
+          align-self: flex-start;
+          outline: 0;
+          height: 40px;
+          width: 40px;
+          border-radius: 12px;
+          border: 0px solid transparent;
+          cursor: pointer;
+          font-size: 18px;
+          color: var(--black);
+          background: transparent;
+          transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
+        }
 
-          .pt-icon-button:hover {
-            color: var(--pt-purple);
-            background: var(--grey-1-opaque);
-            transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
-          }
-        `}</style>
-      </button>
-    </Tooltip>
+        .pt-icon-button:hover {
+          color: var(--pt-purple);
+          background: var(--grey-1-opaque);
+          transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
+        }
+      `}</style>
+    </button>
   );
+
+  const createButton = () => {
+    if (label) {
+      return (
+        <Tooltip text={label} left={left} right={right} bottom={bottom}>
+          {button}
+        </Tooltip>
+      );
+    } else {
+      return <span> {button} </span>;
+    }
+  };
+  return createButton();
 };
 
 IconButton.propTypes = {
   disabled: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  icon: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   submit: PropTypes.bool,
   reset: PropTypes.bool,

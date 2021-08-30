@@ -16,7 +16,6 @@ const Button = ({
     name
 }) => {
     const [coords, setCoords] = useState({})
-    const [rippleCoords, setRippleCoords] = useState({})
     const [isRippling, setIsRippling] = useState(false)
     const [width, setWidth] = useState(0)
     const button = useRef(null)
@@ -61,7 +60,6 @@ const Button = ({
             onClick={(e) => {
                 if (cta) {
                     setIsRippling(true)
-                    setRippleCoords(coords)
                 }
                 onClick && onClick(e)
             }}
@@ -176,7 +174,9 @@ const Button = ({
                         color: var(--white);
                     }
 
-                    .pt-button.cta:not(.disabled) > .ripple {
+                    ${name
+                        ? `#${name}`
+                        : ''}.pt-button.cta:not(.disabled) > .ripple {
                         width: 200px;
                         height: 200px;
                         position: absolute;
@@ -218,7 +218,9 @@ const Button = ({
                         pointer-events: none;
                     }
 
-                    .pt-button.cta:not(.disabled):before {
+                    ${name
+                        ? `#${name}`
+                        : ''}.pt-button.cta:not(.disabled):before {
                         content: '';
                         position: absolute;
                         width: 0px;
@@ -234,7 +236,9 @@ const Button = ({
                         transition: width 0.3s ease, height 0.3s ease;
                     }
 
-                    .pt-button.cta:not(.disabled):hover:before {
+                    ${name
+                        ? `#${name}`
+                        : ''}.pt-button.cta:not(.disabled):hover:before {
                         width: ${width}px;
                         height: ${width}px;
                         left: ${coords.x}px;
@@ -290,17 +294,16 @@ Button.propTypes = {
         style: PropTypes.string
     }),
     name: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func.isRequired,
     trailingIcon: PropTypes.shape({
         name: PropTypes.string,
         brand: PropTypes.bool
     }),
     submit: PropTypes.bool,
-    reset: PropTypes.bool
-}
-
-Button.defaultProps = {
-    onClick: () => {}
+    reset: PropTypes.bool,
+    text: PropTypes.bool,
+    cta: PropTypes.bool,
+    primary: PropTypes.bool
 }
 
 export default Button

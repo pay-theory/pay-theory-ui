@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Badge = ({ number, color }) => {
   return (
     <div className="pt-badge">
-      <p className="badge-atom">
+      <p className="badge-atom" style={{ backgroundColor: `var(--${color})` }}>
         {number}
         <style jsx="true" global="true">
           {`
@@ -12,7 +12,6 @@ const Badge = ({ number, color }) => {
               display: inline-block;
               font-size: 0.55rem;
               color: white;
-              background-color: var(--${color});
               border-radius: 500px;
               padding: 0.55em;
               line-height: 0.55em;

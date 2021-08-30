@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { NavigationCategory, NavigationItem } from './children'
 import PropTypes from 'prop-types'
 
-import { BooksHooks } from '../../pt-hooks'
+import { BooksHooks } from '@paytheory/pay-theory-ui'
 
 const NavigationDrawer = ({ background, listHead }) => {
     const partner = useContext(BooksHooks.Context.Partner)
     const menuItems = useContext(BooksHooks.Context.Menu)
     const createItem = (item) => {
-        return <NavigationItem className='' item={item} key={item.tag} />
+        return <NavigationItem item={item} key={item.tag} />
     }
     const createCategory = (item) => {
         let detailsOpen = false
@@ -57,6 +57,7 @@ const NavigationDrawer = ({ background, listHead }) => {
                         top: 52px;
                         overflow-y: scroll;
                         scrollbar-width: none;
+                        box-shadow: 2px 2px 2px var(--black-opaque-8);
                     }
 
                     .nav-drawer::-webkit-scrollbar {
