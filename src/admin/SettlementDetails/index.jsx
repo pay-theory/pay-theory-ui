@@ -43,8 +43,7 @@ const SettlementDetails = ({
       return {
         columns: [{
             className: "transaction-id",
-            content: item.transfer_id
-          },
+            content: item.transfer_id.replace(/.+-/g,"")
           {
             className: "update-date",
             content: formatDate(item.updated_at)
