@@ -18,40 +18,39 @@ const TransactionDetails = ({ transaction }) => {
                 <span
                     className={`pay-theory-card-badge pay-theory-card-${brand
                         .toLowerCase()
-                        .replace(/_/g, "-")}`}
-            />
-            );
+                        .replace(/_/g, '-')}`}
+                />
+            )
+        } else {
+            return <i className='fal fa-credit-card' />
         }
-        else {
-            return <i className="fal fa-credit-card" />;
-        }
-    };
+    }
 
     const createAccountDetail = (item) => {
         switch (item.card_brand) {
-        case "CASH":
+        case 'CASH':
                 return (
-                <span className="payment-account-detail">
-                        <i className="fal fa-money-bill-wave" />
+                <span className='payment-account-detail'>
+                        <i className='fal fa-money-bill-wave' />
                         Cash
                     </span>
-            );
-        case "ACH":
+            )
+        case 'ACH':
                 return (
-                <span className="payment-account-detail">
-                    <i className="fal fa-money-check-alt" />
+                <span className='payment-account-detail'>
+                    <i className='fal fa-money-check-alt' />
                         {item.last_four}
                     </span>
-            );
+            )
         default:
                 return (
-                <span className="payment-account-detail">
+                <span className='payment-account-detail'>
                         {cardLogoGenerator(item.card_brand)}
                         XX{item.last_four}
                 </span>
-            );
+            )
         }
-    };
+    }
 
     const formatFee = (fee) => {
         return fee < 0
@@ -69,11 +68,27 @@ const TransactionDetails = ({ transaction }) => {
         <div className='transaction-details'>
             <div className='cardHead'>
                 <h3>Order {transaction.transfer_id}</h3>
-                <p className={`status-${transaction.state === "SUCCEEDED" ? "received" : transaction.state === 'APPROVED'? "pending" : transaction.state.toLowerCase()}`}>
-                    { transaction.state === "SUCCEEDED" ? "RECEIVED" : transaction.state === 'APPROVED'? "PENDING" : transaction.state}
+                <p
+                    className={`status-${
+                        transaction.state === 'SUCCEEDED'
+                            ? 'received'
+                            : transaction.state === 'APPROVED'
+                            ? 'pending'
+                            : transaction.state.toLowerCase()
+                    }`}
+                >
+                    {transaction.state === 'SUCCEEDED'
+                        ? 'RECEIVED'
+                        : transaction.state === 'APPROVED'
+                        ? 'PENDING'
+                        : transaction.state}
                 </p>
             </div>
-            <p className='subHeader'>{`Transaction Date: ${formatTimestamp(transaction.updated_at)} `}</p>
+            <p className='subHeader'>
+                {`Transaction Date: ${formatTimestamp(
+                    transaction.updated_at
+                )} `}
+            </p>
             <div className='cardContent'>
                 <div className='col-1'>
                     <h5>Amount:</h5>
@@ -84,14 +99,18 @@ const TransactionDetails = ({ transaction }) => {
                     </div>
                 </div>
                 <div className='col-1'>
-                    {transaction.name && transaction.name !== " " ? <span><h5 className='grey'>Name on the Account:</h5>
+                    {transaction.name && transaction.name !== ' ' ? (
+                        <span>
+                            <h5 className='grey'>Name on the Account:</h5>
                             <div className='navy'>{transaction.name}</div>
                         </span>
                     ) : null}
                     {transaction.account_code ? (
                         <span>
                             <h5>Account Code:</h5>
-                            <div className='navy'>{transaction.account_code}</div>
+                            <div className='navy'>
+                                {transaction.account_code}
+                            </div>
                         </span>
                     ) : null}
                     {transaction.reference ? (
@@ -101,14 +120,17 @@ const TransactionDetails = ({ transaction }) => {
                         </span>
                     ) : null}
                 </div>
-                {transaction.email || transaction.phone || transaction.settlement?  <div className='col-1'>
-                    {transaction.email ? (
+                {transaction.email ||
+                transaction.phone ||
+                transaction.settlement ? (
+                    <div className='col-1'>
+                        {transaction.email ? (
                             <span>
                                 <h5>Email:</h5>
                                 <div className='navy'>{transaction.email}</div>
                             </span>
                         ) : null}
-                    {transaction.phone ? (
+                        {transaction.phone ? (
                             <span>
                                 {' '}
                                 <h5>Phone Number:</h5>
@@ -117,7 +139,7 @@ const TransactionDetails = ({ transaction }) => {
                                 </div>
                             </span>
                         ) : null}
-                    {transaction.settlement ? (
+                        {transaction.settlement ? (
                             <span>
                                 <h5>Settlement ID:</h5>
                                 <div className='navy'>
@@ -125,9 +147,10 @@ const TransactionDetails = ({ transaction }) => {
                                 </div>
                             </span>
                         ) : null}
-                </div>
+                    </div>
                 ) : (
                     <div />
+                )}
             </div>
             <style global='true' jsx='true'>
                 {`
@@ -222,35 +245,35 @@ const TransactionDetails = ({ transaction }) => {
                         width: 45px;
                         align-self: center;
                         margin-right: 5px;
-                      }
-                              
-                      .payment-account-detail i {
+                    }
+
+                    .payment-account-detail i {
                         margin-right: 5px;
                         width: 45px;
                         font-size: 25px;
                         text-align: center;
-                      }
-          
-                      .pay-theory-card-visa {
+                    }
+
+                    .pay-theory-card-visa {
                         background-image: url(https://assets.paytheory.com/visa-badge-icon.svg);
-                      }
-          
-                      .pay-theory-card-mastercard {
+                    }
+
+                    .pay-theory-card-mastercard {
                         background-image: url(https://assets.paytheory.com/mastercard-badge-icon.svg);
-                      }
-          
-                      .pay-theory-card-american-express {
+                    }
+
+                    .pay-theory-card-american-express {
                         background-image: url(https://assets.paytheory.com/amex-badge-icon.svg);
-                      }
-          
-                      .pay-theory-card-discover {
+                    }
+
+                    .pay-theory-card-discover {
                         background-image: url(https://assets.paytheory.com/discover-badge-icon.svg);
-                      }
-          
-                      .payment-account-detail {
+                    }
+
+                    .payment-account-detail {
                         display: flex;
                         align-items: center;
-                      }
+                    }
                 `}
             </style>
         </div>
