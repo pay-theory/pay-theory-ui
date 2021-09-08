@@ -85,9 +85,11 @@ const TransactionDetails = ({ transaction }) => {
                 </p>
             </div>
             <p className='subHeader'>
-                {`Transaction Date: ${formatTimestamp(
+                {`Transaction Date: ${
                     transaction.updated_at
-                )} `}
+                        ? formatTimestamp(transaction.updated_at)
+                        : ''
+                } `}
             </p>
             <div className='cardContent'>
                 <div className='col-1'>
@@ -105,7 +107,8 @@ const TransactionDetails = ({ transaction }) => {
                             <div className='navy'>{transaction.name}</div>
                         </span>
                     ) : null}
-                    {transaction.account_code ? (
+                    {transaction.account_code &&
+                    transaction.account_code !== ' ' ? (
                         <span>
                             <h5>Account Code:</h5>
                             <div className='navy'>
@@ -113,7 +116,7 @@ const TransactionDetails = ({ transaction }) => {
                             </div>
                         </span>
                     ) : null}
-                    {transaction.reference ? (
+                    {transaction.reference && transaction.reference !== ' ' ? (
                         <span>
                             <h5>Reference:</h5>
                             <div className='navy'>{transaction.reference}</div>
