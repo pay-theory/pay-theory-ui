@@ -33,17 +33,21 @@ const IconButton = ({
           width: 40px;
           border-radius: 12px;
           border: 0px solid transparent;
-          cursor: pointer;
           font-size: 18px;
           color: var(--black);
           background: transparent;
           transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
         }
 
-        .pt-icon-button:hover {
+        .pt-icon-button:not(.disabled):hover {
           color: var(--pt-purple);
           background: var(--grey-1-opaque);
           transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
+          cursor: pointer;
+        }
+
+        .pt-icon-button.disabled {
+          color: var(--grey);
         }
       `}</style>
     </button>

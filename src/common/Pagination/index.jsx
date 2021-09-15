@@ -1,112 +1,116 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import IconButton from "../IconButton";
 
-const Pagination = ({ page, setPage, total }) => {
-  const [pages, setPages] = useState([]);
+const ASCENDING = "asc";
+const DESCENDING = "desc";
 
-  const updatePages = () => {
-    if (total < 6) {
-      const result = Array.from(Array(total).keys());
-      return result.map((i) => ++i);
-    }
-    else if (page < 4) {
-      return [1, 2, 3, 4, 5, "..."];
-    }
-    else if (page > total - 3) {
-      return ["...", total - 4, total - 3, total - 2, total - 1, total];
-    }
-    else {
-      return ["...", page - 2, page - 1, page, page + 1, page + 2, "..."];
-    }
+const Pagination = ({ paginationHook }) => {
+  const [showing, isShowing] = useState(false);
+  const {
+    nextPage,
+    previousPage,
+    oldestFirst,
+    newestFirst,
+    page,
+    order,
+    total
+  } = paginationHook;
+
+  const setOldest = () => {
+    isShowing(false);
+    oldestFirst();
   };
 
-  useEffect(() => {
-    setPages(updatePages());
-  }, [page, total]);
+  const setNewest = () => {
+    isShowing(false);
+    newestFirst();
+  };
 
   return (
-    <div className="pagination">
-      {page === 1 ? (
-        <div className="spacer" />
-      ) : (
-        <span>
-          <i className="fas fa-chevron-double-left" onClick={() => setPage(1)} data-testid="jump-beginning" />
-          <i className="fas fa-chevron-left" onClick={() => setPage(--page)} data-testid="previous" />
-        </span>
-      )}
-      {pages.map((item, index) => {
-        if (typeof item === "number") {
-          return (
-            <p
-              className={`number ${page === item ? "active" : ""}`}
-              data-testid="number"
-              onClick={() => setPage(item)}
-              key={`${item}-button`}
-            >
-              {item}
-            </p>
-          );
-        } else {
-          return <p className="elipses" key={`${item}-${index}`}>{item}</p>;
-        }
-      })}
-      {page === total ? (
-        <div className="spacer" />
-      ) : (
-        <span>
-          <i className="fas fa-chevron-right" onClick={() => setPage(++page)} data-testid="next" />
-          <i
-            className="fas fa-chevron-double-right"
-            onClick={() => setPage(total)}
-            data-testid="jump-end"
-          />
-        </span>
-      )}
+    <div className="pt-pagination">
+      <p
+        className="pagination-number"
+        onClick={() => {
+          isShowing(!showing);
+        }}
+      >{`${page} OF ${total}`}</p>
+      <IconButton
+        icon="chevron-left"
+        onClick={previousPage}
+        disabled={page === 1}
+      />
+      <IconButton
+        icon="chevron-right"
+        onClick={nextPage}
+        disabled={page === total}
+      />
+      <div className={`sort-menu ${showing ? "" : "hidden"}`}>
+        <p
+          className={`${order === DESCENDING ? "active" : ""}`}
+          onClick={setNewest}
+        >
+          Newest
+        </p>
+        <p
+          className={`${order === ASCENDING ? "active" : ""}`}
+          onClick={setOldest}
+        >
+          Oldest
+        </p>
+      </div>
       <style global="true" jsx="true">
         {`
-          .pagination {
+          .pt-pagination {
             display: flex;
+            position: relative;
             align-items: center;
-            justify-content: center;
+            align-self: flex-start;
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
             -khtml-user-select: none; /* Konqueror HTML */
             -moz-user-select: none; /* Old versions of Firefox */
             -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none;
-            height: 30px;
+            height: 48px;
+            font-family: var(--secondary-font);
+            padding-left: 16px;
           }
-          .pagination i,
-          .pagination p {
-            padding: 5px 10px;
+
+          .pt-pagination .pagination-number {
+            border: 1px solid transparent;
+            padding: 2px 0px;
+          }
+
+          .pt-pagination .pagination-number:hover {
             cursor: pointer;
-            color: #7C2CDD;
-            height: 100%;
-            border-radius: 5px;
+            border-bottom: 1px solid var(--black);
           }
 
-          .pagination i {
-            width: 30px;
-            padding: 5px 0px;
-            text-align: center;
-          }
-          .pagination .active {
-            color: #6A606D;
-            background-color: #F2F2F2 !important;
+          .pt-pagination .sort-menu.hidden {
+            display: none;
           }
 
-          .pagination .elipses {
-            cursor: default;
-            color: #6A606D;
+          .pt-pagination .sort-menu {
+            border: 1px solid var(--black);
+            border-radius: 16px;
+            padding: 8px;
+            background: var(--white);
+            position: absolute;
+            top: 44px;
+            left: 0;
+            z-index: 2;
+            overflow: hidden;
           }
 
-          .pagination .number:hover,
-          .pagination i:hover {
-            background-color: #f2f2f2;
+          .pt-pagination .sort-menu p {
+            padding: 12px 16px;
+            border-radius: 16px;
+            cursor: pointer;
           }
-
-          .pagination .spacer {
-            width: 60px;
+          .pt-pagination .sort-menu p:hover,
+          .pt-pagination .sort-menu p.active {
+            background: var(--grey-2);
           }
         `}
       </style>
@@ -115,9 +119,38 @@ const Pagination = ({ page, setPage, total }) => {
 };
 
 Pagination.propTypes = {
-  page: PropTypes.number.isRequired,
-  setPage: PropTypes.func.isRequired,
-  total: PropTypes.number.isRequired
+  paginationHook: PropTypes.object.isRequired
 };
 
 export default Pagination;
+
+export const usePagination = (total) => {
+  const [page, setPage] = useState(1);
+  const [order, setOrder] = useState(DESCENDING);
+
+  const nextPage = () => {
+    setPage(page + 1);
+  };
+
+  const previousPage = () => {
+    setPage(page - 1);
+  };
+
+  const oldestFirst = () => {
+    setOrder(ASCENDING);
+  };
+
+  const newestFirst = () => {
+    setOrder(DESCENDING);
+  };
+
+  return {
+    nextPage,
+    previousPage,
+    oldestFirst,
+    newestFirst,
+    page,
+    order,
+    total
+  };
+};

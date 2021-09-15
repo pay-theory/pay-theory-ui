@@ -5,7 +5,7 @@ import { formatFee } from "../../generalUtils";
 const CurrencyCol = ({ className, row, col, content }) => {
   return (
     <td
-      className={`cell currency ${className}`}
+      className={`cell currency ${className} ${content < 0 ? "negative" : ""}`}
       key={`${className}-${row}-${col}`}
       data-testid="unlinked-column"
     >

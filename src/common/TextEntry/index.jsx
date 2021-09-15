@@ -72,7 +72,7 @@ const TextEntry = ({
           disabled={disabled}
           {...inputProps}
         />
-        <label htmlFor="example-one-name">{label}</label>
+        <label>{label}</label>
         {trailingIcon ? (
           <Icon name={trailingIcon.name} brand={trailingIcon.brand} />
         ) : (
@@ -176,12 +176,12 @@ const TextEntry = ({
 
             /* Disabled Styling */
             .pt-text-field.disabled {
-              background: var(--disabled-background);
-              border: 1px solid var(--disabled);
+              background: var(--grey-2);
+              border: 1px solid var(--grey-1);
             }
 
             .pt-text-field.disabled label {
-              color: var(--disabled);
+              color: var(--grey-1);
             }
 
             /* Icon Styling */

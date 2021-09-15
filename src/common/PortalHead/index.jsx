@@ -54,9 +54,12 @@ const PortalHead = ({ menuButtons }) => {
           align-items: center;
           padding: 0px 0px 0px 24px;
           line-height: 30px;
-          height: 72px;
+          height: 64px;
           box-shadow: 2px 2px 2px var(--black-opaque-8);
-          z-index: 1;
+          z-index: 10;
+          position: -webkit-sticky;
+          position: sticky;
+          top: 0px;
         }
 
         .portal-head-header .portal-logo-wrapper {
@@ -86,7 +89,7 @@ const PortalHead = ({ menuButtons }) => {
         }
 
         .portal-head-header .notification.show {
-          top: 16px;
+          top: 12px;
           transition: top 0.5s ease;
         }
 

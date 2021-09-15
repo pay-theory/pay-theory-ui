@@ -37,7 +37,8 @@ Icon.defaultProps = {
   solid: false,
   duotone: false,
   brand: false,
-  string: ""
+  string: "",
+  tag: ""
 };
 
 export default Icon;

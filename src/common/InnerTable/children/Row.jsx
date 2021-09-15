@@ -7,6 +7,7 @@ import LinkCol from "./LinkCol";
 import ChipCol from "./ChipCol";
 import CurrencyCol from "./CurrencyCol";
 import Checkbox from "../../Checkbox";
+import PayMethodCol from "./PayMethodCol";
 import { TableContext } from "../index";
 
 const generateBasicCol = (column, col, row, itemKey) => {
@@ -75,12 +76,26 @@ const generateCurrencyCol = (column, col, row, itemKey) => {
   );
 };
 
+const generatePaymentMethod = (column, col, row, itemKey) => {
+  return (
+    <PayMethodCol
+      className={column.className}
+      col={col}
+      lastFour={column.lastFour}
+      brand={column.brand}
+      key={`${itemKey}-column-${col}`}
+      row={row}
+    />
+  );
+};
+
 const colGenerator = {
   link: generateLinkCol,
   basic: generateBasicCol,
   chip: generateChipCol,
   currency: generateCurrencyCol,
-  action: generateActionCol
+  action: generateActionCol,
+  paymentMethod: generatePaymentMethod
 };
 
 const Row = ({ row, itemKey, hasActions, columns, rowObject }) => {

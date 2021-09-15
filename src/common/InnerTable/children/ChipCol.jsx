@@ -9,9 +9,9 @@ const ChipCol = ({ className, row, col, text, color, textColor }) => {
       key={`${className}-${row}-${col}`}
       data-testid="unlinked-column"
     >
-      <p className="content">
+      <span className="content">
         <Chip text={text} color={color} textColor={textColor} />
-      </p>
+      </span>
     </td>
   );
 };

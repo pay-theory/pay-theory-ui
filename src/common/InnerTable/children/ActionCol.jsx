@@ -9,7 +9,7 @@ const ActionCol = ({ className, row, col, label, icon, action, rowObject }) => {
       key={`${className}-${row}-${col}`}
       data-testid="unlinked-column"
     >
-      <p className="content">
+      <span className="content">
         <IconButton
           label={label}
           icon={icon}
@@ -18,7 +18,7 @@ const ActionCol = ({ className, row, col, label, icon, action, rowObject }) => {
             action(rowObject);
           }}
         />
-      </p>
+      </span>
     </td>
   );
 };
