@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import { CardTable, Pagination, InnerTable, ExportCSV } from "../../common"
+import { CardTable, Pagination, InnerTable } from "../../common"
 
 export const formatDate = (stamp) => {
   const dated = new Date(stamp);
@@ -91,11 +91,7 @@ const SettlementsTable = (props) => {
           setSelected={setSelected}
         />
       <div className="table-footer">
-      <ExportCSV
-            id="download-link"
-            items={csvArray}
-            fileName={`PT-Settlements-${formatDate(new Date())}.csv`}
-          />
+
         {total > 1 ? (
           <Pagination page={page} setPage={setPage} total={total} />
         ) : null}

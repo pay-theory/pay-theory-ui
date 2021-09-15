@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { NavigationCategory, NavigationItem } from "./children";
 import PropTypes from "prop-types";
 
-import { BooksHooks } from "@paytheory/pay-theory-ui";
+import * as BooksHooks from '../../hooks'
 
 const NavigationDrawer = ({ background, listHead }) => {
   const partner = useContext(BooksHooks.Context.Partner);

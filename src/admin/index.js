@@ -25,7 +25,6 @@ import ModalReceiptTransactions from './ModalReceiptTransactions'
 import NativeAppIdTab from './NativeAppIdTab'
 import NativeAppModal from './NativeAppModal'
 
-import PartnerInfoTab from './PartnerInfoTab'
 import PartnerOverviewCard from './PartnerOverviewCard'
 import PartnerTable from './PartnerTable'
 import PaymentItemDiscontinueCard from './PaymentItemDiscontinueCard'
@@ -39,7 +38,6 @@ import ReceiptUploader from './ReceiptUploader'
 import RolesTab from './RolesTab'
 
 import SalesTab from './SalesTab'
-import SettlementDetails from './SettlementDetails'
 import SettlementsTable from './SettlementsTable'
 import SystemTransactions from './SystemTransactions'
 
@@ -69,7 +67,6 @@ export {
     ModalReceiptTransactions,
     NativeAppIdTab,
     NativeAppModal,
-    PartnerInfoTab,
     PartnerOverviewCard,
     PartnerTable,
     PaymentItemDiscontinueCard,
@@ -81,7 +78,6 @@ export {
     ReceiptUploader,
     RolesTab,
     SalesTab,
-    SettlementDetails,
     SettlementsTable,
     SystemTransactions,
     TransactionItems,
