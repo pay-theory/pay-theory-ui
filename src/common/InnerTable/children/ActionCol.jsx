@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import IconButton from "../../IconButton";
 
-const ActionCol = ({ className, row, col, label, icon, action, rowObject }) => {
+const ActionCol = ({ className, row, col, label, icon, action, rowObject, disabled }) => {
   return (
     <td
       className={`cell action ${className}`}
@@ -17,6 +17,7 @@ const ActionCol = ({ className, row, col, label, icon, action, rowObject }) => {
           onClick={() => {
             action(rowObject);
           }}
+          disabled={disabled}
         />
       </span>
     </td>
@@ -30,7 +31,8 @@ ActionCol.propTypes = {
   icon: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
   row: PropTypes.number.isRequired,
-  rowObject: PropTypes.object.isRequired
+  rowObject: PropTypes.object.isRequired,
+  disabled: PropTypes.bool
 };
 
 export default ActionCol;

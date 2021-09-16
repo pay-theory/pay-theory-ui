@@ -39,7 +39,7 @@ const openSheet = (identifier) => {
 
 export { closeSheet, openSheet };
 
-const Sheet = ({
+const ModalContent = ({
   identifier,
   children,
   closeAction,
@@ -70,10 +70,10 @@ const Sheet = ({
         data-testid="sheet-form"
         id={modalForm}
       >
-        <div id="sheet-content">
+        <div id="sheet-content" className={position}>
           <div className="sheet-header">
             <IconButton
-              icon="times"
+              icon="arrow-left"
               onClick={() => {
                 closeSheet(identifier);
                 if (closeAction) {
@@ -92,20 +92,30 @@ const Sheet = ({
             flex-direction: column;
           }
 
+          #sheet-content.left,
+          #sheet-content.right {
+            width: 484px;
+          }
+
+          #sheet-content.top,
+          #sheet-content.bottom {
+            height: 484px;
+          }
+
           #sheet-content .sheet-header {
             width: 100%;
             display: flex;
-            flex-direction: row-reverse;
             justify-content: space-between;
             align-items: center;
             padding: 4px;
+            height: 64px;
           }
           #sheet-content .sheet-header i {
             cursor: pointer;
             padding: 10px;
           }
           #sheet-content .sheet-body {
-            margin: 0px 32px 32px;
+            margin: 0px 16px 16px;
             overflow-y: auto;
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -128,7 +138,7 @@ const Sheet = ({
             width: 100%;
             background: var(--black-opaque-32);
             backdrop-filter: opacity(50%) blur(2px);
-            z-index: 100;
+            z-index: 99;
           }
           .sheet-off {
             visibility: hidden;
@@ -142,7 +152,6 @@ const Sheet = ({
             top: 0;
             right: 0;
             height: 100%;
-            width: 484px;
             box-shadow: 0px 0px 16px var(--grey);
           }
 
@@ -150,7 +159,6 @@ const Sheet = ({
             top: 0;
             right: -500px;
             height: 100%;
-            width: 484px;
             box-shadow: 0px 0px 0px var(--grey);
           }
 
@@ -159,7 +167,6 @@ const Sheet = ({
             top: 0;
             left: 0;
             height: 100%;
-            width: 484px;
             box-shadow: 0px 0px 16px var(--grey);
           }
 
@@ -167,7 +174,6 @@ const Sheet = ({
             top: 0;
             left: -500px;
             height: 100%;
-            width: 484px;
             box-shadow: 0px 0px 0px var(--grey);
           }
 
@@ -221,7 +227,7 @@ const Sheet = ({
             overflow-x: hidden;
             -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 101;
+            z-index: 99;
           }
 
           .sheet-form-gone {
@@ -238,7 +244,7 @@ const Sheet = ({
   );
 };
 
-Sheet.propTypes = {
+ModalContent.propTypes = {
   closeAction: PropTypes.func,
   identifier: PropTypes.string.isRequired,
   top: PropTypes.bool,
@@ -246,4 +252,4 @@ Sheet.propTypes = {
   left: PropTypes.bool
 };
 
-export default Sheet;
+export default ModalContent;

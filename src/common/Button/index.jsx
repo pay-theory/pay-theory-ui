@@ -285,7 +285,7 @@ Button.propTypes = {
     name: PropTypes.string,
     style: PropTypes.string
   }),
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   trailingIcon: PropTypes.shape({
     name: PropTypes.string,

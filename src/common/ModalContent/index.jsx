@@ -79,7 +79,6 @@ const ModalContent = ({ identifier, children, closeAction }) => {
             flex-direction: column;
             width: 100%;
             min-height: 56px;
-            color: var(--white);
             border-radius: 16px;
           }
 

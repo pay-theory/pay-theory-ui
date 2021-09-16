@@ -46,6 +46,7 @@ const generateActionCol = (column, col, row, itemKey) => {
       icon={column.icon}
       action={column.action}
       rowObject={column.rowObject}
+      disabled={column.disabled}
     />
   );
 };
