@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import IconButton from "../IconButton";
 
-const Header = ({ text }) => {
+const ClickToCopy = ({ text }) => {
   const INITIAL = "Click to Copy";
   const COPY = "copy";
   const SUCCESS = "Copied!";
@@ -69,8 +69,8 @@ const Header = ({ text }) => {
   );
 };
 
-Header.propTypes = {
+ClickToCopy.propTypes = {
   text: PropTypes.string.isRequired
 };
 
-export default Header;
+export default ClickToCopy;

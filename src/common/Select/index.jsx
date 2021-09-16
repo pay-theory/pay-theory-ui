@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Icon from "../Icon";
 import Dropdown from "./children/Dropdown";
 
-const TextEntry = ({
+const Select = ({
   label,
   onChange,
   value,
@@ -247,7 +247,7 @@ const TextEntry = ({
   );
 };
 
-TextEntry.propTypes = {
+Select.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
   leadingIcon: PropTypes.shape({
@@ -260,8 +260,8 @@ TextEntry.propTypes = {
   options: PropTypes.array
 };
 
-TextEntry.defaultProps = {
+Select.defaultProps = {
   onClick: () => {}
 };
 
-export default TextEntry;
+export default Select;
