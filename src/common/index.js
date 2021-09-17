@@ -56,7 +56,7 @@ import {
 } from './StatusMessage'
 
 import Select from './Select'
-import Sheet from './Sheet'
+import Sheet, {openSheet, closeSheet} from './Sheet'
 import SubsectionHead from './SubsectionHead'
 
 import TabMenu from './TabMenu'
@@ -119,6 +119,8 @@ export {
     Select,
     SubsectionHead,
     Sheet,
+    openSheet,
+    closeSheet,
     StockTags,
     ErrorMessage,
     WarningMessage,
