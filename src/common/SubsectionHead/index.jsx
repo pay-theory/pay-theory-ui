@@ -1,24 +1,32 @@
-import React from 'react'
+import React from "react";
 
-import { SubsectionParent, SubsectionSubtitle } from './children'
+import { SubsectionParent, SubsectionCurrentPage } from "./children";
 
 const SubsectionHead = (props) => {
-    return (
-        <div className='body-head'>
-            <SubsectionParent />
-            <SubsectionSubtitle />
-            <style jsx='true'>{`
-                .body-head {
-                    display: flex;
-                    flex-direction: row;
-                    padding: 24px;
-                    justify-content: space-between;
-                    align-items: center;
-                    border-bottom: 1px solid #F2F2F2
-                }
-            `}</style>
-        </div>
-    )
-}
+  return (
+    <div className="pt-subsection-head">
+      <SubsectionParent />
+      <p className="backslash">/</p>
+      <SubsectionCurrentPage />
+      <style jsx="true">{`
+        .pt-subsection-head {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          height: 32px;
+          margin-bottom: 16px;
+        }
 
-export default SubsectionHead
+        .pt-subsection-head .backslash {
+          padding: 0px 8px;
+        }
+
+        .pt-subsection-head .current-page {
+          text-decoration: underline;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default SubsectionHead;
