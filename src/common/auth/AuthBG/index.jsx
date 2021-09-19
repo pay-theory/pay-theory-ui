@@ -6,11 +6,11 @@ import AuthStyle from '../AuthStyle'
 
 function AuthBG(props) {
     useEffect(() => {
-        document.body.style.backgroundColor = 'var(--grey-1)'
+        document.body.style.backgroundColor = 'var(--grey-3)'
         document.body.style.backgroundSize = 'cover'
         return function cleanup() {
             // remove authentication background to prevent bleeding into other pages
-            document.body.style.backgroundColor = 'var(--grey-1)'
+            document.body.style.backgroundColor = 'var(--grey-3)'
             document.body.style.backgroundImage = 'none'
         }
     }, [])
