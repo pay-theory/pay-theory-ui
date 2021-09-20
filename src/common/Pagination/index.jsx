@@ -124,7 +124,7 @@ Pagination.propTypes = {
 
 export default Pagination;
 
-export const usePagination = (total, toNewest, toOldest) => {
+export const usePagination = (total, toNewestAction, toOldestAction) => {
   const [page, setPage] = useState(1);
 
   const nextPage = () => {
@@ -134,6 +134,16 @@ export const usePagination = (total, toNewest, toOldest) => {
   const previousPage = () => {
     setPage(page - 1);
   };
+
+  const toNewest = () => {
+    setPage(1);
+    toNewestAction();
+  }
+
+  const toOldest = () => {
+    setPage(total);
+    toOldestAction();
+  }
 
   return {
     nextPage,
