@@ -100,6 +100,7 @@ const GlobalStyle = (props) => {
             display: flex;
             flex-direction: column;
             padding: 16px;
+            overflow: auto;
           }
 
           #container {

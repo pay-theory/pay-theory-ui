@@ -21,10 +21,11 @@ const ActionBar = ({ actions, rows, paginationHook }) => {
   const actionButtons = actions.map((item, index) => {
     return (
       <IconButton
-        label={item.label}
+        label={Object.keys(context.selected).length === 0 ? "" : item.label}
         icon={item.icon}
         bottom
         key={`${item.icon}-${index}`}
+        disabled={Object.keys(context.selected).length === 0}
         onClick={() => {
           item.action(Object.values(context.selected));
         }}

@@ -2,37 +2,39 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import IconButton from "../IconButton";
 
-const ASCENDING = "asc";
-const DESCENDING = "desc";
-
 const Pagination = ({ paginationHook }) => {
   const [showing, isShowing] = useState(false);
   const {
     nextPage,
     previousPage,
-    oldestFirst,
-    newestFirst,
+    toOldest,
+    toNewest,
     page,
-    order,
     total
   } = paginationHook;
 
   const setOldest = () => {
-    isShowing(false);
-    oldestFirst();
+    if (page !== total) {
+      isShowing(false);
+      toOldest();
+    }
   };
 
   const setNewest = () => {
-    isShowing(false);
-    newestFirst();
+    if (page !== 1) {
+      isShowing(false);
+      toNewest();
+    }
   };
 
   return (
     <div className="pt-pagination">
       <p
-        className="pagination-number"
+        className={`pagination-number ${total > 1 ? "" : "no-click"}`}
         onClick={() => {
-          isShowing(!showing);
+          if (total > 1) {
+            isShowing(!showing);
+          }
         }}
       >{`${page} OF ${total}`}</p>
       <IconButton
@@ -46,16 +48,10 @@ const Pagination = ({ paginationHook }) => {
         disabled={page === total}
       />
       <div className={`sort-menu ${showing ? "" : "hidden"}`}>
-        <p
-          className={`${order === DESCENDING ? "active" : ""}`}
-          onClick={setNewest}
-        >
+        <p className={page === 1 ? "disabled" : ""} onClick={setNewest}>
           Newest
         </p>
-        <p
-          className={`${order === ASCENDING ? "active" : ""}`}
-          onClick={setOldest}
-        >
+        <p className={page === total ? "disabled" : ""} onClick={setOldest}>
           Oldest
         </p>
       </div>
@@ -82,7 +78,7 @@ const Pagination = ({ paginationHook }) => {
             padding: 2px 0px;
           }
 
-          .pt-pagination .pagination-number:hover {
+          .pt-pagination .pagination-number:not(.no-click):hover {
             cursor: pointer;
             border-bottom: 1px solid var(--black);
           }
@@ -106,11 +102,15 @@ const Pagination = ({ paginationHook }) => {
           .pt-pagination .sort-menu p {
             padding: 12px 16px;
             border-radius: 16px;
-            cursor: pointer;
           }
-          .pt-pagination .sort-menu p:hover,
-          .pt-pagination .sort-menu p.active {
+
+          .pt-pagination .sort-menu p.disabled {
+            color: var(--grey-1);
+          }
+
+          .pt-pagination .sort-menu p:not(.disabled):hover {
             background: var(--grey-2);
+            cursor: pointer;
           }
         `}
       </style>
@@ -124,9 +124,8 @@ Pagination.propTypes = {
 
 export default Pagination;
 
-export const usePagination = (total) => {
+export const usePagination = (total, toNewest, toOldest) => {
   const [page, setPage] = useState(1);
-  const [order, setOrder] = useState(DESCENDING);
 
   const nextPage = () => {
     setPage(page + 1);
@@ -136,21 +135,12 @@ export const usePagination = (total) => {
     setPage(page - 1);
   };
 
-  const oldestFirst = () => {
-    setOrder(ASCENDING);
-  };
-
-  const newestFirst = () => {
-    setOrder(DESCENDING);
-  };
-
   return {
     nextPage,
     previousPage,
-    oldestFirst,
-    newestFirst,
+    toOldest,
+    toNewest,
     page,
-    order,
     total
   };
 };

@@ -153,7 +153,6 @@ const NavigationDrawer = ({ background, listHead }) => {
           text-transform: uppercase;
           text-align: left;
           letter-spacing: 0.45px;
-          font-weight: var(--black-weight);
           width: 100%;
         }
 
