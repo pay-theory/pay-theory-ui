@@ -130,6 +130,7 @@ const TextEntry = ({
             }
 
             .pt-text-field label {
+              pointer-events: none;
               position: absolute;
               left: 16px;
               font-size: 16px;
