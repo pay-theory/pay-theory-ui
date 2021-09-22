@@ -23,7 +23,7 @@ const NavigationCategory = (props) => {
         <summary>
           <div className="summary">
             <p id={`${props.item.tag}-link`} className="summary-title">
-              <Icon name={props.item.icon} label="leading" />
+              <Icon name={props.item.icon} label="leading" brand={props.item.iconBrand} />
               {props.item.label}
             </p>
             <div className="summary-trailing">

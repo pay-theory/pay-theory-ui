@@ -26,7 +26,7 @@ const NavigationItem = ({ item }) => {
         }}
       >
         <p className="label">
-          {item.icon ? <Icon label="leading" name={item.icon} /> : null}
+          {item.icon ? <Icon label="leading" name={item.icon} brand={item.iconBrand} /> : null}
           {item.label}
         </p>
         {item.badgeNumber ? <Badge number={`${item.badgeNumber}`} /> : ""}
