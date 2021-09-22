@@ -27,6 +27,7 @@ const PortalHead = ({ menuButtons }) => {
                     action={item.action}
                     icon={item.icon}
                     key={`${item.icon}-${index}`}
+                    tooltip={item.tooltip}
                 />
             )
         }
