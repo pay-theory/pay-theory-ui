@@ -39,9 +39,9 @@ ActionCol.propTypes = {
     label: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
     row: PropTypes.number.isRequired,
-    rowObject: PropTypes.object.isRequired,
-    disabled: PropTypes.bool
+    rowObject: PropTypes.object.isRequired
 }
 
 export default ActionCol

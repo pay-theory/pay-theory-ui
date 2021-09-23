@@ -5,7 +5,14 @@ import * as children from "./children";
 
 export const TableContext = createContext();
 
-const InnerTable = ({ groupActions, paginationHook, rows, columns, id }) => {
+const InnerTable = ({
+  groupActions,
+  paginationHook,
+  resultsPerPageHook,
+  rows,
+  columns,
+  id
+}) => {
   const wrapper = useRef(null);
   const [selected, setSelected] = useState({});
   const [parentWidth, setParentWidth] = useState(0);
@@ -39,6 +46,7 @@ const InnerTable = ({ groupActions, paginationHook, rows, columns, id }) => {
             actions={groupActions}
             paginationHook={paginationHook}
             rows={rows}
+            resultsPerPageHook={resultsPerPageHook}
           />
         ) : (
           ""
@@ -132,7 +140,7 @@ const InnerTable = ({ groupActions, paginationHook, rows, columns, id }) => {
                   border-left: 1px solid var(--black-opaque-8);
                 }
 
-                /* Styling the Header Di*/
+                /* Styling the Header Divider*/
                 .inner-table-row .head .header-divider {
                   position: absolute;
                   right: -10px;
@@ -150,13 +158,15 @@ const InnerTable = ({ groupActions, paginationHook, rows, columns, id }) => {
                   border-left: 1px solid var(--black-opaque-8);
                 }
 
-                .inner-table-row .head:not(.select) .header-divider:hover {
+                .inner-table-row
+                  .head:not(.select)
+                  .header-divider.resize:hover {
                   cursor: col-resize;
                 }
 
                 .inner-table-row
                   .head:not(.select)
-                  .header-divider:hover::after {
+                  .header-divider.resize:hover::after {
                   border-left: 1px solid var(--black);
                 }
 
@@ -243,6 +253,20 @@ const InnerTable = ({ groupActions, paginationHook, rows, columns, id }) => {
                   display: flex;
                   align-items: center;
                 }
+
+                .pagination-results-div {
+                  display: flex;
+                  align-items: center;
+                }
+
+                .results-per-page {
+                  display: flex;
+                  height: 48px;
+                  align-items: center;
+                }
+                .results-per-page > * {
+                  margin-right: 16px;
+                }
               `}
             </style>
           </table>
@@ -261,3 +285,9 @@ InnerTable.propTypes = {
 };
 
 export default InnerTable;
+
+export const useResultsPerPage = (totalItems, initialResultsAmount) => {
+  const [results, setResults] = useState(initialResultsAmount || 10);
+
+  return { totalItems, results, setResults };
+};

@@ -21,7 +21,8 @@ const HeaderRow = ({ columns, hasActions }) => {
           type={column.type}
           width={column.width}
           minWidth={column.minWidth}
-          final={col + 1 === columns.length}
+          auto={column.auto}
+          resizable={column.resizable}
         />
       );
     });

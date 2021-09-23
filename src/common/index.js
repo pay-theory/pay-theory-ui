@@ -21,6 +21,7 @@ import CardRow from './CardRow'
 import CardTable from './CardTable'
 import Checkbox from './Checkbox'
 import Chip from './Chip'
+import ChipDropdown from './ChipDropdown'
 import ClickToCopy from './ClickToCopy'
 
 import DynamicList from './DynamicList'
@@ -35,7 +36,7 @@ import HoverMenu from './HoverMenu'
 
 import Icon from './Icon'
 import IconButton from './IconButton'
-import InnerTable from './InnerTable'
+import InnerTable, { useResultsPerPage } from './InnerTable'
 
 import ModalContent, { closeModal, openModal } from './ModalContent'
 import ModalSpinner, { openSpinner, closeSpinner } from './ModalSpinner'
@@ -56,7 +57,7 @@ import {
 } from './StatusMessage'
 
 import Select from './Select'
-import Sheet, {openSheet, closeSheet} from './Sheet'
+import Sheet, { openSheet, closeSheet } from './Sheet'
 import SubsectionHead from './SubsectionHead'
 
 import TabMenu from './TabMenu'
@@ -91,6 +92,7 @@ export {
     CardTable,
     Checkbox,
     Chip,
+    ChipDropdown,
     ClickToCopy,
     DynamicList,
     downloadCSV,
@@ -103,6 +105,7 @@ export {
     Icon,
     IconButton,
     InnerTable,
+    useResultsPerPage,
     ModalContent,
     closeModal,
     openModal,
