@@ -69,7 +69,7 @@ const ChipDropdown = ({ onChange, value, disabled, options }) => {
                             // align-self: flex-start;
                             font-size: 16px;
                             border-radius: 500px;
-                            height: 32px;
+                            height: 24px;
                             display: flex;
                             align-items: center;
                             transition: border 0.3s ease;
@@ -89,7 +89,7 @@ const ChipDropdown = ({ onChange, value, disabled, options }) => {
                             background: transparent;
                             border-radius: 16px;
                             border: 1px solid transparent;
-                            height: 32px;
+                            height: 24px;
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -134,8 +134,8 @@ const ChipDropdown = ({ onChange, value, disabled, options }) => {
 
                         /* Icon Styling */
                         .pt-chip-dropdown .pt-icon {
-                            height: 32px;
-                            width: 32px;
+                            height: 24px;
+                            width: 24px;
                             font-size: 13px;
                             display: flex;
                             justify-content: center;
@@ -174,7 +174,7 @@ const ChipDropdown = ({ onChange, value, disabled, options }) => {
                             + .chip-dropdown-dropdown {
                             opacity: 1;
                             height: auto;
-                            padding: 36px 4px 4px;
+                            padding: 28px 4px 4px;
                             transition: all 0.3s ease;
                         }
 
@@ -227,10 +227,6 @@ ChipDropdown.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.any.isRequired,
     options: PropTypes.array
-}
-
-ChipDropdown.defaultProps = {
-    onClick: () => {}
 }
 
 export default ChipDropdown
