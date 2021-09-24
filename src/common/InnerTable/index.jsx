@@ -19,6 +19,7 @@ const InnerTable = ({
     const [columnWidth] = useState({})
     const [isResizingHeader, setIsResizingHeader] = useState(false)
     const [rowWidth, setRowWidth] = useState(0)
+    const [resized, setResized] = useState(false)
     const hasActions = !!groupActions
 
     const reduceWidth = (acc, value) => {
@@ -32,10 +33,22 @@ const InnerTable = ({
     }
 
     useEffect(() => {
-        if (wrapper && wrapper.current) {
+        if ((wrapper && wrapper.current) || resized) {
             setParentWidth(wrapper.current.getBoundingClientRect().width)
+            setResized(false)
         }
-    }, [wrapper])
+    }, [wrapper, resized])
+
+    useEffect(() => {
+        const handleResize = () => {
+            setResized(true)
+        }
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
     return (
         <TableContext.Provider
@@ -298,7 +311,7 @@ InnerTable.propTypes = {
     groupActions: PropTypes.array,
     id: PropTypes.string.isRequired,
     paginationHook: PropTypes.object,
-    resultsPerPageHook: PropTypes.object,
+    resultsPerPageHook: PropTypes.object
 }
 
 export default InnerTable
