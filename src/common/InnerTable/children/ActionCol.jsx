@@ -23,10 +23,10 @@ const ActionCol = ({
                     disabled={disabled}
                     icon={icon}
                     label={disabled ? '' : label}
+                    left
                     onClick={() => {
                         action(rowObject)
                     }}
-                    top
                 />
             </span>
         </td>

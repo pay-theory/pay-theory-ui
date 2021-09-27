@@ -22,6 +22,8 @@ const InnerTable = ({
     const [resized, setResized] = useState(false)
     const hasActions = !!groupActions
 
+    const { page } = paginationHook
+
     const reduceWidth = (acc, value) => {
         return acc + value
     }
@@ -31,6 +33,10 @@ const InnerTable = ({
         const totalWidth = Object.values(columnWidth).reduce(reduceWidth, 0)
         setRowWidth(totalWidth)
     }
+
+    useEffect(() => {
+        setSelected({})
+    }, [page])
 
     useEffect(() => {
         if ((wrapper && wrapper.current) || resized) {
