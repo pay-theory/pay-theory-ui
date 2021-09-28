@@ -22,7 +22,7 @@ const InnerTable = ({
     const [resized, setResized] = useState(false)
     const hasActions = !!groupActions
 
-    const { page } = paginationHook
+    const { page } = paginationHook || {}
 
     const reduceWidth = (acc, value) => {
         return acc + value
