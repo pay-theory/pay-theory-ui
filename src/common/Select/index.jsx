@@ -1,239 +1,267 @@
-import React, { useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import PropTypes from "prop-types";
+import Icon from "../Icon";
+import Dropdown from "./children/Dropdown";
 
-const Select = (props) => {
-    const select = useRef()
-    const { options, label, value, onChange, className, name } = props
+const Select = ({
+  label,
+  onChange,
+  value,
+  disabled,
+  leadingIcon,
+  options
+}) => {
+  let wrapper = useRef(null);
+  let select = useRef(null);
+  let dropdown = useRef(null);
+  const [focused, setFocused] = useState(false);
+  const [selectedLabel, setSelectedLabel] = useState("");
 
-    useEffect(() => {
-        if (!value) {
-            select.current.selectedIndex = null
+  let focus = useCallback(() => {
+    setFocused(true);
+    select.current.style = "z-index: 6;";
+    dropdown.current.style = "z-index: 5;";
+  }, [select, dropdown]);
+
+  let blur = useCallback(() => {
+    setFocused(false);
+    select.current.style = "z-index: 0;";
+    dropdown.current.style = "z-index: 0;";
+  }, [select, dropdown]);
+
+  let click = useCallback(() => {
+    if (!disabled) {
+      if (focused) {
+        blur();
+      } else {
+        focus();
+      }
+    }
+  }, [focus, focused, blur, disabled]);
+
+  useEffect(() => {
+    let inputRef;
+
+    if (select.current && dropdown.current && wrapper.current) {
+      inputRef = wrapper.current;
+      inputRef.addEventListener("click", click);
+      inputRef.addEventListener("blur", blur);
+    }
+
+    return () => {
+      if (inputRef) {
+        inputRef.addEventListener("click", click);
+        inputRef.addEventListener("blur", blur);
+      }
+    };
+  }, [select, blur, dropdown, wrapper, click]);
+
+  useEffect(() => {
+    const setLabel = (items) => {
+      items.forEach((item) => {
+        if (item.value === value) {
+          setSelectedLabel(item.label);
         }
-    }, [value])
+      });
+    };
+    setLabel(options);
+  }, [value, options]);
 
-    return (
-        <div className={`pt-select ${className || ''} ${value ? '' : 'empty'}`}>
-            <select
-                className={value ? '' : 'empty'}
-                data-testid={name}
-                id={name}
-                onChange={onChange}
-                ref={select}
-            >
-                <option className='filler-option' value='' />
-                {options.map((option) => {
-                    return (
-                        <option
-                            disabled={!!option.disabled}
-                            key={option.value}
-                            value={option.value}
-                        >
-                            {option.label}
-                        </option>
-                    )
-                })}
-            </select>
-            <label htmlFor={name}>{label}</label>
-            <i className='fas fa-caret-down' />
-            <i className='fas fa-caret-up' />
-            <style jsx='true'>
-                {`
-                    .pt-select {
-                        box-sizing: border-box;
-                        position: relative;
-                        font-size: 16px;
-                        width: auto;
-                        padding-top: 6px;
-                        display: flex;
-                        align-items: center;
-                        line-height: 1.5;
-                        max-height: 62px;
-                    }
+  let selectedValueClassList = `${value ? "" : "empty"} selected-value`;
+  let divClassList = `pt-select ${focused ? "focused" : ""} ${
+    disabled ? "disabled" : ""
+  } ${leadingIcon ? "leading" : ""}`;
 
-                    /* SELECT ELEMENT */
-                    .pt-select select:hover,
-                    .pt-select select:not(.empty) {
-                        border: 1px solid black;
-                    }
+  return (
+    <div ref={wrapper} className="pt-select-wrapper" tabIndex="0">
+      <div ref={select} className={divClassList}>
+        {leadingIcon ? (
+          <Icon name={leadingIcon.name} brand={leadingIcon.brand} />
+        ) : (
+          ""
+        )}
+        <p className={selectedValueClassList}>{selectedLabel}</p>
+        <span className="select-label">{label}</span>
+        <Icon name="chevron-right" label="dropdown-chevron" />
+        <style jsx="true">
+          {`
+            .pt-select-wrapper {
+              outline: none;
+              align-self: flex-start;
+              position: relative;
+            }
 
-                    .pt-select select:focus,
-                    .pt-select select:not(.empty) {
-                        border-top-color: transparent !important;
-                        border: 1px solid black;
-                        box-shadow: inset 0 -1px black, inset 1px 0 black,
-                            inset -1px 0 black;
-                    }
+            .pt-select {
+              position: relative;
+              align-self: flex-start;
+              font-size: 16px;
+              border: 1px solid var(--grey);
+              border-radius: 14px;
+              height: 56px;
+              display: flex;
+              align-items: center;
+              transition: border 0.3s ease;
+              background: var(--white);
+              min-width: 200px;
+              cursor: pointer;
+              outline: none;
+            }
 
-                    .pt-select select {
-                        width: 100%;
-                        height: 100%;
-                        line-height: inherit;
-                        border: none;
-                        padding: 15px 30px 15px 13px;
-                        background-color: transparent;
-                        border: 1px solid #626262;
-                        border-radius: 4px;
-                        outline: none;
-                        font-size: 16px;
-                        color: black;
-                        font-family: var(
-                            --pay-theory-font,
-                            'Roboto',
-                            'Segoe UI',
-                            BlinkMacSystemFont,
-                            system-ui,
-                            -apple-system
-                        );
-                        -webkit-appearance: none;
-                        -moz-appearance: none;
-                        appearance: none;
-                        -ms-appearance: none;
-                        transition: border-color 0.2s, border 0.2s;
-                    }
+            .pt-select:hover {
+              border: 1px solid var(--black);
+            }
 
-                    .pt-select.empty select {
-                        color: #7a7b7a;
-                    }
+            .pt-select.focused {
+              border: 1px solid var(--pt-purple);
+              transition: border 0.3s ease;
+            }
 
-                    .pt-select option {
-                        color: black !important;
-                    }
+            .pt-select .selected-value {
+              border: none;
+              font-size: 16px;
+              font-family: Europa, Segoe UI, Trebuchet MS, Arial, Helvetica,
+                sans-serif;
+              flex: 1;
+              height: 56px;
+              background: transparent;
+              padding: 8px 0px 0px 16px;
+              border-radius: 16px;
+              border: 1px solid transparent;
+              height: 54px;
+              display: flex;
+              align-items: center;
+            }
 
-                    .filler-option {
-                        display: none;
-                    }
+            .pt-select .select-label {
+              position: absolute;
+              left: 16px;
+              font-size: 16px;
+              font-family: Europa, Segoe UI, Trebuchet MS, Arial, Helvetica,
+                sans-serif;
+              color: var(--grey);
+              transition-property: font, top;
+              transition-duration: 0.5s;
+              transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+            }
 
-                    /* Label */
-                    .pt-select label,
-                    .pt-select.empty:focus-within > select + label {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        display: flex;
-                        align-items: center;
-                        pointer-events: none;
-                        width: 100%;
-                        padding: 0px;
-                        max-height: 100%;
-                        font-size: 75%;
-                        font-family: var(
-                            --pay-theory-font,
-                            'Roboto',
-                            'Segoe UI',
-                            BlinkMacSystemFont,
-                            system-ui,
-                            -apple-system
-                        );
-                        line-height: 15px;
-                        transition: color 0.2s, font-size 0.2s, line-height 0.2s;
-                    }
+            .pt-select .selected-value:not(.empty) + .select-label {
+              top: 6px;
+              font-size: 11px;
+            }
 
-                    /* Temporary fix for 1px border diff */
-                    .pt-select:not(.empty) label {
-                        margin-top: -1px;
-                    }
+            /* Disabled Styling */
+            .pt-select.disabled {
+              background: var(--grey-2);
+              border: 1px solid var(--grey-1);
+              cursor: default;
+            }
 
-                    .pt-select label::before,
-                    .pt-select.empty:focus-within > select + label::before {
-                        content: '';
-                        width: 16px;
-                        height: 15px;
-                        margin-right: 4px;
-                        border-left: solid 1px transparent;
-                        border-radius: 4px 0;
-                        border-top: 1px solid black;
-                        box-shadow: inset 0 1px black;
-                    }
+            .pt-select.disabled .select-label,
+            .pt-select.disabled .pt-icon {
+              color: var(--grey-1);
+            }
 
-                    .pt-select label::after,
-                    .pt-select.empty:focus-within > select + label::after {
-                        content: '';
-                        width: auto;
-                        height: 15px;
-                        margin-left: 4px;
-                        border-right: solid 1px transparent;
-                        border-radius: 0 4px;
-                        border-top: 1px solid black;
-                        box-shadow: inset 0 1px black;
-                    }
+            /* Icon Styling */
+            .pt-select .pt-icon {
+              height: 48px;
+              width: 48px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
 
-                    /* Corners */
-                    .pt-select > select + label::before,
-                    .pt-select > select + label::after {
-                        content: '';
-                        display: block;
-                        box-sizing: border-box;
-                        margin-top: 6px;
-                        border-top: solid 1px black;
-                        box-shadow: inset 0 1px black;
-                        min-width: 10px;
-                        height: 8px;
-                        pointer-events: none;
-                        transition: border-color 0.2s, border 0.2s;
-                    }
+            .pt-select.leading .select-label {
+              left: 48px;
+            }
 
-                    .pt-select > select + label::before {
-                        margin-right: 4px;
-                        border-left: solid 1px transparent;
-                        border-radius: 4px 0;
-                    }
+            .pt-select.leading .selected-value {
+              padding-left: 0px;
+            }
 
-                    .pt-select > select + label::after {
-                        flex-grow: 1;
-                        margin-left: 4px;
-                        border-right: solid 1px transparent;
-                        border-radius: 0 4px;
-                    }
+            .pt-select .dropdown-chevron {
+              transition: transform 0.3s ease;
+            }
 
-                    /*Not Selected*/
-                    .pt-select.empty select + label {
-                        font-size: inherit;
-                        line-height: 62px;
-                        margin: 0;
-                        padding-top: 6px;
-                    }
-                    .pt-select.empty select + label::before {
-                        border-color: transparent;
-                        box-shadow: inset 0 1px transparent;
-                        height: 56px;
-                    }
-                    .pt-select.empty select + label::after {
-                        border-color: transparent;
-                        box-shadow: inset 0 1px transparent;
-                        height: 56px;
-                    }
+            .pt-select.focused .dropdown-chevron {
+              transform: rotate(90deg);
+              color: var(--pt-purple);
+              transition: all 0.3s ease;
+            }
 
-                    /*Arrow Icons*/
-                    .pt-select i {
-                        position: absolute;
-                        right: 10px;
-                        pointer-events: none;
-                    }
+            /* Dropdown Styling */
+            .pt-select-wrapper .pt-select + .select-dropdown {
+              flex-direction: column;
+              position: absolute;
+              top: 0px;
+              border: 1px solid var(--pt-purple);
+              border-radius: 16px;
+              width: 100%;
+              height: 0px;
+              overflow: hidden;
+              opacity: 0;
+              background: var(--white);
+            }
 
-                    .pt-select:focus-within .fa-caret-down {
-                        display: none;
-                    }
+            .pt-select-wrapper .pt-select.focused + .select-dropdown {
+              opacity: 1;
+              height: auto;
+              padding: 60px 4px 4px;
+              transition: all 0.3s ease;
+            }
 
-                    .pt-select .fa-caret-up {
-                        display: none;
-                    }
+            .pt-select-wrapper .select-dropdown .select-item {
+              height: 40px;
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              padding: 0px 16px;
+              cursor: pointer;
+            }
 
-                    .pt-select:focus-within .fa-caret-up {
-                        display: flex;
-                    }
-                `}
-            </style>
-        </div>
-    )
-}
+            .pt-select-wrapper
+              .select-dropdown
+              .select-item:not(.disabled):hover {
+              background: var(--grey-2);
+            }
+
+            .pt-select-wrapper .select-dropdown .select-item.active {
+              background: var(--grey-2);
+              font-weight: var(--black-weight);
+            }
+
+            .pt-select-wrapper .select-dropdown .select-item.disabled {
+              cursor-events: none;
+              cursor: default;
+              color: var(--grey-1);
+            }
+          `}
+        </style>
+      </div>
+      <Dropdown
+        items={options}
+        onClick={onChange}
+        reference={dropdown}
+        value={value}
+      />
+    </div>
+  );
+};
 
 Select.propTypes = {
-    className: PropTypes.string,
-    label: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  leadingIcon: PropTypes.shape({
     name: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-    options: PropTypes.array.isRequired,
-    value: PropTypes.string.isRequired
-}
+    brand: PropTypes.bool
+  }),
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  inputProps: PropTypes.object,
+  options: PropTypes.array
+};
 
-export default Select
+Select.defaultProps = {
+  onClick: () => {}
+};
+
+export default Select;

@@ -75,6 +75,7 @@ const AuthStyle = (props) => {
                     flex-direction: column;
                     align-content: center;
                     justify-content: flex-start;
+                    margin-top: 80px;
                 }
 
                 .auth-outer {
@@ -89,8 +90,8 @@ const AuthStyle = (props) => {
                     padding-bottom: 2em;
                 }
                 .authentication-logo-header {
-                    background-color: #330066;
-                    background-image: url('https://d3i745cguwtt4u.cloudfront.net/paytheory-logo.svg');
+                    background-color: var(--grey-2);
+                    background-image: url(https://books-ui-assets.s3.amazonaws.com/logo_main_color.svg);
                     background-repeat: no-repeat;
                     background-size: 30%;
                     background-position: center;

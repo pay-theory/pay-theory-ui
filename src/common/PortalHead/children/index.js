@@ -1,16 +1,16 @@
 /* istanbul ignore file */
-import AccountMenu from './AccountMenu'
-import AccountMenuItems from './AccountMenuItems'
-import AccountMenuButton from './AccountMenuButton'
-import PortalLabel from './PortalLabel'
-import PortalLogo from './PortalLogo'
-import PortalTitle from './PortalTitle'
+import ActionButton from "./ActionButton";
+import PortalLogo from "./PortalLogo";
+import GeneralNotification from "./GeneralNotification";
+import ErrorNotification from "./ErrorNotification";
+import SuccessNotification from "./SuccessNotifcation";
+import MenuButton from "./MenuButton";
 
 export {
-    AccountMenu,
-    AccountMenuItems,
-    AccountMenuButton,
-    PortalLabel,
-    PortalLogo,
-    PortalTitle
-}
+  ActionButton,
+  PortalLogo,
+  ErrorNotification,
+  SuccessNotification,
+  GeneralNotification,
+  MenuButton
+};

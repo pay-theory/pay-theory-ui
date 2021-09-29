@@ -78,6 +78,7 @@ const SpinnerContent = (props) => {
                         height: 100%;
                         width: 100%;
                         backdrop-filter: opacity(75%) blur(1px);
+                        z-index: 9999;
                     }
                     .spinner-off {
                         visibility: hidden;
@@ -93,6 +94,7 @@ const SpinnerContent = (props) => {
                         position: fixed;
                         top: 50%;
                         left: 50%;
+                        z-index: 9999;
                     }
 
                     #spinner-content form {

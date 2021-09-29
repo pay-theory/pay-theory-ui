@@ -1,6 +1,10 @@
 {
     "name": "@paytheory/pay-theory-ui",
+<<<<<<< HEAD
     "version": "0.1.215-0",
+=======
+    "version": "0.1.241-0",
+>>>>>>> austin
     "description": "Made with create-react-library",
     "author": "austinzani",
     "license": "MIT",

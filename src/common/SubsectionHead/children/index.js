@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import SubsectionParent from './SubsectionParent'
-import SubsectionSubtitle from './SubsectionSubtitle'
+import SubsectionParent from "./SubsectionParent";
+import SubsectionCurrentPage from "./SubsectionCurrentPage";
 
-export { SubsectionParent, SubsectionSubtitle }
+export { SubsectionParent, SubsectionCurrentPage };

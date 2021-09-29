@@ -1,39 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import Icon from "../../Icon";
+import Badge from "../../Badge";
 
-const NavigationItem = (props) => {
-    const [className, setClassName] = useState('inactive')
+const NavigationItem = ({ item }) => {
+  const [className, setClassName] = useState("inactive");
 
-    useEffect(() => {
-        if (window.location.pathname.indexOf(props.item.tag) >= 0) {
-            setClassName('active')
-        }
-        else {
-            setClassName('inactive')
-        }
-    }, [window.location.pathname, props.item.tag])
+  useEffect(() => {
+    if (window.location.pathname.indexOf(item.tag) >= 0) {
+      setClassName("active");
+    } else {
+      setClassName("inactive");
+    }
+  }, [window.location.pathname, item.tag]);
 
-    return (
-        <li key={props.item.tag} data-testid={props.item.tag}>
-            <Link
-                to={{
-                    pathname: props.item.to,
-                    state: { hash: props.item.tag }
-                }}
-                className={className}
-                id={`${props.item.tag}-link`}
-            >
-                <i className={`fal fa-${props.item.icon} fa-lg`} />
-                {props.item.label}
-            </Link>
-        </li>
-    )
-}
+  return (
+    <li data-testid={item.tag} key={item.tag}>
+      <Link
+        className={className}
+        id={`${item.tag}-link`}
+        to={{
+          pathname: item.to,
+          state: { hash: item.tag }
+        }}
+      >
+        <p className="label">
+          {item.icon ? <Icon label="leading" name={item.icon} brand={item.iconBrand} /> : null}
+          {item.label}
+        </p>
+        {item.badgeNumber ? <Badge number={`${item.badgeNumber}`} /> : ""}
+      </Link>
+    </li>
+  );
+};
 
 NavigationItem.propTypes = {
-    item: PropTypes.object.isRequired,
-    className: PropTypes.string.isRequired
-}
+  item: PropTypes.object.isRequired
+};
 
-export default NavigationItem
+export default NavigationItem;

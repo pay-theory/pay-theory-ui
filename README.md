@@ -18,9 +18,9 @@ npm install --save pay-theory-ui
 -   JSX example
 
 ```jsx
-<BooksHooks.context.menu.Provider value={generateMenu()}>
+<BooksHooks.Context.Menu.Provider value={generateMenu()}>
 	<NavigationDrawer />
-</BooksHooks.context.menu.Provider>
+</BooksHooks.Context.Menu.Provider>
 ```
 
 ### Application Hooks

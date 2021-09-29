@@ -1,133 +1,160 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
 
-import Column from './Column'
-import CopyAction from './CopyAction'
-import ViewAction from './ViewAction'
-import ViewDeleteAction from './ViewDeleteAction'
-import OtherAction from './OtherAction'
-import Checkbox from '../../Checkbox'
+import BasicCol from "./BasicCol";
+import ActionCol from "./ActionCol";
+import LinkCol from "./LinkCol";
+import ChipCol from "./ChipCol";
+import CurrencyCol from "./CurrencyCol";
+import Checkbox from "../../Checkbox";
+import PayMethodCol from "./PayMethodCol";
+import { TableContext } from "../index";
 
-const Row = (props) => {
-    const columns = props.columns.map((column, col) => {
-        // eslint-disable-next-line no-unused-vars
-        const className = `cell ${column.className}`
-        if (col === 0 && props.view) {
-            return (
-                <Column
-                    className={column.className}
-                    col={col}
-                    content={column.content}
-                    key={`${props.itemKey}-column-${col}`}
-                    linked
-                    locked={props.locked}
-                    row={props.row}
-                    view={props.view}
-                />
-            )
-        }
-        else {
-            return (
-                <Column
-                    className={column.className}
-                    col={col}
-                    content={column.content}
-                    key={`${props.itemKey}-column-${col}`}
-                    locked={props.locked}
-                    row={props.row}
-                />
-            )
-        }
-    })
-    if (props.hasActions) {
-        if (props.canDelete) {
-            columns.push(
-                <ViewDeleteAction
-                    delete={props.delete}
-                    key={`${props.itemKey}-delete`}
-                    locked={props.locked}
-                    row={props.row}
-                    view={props.view}
-                />
-            )
-        }
-        else if (props.otherActions) {
-            columns.push(
-                <OtherAction
-                    actions={props.otherActions}
-                    key={`${props.itemKey}-other`}
-                    row={props.row}
-                    rowObject={props.rowObject}
-                />
-            )
-        }
-        else if (props.copyOnly) {
-            columns.push(
-                <CopyAction
-                    callback={props.copyCallback}
-                    copyText={props.copyText}
-                    itemKey={props.itemKey}
-                    key={`${props.itemKey}-copy`}
-                    row={props.row}
-                />
-            )
-        }
-        else {
-            columns.push(
-                <ViewAction
-                    key={`${props.itemKey}-view`}
-                    row={props.row}
-                    view={props.view}
-                />
-            )
-        }
+const generateBasicCol = (column, col, row, itemKey) => {
+  return (
+    <BasicCol
+      className={column.className}
+      col={col}
+      content={column.content}
+      key={`${itemKey}-column-${col}`}
+      row={row}
+    />
+  );
+};
+
+const generateLinkCol = (column, col, row, itemKey) => {
+  return (
+    <LinkCol
+      className={column.className}
+      col={col}
+      content={column.content}
+      key={`${itemKey}-column-${col}`}
+      row={row}
+      view={column.view}
+    />
+  );
+};
+
+const generateActionCol = (column, col, row, itemKey) => {
+  return (
+    <ActionCol
+      className={column.className}
+      col={col}
+      key={`${itemKey}-column-${col}`}
+      row={row}
+      label={column.label}
+      icon={column.icon}
+      action={column.action}
+      rowObject={column.rowObject}
+      disabled={column.disabled}
+    />
+  );
+};
+
+const generateChipCol = (column, col, row, itemKey) => {
+  return (
+    <ChipCol
+      className={column.className}
+      col={col}
+      key={`${itemKey}-column-${col}`}
+      row={row}
+      text={column.text}
+      color={column.color}
+      textColor={column.textColor}
+    />
+  );
+};
+
+const generateCurrencyCol = (column, col, row, itemKey) => {
+  return (
+    <CurrencyCol
+      className={column.className}
+      col={col}
+      content={column.content}
+      key={`${itemKey}-column-${col}`}
+      row={row}
+    />
+  );
+};
+
+const generatePaymentMethod = (column, col, row, itemKey) => {
+  return (
+    <PayMethodCol
+      className={column.className}
+      col={col}
+      lastFour={column.lastFour}
+      brand={column.brand}
+      key={`${itemKey}-column-${col}`}
+      row={row}
+    />
+  );
+};
+
+const colGenerator = {
+  link: generateLinkCol,
+  basic: generateBasicCol,
+  chip: generateChipCol,
+  currency: generateCurrencyCol,
+  action: generateActionCol,
+  paymentMethod: generatePaymentMethod
+};
+
+const Row = ({ row, itemKey, hasActions, columns, rowObject }) => {
+  const selectKey = `row${row}`;
+  const context = useContext(TableContext);
+
+  const updateSelected = (key, object, isSelected) => {
+    const newCopy = { ...context.selected };
+    if (isSelected) {
+      newCopy[key] = object;
+    } else {
+      delete newCopy[key];
     }
+    context.setSelected(newCopy);
+  };
 
-    if (props.select) {
-        columns.unshift(
-            <span
-        className="table-select"
+  const mappedColumns = columns.map((column, col) => {
+    // eslint-disable-next-line no-unused-vars
+    return column.type
+      ? colGenerator[column.type](column, col, row, itemKey)
+      : colGenerator["basic"](column, col, row, itemKey);
+  });
+
+  if (hasActions) {
+    mappedColumns.unshift(
+      <td
+        className="cell select"
         data-testid="select-column"
-        key={`${props.itemKey}-select`}
+        key={`${itemKey}-select`}
       >
-        <Checkbox
-          id={`checkbox-${props.itemKey}`}
-          inputProps={{
-            "data-testid": "select-item",
-            checked: props.select.selected.includes(props.row),
-            onChange: (e) => {
-              props.select.setSelected(props.select.onChange(e, props.row));
-            }
-          }}
-        />
-      </span>
-        );
-    }
-    return (
-        <div
-            className='inner-table-row'
-            id={`${props.row}`}
-            key={`${props.row}-${props.itemKey}`}
-        >
-            {columns}
-        </div>
-    )
-}
+        <span className="content">
+          <Checkbox
+            id={`checkbox-${itemKey}`}
+            inputProps={{
+              "data-testid": "select-item",
+              checked: context.selected[selectKey] ? true : false,
+              onChange: (e) => {
+                updateSelected(selectKey, rowObject, e.target.checked);
+              }
+            }}
+          />
+        </span>
+      </td>
+    );
+  }
+  return (
+    <tr className="inner-table-row" id={`${row}`} key={`${row}-${itemKey}`}>
+      {mappedColumns}
+    </tr>
+  );
+};
 
 Row.propTypes = {
-    columns: PropTypes.array.isRequired,
-    row: PropTypes.number.isRequired,
-    itemKey: PropTypes.any.isRequired,
-    locked: PropTypes.bool,
-    hasActions: PropTypes.bool,
-    canDelete: PropTypes.bool,
-    copyOnly: PropTypes.bool,
-    copyText: PropTypes.string,
-    view: PropTypes.any,
-    delete: PropTypes.any,
-    copyCallback: PropTypes.any,
-    otherActions: PropTypes.array,
-    rowObject: PropTypes.object
-}
+  itemKey: PropTypes.string.isRequired,
+  hasActions: PropTypes.bool,
+  columns: PropTypes.array.isRequired,
+  row: PropTypes.number.isRequired,
+  rowObject: PropTypes.object.isRequired
+};
 
-export default Row
+export default Row;

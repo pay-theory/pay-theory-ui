@@ -1,141 +1,171 @@
-import React, { useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { useRef, useEffect } from "react";
+import PropTypes from "prop-types";
+import Icon from "../Icon";
 
-const Checkbox = ({ id, label, indeterminate, inputProps }) => {
-  const checkRef = useRef()
+const Checkbox = ({
+  id,
+  indeterminate,
+  disabled,
+  inputProps,
+  label,
+  top,
+  bottom,
+  left
+}) => {
+  const checkRef = useRef();
 
   useEffect(() => {
-    checkRef.current.indeterminate = indeterminate ? true : undefined
-  }, [indeterminate])
+    checkRef.current.indeterminate = indeterminate ? true : undefined;
+  }, [indeterminate]);
+
+  const location = top ? "top" : bottom ? "bottom" : left ? "left" : "right";
 
   return (
-    <div className='checkbox'>
-            <input
-                id={id}
-                ref={checkRef}
-                type='checkbox'
-                {...inputProps}
-            />
-            <label htmlFor={id}>
-        {label}
-        <i className="fas fa-check" />
-        <i className="fas fa-minus" />
-      </label>
+    <label
+      htmlFor={id}
+      className={`pt-checkbox ${disabled ? "disabled" : ""} ${location}`}
+    >
+      <span className={`pt-checkbox-box ${disabled ? "disabled" : ""}`}>
+        <input
+          id={id}
+          ref={checkRef}
+          disabled={disabled}
+          className="input-box"
+          type="checkbox"
+          aria-label={label ? label : id}
+          {...inputProps}
+        />
+        <span className="icons">
+          <Icon name="check" label="check" />
+          <Icon name="minus" label="minus" />
+        </span>
+      </span>
+      <p>{label}</p>
       <style jsx="true">{`
-        .checkbox {
-          position: relative;
-          height: 1.125em;
-          width: 1.125em;
-        }
-
-        .checkbox label {
-          display: block;
-          position: relative;
-          margin-bottom: 8px;
-          padding: 0 28px;
-          font-weight: 400;
-          font-size: 16px;
-          color: #6b7887;
-          line-height: 1;
+        .pt-checkbox {
           cursor: pointer;
-          user-select: none;
+          display: inline-flex;
+          align-items: center;
+          align-self: flex-start;
         }
 
-        .checkbox label i {
-          position: absolute;
-          left: 1px;
-          top: 2px;
-          color: white;
+        .pt-checkbox .pt-icon {
+          display: none;
+          color: var(--white);
+        }
+
+        .pt-checkbox-box {
+          height: 40px;
+          width: 40px;
+          border-radius: 12px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: background 0.2s ease;
+        }
+
+        .pt-checkbox-box:not(.disabled):hover {
+          background: var(--grey-1-opaque);
+          transition: background 0.2s ease;
+        }
+        /* Visually Hide Input */
+        .pt-checkbox input[type="checkbox"] {
           display: none;
         }
 
-        /* Create the Checkbox Frame with a (:before) */
+        .pt-checkbox-box .icons {
+          border: 1px solid var(--black);
+          height: 20px;
+          width: 20px;
+          border-radius: 6px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: border 0.2s ease, background 0.2s ease;
+        }
 
-        .checkbox label::before {
+        .pt-checkbox-box .input-box:checked + .icons,
+        .pt-checkbox-box .input-box:indeterminate + .icons {
+          background: var(--pt-purple);
+          border: 1px solid var(--pt-purple);
+          transition: border 0.2s ease, background 0.2s ease;
+        }
+
+        .pt-checkbox-box .input-box:checked + .icons .check {
           display: block;
-          position: absolute;
-          box-sizing: border-box;
-          top: 0;
-          left: 0;
-          width: 18px;
-          height: 18px;
-          border: 1px solid transparent;
-          border-radius: 2px;
-          background-color: #e8ecef;
-          transition: background-color 0.1s, 0.2s ease-out;
-          content: "";
+          transition: border 0.2s ease, background 0.2s ease;
         }
 
-        /* Visually Hide Input */
-
-        input[type="checkbox"] {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 0;
-          height: 0;
-          opacity: 0;
-          pointer-events: none;
-        }
-
-        /* Hover State */
-
-        input[type="checkbox"]:hover + label::before {
-          background-color: #cad3dd;
-        }
-
-        /* Focus State */
-
-        input[type="checkbox"]:focus + label::before {
-          outline: 0;
-        }
-
-        /* 'Checked' Mint Frame (:before) */
-
-        input[type="checkbox"]:checked + label::before {
-          background-color: #5BC794;
-        }
-
-        /* 'Checked' White Checkmark Icon */
-
-        input[type="checkbox"]:checked + label i.fa-check {
+        .pt-checkbox-box .input-box:indeterminate + .icons .minus {
           display: block;
+          transition: border 0.2s ease, background 0.2s ease;
         }
 
-        /* 'Indeterminate' Sunshine Frame (:before) */
-
-        input[type="checkbox"]:indeterminate + label::before {
-          background-color: #F5BD42;
+        .pt-checkbox.left {
+          flex-direction: row-reverse;
+        }
+        .pt-checkbox.top {
+          flex-direction: column-reverse;
+        }
+        .pt-checkbox.bottom {
+          flex-direction: column;
+        }
+        .pt-checkbox.left p {
+          padding-right: 4px;
+        }
+        .pt-checkbox.right p {
+          padding-left: 4px;
+        }
+        .pt-checkbox p {
+          -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Safari */
+          -khtml-user-select: none; /* Konqueror HTML */
+          -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                        supported by Chrome, Edge, Opera and Firefox */
         }
 
-        /* 'Indeterminate' White Dash Icon */
-
-        input[type="checkbox"]:indeterminate + label i.fa-minus {
-          display: block;
-          left: 2px;
+        /* Disabled Styling */
+        .pt-checkbox.disabled {
+          cursor: auto;
         }
 
-        /* 'Disabled' Checkbox Label Text */
+        .pt-checkbox.disabled p {
+          color: var(--grey-1);
+        }
 
-        input[type="checkbox"]:disabled + label {
-          color: #cad3dd;
-          cursor: default;
+        .pt-checkbox-box.disabled .icons {
+          border: 1px solid var(--grey-1);
+        }
+
+        .pt-checkbox-box.disabled .input-box:checked + .icons,
+        .pt-checkbox-box.disabled .input-box:indeterminate + .icons {
+          background: var(--grey-1);
+          border: 1px solid var(--grey-1);
+          transition: border 0.2s ease, background 0.2s ease;
         }
       `}</style>
-    </div>
+    </label>
   );
 };
 
 Checkbox.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string,
-  inputProps: PropTypes.object,
-  indeterminate: PropTypes.any
+  inputProps: PropTypes.object.isRequired,
+  indeterminate: PropTypes.any,
+  top: PropTypes.bool,
+  bottom: PropTypes.bool,
+  left: PropTypes.bool
 };
 
 Checkbox.defaultProps = {
-  inputProps: {},
-  indeterminate: undefined
+  indeterminate: undefined,
+  label: undefined,
+  top: false,
+  bottom: false,
+  left: false
 };
 
 export default Checkbox;
