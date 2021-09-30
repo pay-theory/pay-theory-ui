@@ -5,29 +5,52 @@ import TextEntry from '../TextEntry'
 
 import { formatDateString, validDate } from '../dateUtils'
 
-const TextEntryDate = (props) => {
+const TextEntryDate = ({
+    label,
+    placeholder,
+    onChange,
+    value,
+    disabled,
+    inputProps,
+    helperText,
+    leadingIcon,
+    trailingIcon
+}) => {
     return (
         <TextEntry
-            helperText='MM / DD / YYYY'
-            name={props.name}
-            label={props.label}
-            outer={props.outer}
-            value={props.value}
-            isValid={(() => validDate(props.value))? true : false}
+            disabled={disabled}
+            helperText={helperText}
+            inputProps={inputProps}
+            label={label}
+            leadingIcon={leadingIcon}
             onChange={(e) => {
-                const formatted = formatDateString(e.target.value, props.value)
-                props.onChange(formatted)
+                const formatted = formatDateString(e.target.value, value)
+                onChange(formatted)
             }}
+            placeholder={placeholder}
+            trailingIcon={trailingIcon}
+            valid={validDate}
+            value={value}
         />
     )
 }
 
 TextEntryDate.propTypes = {
-    name: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
     label: PropTypes.string.isRequired,
-    outer: PropTypes.string,
-    value: PropTypes.string,
-    onChange: PropTypes.any
+    leadingIcon: PropTypes.shape({
+        name: PropTypes.string,
+        brand: PropTypes.bool
+    }),
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    trailingIcon: PropTypes.shape({
+        name: PropTypes.string,
+        brand: PropTypes.bool
+    }),
+    value: PropTypes.string.isRequired,
+    inputProps: PropTypes.object,
+    helperText: PropTypes.any
 }
 
 export default TextEntryDate

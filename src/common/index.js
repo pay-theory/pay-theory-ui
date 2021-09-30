@@ -37,6 +37,7 @@ import HoverMenu from './HoverMenu'
 import Icon from './Icon'
 import IconButton from './IconButton'
 import InnerTable, { useResultsPerPage } from './InnerTable'
+import IndexColumn, { useIndexColumn } from './IndexColumn'
 
 import ModalContent, { closeModal, openModal } from './ModalContent'
 import ModalSpinner, { openSpinner, closeSpinner } from './ModalSpinner'
@@ -65,6 +66,7 @@ import TabPage from './TabPage'
 import TextEntry from './TextEntry'
 import TextEntryDate from './TextEntryDate'
 import TextEntryPhone from './TextEntryPhone'
+import Toggle from './Toggle'
 import ToolTip from './Tooltip'
 
 import Unauthorized from './Unauthorized'
@@ -105,6 +107,8 @@ export {
     Icon,
     IconButton,
     InnerTable,
+    IndexColumn,
+    useIndexColumn,
     useResultsPerPage,
     ModalContent,
     closeModal,
@@ -133,6 +137,7 @@ export {
     TextEntry,
     TextEntryDate,
     TextEntryPhone,
+    Toggle,
     ToolTip,
     timedLogout,
     Unauthorized,
