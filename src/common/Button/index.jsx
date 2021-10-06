@@ -89,7 +89,6 @@ const Button = ({
                 {`
                     .pt-button {
                         position: relative;
-                        align-self: flex-start;
                         transition: background 400ms;
                         outline: 0;
                         height: 48px;

@@ -88,17 +88,21 @@ const GlobalStyle = (props) => {
           .body-container {
             background-color: var(--white);
             flex-grow: 1;
-            height: 100%;
+            width: 100% !important;
             display: flex;
+            flex-direction: row;
             overflow: auto;
+          }
+
+          .body-content-wrapper {
+            display: flex;
+            flex: 1;
           }
 
           .body-content {
             height: auto;
             width: 100%;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+            height: 100%;
             padding: 16px;
             overflow: auto;
           }
@@ -353,6 +357,25 @@ const GlobalStyle = (props) => {
 
           .pay-theory-cash-badge {
             background-image: url(https://books-ui-assets.s3.amazonaws.com/cash-dollar-color.svg);
+          }
+
+          .flex {
+            display: flex;
+          }
+
+          .flex-center {
+            display: flex;
+            justify-content: center;
+          }
+
+          .flex-between {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .flex-around {
+            display: flex;
+            justify-content: space-around;
           }
         `}
       </style>

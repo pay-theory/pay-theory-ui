@@ -31,8 +31,6 @@ const Card = ({
             <style jsx='true'>
                 {`
                     .pt-card {
-                        display: flex;
-                        flex-direction: column;
                         background-color: var(--white);
                         border-radius: 20px;
                         border: 1px solid transparent;
