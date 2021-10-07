@@ -1,11 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const IndexColumn = ({ header, hook }) => {
+    const { setSelected, items, getValue, selected } = hook
+    const formatted = items.map((item, index) => {
+        const value = getValue(item)
+        const key = `${value}-row-${index}`
+        return (
+            <p
+                className={`pt-index-column-row ${
+                    getValue(selected) === value ? 'selected' : ''
+                }`}
+                key={key}
+                onClick={() => {
+                    setSelected(item)
+                }}
+            >
+                {value}
+            </p>
+        )
+    })
     return (
         <div className='pt-index-column'>
             <p className='pt-index-column-header'>{header}</p>
-            {hook.formattedItems}
+            {formatted.length > 0 ? (
+                formatted
+            ) : (
+                <p className='no-data'>No Data</p>
+            )}
             <style global='true' jsx='true'>
                 {`
                     .pt-index-column {
@@ -26,6 +48,14 @@ const IndexColumn = ({ header, hook }) => {
                         padding: 8px;
                         border-radius: 8px;
                         color: var(--pt-purple);
+                        cursor: default;
+                    }
+
+                    .no-data {
+                        padding: 8px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
                     }
 
                     .pt-index-column-row:hover {
@@ -42,8 +72,8 @@ const IndexColumn = ({ header, hook }) => {
 }
 
 IndexColumn.propTypes = {
-    header: PropTypes.string.isRequired,
-    hook: PropTypes.object.isRequired
+    hook: PropTypes.object.isRequired,
+    header: PropTypes.string.isRequired
 }
 
 export default IndexColumn
@@ -55,34 +85,14 @@ export default IndexColumn
 // getValue: function that helps the IndexColumn get the unique value from each object in the items array
 export const useIndexColumn = (items, getValue) => {
     const [selected, setSelected] = useState({})
-    const [formattedItems, setFormattedItems] = useState([])
-
-    useEffect(() => {
-        const formatted = items.map((item, index) => {
-            const value = getValue(item)
-            const key = `${value}-row-${index}`
-            return (
-                <p
-                    className={`pt-index-column-row ${
-                        getValue(selected) === value ? 'selected' : ''
-                    }`}
-                    key={key}
-                    onClick={() => {
-                        setSelected(item)
-                    }}
-                >
-                    {value}
-                </p>
-            )
-        })
-        setFormattedItems(formatted)
-    }, [items, selected])
 
     return {
         selected,
         clearSelected: () => {
             setSelected({})
         },
-        formattedItems
+        setSelected,
+        getValue,
+        items
     }
 }

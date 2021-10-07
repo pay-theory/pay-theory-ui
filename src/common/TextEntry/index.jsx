@@ -240,8 +240,4 @@ TextEntry.propTypes = {
     helperText: PropTypes.any
 }
 
-TextEntry.defaultProps = {
-    onClick: () => {}
-}
-
 export default TextEntry

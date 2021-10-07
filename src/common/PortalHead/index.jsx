@@ -59,6 +59,7 @@ const PortalHead = ({ menuButtons }) => {
                         padding: 0px 0px 0px 24px;
                         line-height: 30px;
                         height: 64px;
+                        min-height: 64px;
                         box-shadow: 2px 2px 2px var(--black-opaque-8);
                         z-index: 10;
                         position: -webkit-sticky;
