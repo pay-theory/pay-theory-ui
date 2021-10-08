@@ -348,7 +348,8 @@ InnerTable.propTypes = {
     groupActions: PropTypes.array,
     id: PropTypes.string.isRequired,
     paginationHook: PropTypes.object,
-    emptyMessage: PropTypes.string
+    emptyMessage: PropTypes.string,
+    resultsPerPageHook: PropTypes.string
 }
 
 InnerTable.defaultProps = {

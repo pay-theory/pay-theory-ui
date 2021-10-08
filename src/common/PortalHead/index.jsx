@@ -165,10 +165,13 @@ export const usePortalNotification = () => {
     const ERROR = 'error'
 
     const checkForShowing = () => {
-        const fallback = { classList: [] }
-        const error = document.getElementById(`pt-${ERROR}-notification`) || fallback
-        const general = document.getElementById(`pt-${GENERAL}-notification`) || fallback
-        const success = document.getElementById(`pt-${SUCCESS}-notification`) || fallback
+        const fallback = document.createElement('div')
+        const error =
+            document.getElementById(`pt-${ERROR}-notification`) || fallback
+        const general =
+            document.getElementById(`pt-${GENERAL}-notification`) || fallback
+        const success =
+            document.getElementById(`pt-${SUCCESS}-notification`) || fallback
         const show = 'show'
 
         return (
