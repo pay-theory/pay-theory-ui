@@ -12,11 +12,14 @@ const InnerTable = ({
     rows,
     columns,
     id,
-    emptyMessage
+    emptyMessage,
+    height
 }) => {
     const wrapper = useRef(null)
     const [selected, setSelected] = useState({})
     const [parentWidth, setParentWidth] = useState(0)
+    const [parentHeight, setParentHeight] = useState(0)
+    const [actualHeight, setActualHeight] = useState('auto')
     const [columnWidth] = useState({})
     const [isResizingHeader, setIsResizingHeader] = useState(false)
     const [rowWidth, setRowWidth] = useState(0)
@@ -39,9 +42,27 @@ const InnerTable = ({
         setSelected({})
     }, [page])
 
+    // checks the height of the parent to see if it is taller than the full table height
+
+    useEffect(() => {
+        if (parentHeight) {
+            const tableHeight = 48 * rows.length + 41
+            const adjustedParentHeight = hasActions
+                ? parentHeight - 48
+                : parentHeight
+            const height =
+                adjustedParentHeight < tableHeight
+                    ? adjustedParentHeight
+                    : tableHeight
+            setActualHeight(`${height}px`)
+        }
+    }, [parentHeight, hasActions, rows])
+
     useEffect(() => {
         if ((wrapper && wrapper.current) || resized) {
-            setParentWidth(wrapper.current.getBoundingClientRect().width)
+            const client = wrapper.current
+            setParentWidth(client.getBoundingClientRect().width)
+            setParentHeight(client.parentNode.getBoundingClientRect().height)
             setResized(false)
         }
     }, [wrapper, resized])
@@ -81,7 +102,10 @@ const InnerTable = ({
                 ) : (
                     ''
                 )}
-                <div className='inner-table-wrapper'>
+                <div
+                    className='inner-table-wrapper'
+                    style={{ height: height ? `${height}px` : actualHeight }}
+                >
                     <table
                         className='inner-table'
                         style={{
@@ -123,6 +147,13 @@ const InnerTable = ({
 
                                 .inner-table-wrapper {
                                     overflow: auto;
+                                    width: 100%;
+                                    -ms-overflow-style: none;
+                                    scrollbar-width: none;
+                                }
+
+                                .inner-table-wrapper::-webkit-scrollbar {
+                                    display: none;
                                 }
 
                                 .inner-table-row-head {
@@ -164,14 +195,6 @@ const InnerTable = ({
 
                                 .inner-table-row .cell:first-child {
                                     border-bottom-left-radius: 15px;
-                                    border-top-left-radius: 15px;
-                                }
-
-                                .inner-table-row .head:last-child {
-                                    border-top-right-radius: 15px;
-                                }
-
-                                .inner-table-row .head:first-child {
                                     border-top-left-radius: 15px;
                                 }
 
@@ -329,6 +352,12 @@ const InnerTable = ({
                                 .empty-message {
                                     text-align: center;
                                     padding: 8px;
+                                }
+
+                                .inner-table thead {
+                                    position: sticky;
+                                    top: 0;
+                                    z-index: 2;
                                 }
                             `}
                         </style>

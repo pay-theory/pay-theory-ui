@@ -73,7 +73,7 @@ const ClickToCopyCol = ({ className, row, col, content }) => {
                         border-radius: 6px;
                         padding: 2px 18px 5px;
                         position: absolute;
-                        z-index: 1;
+                        z-index: 3;
                         white-space: nowrap;
                         box-shadow: 0px 2px 4px var(--black-opaque-32);
                         opacity: 0;
