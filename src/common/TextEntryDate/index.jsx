@@ -14,8 +14,13 @@ const TextEntryDate = ({
     inputProps,
     helperText,
     leadingIcon,
-    trailingIcon
+    trailingIcon,
+    valid
 }) => {
+    const validCheck = (value) => {
+        return valid(value) && validDate(value)
+    }
+
     return (
         <TextEntry
             disabled={disabled}
@@ -29,7 +34,7 @@ const TextEntryDate = ({
             }}
             placeholder={placeholder}
             trailingIcon={trailingIcon}
-            valid={validDate}
+            valid={validCheck}
             value={value}
         />
     )
@@ -50,7 +55,14 @@ TextEntryDate.propTypes = {
     }),
     value: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
-    helperText: PropTypes.any
+    helperText: PropTypes.any,
+    valid: PropTypes.func
+}
+
+TextEntryDate.defaultProps = {
+    valid: () => {
+        return true
+    }
 }
 
 export default TextEntryDate
