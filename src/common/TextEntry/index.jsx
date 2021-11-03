@@ -58,7 +58,7 @@ const TextEntry = ({
     }`
 
     return (
-        <div>
+        <div className='pt-text-field-wrapper'>
             <div className={divClassList}>
                 {leadingIcon ? (
                     <Icon brand={leadingIcon.brand} name={leadingIcon.name} />
@@ -82,6 +82,10 @@ const TextEntry = ({
                 )}
                 <style jsx='true'>
                     {`
+                        .pt-text-field-wrapper {
+                            width: 100%;
+                        }
+
                         .pt-text-field {
                             position: relative;
                             font-size: 16px;
