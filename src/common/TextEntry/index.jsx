@@ -58,7 +58,7 @@ const TextEntry = ({
     }`
 
     return (
-        <React.Fragment>
+        <div>
             <div className={divClassList}>
                 {leadingIcon ? (
                     <Icon brand={leadingIcon.brand} name={leadingIcon.name} />
@@ -217,7 +217,7 @@ const TextEntry = ({
                     {helperText}
                 </HelperText>
             ) : null}
-        </React.Fragment>
+        </div>
     )
 }
 

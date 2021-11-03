@@ -90,7 +90,7 @@ const Pagination = ({ paginationHook }) => {
                         top: 32px;
                         left: 50%;
                         transform: translateX(-50%);
-                        z-index: 2;
+                        z-index: 3;
                         overflow: hidden;
                         display: none;
                     }

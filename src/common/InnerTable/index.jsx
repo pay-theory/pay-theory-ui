@@ -46,7 +46,7 @@ const InnerTable = ({
 
     useEffect(() => {
         if (parentHeight) {
-            const tableHeight = 48 * rows.length + 41
+            const tableHeight = 48 * (rows.length || 1) + 41
             const adjustedParentHeight = hasActions
                 ? parentHeight - 48
                 : parentHeight
