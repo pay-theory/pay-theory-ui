@@ -378,7 +378,7 @@ InnerTable.propTypes = {
     id: PropTypes.string.isRequired,
     paginationHook: PropTypes.object,
     emptyMessage: PropTypes.string,
-    resultsPerPageHook: PropTypes.string
+    resultsPerPageHook: PropTypes.object
 }
 
 InnerTable.defaultProps = {

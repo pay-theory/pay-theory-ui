@@ -6,23 +6,24 @@ const IndexColumn = ({ header, hook }) => {
     const formatted = items.map((item, index) => {
         const value = getValue(item)
         const key = `${value}-row-${index}`
+        const formattedClass = `pt-index-column-row ${
+            getValue(selected).text === value.text ? 'selected' : ''
+        } ${value.secondary ? 'secondary' : ''}`
         return (
             <p
-                className={`pt-index-column-row ${
-                    getValue(selected) === value ? 'selected' : ''
-                }`}
+                className={formattedClass}
                 key={key}
                 onClick={() => {
                     setSelected(item)
                 }}
             >
-                {value}
+                {value.text}
             </p>
         )
     })
     return (
         <div className='pt-index-column'>
-            <p className='pt-index-column-header'>{header}</p>
+            <h4 className='strong pt-index-column-header'>{header}</h4>
             {formatted.length > 0 ? (
                 formatted
             ) : (
@@ -34,20 +35,28 @@ const IndexColumn = ({ header, hook }) => {
                         display: flex;
                         flex-direction: column;
                         width: 100%;
-                        flex-grow: 1;
-                        overflow: auto;
+                        max-height: 100%;
+                        overflow-y: scroll;
+                        -ms-overflow-style: none;
+                        scrollbar-width: none;
+                    }
+
+                    .pt-index-column::-webkit-scrollbar {
+                        display: none;
                     }
 
                     .pt-index-column-header {
                         padding: 8px;
-                        background: var(--grey-3);
-                        border-radius: 8px;
+                        border-bottom: 1px solid var(--grey-1);
+                        position: -webkit-sticky;
+                        position: sticky;
+                        top: 0;
+                        background: var(--white);
                     }
 
                     .pt-index-column-row {
                         padding: 8px;
                         border-radius: 8px;
-                        color: var(--pt-purple);
                         cursor: default;
                     }
 
@@ -62,8 +71,19 @@ const IndexColumn = ({ header, hook }) => {
                         background: var(--grey-3);
                     }
 
+                    .pt-index-column-row.secondary {
+                        color: var(--grey-1);
+                    }
+
                     .pt-index-column-row.selected {
-                        background: var(--purple-light);
+                        background: var(--grey-3);
+                        padding-left: 16px;
+                        font-weight: var(--black);
+                        color: var(--black);
+                    }
+
+                    .pt-index-column-row.selected.secondary {
+                        color: var(--grey);
                     }
                 `}
             </style>
