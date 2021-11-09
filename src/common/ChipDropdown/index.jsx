@@ -77,7 +77,6 @@ const ChipDropdown = ({ onChange, value, disabled, options }) => {
                             min-width: 144px;
                             cursor: pointer;
                             outline: none;
-                            box-shadow: 0px 0px 4px var(--grey-1);
                         }
 
                         .pt-chip-dropdown .selected-value {
@@ -166,7 +165,7 @@ const ChipDropdown = ({ onChange, value, disabled, options }) => {
                             overflow: hidden;
                             opacity: 0;
                             background: var(--white);
-                            box-shadow: 0px 0px 4px var(--grey-1);
+                            filter: drop-shadow(1px 2px 2px var(--grey-1));
                         }
 
                         .pt-chip-dropdown-wrapper

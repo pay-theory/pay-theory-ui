@@ -103,15 +103,23 @@ export default IndexColumn
 //
 // items: array of objects wanted to list in the index column
 // getValue: function that helps the IndexColumn get the unique value from each object in the items array
-export const useIndexColumn = (items, getValue) => {
+export const useIndexColumn = (items, getValue, confirmSelect) => {
     const [selected, setSelected] = useState({})
+
+    const select = (set) => {
+        if (confirmSelect) {
+            return confirmSelect(set)
+        } else {
+            return set
+        }
+    }
 
     return {
         selected,
         clearSelected: () => {
             setSelected({})
         },
-        setSelected,
+        setSelected: select(setSelected),
         getValue,
         items
     }
