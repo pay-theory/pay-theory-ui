@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const IndexColumn = ({ header, hook }) => {
-    const { setSelected, items, getValue, selected } = hook
+    const { verifiedSelect, items, getValue, selected } = hook
     const formatted = items.map((item, index) => {
         const value = getValue(item)
         const key = `${value}-row-${index}`
@@ -14,7 +14,7 @@ const IndexColumn = ({ header, hook }) => {
                 className={formattedClass}
                 key={key}
                 onClick={() => {
-                    setSelected(item)
+                    verifiedSelect(item)
                 }}
             >
                 {value.text}
@@ -119,7 +119,8 @@ export const useIndexColumn = (items, getValue, confirmSelect) => {
         clearSelected: () => {
             setSelected({})
         },
-        setSelected: select(setSelected),
+        setSelected,
+        verifiedSelect: select(setSelected),
         getValue,
         items
     }
