@@ -71,6 +71,7 @@ import ToolTip from './Tooltip'
 
 import Unauthorized from './Unauthorized'
 import UtilityBar from './UtilityBar'
+import UploadCard from './UploadCard'
 
 import { timedLogout } from './utilities'
 import { downloadCSV } from './generalUtils'
@@ -141,5 +142,6 @@ export {
     ToolTip,
     timedLogout,
     Unauthorized,
-    UtilityBar
+    UtilityBar,
+    UploadCard
 }

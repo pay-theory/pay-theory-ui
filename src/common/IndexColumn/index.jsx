@@ -120,7 +120,7 @@ export const useIndexColumn = (items, getValue, confirmSelect) => {
             setSelected({})
         },
         setSelected,
-        verifiedSelect: select(setSelected),
+        verifiedSelect: setSelected,
         getValue,
         items
     }
