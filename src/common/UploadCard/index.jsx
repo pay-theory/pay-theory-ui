@@ -110,7 +110,7 @@ const UploadCard = ({ uploadAction, className, fileType, message, name }) => {
 };
 
 UploadCard.propTypes = {
-  uploadAction: PropTypes.object.isRequired, 
+  uploadAction: PropTypes.func.isRequired, 
   className: PropTypes.string, 
   fileType: PropTypes.string, 
   message: PropTypes.string.isRequired, 
