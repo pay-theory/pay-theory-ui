@@ -2,7 +2,14 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Icon from "../Icon";
 
-const UploadCard = ({ uploadAction, className, fileType, message, name }) => {
+const UploadCard = ({
+  uploadAction,
+  className,
+  fileType,
+  message,
+  name,
+  errorMessages
+}) => {
   const click = () => {
     let realButton = document.getElementById(`${name}-pt-dropzone-input`);
     realButton.click();
@@ -31,15 +38,18 @@ const UploadCard = ({ uploadAction, className, fileType, message, name }) => {
   })();
 
   const addDragStyle = (e) => {
-    e.target.classList.add("active-drag");
+    document.getElementById(`${name}-pt-dropzone`).classList.add("active-drag");
   };
 
   const removeDragStyle = (e) => {
-    e.target.classList.remove("active-drag");
+    document
+      .getElementById(`${name}-pt-dropzone`)
+      .classList.remove("active-drag");
   };
 
   const change = (e) => {
     uploadAction(e.target.files);
+    e.target.value = "";
   };
 
   const drop = (e) => {
@@ -72,9 +82,14 @@ const UploadCard = ({ uploadAction, className, fileType, message, name }) => {
           flex-wrap: wrap;
           background-size: cover;
           width: 100%;
+          text-align: center;
         }
         .pt-upload-card > *:not(:last-child) {
           margin-bottom: 8px;
+        }
+
+        .pt-upload-card > *:not(.drag-message) {
+          pointer-events: none;
         }
 
         .drag-message {
@@ -87,6 +102,16 @@ const UploadCard = ({ uploadAction, className, fileType, message, name }) => {
         .pt-upload-card.active-drag {
           background: var(--grey-1-opaque);
         }
+        .pt-upload-card .error-messages > *:not(:last-child) {
+          margin-bottom: 8px;
+        }
+        .pt-upload-card .error-messages .message {
+          color: var(--raspberry);
+        }
+        .pt-upload-card .error-messages {
+          overflow: hidden;
+          transition: height 0.5s;
+        }
       `}</style>
       <input
         type="file"
@@ -97,7 +122,14 @@ const UploadCard = ({ uploadAction, className, fileType, message, name }) => {
         multiple
       />
       <Icon name="file-alt" tag="h3" />
-      <div className="drag-message">
+      <div
+        className="drag-message"
+        onDragOver={addDragStyle}
+        onDragEnter={addDragStyle}
+        onDragLeave={removeDragStyle}
+        onDragEnd={removeDragStyle}
+        onDrop={removeDragStyle}
+      >
         <p
           className="select-upload-button"
           onClick={click}
@@ -105,20 +137,29 @@ const UploadCard = ({ uploadAction, className, fileType, message, name }) => {
         {isAdvancedUpload ? <p>&nbsp;{`or drag it here to upload`}</p> : null}
       </div>
       <h5 className="grey">{message}</h5>
+      <div
+        className="error-messages"
+        style={{ height: `${errorMessages ? errorMessages.length * 25 : 0}px` }}
+      >
+        {errorMessages?.map((error) => {
+          return <h5 className="red message">{error}</h5>;
+        })}
+      </div>
     </div>
   );
 };
 
 UploadCard.propTypes = {
-  uploadAction: PropTypes.func.isRequired, 
-  className: PropTypes.string, 
-  fileType: PropTypes.string, 
-  message: PropTypes.string.isRequired, 
-  name: PropTypes.string.isRequired
+  uploadAction: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  fileType: PropTypes.string,
+  message: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  errorMessages: PropTypes.arrayOf(PropTypes.string)
 };
 
 UploadCard.defaultProps = {
-  fileType: 'file'
-}
+  fileType: "file"
+};
 
 export default UploadCard;
