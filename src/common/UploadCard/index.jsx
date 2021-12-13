@@ -8,7 +8,8 @@ const UploadCard = ({
   fileType,
   message,
   name,
-  errorMessages
+  errorMessages,
+  acceptedTypes
 }) => {
   const click = () => {
     let realButton = document.getElementById(`${name}-pt-dropzone-input`);
@@ -120,6 +121,7 @@ const UploadCard = ({
         hidden="hidden"
         onChange={change}
         multiple
+        accept={acceptedTypes ? acceptedTypes.join(", ") : ""}
       />
       <Icon name="file-alt" tag="h3" />
       <div
@@ -163,3 +165,4 @@ UploadCard.defaultProps = {
 };
 
 export default UploadCard;
+
