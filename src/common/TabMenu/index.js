@@ -12,8 +12,10 @@ const TabMenu = ({ items }) => {
         key={item.id}
         onClick={item.action}
       >
-        {item.icon ? <Icon name={item.icon} /> : ""}
-        {item.label}
+        <span>
+          {item.icon ? <Icon name={item.icon} /> : ""}
+          {item.label}
+        </span>
       </p>
     );
   });
@@ -28,10 +30,19 @@ const TabMenu = ({ items }) => {
             justify-content: flex-start;
           }
           .tab-menu-item {
-            padding: 14px 16px 12px;
+            padding: 8px;
             margin: 0px 8px 0px 0px;
             cursor: pointer;
             border-bottom: 2px solid var(--grey);
+            text-align: center;
+            display: flex;
+            align-items: center;
+          }
+
+          .tab-menu-item span {
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
           }
 
           .tab-menu-item:not(.active-tab):hover {
