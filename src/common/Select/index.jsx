@@ -50,8 +50,8 @@ const TextEntry = ({
 
         return () => {
             if (inputRef) {
-                inputRef.addEventListener('click', click)
-                inputRef.addEventListener('blur', blur)
+                inputRef.removeEventListener('click', click)
+                inputRef.removeEventListener('blur', blur)
             }
         }
     }, [select, blur, dropdown, wrapper, click])

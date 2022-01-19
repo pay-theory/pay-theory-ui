@@ -1,8 +1,6 @@
-const formatFee = (fee) => {
-  return fee < 0
-    ? `-${(Math.abs(fee) / 100).toFixed(2)}`
-    : `${(fee / 100).toFixed(2)}`;
-};
+const formatFee = (amount) => {
+  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 const formatBasisPoints = (bp) => {
   const originalAmount = 100000;
