@@ -1,5 +1,5 @@
 const formatFee = (amount) => {
-  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return ((amount / 100).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const formatBasisPoints = (bp) => {
