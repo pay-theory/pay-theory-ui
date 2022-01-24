@@ -49,8 +49,8 @@ const NavigationDrawer = ({ background, listHead }) => {
       <style jsx="true" global="true">{`
         .nav-drawer {
           background: var(--${background});
-          min-width: 290px;
-          max-width: 290px;
+          min-width: 320px;
+          max-width: 320px;
           height: auto;
           padding-top: 20px;
           top: 52px;
@@ -89,7 +89,7 @@ const NavigationDrawer = ({ background, listHead }) => {
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-          width: 274px;
+          width: 304px;
           text-decoration: none;
           font-weight: var(--regular-weight);
           position: relative;
@@ -160,7 +160,7 @@ const NavigationDrawer = ({ background, listHead }) => {
 
         .nav-drawer .summary {
           display: flex;
-          width: 274px;
+          width: 304px;
           justify-content: space-between;
           align-items: center;
           height: 46px;
@@ -185,7 +185,7 @@ const NavigationDrawer = ({ background, listHead }) => {
         .nav-drawer .sub-list a {
           margin-left: 40px;
           padding-left: 24px;
-          width: 234px;
+          width: 264px;
           height: 40px;
         }
 

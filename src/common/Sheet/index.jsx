@@ -48,12 +48,25 @@ const ModalContent = ({
     closeAction,
     left,
     top,
-    bottom
+    bottom,
+    alternateClose,
+    header
 }) => {
     const modalForm = identifier ? `${identifier}-sheet-form` : 'sheet-form'
     const sheet = identifier ? `${identifier}-sheet` : 'sheet'
 
     const position = left ? 'left' : top ? 'top' : bottom ? 'bottom' : 'right'
+
+    const close = () => {
+        if(alternateClose) {
+            alternateClose()
+        } else {
+            closeSheet(identifier)
+            if (closeAction) {
+                closeAction()
+            }
+        }   
+    }
 
     return (
         <div className='hide-sheet'>
@@ -61,12 +74,7 @@ const ModalContent = ({
                 className='sheet-off'
                 data-testid='sheet-close'
                 id={sheet}
-                onClick={() => {
-                    closeSheet(identifier)
-                    if (closeAction) {
-                        closeAction()
-                    }
-                }}
+                onClick={close}
             />
             <div
                 className={`sheet-form off ${position}`}
@@ -75,15 +83,12 @@ const ModalContent = ({
             >
                 <div className={position} id='sheet-content'>
                     <div className='sheet-header'>
+                        {left && header ? <h3>{header}</h3> : null}
                         <IconButton
-                            icon='arrow-left'
-                            onClick={() => {
-                                closeSheet(identifier)
-                                if (closeAction) {
-                                    closeAction()
-                                }
-                            }}
+                            icon={right ? 'arrow-left' : 'times'}
+                            onClick={close}
                         />
+                        {!left && header ? <h3>{header}</h3> : null}
                     </div>
                     <div className='sheet-body'>{children}</div>
                 </div>
@@ -113,6 +118,11 @@ const ModalContent = ({
                         padding: 4px;
                         height: 64px;
                     }
+
+                    #sheet-content .sheet-header h3 {
+                        margin: 0px 16px;
+                    }
+
                     #sheet-content .sheet-header i {
                         cursor: pointer;
                         padding: 10px;
