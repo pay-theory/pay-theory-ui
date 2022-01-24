@@ -85,7 +85,7 @@ const ModalContent = ({
                     <div className='sheet-header'>
                         {left && header ? <h3>{header}</h3> : null}
                         <IconButton
-                            icon={right ? 'arrow-left' : 'times'}
+                            icon={left ? 'times' : 'arrow-left'}
                             onClick={close}
                         />
                         {!left && header ? <h3>{header}</h3> : null}
