@@ -100,7 +100,7 @@ const Button = ({
                         text-transform: uppercase;
                         font-size: 16px;
                         color: var(--black);
-                        background-color: var(--grey-2);
+                        background-color: var(--grey-1-opaque-32);
                         transition: background 0.15s ease-in-out,
                             border 0.15s ease-in-out, padding 0.15s ease-in-out;
                     }
@@ -117,7 +117,7 @@ const Button = ({
                     }
 
                     .pt-button:hover {
-                        background-color: var(--grey-3);
+                        background-color: var(--grey-1-opaque);
                         transition: background 0.15s ease-in-out,
                             padding 0.15s ease-in-out;
                     }
