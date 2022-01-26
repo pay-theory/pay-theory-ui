@@ -42,9 +42,11 @@ const openModal = (identifier) => {
 
 export { closeModal, openModal }
 
-const ModalContent = ({ identifier, children, closeAction }) => {
+const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
     const modalForm = identifier ? `${identifier}-modal-form` : 'modal-form'
     const modal = identifier ? `${identifier}-modal` : 'modal'
+
+    const finalZPosition = zPosition ? 99 + zPosition : 99
 
     return (
         <div className='hide-modal'>
@@ -64,7 +66,7 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                 data-testid='modal-form'
                 id={modalForm}
             >
-                <div id='modal-content'>
+                <div className='modal-content'>
                     <div className='modal-header'>
                         <IconButton
                             icon='times'
@@ -81,7 +83,7 @@ const ModalContent = ({ identifier, children, closeAction }) => {
             </div>
             <style global='true' jsx='true'>
                 {`
-                    #modal-content {
+                    #${modal} .modal-content {
                         display: flex;
                         flex-direction: column;
                         width: 100%;
@@ -89,7 +91,7 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                         border-radius: 16px;
                     }
 
-                    #modal-content .modal-header {
+                    #${modal} .modal-content .modal-header {
                         width: 100%;
                         display: flex;
                         flex-direction: row-reverse;
@@ -97,24 +99,24 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                         align-items: center;
                         padding: 4px;
                     }
-                    #modal-content .modal-header i {
+                    #${modal} .modal-content .modal-header i {
                         cursor: pointer;
                         padding: 10px;
                     }
-                    #modal-content .modal-body {
+                    #${modal} .modal-content .modal-body {
                         margin: 0px 32px 32px;
                         overflow-y: auto;
                         -ms-overflow-style: none;
                         scrollbar-width: none;
                     }
-                    #modal-content .modal-body::-webkit-scrollbar {
+                    #${modal} .modal-content .modal-body::-webkit-scrollbar {
                         display: none;
                     }
-                    .modal-wrapper {
+                    #${modal} .modal-wrapper {
                         height: 100%;
                         width: 100%;
                     }
-                    .modal-on {
+                    #${modal}.modal-on {
                         display: flex;
                         flex-direction: column;
                         visibility: visible;
@@ -127,13 +129,13 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                         backdrop-filter: opacity(50%) blur(2px);
                         z-index: 100;
                     }
-                    .modal-off {
+                    #${modal}.modal-off {
                         visibility: hidden;
                     }
-                    .modal-gone {
+                    #${modal}.modal-gone {
                         display: none;
                     }
-                    .modal-form-on {
+                    #${modal} .modal-form-on {
                         display: flex;
                         flex-direction: column;
                         visibility: visible;
@@ -158,21 +160,21 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                         z-index: 100;
                     }
 
-                    #modal-content form {
+                    #${modal} .modal-content form {
                         display: flex;
                         flex-direction: column;
                         align-content: center;
                     }
 
-                    .modal-form-off {
+                    #${modal} .modal-form-off {
                         visibility: hidden;
                     }
 
-                    .modal-form-gone {
+                    #${modal} .modal-form-gone {
                         display: none;
                     }
 
-                    .hide-modal {
+                    #${modal} .hide-modal {
                         height: 0;
                         overflow: hidden;
                     }
@@ -184,7 +186,8 @@ const ModalContent = ({ identifier, children, closeAction }) => {
 
 ModalContent.propTypes = {
     closeAction: PropTypes.func,
-    identifier: PropTypes.string.isRequired
+    identifier: PropTypes.string.isRequired,
+    zPosition: PropTypes.number
 }
 
 export default ModalContent

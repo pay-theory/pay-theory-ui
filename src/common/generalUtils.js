@@ -116,3 +116,9 @@ const parseAddress = (incoming) => {
 };
 
 export { parseAddress };
+
+export const formatDollarAmountString = (value) => {
+  const newValue = value.replace(/[^0-9]/g, '');
+  let amount = parseFloat(newValue) ?? 0;
+  return amount ? ((amount / 100).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '';
+}

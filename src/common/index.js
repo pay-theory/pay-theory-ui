@@ -65,6 +65,7 @@ import TabMenu from './TabMenu'
 import TabPage from './TabPage'
 import TextEntry from './TextEntry'
 import TextEntryDate from './TextEntryDate'
+import TextEntryDollar from './TextEntryDollar'
 import TextEntryPhone from './TextEntryPhone'
 import Toggle from './Toggle'
 import ToolTip from './Tooltip'
@@ -137,6 +138,7 @@ export {
     TabPage,
     TextEntry,
     TextEntryDate,
+    TextEntryDollar,
     TextEntryPhone,
     Toggle,
     ToolTip,

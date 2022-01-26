@@ -68,7 +68,7 @@ const PortalHead = ({ menuButtons }) => {
                     }
 
                     .portal-head-header .portal-logo-wrapper {
-                        width: 290px;
+                        width: 320px;
                     }
 
                     .portal-head-header .portal-notifications {
