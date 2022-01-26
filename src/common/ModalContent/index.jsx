@@ -174,7 +174,7 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                         display: none;
                     }
 
-                    #${modalForm} .hide-modal {
+                    .hide-modal {
                         height: 0;
                         overflow: hidden;
                     }

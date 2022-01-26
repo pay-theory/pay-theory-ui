@@ -250,7 +250,7 @@ const ModalContent = ({
                         display: none;
                     }
 
-                    #${sheetForm} .hide-sheet {
+                    .hide-sheet {
                         height: 0;
                         overflow: hidden;
                     }
