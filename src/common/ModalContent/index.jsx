@@ -127,7 +127,7 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                         width: 100%;
                         background: var(--black-opaque-32);
                         backdrop-filter: opacity(50%) blur(2px);
-                        z-index: 100;
+                        z-index: ${finalZPosition} ;
                     }
                     #${modal}.modal-off {
                         visibility: hidden;
@@ -157,7 +157,7 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                         transition: box-shadow 0.28s
                             cubic-bezier(0.4, 0, 0.2, 1);
                         border-radius: 16px;
-                        z-index: 100;
+                        z-index: ${finalZPosition} ;
                     }
 
                     #${modalForm} .modal-content form {
