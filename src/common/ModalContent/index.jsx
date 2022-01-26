@@ -83,7 +83,7 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
             </div>
             <style global='true' jsx='true'>
                 {`
-                    #${modal} .modal-content {
+                    #${modalForm} .modal-content {
                         display: flex;
                         flex-direction: column;
                         width: 100%;
@@ -91,7 +91,7 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                         border-radius: 16px;
                     }
 
-                    #${modal} .modal-content .modal-header {
+                    #${modalForm} .modal-content .modal-header {
                         width: 100%;
                         display: flex;
                         flex-direction: row-reverse;
@@ -99,20 +99,20 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                         align-items: center;
                         padding: 4px;
                     }
-                    #${modal} .modal-content .modal-header i {
+                    #${modalForm} .modal-content .modal-header i {
                         cursor: pointer;
                         padding: 10px;
                     }
-                    #${modal} .modal-content .modal-body {
+                    #${modalForm} .modal-content .modal-body {
                         margin: 0px 32px 32px;
                         overflow-y: auto;
                         -ms-overflow-style: none;
                         scrollbar-width: none;
                     }
-                    #${modal} .modal-content .modal-body::-webkit-scrollbar {
+                    #${modalForm} .modal-content .modal-body::-webkit-scrollbar {
                         display: none;
                     }
-                    #${modal} .modal-wrapper {
+                    #${modalForm} .modal-wrapper {
                         height: 100%;
                         width: 100%;
                     }
@@ -135,7 +135,7 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                     #${modal}.modal-gone {
                         display: none;
                     }
-                    #${modal} .modal-form-on {
+                    #${modalForm} .modal-form-on {
                         display: flex;
                         flex-direction: column;
                         visibility: visible;
@@ -160,21 +160,21 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                         z-index: 100;
                     }
 
-                    #${modal} .modal-content form {
+                    #${modalForm} .modal-content form {
                         display: flex;
                         flex-direction: column;
                         align-content: center;
                     }
 
-                    #${modal} .modal-form-off {
+                    #${modalForm} .modal-form-off {
                         visibility: hidden;
                     }
 
-                    #${modal} .modal-form-gone {
+                    #${modalForm} .modal-form-gone {
                         display: none;
                     }
 
-                    #${modal} .hide-modal {
+                    #${modalForm} .hide-modal {
                         height: 0;
                         overflow: hidden;
                     }

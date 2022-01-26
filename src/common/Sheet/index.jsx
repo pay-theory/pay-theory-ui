@@ -53,7 +53,7 @@ const ModalContent = ({
     header,
     zPosition
 }) => {
-    const modalForm = identifier ? `${identifier}-sheet-form` : 'sheet-form'
+    const sheetForm = identifier ? `${identifier}-sheet-form` : 'sheet-form'
     const sheet = identifier ? `${identifier}-sheet` : 'sheet'
 
     const position = left ? 'left' : top ? 'top' : bottom ? 'bottom' : 'right'
@@ -81,7 +81,7 @@ const ModalContent = ({
             <div
                 className={`sheet-form off ${position}`}
                 data-testid='sheet-form'
-                id={modalForm}
+                id={sheetForm}
             >
                 <div className={`sheet-content ${position}`} id='sheet-content'>
                     <div className='sheet-header'>
@@ -97,22 +97,22 @@ const ModalContent = ({
             </div>
             <style global='true' jsx='true'>
                 {`
-                    #${sheet} .sheet-content {
+                    #${sheetForm} .sheet-content {
                         display: flex;
                         flex-direction: column;
                     }
 
-                    #${sheet} .sheet-content.left,
-                    #${sheet} .sheet-content.right {
+                    #${sheetForm} .sheet-content.left,
+                    #${sheetForm} .sheet-content.right {
                         width: 484px;
                     }
 
-                    #${sheet} .sheet-content.top,
-                    #${sheet} .sheet-content.bottom {
+                    #${sheetForm} .sheet-content.top,
+                    #${sheetForm} .sheet-content.bottom {
                         height: 484px;
                     }
 
-                    #${sheet} .sheet-content .sheet-header {
+                    #${sheetForm} .sheet-content .sheet-header {
                         width: 100%;
                         display: flex;
                         justify-content: space-between;
@@ -121,24 +121,24 @@ const ModalContent = ({
                         height: 64px;
                     }
 
-                    #${sheet} .sheet-content .sheet-header h3 {
+                    #${sheetForm} .sheet-content .sheet-header h3 {
                         margin: 0px 16px;
                     }
 
-                    #${sheet} .sheet-content .sheet-header i {
+                    #${sheetForm} .sheet-content .sheet-header i {
                         cursor: pointer;
                         padding: 10px;
                     }
-                    #${sheet} .sheet-content .sheet-body {
+                    #${sheetForm} .sheet-content .sheet-body {
                         margin: 0px 16px 16px;
                         overflow-y: auto;
                         -ms-overflow-style: none;
                         scrollbar-width: none;
                     }
-                    #${sheet} .sheet-content .sheet-body::-webkit-scrollbar {
+                    #${sheetForm} .sheet-content .sheet-body::-webkit-scrollbar {
                         display: none;
                     }
-                    #${sheet} .sheet-wrapper {
+                    #${sheetForm} .sheet-wrapper {
                         height: 100%;
                         width: 100%;
                     }
@@ -163,14 +163,14 @@ const ModalContent = ({
                     }
 
                     /* Style for sheet on right */
-                    #${sheet} .sheet-form.on.right {
+                    #${sheetForm} .sheet-form.on.right {
                         top: 0;
                         right: 0;
                         height: 100%;
                         box-shadow: 0px 0px 16px var(--grey);
                     }
 
-                    #${sheet} .sheet-form.off.right {
+                    #${sheetForm} .sheet-form.off.right {
                         top: 0;
                         right: -500px;
                         height: 100%;
@@ -178,14 +178,14 @@ const ModalContent = ({
                     }
 
                     /* Style for sheet on left */
-                    #${sheet} .sheet-form.on.left {
+                    #${sheetForm} .sheet-form.on.left {
                         top: 0;
                         left: 0;
                         height: 100%;
                         box-shadow: 0px 0px 16px var(--grey);
                     }
 
-                    #${sheet} .sheet-form.off.left {
+                    #${sheetForm} .sheet-form.off.left {
                         top: 0;
                         left: -500px;
                         height: 100%;
@@ -193,7 +193,7 @@ const ModalContent = ({
                     }
 
                     /* Style for sheet on top */
-                    #${sheet} .sheet-form.on.top {
+                    #${sheetForm} .sheet-form.on.top {
                         top: 0;
                         right: 0;
                         height: 484px;
@@ -201,7 +201,7 @@ const ModalContent = ({
                         box-shadow: 0px 0px 16px var(--grey);
                     }
 
-                    #${sheet} .sheet-form.off.top {
+                    #${sheetForm} .sheet-form.off.top {
                         top: -500px;
                         right: 0;
                         height: 484px;
@@ -210,7 +210,7 @@ const ModalContent = ({
                     }
 
                     /* Style for sheet on top */
-                    #${sheet} .sheet-form.on.bottom {
+                    #${sheetForm} .sheet-form.on.bottom {
                         bottom: 0;
                         right: 0;
                         height: 484px;
@@ -218,7 +218,7 @@ const ModalContent = ({
                         box-shadow: 0px 0px 16px var(--grey);
                     }
 
-                    #${sheet} .sheet-form.off.bottom {
+                    #${sheetForm} .sheet-form.off.bottom {
                         bottom: -500px;
                         right: 0;
                         height: 484px;
@@ -226,13 +226,13 @@ const ModalContent = ({
                         box-shadow: 0px 0px 0px var(--grey);
                     }
 
-                    #${sheet} .sheet-content form {
+                    #${sheetForm} .sheet-content form {
                         display: flex;
                         flex-direction: column;
                         align-content: center;
                     }
 
-                    #${sheet} .sheet-form {
+                    #${sheetForm} .sheet-form {
                         display: flex;
                         flex-direction: column;
                         visibility: visible;
@@ -246,11 +246,11 @@ const ModalContent = ({
                         z-index: ${finalZPosition};
                     }
 
-                    #${sheet} .sheet-form-gone {
+                    #${sheetForm} .sheet-form-gone {
                         display: none;
                     }
 
-                    #${sheet} .hide-sheet {
+                    #${sheetForm} .hide-sheet {
                         height: 0;
                         overflow: hidden;
                     }
