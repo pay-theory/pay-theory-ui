@@ -135,7 +135,7 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                     #${modal}.modal-gone {
                         display: none;
                     }
-                    #${modalForm} .modal-form-on {
+                    #${modalForm}.modal-form-on {
                         display: flex;
                         flex-direction: column;
                         visibility: visible;
@@ -166,11 +166,11 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                         align-content: center;
                     }
 
-                    #${modalForm} .modal-form-off {
+                    #${modalForm}.modal-form-off {
                         visibility: hidden;
                     }
 
-                    #${modalForm} .modal-form-gone {
+                    #${modalForm}.modal-form-gone {
                         display: none;
                     }
 

@@ -163,14 +163,14 @@ const ModalContent = ({
                     }
 
                     /* Style for sheet on right */
-                    #${sheetForm} .sheet-form.on.right {
+                    #${sheetForm}.sheet-form.on.right {
                         top: 0;
                         right: 0;
                         height: 100%;
                         box-shadow: 0px 0px 16px var(--grey);
                     }
 
-                    #${sheetForm} .sheet-form.off.right {
+                    #${sheetForm}.sheet-form.off.right {
                         top: 0;
                         right: -500px;
                         height: 100%;
@@ -178,14 +178,14 @@ const ModalContent = ({
                     }
 
                     /* Style for sheet on left */
-                    #${sheetForm} .sheet-form.on.left {
+                    #${sheetForm}.sheet-form.on.left {
                         top: 0;
                         left: 0;
                         height: 100%;
                         box-shadow: 0px 0px 16px var(--grey);
                     }
 
-                    #${sheetForm} .sheet-form.off.left {
+                    #${sheetForm}.sheet-form.off.left {
                         top: 0;
                         left: -500px;
                         height: 100%;
@@ -193,7 +193,7 @@ const ModalContent = ({
                     }
 
                     /* Style for sheet on top */
-                    #${sheetForm} .sheet-form.on.top {
+                    #${sheetForm}.sheet-form.on.top {
                         top: 0;
                         right: 0;
                         height: 484px;
@@ -201,7 +201,7 @@ const ModalContent = ({
                         box-shadow: 0px 0px 16px var(--grey);
                     }
 
-                    #${sheetForm} .sheet-form.off.top {
+                    #${sheetForm}.sheet-form.off.top {
                         top: -500px;
                         right: 0;
                         height: 484px;
@@ -210,7 +210,7 @@ const ModalContent = ({
                     }
 
                     /* Style for sheet on top */
-                    #${sheetForm} .sheet-form.on.bottom {
+                    #${sheetForm}.sheet-form.on.bottom {
                         bottom: 0;
                         right: 0;
                         height: 484px;
@@ -218,7 +218,7 @@ const ModalContent = ({
                         box-shadow: 0px 0px 16px var(--grey);
                     }
 
-                    #${sheetForm} .sheet-form.off.bottom {
+                    #${sheetForm}.sheet-form.off.bottom {
                         bottom: -500px;
                         right: 0;
                         height: 484px;
@@ -232,7 +232,7 @@ const ModalContent = ({
                         align-content: center;
                     }
 
-                    #${sheetForm} .sheet-form {
+                    #${sheetForm}.sheet-form {
                         display: flex;
                         flex-direction: column;
                         visibility: visible;
@@ -246,7 +246,7 @@ const ModalContent = ({
                         z-index: ${finalZPosition};
                     }
 
-                    #${sheetForm} .sheet-form-gone {
+                    #${sheetForm}.sheet-form-gone {
                         display: none;
                     }
 
