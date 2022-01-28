@@ -119,7 +119,7 @@ export const useIndexColumn = (items, getValue, confirmSelect) => {
         clearSelected: () => {
             setSelected({})
         },
-        setSelected,
+        setSelected: select(setSelected),
         verifiedSelect: setSelected,
         getValue,
         items

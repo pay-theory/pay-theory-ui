@@ -42,7 +42,7 @@ const openSheet = (identifier) => {
 
 export { closeSheet, openSheet }
 
-const ModalContent = ({
+const Sheet = ({
     identifier,
     children,
     closeAction,
@@ -260,7 +260,7 @@ const ModalContent = ({
     )
 }
 
-ModalContent.propTypes = {
+Sheet.propTypes = {
     closeAction: PropTypes.func,
     identifier: PropTypes.string.isRequired,
     top: PropTypes.bool,
@@ -269,4 +269,4 @@ ModalContent.propTypes = {
     zPosition: PropTypes.number
 }
 
-export default ModalContent
+export default Sheet
