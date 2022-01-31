@@ -27,18 +27,15 @@ const ActionBar = ({ actions, rows, paginationHook, resultsPerPageHook }) => {
         },
         {
             value: 25,
-            label: '25',
-            disabled: totalItems < 11
+            label: '25'
         },
         {
             value: 50,
-            label: '50',
-            disabled: totalItems < 26
+            label: '50'
         },
         {
             value: 100,
-            label: '100',
-            disabled: totalItems < 51
+            label: '100'
         }
     ]
 
