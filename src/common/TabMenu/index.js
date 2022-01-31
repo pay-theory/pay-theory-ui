@@ -61,6 +61,7 @@ const TabMenu = ({ items }) => {
 
           .tab-menu-item.active-tab {
             border-bottom: 2px solid var(--pt-purple);
+            font-weight: var(--medium-weight);
           }
 
           .tab-menu-item .pt-icon {
