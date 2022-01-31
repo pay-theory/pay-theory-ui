@@ -84,7 +84,7 @@ const PortalHead = ({ menuButtons }) => {
             flex-grow: 1;
             align-items: center;
             padding: 0px 8px 0px 16px;
-            margin: 0px 290px;
+            margin: 0px 328px;
             border-radius: 8px;
             color: var(--black);
             position: absolute;
