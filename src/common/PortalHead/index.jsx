@@ -84,13 +84,21 @@ const PortalHead = ({ menuButtons }) => {
             flex-grow: 1;
             align-items: center;
             padding: 0px 8px 0px 16px;
-            margin: 0px 328px;
+            margin: 0px 320px;
             border-radius: 8px;
             color: var(--black);
             position: absolute;
-            width: calc(100% - 580px);
             top: -50px;
+            max-width: calc(100% - 540px);
             transition: top 0.5s ease;
+            overflow: hidden;
+          }
+
+          .portal-notifications .notification p {
+            margin-right: 24px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
 
           .portal-notifications .notification.show {
@@ -156,76 +164,76 @@ PortalHead.defaultProps = {
 export default PortalHead;
 
 export const usePortalNotification = () => {
-  const [showing, setShowing] = useState("");
-  const [currentTimeout, setCurrentTimeout] = useState();
-  const [message, setMessage] = useState();
-
-  const SUCCESS = "success";
-  const GENERAL = "general";
-  const ERROR = "error";
-
-  const checkForShowing = () => {
-    var error = document.getElementById(`pt-${ERROR}-notification`);
-    var general = document.getElementById(`pt-${GENERAL}-notification`);
-    var success = document.getElementById(`pt-${SUCCESS}-notification`);
-    const show = "show";
-
-    return (
-      error.classList.contains(show) ||
-      general.classList.contains(show) ||
-      success.classList.contains(show)
-    );
-  };
-
-  const removeMessage = (type) => {
-    var element = document.getElementById(`pt-${type}-notification`);
-    element.classList.remove("show");
-    setMessage(undefined);
-  };
-
-  useEffect(() => {
-    const addMessage = (type) => (message) => {
-      setShowing(type);
-      var element = document.getElementById(`pt-${type}-notification`);
-      var messageElement = document.getElementById(`pt-${type}-message`);
-      messageElement.innerHTML = message;
-      element.classList.add("show");
-
-      setCurrentTimeout(
+    const [currentTimeout, setCurrentTimeout] = useState();
+    const [message, setMessage] = useState();
+  
+    const SUCCESS = "success";
+    const GENERAL = "general";
+    const ERROR = "error";
+  
+    const checkForShowing = () => {
+      var error = document.getElementById(`pt-${ERROR}-notification`);
+      var general = document.getElementById(`pt-${GENERAL}-notification`);
+      var success = document.getElementById(`pt-${SUCCESS}-notification`);
+      const show = "show";
+      if (error.classList.contains(show)) {
+        return error;
+      } else if (general.classList.contains(show)) {
+        return general;
+      } else if (success.classList.contains(show)) {
+        return success;
+      } else {
+        return null;
+      }
+    };
+  
+    const removeMessage = (element) => {
+      element.classList.remove("show");
+      setMessage(undefined);
+    };
+  
+    useEffect(() => {
+      const addMessage = (type) => (message) => {
+        var element = document.getElementById(`pt-${type}-notification`);
+        var messageElement = document.getElementById(`pt-${type}-message`);
+        messageElement.innerHTML = message;
+        element.classList.add("show");
+  
+        setCurrentTimeout(
+          setTimeout(() => {
+            removeMessage(element);
+            setCurrentTimeout(undefined);
+          }, 7000)
+        );
+      };
+  
+      const messageResponse = {
+        error: addMessage(ERROR),
+        success: addMessage(SUCCESS)
+      };
+      if (message) {
+        messageResponse[message.type]
+          ? messageResponse[message.type](message.message)
+          : addMessage(GENERAL)(message.message);
+      }
+    }, [message]);
+  
+    const StatusMessage = (type) => (message) => {
+      let showingElement = checkForShowing();
+      if (showingElement) {
+        removeMessage(showingElement);
+        clearTimeout(currentTimeout);
         setTimeout(() => {
-          removeMessage(type);
-          setCurrentTimeout(undefined);
-          setShowing("");
-        }, 7000)
-      );
-    };
-
-    const messageResponse = {
-      error: addMessage(ERROR),
-      success: addMessage(SUCCESS)
-    };
-    if (message) {
-      messageResponse[message.type]
-        ? messageResponse[message.type](message.message)
-        : addMessage(GENERAL)(message.message);
-    }
-  }, [message]);
-
-  const StatusMessage = (type) => (message) => {
-    if (checkForShowing()) {
-      removeMessage(showing);
-      clearTimeout(currentTimeout);
-      setTimeout(() => {
+          setMessage({ type, message });
+        }, 500);
+      } else {
         setMessage({ type, message });
-      }, 500);
-    } else {
-      setMessage({ type, message });
-    }
+      }
+    };
+  
+    return {
+      ErrorMessage: StatusMessage(ERROR),
+      SuccessMessage: StatusMessage(SUCCESS),
+      GeneralMessage: StatusMessage(GENERAL)
+    };
   };
-
-  return {
-    ErrorMessage: StatusMessage(ERROR),
-    SuccessMessage: StatusMessage(SUCCESS),
-    GeneralMessage: StatusMessage(GENERAL)
-  };
-};
