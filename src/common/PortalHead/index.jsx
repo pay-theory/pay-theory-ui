@@ -71,6 +71,7 @@ const PortalHead = ({ menuButtons }) => {
 
           .portal-notifications {
             display: flex;
+            justify-content: center;
             flex-grow: 1;
             position: relative;
             height: 0px;
