@@ -220,7 +220,7 @@ Resources:
             Value: !Sub '${Stage}'
           - Name: PARTNER
             Type: PLAINTEXT
-            Value: !Sub '${Partner}' 
+            Value: !Sub '${Partner}'  
       Source:
         Type: CODEPIPELINE
       TimeoutInMinutes: 20  
