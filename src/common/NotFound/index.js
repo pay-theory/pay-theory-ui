@@ -1,11 +1,11 @@
 import React from "react";
 import GlobalStyle from "../GlobalStyle";
 import Button from "../Button";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
   document.body.style = null;
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <div id="appContainer">
       <GlobalStyle />
@@ -16,7 +16,7 @@ const NotFound = () => {
           label="Homepage"
           leadingIcon={{ name: "chevron-left" }}
           name="homepage"
-          onClick={() => history.push("/")}
+          onClick={() => navigate("/")}
         />
       </div>
       <style global="true" jsx="true">

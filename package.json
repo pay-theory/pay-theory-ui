@@ -47,10 +47,10 @@
         "deploy-release": "npm run post-commit && npm run predeploy-package && npm publish --tag release"
     },
     "devDependencies": {
-        "@babel/core": "^7.16.12",
+        "@babel/core": "^7.17.2",
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-react": "^7.16.7",
-        "@testing-library/jest-dom": "^5.16.1",
+        "@testing-library/jest-dom": "^5.16.2",
         "@testing-library/react": "^12.1.2",
         "babel-loader": "^8.2.3",
         "cross-env": "^7.0.3",
@@ -92,7 +92,7 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-dropzone": "^11.3.4",
-        "react-router-dom": "^5.2.0",
+        "react-router-dom": "^6.2.1",
         "webfontloader": "^1.6.28"
     }
 }
