@@ -86,7 +86,7 @@
     },
     "homepage": "https://github.com/pay-theory/pay-theory-ui#readme",
     "peerDependencies": {
-        "jsdom": "^18.1.0",
+        "jsdom": "^19.0.0",
         "moment": "^2.29.1",
         "prop-types": "^15.7.2",
         "react": "^17.0.2",
