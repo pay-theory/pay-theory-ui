@@ -105,6 +105,7 @@ const Sheet = ({
                     #${sheetForm} .sheet-content.left,
                     #${sheetForm} .sheet-content.right {
                         width: 484px;
+                        height: 100%;
                     }
 
                     #${sheetForm} .sheet-content.top,
@@ -134,6 +135,7 @@ const Sheet = ({
                         overflow-y: auto;
                         -ms-overflow-style: none;
                         scrollbar-width: none;
+                        height: 100%;
                     }
                     #${sheetForm} .sheet-content .sheet-body::-webkit-scrollbar {
                         display: none;
