@@ -58,11 +58,15 @@ const TextEntry = ({
 
     useEffect(() => {
         const setLabel = (items) => {
-            items.forEach((item) => {
-                if (item.value === value) {
-                    setSelectedLabel(item.label)
-                }
-            })
+            if(value) {
+                items.forEach((item) => {
+                    if (item.value === value) {
+                        setSelectedLabel(item.label)
+                    }
+                })
+            } else {
+                setSelectedLabel('')
+            }
         }
         setLabel(options)
     }, [value, options])
