@@ -24,6 +24,7 @@ const Checkbox = ({
     <label
       htmlFor={id}
       className={`pt-checkbox ${disabled ? "disabled" : ""} ${location}`}
+      onClick={(e) => e.stopPropagation()}
     >
       <span className={`pt-checkbox-box ${disabled ? "disabled" : ""}`}>
         <input
