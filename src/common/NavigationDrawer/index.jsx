@@ -11,19 +11,8 @@ const NavigationDrawer = ({ background, listHead }) => {
     return <NavigationItem item={item} key={item.tag} />;
   };
   const createCategory = (item) => {
-    let detailsOpen = false;
-    let childLocations = item.subContent.map((item) => item.to);
-    if (childLocations.includes(window.location.pathname)) {
-      detailsOpen = true;
-    }
-
     return (
-      <NavigationCategory
-        item={item}
-        detailsOpen={detailsOpen}
-        createItem={createItem}
-        key={item.tag}
-      />
+      <NavigationCategory item={item} createItem={createItem} key={item.tag} />
     );
   };
   return (
@@ -157,31 +146,6 @@ const NavigationDrawer = ({ background, listHead }) => {
         }
 
         /* Sub-List Styling */
-
-        .nav-drawer .summary {
-          display: flex;
-          width: 274px;
-          justify-content: space-between;
-          align-items: center;
-          height: 46px;
-          cursor: pointer;
-          outline: none;
-        }
-
-        .nav-drawer summary {
-          outline: none;
-        }
-
-        .nav-drawer details summary::-webkit-details-marker {
-          display: none;
-        }
-
-        .summary-trailing {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
         .nav-drawer .sub-list a {
           margin-left: 40px;
           padding-left: 24px;
@@ -189,20 +153,15 @@ const NavigationDrawer = ({ background, listHead }) => {
           height: 40px;
         }
 
-        /* Sub-List Chevron Styling */
-
-        .nav-drawer .summary-chevron {
-          height: 48px;
-          width: 48px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.3s ease;
+        .nav-drawer .sub-list {
+          height: 0px;
+          overflow: hidden;
+          -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
         }
 
-        .nav-drawer details[open] .summary-chevron {
-          transform: rotate(90deg);
-          transition: transform 0.3s ease;
+        .nav-drawer .sub-list.details-open {
+          height: auto;
         }
 
         /* Badge Styling */
