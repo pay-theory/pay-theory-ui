@@ -4,6 +4,9 @@ import { formatFee } from "../../generalUtils";
 
 const CurrencyCol = ({ className, row, col, content, grey, parenthesis }) => {
   const formatContent = (item) => {
+    // if no value we want a dash in the cell
+    if(!item) return '-';
+
     let number = `$${formatFee(item)}`;
     if (parenthesis) return `(${number})`;
     return number;

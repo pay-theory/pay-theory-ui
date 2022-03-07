@@ -58,7 +58,6 @@ const NavigationCategory = ({ item, createItem }) => {
 
 NavigationCategory.propTypes = {
   item: PropTypes.object.isRequired,
-  detailsOpen: PropTypes.bool.isRequired,
   createItem: PropTypes.func.isRequired
 };
 
