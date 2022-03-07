@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { NavigationCategory, NavigationItem } from "./children";
 import PropTypes from "prop-types";
 
-import * as BooksHooks from '../../hooks'
+import { BooksHooks } from "@paytheory/pay-theory-ui";
 
 const NavigationDrawer = ({ background, listHead }) => {
   const partner = useContext(BooksHooks.Context.Partner);
@@ -12,7 +12,8 @@ const NavigationDrawer = ({ background, listHead }) => {
   };
   const createCategory = (item) => {
     let detailsOpen = false;
-    if (window.location.pathname.indexOf(item.tag) >= 0) {
+    let childLocations = item.subContent.map((item) => item.to);
+    if (childLocations.includes(window.location.pathname)) {
       detailsOpen = true;
     }
 
@@ -49,11 +50,10 @@ const NavigationDrawer = ({ background, listHead }) => {
       <style jsx="true" global="true">{`
         .nav-drawer {
           background: var(--${background});
-          min-width: 320px;
-          max-width: 320px;
+          min-width: 290px;
+          max-width: 290px;
           height: auto;
           padding-top: 20px;
-          top: 52px;
           overflow-y: scroll;
           scrollbar-width: none;
           box-shadow: 2px 2px 2px var(--black-opaque-8);
@@ -89,7 +89,7 @@ const NavigationDrawer = ({ background, listHead }) => {
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-          width: 304px;
+          width: 274px;
           text-decoration: none;
           font-weight: var(--regular-weight);
           position: relative;
@@ -145,7 +145,7 @@ const NavigationDrawer = ({ background, listHead }) => {
         .nav-drawer .nav-header {
           display: flex;
           height: 46px;
-          padding-left: 24px;
+          padding: 0px 24px;
           margin-top: -20px !important;
           list-style: none;
           color: var(--black);
@@ -160,7 +160,7 @@ const NavigationDrawer = ({ background, listHead }) => {
 
         .nav-drawer .summary {
           display: flex;
-          width: 304px;
+          width: 274px;
           justify-content: space-between;
           align-items: center;
           height: 46px;
@@ -185,7 +185,7 @@ const NavigationDrawer = ({ background, listHead }) => {
         .nav-drawer .sub-list a {
           margin-left: 40px;
           padding-left: 24px;
-          width: 264px;
+          width: 234px;
           height: 40px;
         }
 
