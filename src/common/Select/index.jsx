@@ -50,19 +50,23 @@ const TextEntry = ({
 
         return () => {
             if (inputRef) {
-                inputRef.addEventListener('click', click)
-                inputRef.addEventListener('blur', blur)
+                inputRef.removeEventListener('click', click)
+                inputRef.removeEventListener('blur', blur)
             }
         }
     }, [select, blur, dropdown, wrapper, click])
 
     useEffect(() => {
         const setLabel = (items) => {
-            items.forEach((item) => {
-                if (item.value === value) {
-                    setSelectedLabel(item.label)
-                }
-            })
+            if(value) {
+                items.forEach((item) => {
+                    if (item.value === value) {
+                        setSelectedLabel(item.label)
+                    }
+                })
+            } else {
+                setSelectedLabel('')
+            }
         }
         setLabel(options)
     }, [value, options])

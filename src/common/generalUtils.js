@@ -1,8 +1,6 @@
-const formatFee = (fee) => {
-  return fee < 0
-    ? `-${(Math.abs(fee) / 100).toFixed(2)}`
-    : `${(fee / 100).toFixed(2)}`;
-};
+const formatFee = (amount) => {
+  return ((amount / 100).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 const formatBasisPoints = (bp) => {
   const originalAmount = 100000;
@@ -118,3 +116,9 @@ const parseAddress = (incoming) => {
 };
 
 export { parseAddress };
+
+export const formatDollarAmountString = (value) => {
+  const newValue = value.replace(/[^0-9]/g, '');
+  let amount = parseFloat(newValue) ?? 0;
+  return amount ? ((amount / 100).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '';
+}

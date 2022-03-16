@@ -42,9 +42,11 @@ const openModal = (identifier) => {
 
 export { closeModal, openModal }
 
-const ModalContent = ({ identifier, children, closeAction }) => {
+const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
     const modalForm = identifier ? `${identifier}-modal-form` : 'modal-form'
     const modal = identifier ? `${identifier}-modal` : 'modal'
+
+    const finalZPosition = zPosition ? 99 + zPosition : 99
 
     return (
         <div className='hide-modal'>
@@ -64,7 +66,7 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                 data-testid='modal-form'
                 id={modalForm}
             >
-                <div id='modal-content'>
+                <div className='modal-content'>
                     <div className='modal-header'>
                         <IconButton
                             icon='times'
@@ -81,7 +83,7 @@ const ModalContent = ({ identifier, children, closeAction }) => {
             </div>
             <style global='true' jsx='true'>
                 {`
-                    #modal-content {
+                    #${modalForm} .modal-content {
                         display: flex;
                         flex-direction: column;
                         width: 100%;
@@ -89,7 +91,7 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                         border-radius: 16px;
                     }
 
-                    #modal-content .modal-header {
+                    #${modalForm} .modal-content .modal-header {
                         width: 100%;
                         display: flex;
                         flex-direction: row-reverse;
@@ -97,24 +99,24 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                         align-items: center;
                         padding: 4px;
                     }
-                    #modal-content .modal-header i {
+                    #${modalForm} .modal-content .modal-header i {
                         cursor: pointer;
                         padding: 10px;
                     }
-                    #modal-content .modal-body {
+                    #${modalForm} .modal-content .modal-body {
                         margin: 0px 32px 32px;
                         overflow-y: auto;
                         -ms-overflow-style: none;
                         scrollbar-width: none;
                     }
-                    #modal-content .modal-body::-webkit-scrollbar {
+                    #${modalForm} .modal-content .modal-body::-webkit-scrollbar {
                         display: none;
                     }
-                    .modal-wrapper {
+                    #${modalForm} .modal-wrapper {
                         height: 100%;
                         width: 100%;
                     }
-                    .modal-on {
+                    #${modal}.modal-on {
                         display: flex;
                         flex-direction: column;
                         visibility: visible;
@@ -125,15 +127,15 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                         width: 100%;
                         background: var(--black-opaque-32);
                         backdrop-filter: opacity(50%) blur(2px);
-                        z-index: 100;
+                        z-index: ${finalZPosition} ;
                     }
-                    .modal-off {
+                    #${modal}.modal-off {
                         visibility: hidden;
                     }
-                    .modal-gone {
+                    #${modal}.modal-gone {
                         display: none;
                     }
-                    .modal-form-on {
+                    #${modalForm}.modal-form-on {
                         display: flex;
                         flex-direction: column;
                         visibility: visible;
@@ -155,20 +157,20 @@ const ModalContent = ({ identifier, children, closeAction }) => {
                         transition: box-shadow 0.28s
                             cubic-bezier(0.4, 0, 0.2, 1);
                         border-radius: 16px;
-                        z-index: 100;
+                        z-index: ${finalZPosition} ;
                     }
 
-                    #modal-content form {
+                    #${modalForm} .modal-content form {
                         display: flex;
                         flex-direction: column;
                         align-content: center;
                     }
 
-                    .modal-form-off {
+                    #${modalForm}.modal-form-off {
                         visibility: hidden;
                     }
 
-                    .modal-form-gone {
+                    #${modalForm}.modal-form-gone {
                         display: none;
                     }
 
@@ -184,7 +186,8 @@ const ModalContent = ({ identifier, children, closeAction }) => {
 
 ModalContent.propTypes = {
     closeAction: PropTypes.func,
-    identifier: PropTypes.string.isRequired
+    identifier: PropTypes.string.isRequired,
+    zPosition: PropTypes.number
 }
 
 export default ModalContent

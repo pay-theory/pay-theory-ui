@@ -11,18 +11,8 @@ const NavigationDrawer = ({ background, listHead }) => {
     return <NavigationItem item={item} key={item.tag} />;
   };
   const createCategory = (item) => {
-    let detailsOpen = false;
-    if (window.location.pathname.indexOf(item.tag) >= 0) {
-      detailsOpen = true;
-    }
-
     return (
-      <NavigationCategory
-        item={item}
-        detailsOpen={detailsOpen}
-        createItem={createItem}
-        key={item.tag}
-      />
+      <NavigationCategory item={item} createItem={createItem} key={item.tag} />
     );
   };
   return (
@@ -49,11 +39,10 @@ const NavigationDrawer = ({ background, listHead }) => {
       <style jsx="true" global="true">{`
         .nav-drawer {
           background: var(--${background});
-          min-width: 290px;
-          max-width: 290px;
+          min-width: 320px;
+          max-width: 320px;
           height: auto;
           padding-top: 20px;
-          top: 52px;
           overflow-y: scroll;
           scrollbar-width: none;
           box-shadow: 2px 2px 2px var(--black-opaque-8);
@@ -89,7 +78,7 @@ const NavigationDrawer = ({ background, listHead }) => {
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-          width: 274px;
+          width: 304px;
           text-decoration: none;
           font-weight: var(--regular-weight);
           position: relative;
@@ -145,7 +134,7 @@ const NavigationDrawer = ({ background, listHead }) => {
         .nav-drawer .nav-header {
           display: flex;
           height: 46px;
-          padding-left: 24px;
+          padding: 0px 24px;
           margin-top: -20px !important;
           list-style: none;
           color: var(--black);
@@ -157,52 +146,22 @@ const NavigationDrawer = ({ background, listHead }) => {
         }
 
         /* Sub-List Styling */
-
-        .nav-drawer .summary {
-          display: flex;
-          width: 274px;
-          justify-content: space-between;
-          align-items: center;
-          height: 46px;
-          cursor: pointer;
-          outline: none;
-        }
-
-        .nav-drawer summary {
-          outline: none;
-        }
-
-        .nav-drawer details summary::-webkit-details-marker {
-          display: none;
-        }
-
-        .summary-trailing {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
         .nav-drawer .sub-list a {
           margin-left: 40px;
           padding-left: 24px;
-          width: 234px;
+          width: 264px;
           height: 40px;
         }
 
-        /* Sub-List Chevron Styling */
-
-        .nav-drawer .summary-chevron {
-          height: 48px;
-          width: 48px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.3s ease;
+        .nav-drawer .sub-list {
+          height: 0px;
+          overflow: hidden;
+          -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
         }
 
-        .nav-drawer details[open] .summary-chevron {
-          transform: rotate(90deg);
-          transition: transform 0.3s ease;
+        .nav-drawer .sub-list.details-open {
+          height: auto;
         }
 
         /* Badge Styling */

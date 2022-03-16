@@ -65,12 +65,14 @@ import TabMenu from './TabMenu'
 import TabPage from './TabPage'
 import TextEntry from './TextEntry'
 import TextEntryDate from './TextEntryDate'
+import TextEntryDollar from './TextEntryDollar'
 import TextEntryPhone from './TextEntryPhone'
 import Toggle from './Toggle'
 import ToolTip from './Tooltip'
 
 import Unauthorized from './Unauthorized'
 import UtilityBar from './UtilityBar'
+import UploadCard from './UploadCard'
 
 import { timedLogout } from './utilities'
 import { downloadCSV } from './generalUtils'
@@ -136,10 +138,12 @@ export {
     TabPage,
     TextEntry,
     TextEntryDate,
+    TextEntryDollar,
     TextEntryPhone,
     Toggle,
     ToolTip,
     timedLogout,
     Unauthorized,
-    UtilityBar
+    UtilityBar,
+    UploadCard
 }

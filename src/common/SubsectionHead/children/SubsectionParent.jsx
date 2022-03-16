@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import Icon from '../../Icon'
 
 import * as BooksHooks from '../../../hooks'
 
 const SubsectionParent = (props) => {
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
     const parentHook = useContext(BooksHooks.Context.Parent)
 
     return (
@@ -13,12 +14,10 @@ const SubsectionParent = (props) => {
             className='subsection-nav'
             data-testid='link'
             onClick={() => {
-                if (history.location.state) {
-                    history.goBack()
+                if (location.state) {
+                    navigate(-1)
                 } else {
-                    history.push({
-                        pathname: parentHook.route
-                    })
+                    navigate(parentHook.route)
                 }
             }}
         >

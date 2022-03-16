@@ -31,88 +31,70 @@ const daysInMonth = {
 }
 
 const findMonth = (string) => {
-    const month = parseInt(string.substring(0, 2))
-
+    const month = parseInt(string.substring(0, 2));
+    if (month === 0) return ["0"];
     if (month > 0 && month < 13) {
-        const dayAndYear =
-            string.length > 1
-                ? findDayAndYear(string.substring(2), month)
-                : findDayAndYear(string.substring(1), month)
-        return [string.substring(0, 2), ...dayAndYear]
+      const dayAndYear =
+        string.length > 1
+          ? findDayAndYear(string.substring(2), month)
+          : findDayAndYear(string.substring(1), month);
+      return [string.substring(0, 2), ...dayAndYear];
     } else {
-        const month = parseInt(string.charAt(0))
-        const dayAndYear = findDayAndYear(string.substring(1), month)
-        return [month, ...dayAndYear]
+      const month = string.charAt(0);
+      const dayAndYear = findDayAndYear(string.substring(1), month);
+      return [month, ...dayAndYear];
     }
-}
-
-const findDayAndYear = (string, month) => {
-    if (string.length === 0) return []
-
-    const dayString = string.substring(0, 2)
-    const day = parseInt(dayString)
-
+  };
+  
+  const findDayAndYear = (string, month) => {
+    if (string.length === 0) return [];
+  
+    const dayString = string.substring(0, 2);
+    const day = parseInt(dayString);
+    if (day === 0) return ["0"];
+  
     if (day > 0 && day <= daysInMonth[parseInt(month)]) {
-        const result =
-            string.substring(2) !== ''
-                ? [dayString, string.substring(2, 6)]
-                : [dayString]
-        return result
+      const result =
+        string.substring(2) !== ""
+          ? [dayString, string.substring(2, 6)]
+          : [dayString];
+      return result;
     } else {
-        const dayChar = string.charAt(0)
-        const day = parseInt(dayChar)
-        const result =
-            string.substring(1) !== '' && day > 0
-                ? [dayChar, string.substring(1, 5)]
-                : [dayChar]
-        return result
+      const dayChar = string.charAt(0);
+      const day = parseInt(dayChar);
+      const result =
+        string.substring(1) !== "" && day > 0
+          ? [dayChar, string.substring(1, 5)]
+          : [dayChar];
+      return result;
     }
-}
-
-export const formatDateString = (dateIn, previousDate) => {
-    let value = dateIn
-    if (previousDate.length > dateIn.length && previousDate.endsWith('/')) {
-        value = dateIn.substring(0, dateIn.length - 1)
+  };
+  
+  export const formatDateString = (dateIn, previousDate) => {
+    let value = dateIn;
+    if (previousDate.length > dateIn.length && previousDate.endsWith("/")) {
+      value = dateIn.substring(0, dateIn.length - 1);
     }
-    const dated = value.replace(/\D/g, '')
-    if (dated.length === 0) return ''
+    const dated = value.replace(/\D/g, "");
+    if (dated.length === 0) return "";
+  
+    const dateArray = findMonth(dated);
+    if (dateIn.endsWith("/")) dateArray.push("");
+    let formattedDateArray = dateArray.map((item, index) => {
+      if (item.length < 2 && index < dateArray.length - 1) {
+        if (item === "0") {
+          return 0;
+        }
+        return `0${item}/`;
+      } else if (item.length === 2 && index < 2) {
+        return `${item}/`;
+      } else {
+        return item;
+      }
+    });
+    return formattedDateArray.join("");
+  };
 
-    const dateArray = findMonth(dated)
-    return dateArray.length > 1 ? dateArray.join('/') : `${dateArray[0]}`
-}
-
-// export const formatDateString = (dateIn) => {
-//   const dated = dateIn.replace(/\D/g, "");
-
-//   if (dated === "") return "";
-//   const matched = dated.match(dateSplit);
-//   const month = matched && matched[1] ? matched[1] : "";
-//   const day = matched && matched[2] ? matched[2] : "";
-//   const dayRemainder =
-//     day || (matched && matched[1] ? dated.replace(matched[0], "") : "");
-//   const year = matched && matched[3] ? matched[3] : "";
-//   /* eslint-disable-next-line indent */
-//   const yearRemainder =
-//     year.length > 1
-//       ? year
-//       : matched && matched[2] /* eslint-disable-next-line indent */
-//       ? dated.replace(matched[0], "")
-//       : ""; /* eslint-disable-line indent */
-
-//   if (year.length > 0) {
-//     return `${month} / ${day} / ${year}`;
-//   } else if (yearRemainder.length > 0) {
-//     return `${month} / ${day} / ${yearRemainder}`;
-//   } else if (day.length > 0) {
-//     return `${month} / ${day}`;
-//   } else if (dayRemainder.length > 0) {
-//     return `${month} / ${dayRemainder}`;
-//   } else if (month.length > 0) {
-//     return `${month}`;
-//   } else {
-//     return `${dateIn}`;
-//   }
-// };
 
 export const validDate = (date) => {
     return date.match(

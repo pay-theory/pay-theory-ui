@@ -12,14 +12,14 @@ const TabPage = (props) => {
             <style jsx='true' global='true'>{`
                 .tab-visible {
                     display: block;
-                    height: auto;
-                    overflow: hidden;
+                }
+
+                .tab-container {
+                    height: 100%;
                 }
 
                 .gone {
-                    display: block;
-                    height: 0;
-                    overflow: hidden;
+                    display: none;
                 }
 
                 .tab-row {
