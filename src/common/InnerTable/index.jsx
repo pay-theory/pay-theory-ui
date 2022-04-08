@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import * as children from "./children";
 
+import { useIntersection } from "../utilHooks";
+
 export const TableContext = createContext();
 
 const InnerTable = ({
@@ -27,6 +29,8 @@ const InnerTable = ({
   const hasActions = !!groupActions;
 
   const { page } = paginationHook || {};
+
+  const inViewport = useIntersection(wrapper);
 
   const reduceWidth = (acc, value) => {
     return acc + value;
@@ -63,7 +67,7 @@ const InnerTable = ({
       setParentHeight(client.parentNode.getBoundingClientRect().height);
       setResized(false);
     }
-  }, [wrapper, resized]);
+  }, [wrapper, resized, inViewport]);
 
   useEffect(() => {
     const handleResize = () => {
