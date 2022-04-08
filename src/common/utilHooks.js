@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useIntersection = (element, rootMargin) => {
+export const useIntersection = (element, rootMargin) => {
   const [isVisible, setState] = useState(false);
 
   useEffect(() => {
