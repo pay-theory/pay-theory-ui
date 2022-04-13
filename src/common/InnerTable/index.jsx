@@ -31,8 +31,6 @@ const InnerTable = ({
   const { page } = paginationHook || {};
   const { results } = resultsPerPageHook || {};
 
-  const inViewport = useIntersection(wrapper);
-
   const reduceWidth = (acc, value) => {
     return acc + value;
   };
@@ -68,7 +66,7 @@ const InnerTable = ({
       setParentHeight(client.parentNode.getBoundingClientRect().height);
       setResized(false);
     }
-  }, [wrapper, resized, inViewport]);
+  }, [wrapper, resized]);
 
   useEffect(() => {
     const handleResize = () => {
