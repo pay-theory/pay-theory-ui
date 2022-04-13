@@ -29,6 +29,7 @@ const InnerTable = ({
   const hasActions = !!groupActions;
 
   const { page } = paginationHook || {};
+  const { results } = resultsPerPageHook || {};
 
   const inViewport = useIntersection(wrapper);
 
@@ -44,7 +45,7 @@ const InnerTable = ({
 
   useEffect(() => {
     setSelected({});
-  }, [page]);
+  }, [page, results]);
 
   // checks the height of the parent to see if it is taller than the full table height
 
