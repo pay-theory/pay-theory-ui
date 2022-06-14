@@ -94,5 +94,9 @@
         "react-dropzone": "^11.3.4",
         "react-router-dom": "^6.2.1",
         "webfontloader": "^1.6.28"
+    },
+    "dependencies": {
+        "chart.js": "^3.8.0",
+        "react-chartjs-2": "^4.2.0"
     }
 }

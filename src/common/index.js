@@ -48,6 +48,7 @@ import NavigationDrawer from './NavigationDrawer'
 import NotFound from './NotFound'
 
 import Pagination, { usePagination } from './Pagination'
+import PaymentChart from "./PaymentChart";
 import PortalHead, { usePortalNotification } from './PortalHead'
 
 import {
@@ -122,6 +123,7 @@ export {
     NavigationDrawer,
     NotFound,
     Pagination,
+    PaymentChart,
     usePagination,
     PortalHead,
     usePortalNotification,
