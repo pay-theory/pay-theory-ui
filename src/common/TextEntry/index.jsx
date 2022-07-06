@@ -50,7 +50,7 @@ const TextEntry = ({
         }
     }, [value, valid])
 
-    const inputClassList = `${value ? '' : 'empty'} ${focused ? 'focused' : ''}`
+    const inputClassList = `${value ? '' : 'empty'} ${focused ? 'focused' : ''} ${disabled ? 'disabled' : ''}`
     const divClassList = `pt-text-field ${validity} ${
         focused ? 'focused' : ''
     } ${disabled ? 'disabled' : ''} ${leadingIcon ? 'leading' : ''} ${
@@ -187,16 +187,6 @@ const TextEntry = ({
                             transition: background 0.3s ease;
                         }
 
-                        /* Disabled Styling */
-                        .pt-text-field.disabled {
-                            background: var(--grey-2);
-                            border: 1px solid var(--grey-1);
-                        }
-
-                        .pt-text-field.disabled label {
-                            color: var(--grey-1);
-                        }
-
                         /* Icon Styling */
                         .pt-text-field .pt-icon {
                             height: 48px;
@@ -212,6 +202,24 @@ const TextEntry = ({
 
                         .pt-text-field.leading input {
                             padding-left: 0px;
+                        }
+
+                             /* Disabled Styling */
+                        .pt-text-field.disabled {
+                            background: var(--grey-2);
+                            border: 1px solid var(--grey-1);
+                        }
+
+                        .pt-text-field .disabled {
+                            background: var(--grey-2);
+                        }
+
+                        .pt-text-field.disabled label {
+                            color: var(--grey-1);
+                        }
+
+                        .pt-text-field.disabled .pt-icon {
+                            color: var(--grey-1);
                         }
                     `}
                 </style>
