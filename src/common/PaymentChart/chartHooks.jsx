@@ -35,6 +35,7 @@ const buildOptions = (todayMax, yesterdayMax, unitType) => {
 
   return {
     responsive: true,
+    aspectRatio: 3,
     scales: {
       x: {
         grid: {
