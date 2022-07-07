@@ -9,7 +9,8 @@ const TEN = 10;
 const ONE = 10;
 
 const maxOut = (todayMax, yesterdayMax) => {
-  const greatestMax = yesterdayMax > todayMax ? yesterdayMax : todayMax;
+  let greatestMax = yesterdayMax > todayMax ? yesterdayMax : todayMax;
+  greatestMax = greatestMax || 1;
   const scaleMax =
     greatestMax < TEN
       ? ONE
@@ -29,8 +30,6 @@ const maxOut = (todayMax, yesterdayMax) => {
   return [greatestMax, roundedMax];
 };
 
-//
-
 const buildOptions = (todayMax, yesterdayMax, unitType) => {
   const [greatestMax, roundedMax] = maxOut(todayMax, yesterdayMax);
 
@@ -39,10 +38,8 @@ const buildOptions = (todayMax, yesterdayMax, unitType) => {
     scales: {
       x: {
         grid: {
-          drawTicks: true
-        },
-        gridLines: {
-          display: true
+          drawTicks: false,
+          color: "rgba(202,196,202,0.5)"
         },
         ticks: {
           callback: function (val, index) {
@@ -54,24 +51,27 @@ const buildOptions = (todayMax, yesterdayMax, unitType) => {
             }
             return "";
           },
+          maxRotation: 0,
+          padding: 15,
           color: "rgb(0,0,0)"
         }
       },
       y: {
         display: true,
         grid: {
-          drawTicks: true
-        },
-        gridLines: {
-          lineWidth: 0,
+          drawTicks: false,
+          lineWidth: 1,
           borderWidth: 0,
-          borderColor: "rgba(0,0,0,0)"
+          color: "rgba(202,196,202,0.5)"
         },
+
         min: 0,
         max: roundedMax,
+
         ticks: {
           // forces step size to be 50 units
-          stepSize: roundedMax / 2,
+          padding: 15,
+          stepSize: roundedMax / 4,
           color: "rgb(0,0,0)",
           callback: function (value, index, ticks) {
             if (greatestMax >= 2000) {
@@ -79,7 +79,7 @@ const buildOptions = (todayMax, yesterdayMax, unitType) => {
               const divisor = greatestMax < 2 * MILLION ? THOUSAND : MILLION;
               return `$${value / divisor}${abbrev}`;
             }
-            return value;
+            return `$${value}`;
           }
         }
       }
@@ -92,22 +92,7 @@ const buildOptions = (todayMax, yesterdayMax, unitType) => {
         display: false
       },
       tooltip: {
-        callbacks: {
-          label: (context) => {
-            let label = context.dataset.label || "";
-
-            if (label) {
-              label += ": ";
-            }
-            if (context.parsed.y !== null) {
-              label += new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD"
-              }).format(context.parsed.y);
-            }
-            return label;
-          }
-        }
+        enabled: false
       }
     },
     interaction: {
@@ -275,11 +260,7 @@ const hourLabels = [
   "12:00 AM"
 ];
 
-const black = "rgb(0,0,0)";
-const transparentBlack = "rgba(0,0,0,0.5)";
-
 const purple = "rgb(197,82,255)";
-const transparentPurple = "rgba(197,82,255,0.5)";
 
 const buildData = (labels, current, prior, unitType) => {
   const currentLabel = unitType === HOURS ? "Today" : "This Week";
@@ -295,19 +276,24 @@ const buildData = (labels, current, prior, unitType) => {
         label: currentLabel,
         data: labels.map((label, index) => current[index]),
         borderColor: purple,
-        backgroundColor: transparentPurple,
+        backgroundColor: purple,
         pointHoverBorderColor: purple,
-        pointHoverBackgroundColor: transparentPurple,
+        pointHoverBackgroundColor: purple,
+        pointBorderWidth: 0,
+        pointHoverRadius: 3,
+        pointHoverBorderWidth: 0,
         borderWidth: 1,
         pointRadius: 0
       },
       {
         label: priorLabel,
         data: labels.map((label, index) => prior[index]),
-        borderColor: black,
-        backgroundColor: transparentBlack,
-        pointHoverBorderColor: black,
-        pointHoverBackgroundColor: transparentBlack,
+        borderColor: "#6a606d",
+        backgroundColor: "#6a606d",
+        pointHoverBackgroundColor: "#6a606d",
+        pointBorderWidth: 0,
+        pointHoverRadius: 3,
+        pointHoverBorderWidth: 0,
         borderWidth: 1,
         pointRadius: 0
       }
@@ -320,9 +306,11 @@ export const useChartData = (payments, unitType) => {
   const [options, setOptions] = useState();
   const [chartData, setChartData] = useState();
   const [charted, setCharted] = useState(false);
+  const [currentData, setCurrentData] = useState([]);
+  const [priorData, setPriorData] = useState([]);
 
   useEffect(() => {
-    if (payments.length > 0 && (labels.length > 0) & !charted) {
+    if (payments.length > 0 && labels.length > 0) {
       const grossCurrent = [...empty[unitType]];
       const grossPrior = [...empty[unitType]];
 
@@ -330,12 +318,16 @@ export const useChartData = (payments, unitType) => {
         const dated = new Date(payment.transaction_date);
         // Adding one to hours becasue we want to capture the total at the start of the hour
         // so all payments from 12AM (0 index) should show up at 1AM (1 index)
-        const indexed = unitType === HOURS ? dated.getHours() + 1 : dated.getDay();
-        if(payment.transaction_type?.toUpperCase() === "REVERSAL") payment.gross_amount *= -1;
+        const indexed =
+          unitType === HOURS ? dated.getHours() + 1 : dated.getDay();
+        if (payment.transaction_type?.toUpperCase() === "REVERSAL")
+          payment.gross_amount *= -1;
         if (isCurrent(dated, unitType)) {
-          grossCurrent[indexed] = grossCurrent[indexed] + payment.gross_amount / 100;
+          grossCurrent[indexed] =
+            grossCurrent[indexed] + payment.gross_amount / 100;
         } else if (isPrior(dated, unitType)) {
-          grossPrior[indexed] = grossPrior[indexed] + payment.gross_amount / 100;
+          grossPrior[indexed] =
+            grossPrior[indexed] + payment.gross_amount / 100;
         }
       });
 
@@ -349,6 +341,8 @@ export const useChartData = (payments, unitType) => {
         _grossByUnitPrior,
         unitType
       );
+      setCurrentData(_grossByUnitCurrent);
+      setPriorData(_grossByUnitPrior);
 
       const _currentMax = _grossByUnitCurrent[_grossByUnitCurrent.length - 1];
       const _priorMax = _grossByUnitPrior[_grossByUnitCurrent.length - 1];
@@ -356,9 +350,8 @@ export const useChartData = (payments, unitType) => {
       const _options = buildOptions(_currentMax, _priorMax, unitType);
       setChartData(_chartData);
       setOptions(_options);
-      setCharted(true);
     }
   }, [payments, labels, unitType]);
 
-  return [options, chartData];
+  return [options, chartData, currentData, priorData, labels];
 };
