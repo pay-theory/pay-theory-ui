@@ -327,16 +327,15 @@ export const useChartData = (payments, unitType) => {
       const grossPrior = [...empty[unitType]];
 
       payments.forEach((payment) => {
-        const dated = new Date(payment.transferDate);
+        const dated = new Date(payment.transaction_date);
         // Adding one to hours becasue we want to capture the total at the start of the hour
         // so all payments from 12AM (0 index) should show up at 1AM (1 index)
-        const indexed =
-          unitType === HOURS ? dated.getHours() + 1 : dated.getDay();
+        const indexed = unitType === HOURS ? dated.getHours() + 1 : dated.getDay();
+        if(payment.transaction_type?.toUpperCase() === "REVERSAL") payment.gross_amount *= -1;
         if (isCurrent(dated, unitType)) {
-          grossCurrent[indexed] =
-            grossCurrent[indexed] + payment.grossAmount / 100;
+          grossCurrent[indexed] = grossCurrent[indexed] + payment.gross_amount / 100;
         } else if (isPrior(dated, unitType)) {
-          grossPrior[indexed] = grossPrior[indexed] + payment.grossAmount / 100;
+          grossPrior[indexed] = grossPrior[indexed] + payment.gross_amount / 100;
         }
       });
 
