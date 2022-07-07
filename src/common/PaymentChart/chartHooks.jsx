@@ -36,6 +36,7 @@ const buildOptions = (todayMax, yesterdayMax, unitType) => {
   return {
     responsive: true,
     aspectRatio: 3,
+    maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -306,7 +307,6 @@ export const useChartData = (payments, unitType) => {
   const labels = unitType === HOURS ? hourLabels : weekLables;
   const [options, setOptions] = useState();
   const [chartData, setChartData] = useState();
-  const [charted, setCharted] = useState(false);
   const [currentData, setCurrentData] = useState([]);
   const [priorData, setPriorData] = useState([]);
 
@@ -321,14 +321,16 @@ export const useChartData = (payments, unitType) => {
         // so all payments from 12AM (0 index) should show up at 1AM (1 index)
         const indexed =
           unitType === HOURS ? dated.getHours() + 1 : dated.getDay();
-        if (payment.transaction_type?.toUpperCase() === "REVERSAL")
-          payment.gross_amount *= -1;
         if (isCurrent(dated, unitType)) {
           grossCurrent[indexed] =
-            grossCurrent[indexed] + payment.gross_amount / 100;
+            payment.transaction_type?.toUpperCase() === "REVERSAL"
+              ? grossCurrent[indexed] - payment.gross_amount / 100
+              : grossCurrent[indexed] + payment.gross_amount / 100;
         } else if (isPrior(dated, unitType)) {
           grossPrior[indexed] =
-            grossPrior[indexed] + payment.gross_amount / 100;
+            payment.transaction_type?.toUpperCase() === "REVERSAL"
+              ? grossPrior[indexed] - payment.gross_amount / 100
+              : grossPrior[indexed] + payment.gross_amount / 100;
         }
       });
 

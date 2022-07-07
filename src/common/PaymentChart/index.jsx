@@ -24,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-const PaymentsChart = ({ payments = [], daily, weekly }) => {
+const PaymentsChart = ({ payments = [], daily, weekly, maxHeight }) => {
   const type = daily ? HOURS : weekly ? DAYS : null;
   const label = daily ? "Yesterday" : "Last Week";
   const [options, chartData, currentData, priorData, labels] = useChartData(
@@ -82,7 +82,7 @@ const PaymentsChart = ({ payments = [], daily, weekly }) => {
 
   if (options && chartData) {
     return (
-      <div>
+      <div class="chart-container">
         <div className="chart-info">
           <div className={"chart-info-current"}>
             <div className={"chart-info-title"}>
@@ -111,23 +111,31 @@ const PaymentsChart = ({ payments = [], daily, weekly }) => {
             </h5>
           </div>
         </div>
-        <Line
-          options={options}
-          data={chartData}
-          plugins={[
-            {
-              id: "annotationline",
-              beforeDraw: beforeDraw
-            }
-          ]}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        />
+        <div className="chart-wrapper">
+          <Line
+            options={options}
+            data={chartData}
+            plugins={[
+              {
+                id: "annotationline",
+                beforeDraw: beforeDraw
+              }
+            ]}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          />
+        </div>
         <style jsx>{`
+          .chart-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+          }
           .chart-info {
             display: flex;
             align-items: center;
             margin: 8px ${sideMargin}px;
+            flex: 0 1 auto;
           }
           .chart-info-current,
           .chart-info-prior {
@@ -153,6 +161,10 @@ const PaymentsChart = ({ payments = [], daily, weekly }) => {
           .chart-info-subtitle {
             min-height: 17px;
             color: #69606c;
+          }
+          .chart-wrapper {
+            flex: 1 1 auto;
+            ${maxHeight ? `max-height: ${maxHeight}px;` : ""}
           }
         `}</style>
       </div>
