@@ -79,7 +79,7 @@ const Pagination = ({ onPaginate, totalPages }) => {
             -moz-user-select: none; /* Old versions of Firefox */
             -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none;
-            height: 48px;
+            height: 40px;
             font-family: var(--secondary-font);
             padding-left: 16px;
           }
