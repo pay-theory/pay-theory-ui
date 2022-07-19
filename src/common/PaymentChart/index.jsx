@@ -82,7 +82,7 @@ const PaymentsChart = ({ payments = [], daily, weekly, maxHeight }) => {
 
   if (options && chartData) {
     return (
-      <div class="chart-container">
+      <div className="chart-container">
         <div className="chart-info">
           <div className={"chart-info-current"}>
             <div className={"chart-info-title"}>
@@ -125,7 +125,7 @@ const PaymentsChart = ({ payments = [], daily, weekly, maxHeight }) => {
             onMouseLeave={() => setIsHovering(false)}
           />
         </div>
-        <style jsx>{`
+        <style global='true' jsx='true'>{`
           .chart-container {
             height: 100%;
             display: flex;

@@ -8,8 +8,8 @@ const HUNDRED = 100;
 const TEN = 10;
 const ONE = 10;
 
-const maxOut = (todayMax, yesterdayMax) => {
-  let greatestMax = yesterdayMax > todayMax ? yesterdayMax : todayMax;
+const maxOut = (currentMax, priorMax) => {
+  let greatestMax = priorMax > currentMax ? priorMax : currentMax;
   greatestMax = greatestMax || 1;
   const scaleMax =
     greatestMax < TEN
@@ -30,9 +30,32 @@ const maxOut = (todayMax, yesterdayMax) => {
   return [greatestMax, roundedMax];
 };
 
-const buildOptions = (todayMax, yesterdayMax, unitType) => {
-  const [greatestMax, roundedMax] = maxOut(todayMax, yesterdayMax);
+const minOut = (currentMin, priorMin) => {
+  let leastMin = priorMin < currentMin ? priorMin : currentMin;
+  leastMin = leastMin || 0;
+  const scaleMin =
+    leastMin > TEN * -1
+      ? ONE
+      : leastMin > HUNDRED * -1
+        ? TEN
+        : leastMin > THOUSAND * -1
+          ? HUNDRED
+          : leastMin > TENTHOU * -1
+            ? THOUSAND
+            : leastMin > HUNTHOU * -1
+              ? TENTHOU
+              : leastMin > MILLION * -1
+                ? HUNTHOU
+                : MILLION;
 
+  const roundedMin = Math.floor(leastMin / scaleMin) * scaleMin;
+  return [leastMin, roundedMin];
+}
+
+const buildOptions = (currentMax, priorMax, currentMin, priorMin, unitType) => {
+  const [greatestMax, roundedMax] = maxOut(currentMax, priorMax);
+  const [leastMin, roundedMin] = minOut(currentMin, priorMin);
+  const minMaxDiff = roundedMin < 0 ? roundedMax - roundedMin : roundedMax;
   return {
     responsive: true,
     aspectRatio: 3,
@@ -67,9 +90,8 @@ const buildOptions = (todayMax, yesterdayMax, unitType) => {
           color: "rgba(202,196,202,0.5)"
         },
 
-        min: 0,
-        max: roundedMax,
-
+        min: roundedMin < 0 ? roundedMin : 0,
+        max: minMaxDiff,
         ticks: {
           // forces step size to be 50 units
           padding: 15,
@@ -347,10 +369,26 @@ export const useChartData = (payments, unitType) => {
       setCurrentData(_grossByUnitCurrent);
       setPriorData(_grossByUnitPrior);
 
-      const _currentMax = _grossByUnitCurrent[_grossByUnitCurrent.length - 1];
-      const _priorMax = _grossByUnitPrior[_grossByUnitCurrent.length - 1];
+      const returnLargest = (arr) => {
+        if(arr.length === 0) return 0;
+        return arr.reduce((largest, current) => {
+          return current > largest ? current : largest;
+        });
+      }
 
-      const _options = buildOptions(_currentMax, _priorMax, unitType);
+      const returnSmallest = (arr) => {
+        if(arr.length === 0) return 0;
+        return arr.reduce((smallest, current) => {
+          return current < smallest ? current : smallest;
+        });
+      }
+
+      const _currentMax = returnLargest(_grossByUnitCurrent);
+      const _priorMax = returnLargest(_grossByUnitPrior);
+      const _currentMin = returnSmallest(_grossByUnitCurrent);
+      const _priorMin = returnSmallest(_grossByUnitPrior);
+
+      const _options = buildOptions(_currentMax, _priorMax, _currentMin, _priorMin, unitType);
       setChartData(_chartData);
       setOptions(_options);
     }

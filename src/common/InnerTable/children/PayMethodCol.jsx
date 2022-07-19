@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const PayMethodCol = ({ className, row, col, lastFour, brand, grey }) => {
+const PayMethodCol = ({ className, row, col, lastFour, brand, color }) => {
   const brandClasses = {
     VISA: "pay-theory-card-visa",
     DISCOVER: "pay-theory-card-discover",
@@ -24,8 +24,8 @@ const PayMethodCol = ({ className, row, col, lastFour, brand, grey }) => {
               brandClasses[brand] || "pay-theory-card-default"
             }`}
           />
-          <p className={grey ? "grey" : ""}>
-            {brand === "CASH" ? "CASH" : `xx${lastFour}`}
+          <p style={{ color: `var(--${color})` }}>
+            {brand === "CASH" ? "CASH" : `••${lastFour}`}
           </p>
         </span>
       </span>

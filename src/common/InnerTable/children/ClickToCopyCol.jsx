@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import Tooltip from "../../Tooltip";
 
-const ClickToCopyCol = ({ className, row, col, content, grey }) => {
+const ClickToCopyCol = ({ className, row, col, content, color }) => {
   const INITIAL = "Click to Copy";
   const SUCCESS = "Copied!";
   const [label, setLabel] = useState(INITIAL);
@@ -59,55 +60,22 @@ const ClickToCopyCol = ({ className, row, col, content, grey }) => {
       data-testid="unlinked-column"
       key={`${className}-${row}-${col}`}
     >
-      <p
-        className={`content ${grey ? "grey" : ""}`}
-        onClick={(e) => {
-          e.stopPropagation();
-          copyTextToClipboard();
-        }}
-      >
-        {content}
-      </p>
-      <p className="click-to-copy-tooltip">{label}</p>
+      <Tooltip text={label}>
+        <p
+          className={`content`}
+          style={{ color: `var(--${color})` }}
+          onClick={(e) => {
+            e.stopPropagation();
+            copyTextToClipboard();
+          }}
+        >
+          {content}
+        </p>
+      </Tooltip>
       <style jsx="true">
         {`
-          .click-to-copy-tooltip {
-            visibility: hidden;
-            background-color: var(--grey);
-            color: white;
-            text-align: center;
-            border-radius: 6px;
-            padding: 2px 18px 5px;
-            position: absolute;
-            z-index: 3;
-            white-space: nowrap;
-            box-shadow: 0px 2px 4px var(--black-opaque-32);
-            opacity: 0;
-            transition: opacity 0.15s ease-in-out;
-            will-change: transform;
-          }
-
-          .click-to-copy-tooltip {
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-          }
-
-          .cell.click-to-copy:hover .click-to-copy-tooltip:not(:hover) {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 0.2s ease-in-out;
-          }
-
-          .click-to-copy-tooltip::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -7px;
-            border-width: 7px;
-            border-style: solid;
-            border-color: var(--grey) transparent transparent transparent;
+          .cell.click-to-copy .pt-tooltip .pt-tooltiptext {
+            z-index: 10;
           }
         `}
       </style>

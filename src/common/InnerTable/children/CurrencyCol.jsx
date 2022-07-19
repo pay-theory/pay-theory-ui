@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { formatFee } from "../../generalUtils";
 
-const CurrencyCol = ({ className, row, col, content, grey, parenthesis }) => {
+const CurrencyCol = ({ className, row, col, content, color, parenthesis }) => {
   const formatContent = (item) => {
     // if no value we want a dash in the cell
-    if(!item) return '-';
+    if (!item) return "-";
 
     let number = `$${formatFee(item)}`;
     if (parenthesis) return `(${number})`;
@@ -17,7 +17,7 @@ const CurrencyCol = ({ className, row, col, content, grey, parenthesis }) => {
       key={`${className}-${row}-${col}`}
       data-testid="unlinked-column"
     >
-      <p className={`content ${grey ? "grey" : ""}`}>
+      <p className={`content`} style={{ color: `var(--${color})` }}>
         {formatContent(content)}
       </p>
     </td>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const BasicCol = ({ className, row, col, content, grey }) => {
+const BasicCol = ({ className, row, col, content, color }) => {
   return (
     <td
       className={`cell ${className}`}
@@ -9,9 +9,13 @@ const BasicCol = ({ className, row, col, content, grey }) => {
       data-testid="unlinked-column"
     >
       {typeof content === "string" ? (
-        <p className={`content ${grey ? "grey" : ""}`}>{content}</p>
+        <p className={`content`} style={{ color: `var(--${color})` }}>
+          {content}
+        </p>
       ) : (
-        <span className={`content ${grey ? "grey" : ""}`}>{content}</span>
+        <span className={`content`} style={{ color: `var(--${color})` }}>
+          {content}
+        </span>
       )}
     </td>
   );

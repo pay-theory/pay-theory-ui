@@ -36,7 +36,7 @@ import HoverMenu from './HoverMenu'
 
 import Icon from './Icon'
 import IconButton from './IconButton'
-import InnerTable, { useResultsPerPage } from './InnerTable'
+import InnerTable from './InnerTable'
 import IndexColumn, { useIndexColumn } from './IndexColumn'
 
 import ModalContent, { closeModal, openModal } from './ModalContent'
@@ -47,7 +47,7 @@ import { PaymentItem } from './Model'
 import NavigationDrawer from './NavigationDrawer'
 import NotFound from './NotFound'
 
-import Pagination, { usePagination } from './Pagination'
+import Pagination from './Pagination'
 import PaymentChart from "./PaymentChart";
 import PortalHead, { usePortalNotification } from './PortalHead'
 
@@ -112,7 +112,6 @@ export {
     InnerTable,
     IndexColumn,
     useIndexColumn,
-    useResultsPerPage,
     ModalContent,
     closeModal,
     openModal,
@@ -124,7 +123,6 @@ export {
     NotFound,
     Pagination,
     PaymentChart,
-    usePagination,
     PortalHead,
     usePortalNotification,
     Select,

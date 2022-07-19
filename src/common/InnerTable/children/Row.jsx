@@ -9,9 +9,11 @@ import CurrencyCol from "./CurrencyCol";
 import Checkbox from "../../Checkbox";
 import PayMethodCol from "./PayMethodCol";
 import ClickToCopyCol from "./ClickToCopyCol";
+import IconCol from "./IconCol";
+import ActionMenuCol from "./ActionMenuCol";
 import { TableContext } from "../index";
 
-const generateBasicCol = (column, col, row, itemKey, grey) => {
+const generateBasicCol = (column, col, row, itemKey, color) => {
   return (
     <BasicCol
       className={column.className}
@@ -19,7 +21,7 @@ const generateBasicCol = (column, col, row, itemKey, grey) => {
       content={column.content}
       key={`${itemKey}-column-${col}`}
       row={row}
-      grey={column.grey || grey}
+      color={column.color || color}
     />
   );
 };
@@ -37,7 +39,7 @@ const generateLinkCol = (column, col, row, itemKey) => {
   );
 };
 
-const generateClickToCopyCol = (column, col, row, itemKey, grey) => {
+const generateClickToCopyCol = (column, col, row, itemKey, color) => {
   return (
     <ClickToCopyCol
       className={column.className}
@@ -45,7 +47,7 @@ const generateClickToCopyCol = (column, col, row, itemKey, grey) => {
       content={column.content}
       key={`${itemKey}-column-${col}`}
       row={row}
-      grey={column.grey || grey}
+      color={column.color || color}
     />
   );
 };
@@ -80,7 +82,7 @@ const generateChipCol = (column, col, row, itemKey) => {
   );
 };
 
-const generateCurrencyCol = (column, col, row, itemKey, grey) => {
+const generateCurrencyCol = (column, col, row, itemKey, color) => {
   return (
     <CurrencyCol
       className={column.className}
@@ -88,13 +90,13 @@ const generateCurrencyCol = (column, col, row, itemKey, grey) => {
       content={column.content}
       key={`${itemKey}-column-${col}`}
       row={row}
-      grey={column.grey || grey}
+      color={column.color || color}
       parenthesis={column.parenthesis}
     />
   );
 };
 
-const generatePaymentMethod = (column, col, row, itemKey, grey) => {
+const generatePaymentMethod = (column, col, row, itemKey, color) => {
   return (
     <PayMethodCol
       brand={column.brand}
@@ -103,7 +105,33 @@ const generatePaymentMethod = (column, col, row, itemKey, grey) => {
       key={`${itemKey}-column-${col}`}
       lastFour={column.lastFour}
       row={row}
-      grey={column.grey || grey}
+      color={column.color || color}
+    />
+  );
+};
+
+const generateIconCol = (column, col, row, itemKey, color) => {
+  return (
+    <IconCol
+      icon={column.icon}
+      className={column.className}
+      col={col}
+      key={`${itemKey}-column-${col}`}
+      row={row}
+      color={column.color || color}
+    />
+  );
+};
+
+const generateActionMenuCol = (column, col, row, itemKey) => {
+  return (
+    <ActionMenuCol
+      className={column.className}
+      row={row}
+      col={col}
+      actions={column.actions}
+      key={`${itemKey}-column-${col}`}
+      rowObject={column.rowObject}
     />
   );
 };
@@ -115,7 +143,9 @@ const colGenerator = {
   currency: generateCurrencyCol,
   action: generateActionCol,
   paymentMethod: generatePaymentMethod,
-  clickToCopy: generateClickToCopyCol
+  clickToCopy: generateClickToCopyCol,
+  icon: generateIconCol,
+  actionMenu: generateActionMenuCol
 };
 
 const Row = ({
@@ -125,7 +155,7 @@ const Row = ({
   columns,
   rowObject,
   viewRow,
-  grey
+  color
 }) => {
   const selectKey = `row${row}`;
   const context = useContext(TableContext);
@@ -143,8 +173,8 @@ const Row = ({
   const mappedColumns = columns.map((column, col) => {
     // eslint-disable-next-line no-unused-vars
     return column.type
-      ? colGenerator[column.type](column, col, row, itemKey, grey)
-      : colGenerator.basic(column, col, row, itemKey, grey);
+      ? colGenerator[column.type](column, col, row, itemKey, color)
+      : colGenerator.basic(column, col, row, itemKey, color);
   });
 
   if (hasActions) {
