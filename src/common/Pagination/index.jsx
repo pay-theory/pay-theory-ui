@@ -62,7 +62,7 @@ const Pagination = ({ onPaginate, totalPages }) => {
         </div>
       </div>
       <IconButton
-        disabled={page === totalPages}
+        disabled={page === totalPages || totalPages <= 1}
         icon="chevron-right"
         onClick={nextPage}
       />
@@ -82,11 +82,6 @@ const Pagination = ({ onPaginate, totalPages }) => {
             height: 40px;
             font-family: var(--secondary-font);
             padding-left: 16px;
-          }
-
-          .pt-pagination .pagination-number {
-            border: 1px solid transparent;
-            padding: 8px 0px;
           }
 
           .pt-pagination
