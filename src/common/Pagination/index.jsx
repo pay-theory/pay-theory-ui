@@ -7,33 +7,25 @@ const BACK = "BACK";
 const FIRST = "FIRST";
 const LAST = "LAST";
 
-const Pagination = ({ onPaginate, totalPages }) => {
-  const [page, setPage] = useState(1);
-
+const Pagination = ({ onPaginate, totalPages, page }) => {
   const setOldest = () => {
     if (page !== totalPages) {
-      onPaginate(LAST, totalPages);
-      setPage(totalPages);
+      onPaginate(LAST);
     }
   };
 
   const setNewest = () => {
     if (page !== 1) {
-      onPaginate(FIRST, 1);
-      setPage(1);
+      onPaginate(FIRST);
     }
   };
 
   const previousPage = () => {
-    const newPage = page - 1;
-    onPaginate(BACK, newPage);
-    setPage(newPage);
+    onPaginate(BACK);
   };
 
   const nextPage = () => {
-    const newPage = page + 1;
-    onPaginate(FORWARD, newPage);
-    setPage(newPage);
+    onPaginate(FORWARD);
   };
 
   return (
@@ -91,6 +83,10 @@ const Pagination = ({ onPaginate, totalPages }) => {
             display: block;
           }
 
+          .pt-pagination .pagination-number-wrapper {
+            padding: 8px 0px;
+          }
+
           .pt-pagination .sort-menu {
             border: 1px solid var(--black);
             border-radius: 16px;
@@ -130,7 +126,7 @@ const Pagination = ({ onPaginate, totalPages }) => {
 };
 
 Pagination.propTypes = {
-  paginationHook: PropTypes.object.isRequired
+  onPaginate: PropTypes.func.isRequired
 };
 
 export default Pagination;
