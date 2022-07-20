@@ -189,7 +189,7 @@ const InnerTable = ({
               padding: 0px !important;
               overflow: visible;
             }
-            .cell.action .content {
+            .cell.action .pt-tooltip {
               padding: 4px;
               display: flex;
             }

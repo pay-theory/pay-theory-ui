@@ -18,18 +18,16 @@ const ActionCol = ({
       data-testid="unlinked-column"
       key={`${className}-${row}-${col}`}
     >
-      <span className="content">
-        <IconButton
-          disabled={disabled}
-          icon={icon}
-          label={disabled ? "" : label}
-          left
-          onClick={(e) => {
-            e.stopPropagation();
-            action(rowObject);
-          }}
-        />
-      </span>
+      <IconButton
+        disabled={disabled}
+        icon={icon}
+        label={disabled ? "" : label}
+        left
+        onClick={(e) => {
+          e.stopPropagation();
+          action(rowObject);
+        }}
+      />
     </td>
   );
 };
