@@ -10,6 +10,7 @@ const createActions = (actions, rowObject) => {
         icon={action.icon}
         label={action.label}
         bottom
+        key={action.label}
         onClick={(e) => {
           e.stopPropagation();
           action.action(rowObject);
@@ -19,7 +20,7 @@ const createActions = (actions, rowObject) => {
   });
 };
 
-const ActionCol = ({ className, row, col, actions, rowObject }) => {
+const ActionMenuCol = ({ className, row, col, actions, rowObject }) => {
   const disabled = actions.length > 0;
   return (
     <td
@@ -42,7 +43,7 @@ const ActionCol = ({ className, row, col, actions, rowObject }) => {
   );
 };
 
-ActionCol.propTypes = {
+ActionMenuCol.propTypes = {
   className: PropTypes.string.isRequired,
   col: PropTypes.number.isRequired,
   actions: PropTypes.array.isRequired,
@@ -50,4 +51,4 @@ ActionCol.propTypes = {
   rowObject: PropTypes.object.isRequired
 };
 
-export default ActionCol;
+export default ActionMenuCol;

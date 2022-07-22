@@ -6,47 +6,46 @@ import * as children from "./children";
 export const TableContext = createContext();
 
 const InnerTable = ({
-  selected,
-  setSelected,
-  rows,
-  columns,
-  id,
-  emptyMessage
-}) => {
-  const hasActions = selected && setSelected;
+                      selected,
+                      setSelected,
+                      rows,
+                      columns,
+                      id,
+                      emptyMessage
+                    }) => {
+  const hasActions = selected && setSelected ? true : false;
 
   return (
     <TableContext.Provider
       value={{
         selected,
-        setSelected,
-        id
+        setSelected
       }}
     >
-      <table className="inner-table">
+      <table id={id} className="inner-table">
         <thead className="table-head">
-          <children.HeaderRow
-            rows={rows}
-            columns={columns}
-            hasActions={hasActions}
-          />
+        <children.HeaderRow
+          rows={rows}
+          columns={columns}
+          hasActions={hasActions}
+        />
         </thead>
         <tbody>
-          {rows.length === 0 ||
-            rows.map((item, rowNum) => {
-              return (
-                <children.Row
-                  columns={item.columns}
-                  hasActions={hasActions}
-                  itemKey={item.key}
-                  key={`${item.key}-row-${rowNum}`}
-                  row={rowNum}
-                  rowObject={item.item}
-                  viewRow={item.viewRow}
-                  color={item.color}
-                />
-              );
-            })}
+        {rows.length === 0 ||
+          rows.map((item, rowNum) => {
+            return (
+              <children.Row
+                columns={item.columns}
+                hasActions={hasActions}
+                itemKey={item.key}
+                key={`${item.key}-row-${rowNum}`}
+                row={rowNum}
+                rowObject={item.item}
+                viewRow={item.viewRow}
+                color={item.color}
+              />
+            );
+          })}
         </tbody>
         <style global="true" jsx="true">
           {`
@@ -356,11 +355,10 @@ const InnerTable = ({
 InnerTable.propTypes = {
   columns: PropTypes.array.isRequired,
   rows: PropTypes.array.isRequired,
-  groupActions: PropTypes.array,
   id: PropTypes.string.isRequired,
-  paginationHook: PropTypes.object,
   emptyMessage: PropTypes.string,
-  resultsPerPageHook: PropTypes.object
+  selected: PropTypes.object,
+  setSelected: PropTypes.func
 };
 
 InnerTable.defaultProps = {

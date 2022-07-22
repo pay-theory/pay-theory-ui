@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 import Icon from "../../Icon";
 
 const DynamicHeader = ({
-  className,
-  itemKey,
-  label,
-  type,
-  width,
-  minWidth,
-  last,
-  options,
-  selected,
-  onSelect
-}) => {
+                         className,
+                         itemKey,
+                         label,
+                         type,
+                         width,
+                         minWidth,
+                         last,
+                         options,
+                         selected,
+                         onSelect
+                       }) => {
   const [focus, setFocus] = useState(false);
   const content = useRef(null);
 
@@ -30,6 +30,7 @@ const DynamicHeader = ({
                 onSelect(option);
                 setFocus(false);
               }}
+              key={option.value}
             >
               {option.label}
             </p>
@@ -58,8 +59,8 @@ const DynamicHeader = ({
       width: ["action", "actionMenu"].includes(type)
         ? "48px"
         : width
-        ? `${width}px`
-        : "",
+          ? `${width}px`
+          : "",
       minWidth: ["action", "actionMenu"].includes(type) ? "48px" : "96px"
     };
     if (minWidth)
