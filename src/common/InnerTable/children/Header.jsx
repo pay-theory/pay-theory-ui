@@ -37,7 +37,7 @@ Header.propTypes = {
   width: PropTypes.number,
   minWidth: PropTypes.number,
   className: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   itemKey: PropTypes.any,
   auto: PropTypes.bool,
   resizable: PropTypes.bool
