@@ -188,6 +188,10 @@ const TextEntry = ({
               color: var(--grey-1);
             }
 
+            .pt-text-field.disabled input {
+              background-color: var(--grey-2);
+            }
+
             /* Icon Styling */
             .pt-text-field .pt-icon {
               height: 48px;
