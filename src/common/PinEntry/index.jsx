@@ -16,6 +16,7 @@ const PinInput = ({ pinLength, setPin, id }) => {
           id={`${id}-input-${index}`}
           className="pin-input-field"
           value={pinState[index]}
+          autocomplete="off"
           onChange={(e) => {
             value = e.target.value.replace(/\D/g, "");
             if (value.length === pinLength) {
