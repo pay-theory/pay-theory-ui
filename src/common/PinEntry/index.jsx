@@ -16,7 +16,6 @@ const PinInput = ({ pinLength, setPin, id }) => {
           id={`${id}-input-${index}`}
           className="pin-input-field"
           value={pinState[index]}
-          autocomplete="false"
           onChange={(e) => {
             value = e.target.value.replace(/\D/g, "");
             if (value.length === pinLength) {
@@ -51,7 +50,7 @@ const PinInput = ({ pinLength, setPin, id }) => {
   };
 
   return (
-    <div className="pt-pin-text-entry">
+    <form className="pt-pin-text-entry" autoComplete="false">
       {generateFields()}
       <style global="true" jsx="true">
         {`
@@ -75,7 +74,7 @@ const PinInput = ({ pinLength, setPin, id }) => {
           }
         `}
       </style>
-    </div>
+    </form>
   );
 };
 
