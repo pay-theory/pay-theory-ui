@@ -1,0 +1,87 @@
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+
+const PinInput = ({ pinLength, setPin, id }) => {
+  const [pinState, setPinState] = useState(Array(pinLength).fill(""));
+  const focusSibling = (index) => {
+    const element = document.getElementById(`${id}-input-${index}`);
+    if (element) {
+      element.focus();
+    }
+  };
+  const generateFields = () => {
+    return pinState.map((value, index) => {
+      return (
+        <input
+          id={`${id}-input-${index}`}
+          className="pin-input-field"
+          maxLength="1"
+          value={pinState[index]}
+          onChange={(e) => {
+            value = e.target.value.replace(/\D/g, "");
+            const newPin = [...pinState];
+            newPin[index] = value;
+            if (value) {
+              focusSibling(index + 1);
+            }
+            setPinState(newPin);
+            setPin(newPin.join(""));
+          }}
+          onFocus={(e) => e.target.select()}
+          onKeyDown={(e) => {
+            const key = e.key;
+            if (key === "Backspace" || key === "Delete") {
+              if (!pinState[index] && index > 0) {
+                focusSibling(index - 1);
+                const newPin = [...pinState];
+                newPin[index - 1] = "";
+                setPinState(newPin);
+                setPin(newPin.join(""));
+              }
+            }
+          }}
+        />
+      );
+    });
+  };
+
+  return (
+    <div className="pt-pin-text-entry">
+      {generateFields()}
+      <style global="true" jsx="true">
+        {`
+          .pt-pin-text-entry {
+            display: flex;
+          }
+
+          .pin-input-field {
+            border: none;
+            border-bottom: 2px solid var(--grey);
+            margin: 0px 4px;
+            font-size: 26px;
+            font-family: var(--primary-font);
+            background: var(--white);
+            height: 54px;
+            width: 20px;
+          }
+
+          .pin-input-field:focus {
+            outline: none;
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+PinInput.propTypes = {
+  pinLength: PropTypes.number.isRequired,
+  setPin: PropTypes.func.isRequired,
+  id: PropTypes.id
+};
+
+PinInput.defaultProps = {
+  id: "pt-pin-input"
+};
+
+export default PinInput;
