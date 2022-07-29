@@ -15,17 +15,21 @@ const PinInput = ({ pinLength, setPin, id }) => {
         <input
           id={`${id}-input-${index}`}
           className="pin-input-field"
-          maxLength="1"
           value={pinState[index]}
           onChange={(e) => {
             value = e.target.value.replace(/\D/g, "");
-            const newPin = [...pinState];
-            newPin[index] = value;
-            if (value) {
-              focusSibling(index + 1);
+            if (value.length === pinLength) {
+              setPinState(value.split(""));
+              setPin(value);
+            } else if (value.length <= 1) {
+              let newPin = [...pinState];
+              newPin[index] = value;
+              if (value) {
+                focusSibling(index + 1);
+              }
+              setPinState(newPin);
+              setPin(newPin.join(""));
             }
-            setPinState(newPin);
-            setPin(newPin.join(""));
           }}
           onFocus={(e) => e.target.select()}
           onKeyDown={(e) => {
@@ -61,7 +65,7 @@ const PinInput = ({ pinLength, setPin, id }) => {
             font-size: 26px;
             font-family: var(--primary-font);
             background: var(--white);
-            height: 54px;
+            height: 37px;
             width: 20px;
           }
 
