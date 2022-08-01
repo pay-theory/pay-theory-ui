@@ -87,7 +87,7 @@ const PinInput = ({ pinLength, setPin, id }) => {
 PinInput.propTypes = {
   pinLength: PropTypes.number.isRequired,
   setPin: PropTypes.func.isRequired,
-  id: PropTypes.id
+  id: PropTypes.string
 };
 
 PinInput.defaultProps = {
