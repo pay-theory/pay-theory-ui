@@ -16,7 +16,7 @@ const PinInput = ({ pinLength, setPin, id }) => {
           id={`${id}-input-${index}`}
           className="pin-input-field"
           value={pinState[index]}
-          type="number"
+          type="tel"
           pattern="[0-9]*"
           inputmode="numeric"
           onChange={(e) => {
