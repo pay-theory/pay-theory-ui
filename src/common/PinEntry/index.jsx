@@ -16,6 +16,9 @@ const PinInput = ({ pinLength, setPin, id }) => {
           id={`${id}-input-${index}`}
           className="pin-input-field"
           value={pinState[index]}
+          type="number"
+          pattern="[0-9]*"
+          inputmode="numeric"
           onChange={(e) => {
             value = e.target.value.replace(/\D/g, "");
             if (value.length === pinLength) {
@@ -59,6 +62,8 @@ const PinInput = ({ pinLength, setPin, id }) => {
           }
 
           .pin-input-field {
+            -webkit-appearance: none;
+            border-radius: 0;
             border: none;
             border-bottom: 2px solid var(--grey);
             margin: 0px 4px;
