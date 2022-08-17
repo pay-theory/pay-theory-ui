@@ -49,7 +49,6 @@ const Checkbox = ({
           cursor: pointer;
           display: inline-flex;
           align-items: center;
-          align-self: flex-start;
         }
 
         .pt-checkbox .checkbox-icon {
