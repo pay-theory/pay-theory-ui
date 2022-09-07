@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import IconButton from "../IconButton";
 
-const ClickToCopy = ({ text }) => {
+const ClickToCopy = ({ text, left, right , bottom }) => {
   const INITIAL = "Click to Copy";
   const COPY = "copy";
   const SUCCESS = "Copied!";
@@ -57,7 +57,7 @@ const ClickToCopy = ({ text }) => {
 
   return (
     <div className="pt-click-to-copy">
-      <IconButton icon={COPY} label={label} onClick={copyTextToClipboard} />
+      <IconButton icon={COPY} label={label} onClick={copyTextToClipboard} left={left} right={right} bottom={bottom}  />
       <style jsx="true" global="true">
         {`
           .pt-click-to-copy {
