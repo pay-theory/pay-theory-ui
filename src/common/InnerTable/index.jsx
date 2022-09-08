@@ -331,7 +331,7 @@ const InnerTable = ({
               display: none;
             }
 
-            .cell.action-menu .content:hover {
+            .cell.action-menu .content:not(.disabled):hover {
               background-color: var(--white);
               border: 1px solid var(--black);
               border-radius: 8px;
@@ -339,7 +339,7 @@ const InnerTable = ({
               width: auto;
             }
 
-            .cell.action-menu .content:hover .row-actions {
+            .cell.action-menu .content:not(.disabled):hover .row-actions {
               display: flex;
             }
           `}

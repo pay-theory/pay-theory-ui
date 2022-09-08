@@ -35,12 +35,12 @@ const PortalHead = ({ menuButtons }) => {
 
   return (
     <React.Fragment>
+      <div className="portal-notifications">
+        <SuccessNotification />
+        <GeneralNotification />
+        <ErrorNotification />
+      </div>
       <div className="portal-head-header">
-        <div className="portal-notifications">
-          <SuccessNotification />
-          <GeneralNotification />
-          <ErrorNotification />
-        </div>
         <div className="portal-logo-wrapper">
           <PortalLogo />
         </div>
