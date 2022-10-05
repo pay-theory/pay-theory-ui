@@ -65,6 +65,7 @@ import SubsectionHead from './SubsectionHead'
 
 import TabMenu from './TabMenu'
 import TabPage from './TabPage'
+import TextArea from "./TextArea";
 import TextEntry from './TextEntry'
 import TextEntryDate from './TextEntryDate'
 import TextEntryDollar from './TextEntryDollar'
@@ -138,6 +139,7 @@ export {
     SuccessMessage,
     TabMenu,
     TabPage,
+    TextArea,
     TextEntry,
     TextEntryDate,
     TextEntryDollar,
