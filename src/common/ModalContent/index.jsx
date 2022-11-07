@@ -145,7 +145,6 @@ const ModalContent = ({ identifier, children, closeAction, zPosition }) => {
                         -webkit-transform: translate(-50%, -50%);
                         transform: translate(-50%, -50%);
                         width: 462px;
-                        height: 477px;
                         max-height: 100%;
                         max-width: 100%;
                         background: var(--white);

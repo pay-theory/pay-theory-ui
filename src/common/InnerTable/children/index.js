@@ -7,7 +7,6 @@ import CurrencyCol from "./CurrencyCol";
 import Header from "./Header";
 import HeaderRow from "./HeaderRow";
 import Row from "./Row";
-import ActionBar from "./ActionBar";
 import ClickToCopyCol from "./ClickToCopyCol";
 
 export {
@@ -16,9 +15,8 @@ export {
   LinkCol,
   ChipCol,
   CurrencyCol,
-  ClickToCopyCol, 
+  ClickToCopyCol,
   Header,
   HeaderRow,
-  Row,
-  ActionBar
+  Row
 };

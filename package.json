@@ -1,6 +1,6 @@
 {
     "name": "@paytheory/pay-theory-ui",
-    "version": "0.2.38-0",
+    "version": "0.2.72-0",
     "description": "Made with create-react-library",
     "author": "austinzani",
     "license": "MIT",
@@ -54,14 +54,15 @@
         "@testing-library/react": "^12.1.2",
         "babel-loader": "^8.2.3",
         "cross-env": "^7.0.3",
-        "eslint": "^8.8.0",
         "jest-environment-jsdom-sixteen": "^2.0.0",
         "npm-run-all": "^4.1.5",
         "parcel": "^2.2.1",
         "react-scripts": "^5.0.0",
         "webpack": "^5.68.0",
         "webpack-cli": "^4.9.2",
-        "webpack-node-externals": "^3.0.0"
+        "webpack-node-externals": "^3.0.0",
+        "chart.js": "^3.8.0",
+        "react-chartjs-2": "^4.2.0"
     },
     "files": [
         "dist"

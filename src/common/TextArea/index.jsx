@@ -3,19 +3,18 @@ import PropTypes from "prop-types";
 import HelperText from "./children/HelperText";
 import Icon from "../Icon";
 
-const TextEntry = ({
-                     label,
-                     placeholder,
-                     onChange,
-                     value,
-                     valid,
-                     disabled,
-                     inputProps,
-                     helperText,
-                     leadingIcon,
-                     trailingIcon,
-                     thin
-                   }) => {
+const TextArea = ({
+  label,
+  placeholder,
+  onChange,
+  value,
+  valid,
+  disabled,
+  inputProps,
+  helperText,
+  leadingIcon,
+  trailingIcon
+}) => {
   let input = useRef(null);
   const [focused, setFocused] = useState(false);
   const [validity, setValidity] = useState("");
@@ -52,11 +51,9 @@ const TextEntry = ({
   }, [value, valid]);
 
   let inputClassList = `${value ? "" : "empty"} ${focused ? "focused" : ""}`;
-  let divClassList = `pt-text-field ${validity} ${thin ? "thin" : ""} ${
-    focused ? "focused" : ""
-  } ${disabled ? "disabled" : ""} ${leadingIcon ? "leading" : ""} ${
-    trailingIcon ? "trailing" : ""
-  }`;
+  let divClassList = `pt-text-area ${validity} ${focused ? "focused" : ""} ${
+    disabled ? "disabled" : ""
+  } ${leadingIcon ? "leading" : ""} ${trailingIcon ? "trailing" : ""}`;
 
   return (
     <React.Fragment>
@@ -66,7 +63,7 @@ const TextEntry = ({
         ) : (
           ""
         )}
-        <input
+        <textarea
           ref={input}
           className={inputClassList}
           placeholder={placeholder}
@@ -83,59 +80,61 @@ const TextEntry = ({
         )}
         <style jsx="true">
           {`
-            .pt-text-field {
+            .pt-text-area {
               position: relative;
               font-size: 16px;
               border: 1px solid var(--grey);
               border-radius: 14px;
-              height: 56px;
+              height: 86px;
               display: flex;
               align-items: center;
               transition: border 0.3s ease;
               background: var(--white);
+              overflow: hidden;
             }
 
-            .pt-text-field.focused {
+            .pt-text-area.focused {
               border: 1px solid var(--pt-purple);
               transition: border 0.3s ease;
             }
 
-            .pt-text-field input::placeholder {
+            .pt-text-area textarea::placeholder {
               color: transparent;
               transition: color 0s ease;
             }
 
-            .pt-text-field input {
+            .pt-text-area textarea {
               border: none;
               font-size: 16px;
               font-family: Europa, Segoe UI, Trebuchet MS, Arial, Helvetica,
                 sans-serif;
               flex: 1;
               height: 56px;
-              background: var(--white);
-              padding: 8px 0px 0px 16px;
-              border-radius: 16px;
+              background: transparent;
+              margin: 16px 0px 0px 16px;
+              resize: none;
               border: 1px solid transparent;
               height: 54px;
               width: 100%;
             }
 
-            .pt-text-field input:focus {
+            .pt-text-area textarea:focus {
               outline: none;
             }
 
-            .pt-text-field input:-webkit-autofill,
-            .pt-text-field input:-webkit-autofill:hover,
-            .pt-text-field input:-webkit-autofill:focus,
-            .pt-text-field input:-webkit-autofill:active {
+            .pt-text-area textarea:-webkit-autofill,
+            .pt-text-area textarea:-webkit-autofill:hover,
+            .pt-text-area textarea:-webkit-autofill:focus,
+            .pt-text-area textarea:-webkit-autofill:active {
               -webkit-box-shadow: 0 0 0px 1000px var(--purple-light) inset;
               border: 1px solid var(--purple-light);
             }
 
-            .pt-text-field label {
+            .pt-text-area label {
               pointer-events: none;
               position: absolute;
               left: 16px;
+              top: 16px;
               font-size: 16px;
               font-family: Europa, Segoe UI, Trebuchet MS, Arial, Helvetica,
                 sans-serif;
@@ -145,55 +144,51 @@ const TextEntry = ({
               transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
             }
 
-            .pt-text-field input.focused + label,
-            .pt-text-field input:not(.empty) + label {
+            .pt-text-area textarea.focused + label,
+            .pt-text-area textarea:not(.empty) + label {
               top: 6px;
               font-size: 11px;
             }
 
-            .pt-text-field input.focused::placeholder {
+            .pt-text-area textarea.focused::placeholder {
               color: grey;
               transition: color 0.3s ease;
             }
 
             /* Invalid Styling */
-            .pt-text-field.invalid {
+            .pt-text-area.invalid {
               border: 1px solid var(--red);
               background: var(--light-red);
               transition: border 0.3s ease, background 0.3s ease;
             }
 
-            .pt-text-field.invalid input {
+            .pt-text-area.invalid textarea {
               background: var(--light-red);
               transition: background 0.3s ease;
             }
 
-            .pt-text-field.invalid.focused input {
+            .pt-text-area.invalid.focused textarea {
               background: var(--white);
               transition: background 0.3s ease;
             }
 
-            .pt-text-field.invalid.focused {
+            .pt-text-area.invalid.focused {
               background: var(--white);
               transition: background 0.3s ease;
             }
 
             /* Disabled Styling */
-            .pt-text-field.disabled {
+            .pt-text-area.disabled {
               background: var(--grey-2);
               border: 1px solid var(--grey-1);
             }
 
-            .pt-text-field.disabled label {
+            .pt-text-area.disabled label {
               color: var(--grey-1);
             }
 
-            .pt-text-field.disabled input {
-              background-color: var(--grey-2);
-            }
-
             /* Icon Styling */
-            .pt-text-field .pt-icon {
+            .pt-text-area .pt-icon {
               height: 48px;
               width: 48px;
               display: flex;
@@ -201,44 +196,13 @@ const TextEntry = ({
               align-items: center;
             }
 
-            .pt-text-field.leading label {
+            .pt-text-area.leading label {
               left: 48px;
             }
 
-            .pt-text-field.leading input {
-              padding-left: 0px;
+            .pt-text-area.leading textarea {
+              margin-left: 0px;
               border-radius: 0px 16px 16px 0px;
-            }
-
-            /* Styling Thin Variant*/
-            .pt-text-field.thin {
-              height: 40px;
-            }
-
-            .pt-text-field.thin input {
-              height: 38px;
-              font-size: 16px;
-              padding: 8px 0px 0px 16px;
-            }
-
-            .pt-text-field.thin .pt-icon {
-              height: 40px;
-              width: 40px;
-            }
-
-            .pt-text-field.thin.leading label {
-              left: 40px;
-            }
-
-            .pt-text-field.thin.leading input {
-              padding: 8px 0px 0px 0px;
-              border-radius: 0px 16px 16px 0px;
-            }
-
-            .pt-text-field.thin input.focused + label,
-            .pt-text-field.thin input:not(.empty) + label {
-              top: 2px;
-              font-size: 10px;
             }
           `}
         </style>
@@ -252,7 +216,7 @@ const TextEntry = ({
   );
 };
 
-TextEntry.propTypes = {
+TextArea.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
   leadingIcon: PropTypes.shape({
@@ -271,8 +235,8 @@ TextEntry.propTypes = {
   helperText: PropTypes.any
 };
 
-TextEntry.defaultProps = {
+TextArea.defaultProps = {
   onClick: () => {}
 };
 
-export default TextEntry;
+export default TextArea;
