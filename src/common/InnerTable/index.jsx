@@ -13,7 +13,7 @@ const InnerTable = ({
                       id,
                       emptyMessage
                     }) => {
-  const hasActions = selected && setSelected ? true : false;
+  const hasActions = !!(selected && setSelected);
 
   return (
     <TableContext.Provider
@@ -22,7 +22,7 @@ const InnerTable = ({
         setSelected
       }}
     >
-      <table id={id} className="inner-table">
+      <table className="inner-table">
         <thead className="table-head">
         <children.HeaderRow
           rows={rows}
@@ -202,13 +202,29 @@ const InnerTable = ({
 
             /* Styling the Click To Copy Col*/
 
-            .cell.click-to-copy {
-              overflow: visible;
+            .cell.click-to-copy .pt-tooltip .child {
+              width: 100%;
             }
 
             .cell.click-to-copy .content {
               display: flex;
               align-items: center;
+            }
+
+            .cell.click-to-copy .pt-tooltip .child:hover .content > * {
+              color: var(--pt-purple);
+            }
+
+            .cell.click-to-copy .content p {
+              max-width: 100%;
+              overflow: hidden;
+              margin-right: 4px;
+              text-align: left;
+              text-overflow: ellipsis;
+            }
+
+            .cell.click-to-copy.rtl .content p {
+              direction: rtl;
             }
 
             /* Styling the Currenct Col*/

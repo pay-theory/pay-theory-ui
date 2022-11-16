@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Tooltip from "../../Tooltip";
+import Icon from "../../Icon";
 
 const ClickToCopyCol = ({ className, row, col, content, color }) => {
   const INITIAL = "Click to Copy";
@@ -11,7 +12,7 @@ const ClickToCopyCol = ({ className, row, col, content, color }) => {
     setLabel(SUCCESS);
     setTimeout(() => {
       setLabel(INITIAL);
-    }, 5000);
+    }, 2000);
   };
 
   function fallbackCopyTextToClipboard() {
@@ -61,7 +62,7 @@ const ClickToCopyCol = ({ className, row, col, content, color }) => {
       key={`${className}-${row}-${col}`}
     >
       <Tooltip text={label}>
-        <p
+        <div
           className={`content`}
           style={{ color: `var(--${color})` }}
           onClick={(e) => {
@@ -69,8 +70,9 @@ const ClickToCopyCol = ({ className, row, col, content, color }) => {
             copyTextToClipboard();
           }}
         >
-          {content}
-        </p>
+          <p>{content}</p>
+          <Icon name={"copy"} />
+        </div>
       </Tooltip>
       <style jsx="true">
         {`
