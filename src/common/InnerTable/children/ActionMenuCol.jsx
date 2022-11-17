@@ -15,6 +15,7 @@ const createActions = (actions, rowObject) => {
           e.stopPropagation();
           action.action(rowObject);
         }}
+        disabled={action.disabled}
       />
     );
   });
