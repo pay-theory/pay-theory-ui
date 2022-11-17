@@ -56,7 +56,7 @@ const TextArea = ({
   } ${leadingIcon ? "leading" : ""} ${trailingIcon ? "trailing" : ""}`;
 
   return (
-    <React.Fragment>
+    <div  className="pt-text-area-wrapper">
       <div className={divClassList}>
         {leadingIcon ? (
           <Icon name={leadingIcon.name} brand={leadingIcon.brand} />
@@ -212,7 +212,7 @@ const TextArea = ({
           {helperText}
         </HelperText>
       ) : null}
-    </React.Fragment>
+    </div>
   );
 };
 

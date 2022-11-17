@@ -59,7 +59,7 @@ const TextEntry = ({
   }`;
 
   return (
-    <React.Fragment>
+    <div  className="pt-text-field-wrapper">
       <div className={divClassList}>
         {leadingIcon ? (
           <Icon name={leadingIcon.name} brand={leadingIcon.brand} />
@@ -248,7 +248,7 @@ const TextEntry = ({
           {helperText}
         </HelperText>
       ) : null}
-    </React.Fragment>
+    </div>
   );
 };
 
