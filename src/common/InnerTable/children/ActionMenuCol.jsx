@@ -8,7 +8,7 @@ const createActions = (actions, rowObject) => {
     return (
       <IconButton
         icon={action.icon}
-        label={action.label}
+        label={!action.disabled && action.label}
         bottom
         key={action.label}
         onClick={(e) => {
@@ -28,6 +28,7 @@ const ActionMenuCol = ({ className, row, col, actions, rowObject }) => {
       className={`cell action-menu ${className}`}
       data-testid="unlinked-column"
       key={`${className}-${row}-${col}`}
+      onClick={e => e.stopPropagation()}
     >
       <span className={`content ${disabled ? "" : "disabled"}`}>
         <div className="row-actions" style={{ left: "-80px" }}>
