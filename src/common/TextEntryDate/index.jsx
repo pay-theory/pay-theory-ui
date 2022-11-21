@@ -15,7 +15,8 @@ const TextEntryDate = ({
     helperText,
     leadingIcon,
     trailingIcon,
-    valid
+    valid,
+    className
 }) => {
     const validCheck = (value) => {
         return valid(value) && validDate(value)
@@ -36,6 +37,7 @@ const TextEntryDate = ({
             trailingIcon={trailingIcon}
             valid={validCheck}
             value={value}
+            className={className}
         />
     )
 }
@@ -56,7 +58,8 @@ TextEntryDate.propTypes = {
     value: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
     helperText: PropTypes.any,
-    valid: PropTypes.func
+    valid: PropTypes.func,
+    className: PropTypes.string
 }
 
 TextEntryDate.defaultProps = {

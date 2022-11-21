@@ -14,7 +14,8 @@ const TextEntry = ({
                      helperText,
                      leadingIcon,
                      trailingIcon,
-                     thin
+                     thin,
+                     className
                    }) => {
   let input = useRef(null);
   const [focused, setFocused] = useState(false);
@@ -51,15 +52,12 @@ const TextEntry = ({
     }
   }, [value, valid]);
 
-  let inputClassList = `${value ? "" : "empty"} ${focused ? "focused" : ""}`;
-  let divClassList = `pt-text-field ${validity} ${thin ? "thin" : ""} ${
-    focused ? "focused" : ""
-  } ${disabled ? "disabled" : ""} ${leadingIcon ? "leading" : ""} ${
-    trailingIcon ? "trailing" : ""
-  }`;
+  let inputClassList = `${!value && "empty"} ${focused && "focused"} ${className && `${className}-input`}`;
+  let divClassList = `pt-text-field ${validity} ${thin && "thin"} ${focused && "focused"}
+    ${disabled && "disabled"} ${leadingIcon && "leading"} ${trailingIcon && "trailing"}`;
 
   return (
-    <div  className="pt-text-field-wrapper">
+    <div  className={`pt-text-field-wrapper ${className && className}`}>
       <div className={divClassList}>
         {leadingIcon ? (
           <Icon name={leadingIcon.name} brand={leadingIcon.brand} />
@@ -268,7 +266,9 @@ TextEntry.propTypes = {
   value: PropTypes.string.isRequired,
   valid: PropTypes.func,
   inputProps: PropTypes.object,
-  helperText: PropTypes.any
+  helperText: PropTypes.any,
+  className: PropTypes.string,
+  thin: PropTypes.bool
 };
 
 TextEntry.defaultProps = {

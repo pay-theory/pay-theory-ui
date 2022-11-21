@@ -16,6 +16,7 @@ const TextEntryPhone = (props) => {
                 const formatted = formatPhone(e.target.value)
                 props.onChange(formatted)
             }}
+            className={props.className}
         />
     )
 }
@@ -24,7 +25,8 @@ TextEntryPhone.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     value: PropTypes.string,
-    onChange: PropTypes.any
+    onChange: PropTypes.any,
+    className: PropTypes.string
 }
 
 export default TextEntryPhone

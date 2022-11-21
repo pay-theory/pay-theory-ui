@@ -13,7 +13,8 @@ const TextEntryDollar = ({
     inputProps,
     helperText,
     trailingIcon,
-    valid
+    valid,
+    className
 }) => {
 
     return (
@@ -31,6 +32,7 @@ const TextEntryDollar = ({
             trailingIcon={trailingIcon}
             valid={valid}
             value={value}
+            className={className}
         />
     )
 }
@@ -46,7 +48,8 @@ TextEntryDollar.propTypes = {
     value: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
     helperText: PropTypes.any,
-    valid: PropTypes.func
+    valid: PropTypes.func,
+    className: PropTypes.string
 }
 
 TextEntryDollar.defaultProps = {
