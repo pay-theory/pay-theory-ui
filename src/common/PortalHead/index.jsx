@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -204,8 +204,8 @@ export const usePortalNotification = () => {
 
   useEffect(() => {
     const addMessage = (type) => (message) => {
-      var element = document.getElementById(`pt-${type}-notification`);
-      var messageElement = document.getElementById(`pt-${type}-message`);
+      const element = document.getElementById(`pt-${type}-notification`);
+      const messageElement = document.getElementById(`pt-${type}-message`);
       messageElement.innerHTML = message;
       element.classList.add("show");
 
@@ -228,7 +228,7 @@ export const usePortalNotification = () => {
     }
   }, [message]);
 
-  const StatusMessage = (type) => (message) => {
+  const StatusMessage = useCallback((type) => (message) => {
     let showingElement = checkForShowing();
     if (showingElement) {
       removeMessage(showingElement);
@@ -239,7 +239,7 @@ export const usePortalNotification = () => {
     } else {
       setMessage({ type, message });
     }
-  };
+  }, []);
 
   return {
     ErrorMessage: StatusMessage(ERROR),
