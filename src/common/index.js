@@ -52,6 +52,8 @@ import PaymentChart from "./PaymentChart";
 import PinInput from "./PinEntry";
 import PortalHead, { usePortalNotification } from './PortalHead'
 
+import QRCode, {copyQrCode, copyCanvas, downloadQrCode} from './QRCode'
+
 import {
     ErrorMessage,
     WarningMessage,
@@ -128,6 +130,10 @@ export {
     PinInput,
     PortalHead,
     usePortalNotification,
+    QRCode,
+    copyQrCode,
+    copyCanvas,
+    downloadQrCode,
     Select,
     SubsectionHead,
     Sheet,
