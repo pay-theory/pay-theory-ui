@@ -73,14 +73,14 @@ export const copyCanvas = (canvas, handleFailure = () => {}) => {
       canvas.toBlob((blob) => {
         const image = new ClipboardItem({ "image/png": blob })
         navigator.clipboard.write([image])
+          .then(() => {
+            // Succeeded to write to clipboard
+          })
+          .catch((err) => {
+            console.error("Error:", err)
+            handleFailure();
+          });
       })
-        .then(() => {
-          // Succeeded to write to clipboard
-        })
-        .catch((err) => {
-          console.error("Error:", err)
-          handleFailure();
-        });
     }
   } else {
     handleFailure();
