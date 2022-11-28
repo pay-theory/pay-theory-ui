@@ -51,13 +51,43 @@ export const downloadQrCode = (id, filename = "qrcode") => {
   downloadLink.click();
 };
 
-export const copyQrCode = (id) => {
-  const canvas = document.getElementById(id);
-  canvas.toBlob((blob) =>
-    navigator.clipboard.write([new ClipboardItem({ "image/png": blob })])
-  );
-};
-
-export const copyCanvas = canvas => {
-  canvas.toBlob(blob => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
+export const copyCanvas = (canvas, handleFailure = () => {}) => {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator?.userAgent);
+  const isNotFirefox = navigator.userAgent.indexOf("Firefox") < 0;
+  if (isNotFirefox) {
+    if (isSafari) {
+      const blob = new Promise(resolve => canvas.toBlob(resolve));
+      navigator.clipboard.write([
+        new ClipboardItem({
+          "image/png": blob
+        })
+      ])
+        .then(() => {
+          // Succeeded to write to clipboard
+        })
+        .catch((err) => {
+          console.error("Error:", err)
+          handleFailure();
+        });
+    } else {
+      canvas.toBlob((blob) => {
+        const image = new ClipboardItem({ "image/png": blob })
+        navigator.clipboard.write([image])
+      })
+        .then(() => {
+          // Succeeded to write to clipboard
+        })
+        .catch((err) => {
+          console.error("Error:", err)
+          handleFailure();
+        });
+    }
+  } else {
+    handleFailure();
+  }
 }
+
+export const copyQrCode = (id, handleFailure = () => {}) => {
+  const canvas = document.getElementById(id);
+  copyCanvas(canvas, handleFailure);
+};
