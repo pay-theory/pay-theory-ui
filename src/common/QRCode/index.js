@@ -26,18 +26,13 @@ const QRCode = ({ value, size, id, backgroundColor, color, logo }) => {
 };
 
 QRCode.propTypes = {
-  columns: PropTypes.array.isRequired,
-  rows: PropTypes.array.isRequired,
-  id: PropTypes.string.isRequired,
-  emptyMessage: PropTypes.string,
-  selected: PropTypes.object,
-  setSelected: PropTypes.func
+  value: PropTypes.string.isRequired,
+  size: PropTypes.number,
+  id: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  color: PropTypes.string,
+  logo: PropTypes.string
 };
-
-QRCode.defaultProps = {
-  emptyMessage: "No Data Available"
-};
-
 export default QRCode;
 
 export const downloadQrCode = (id, filename = "qrcode") => {

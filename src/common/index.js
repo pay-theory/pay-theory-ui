@@ -54,6 +54,8 @@ import PortalHead, { usePortalNotification } from './PortalHead'
 
 import QRCode, {copyQrCode, copyCanvas, downloadQrCode} from './QRCode'
 
+import { Radio, RadioGroup } from './Radio'
+
 import {
     ErrorMessage,
     WarningMessage,
@@ -134,6 +136,8 @@ export {
     copyQrCode,
     copyCanvas,
     downloadQrCode,
+    Radio,
+    RadioGroup,
     Select,
     SubsectionHead,
     Sheet,
