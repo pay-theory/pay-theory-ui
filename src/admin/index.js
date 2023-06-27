@@ -33,7 +33,6 @@ import PaymentItemTable from './PaymentItemTable'
 import PaymentsOverview from './PaymentsOverview'
 
 import ReceiptsTable from './ReceiptsTable'
-import ReceiptUploader from './ReceiptUploader'
 import RolesTab from './RolesTab'
 
 import SalesTab from './SalesTab'
@@ -73,7 +72,6 @@ export {
     PaymentItemTable,
     PaymentsOverview,
     ReceiptsTable,
-    ReceiptUploader,
     RolesTab,
     SalesTab,
     SettlementsTable,
