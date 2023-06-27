@@ -104,12 +104,10 @@ const TextEntry = ({
             }
 
             .pt-text-field input {
-              border: none;
               font-size: 16px;
               font-family: Europa, Segoe UI, Trebuchet MS, Arial, Helvetica,
                 sans-serif;
               flex: 1;
-              height: 56px;
               background: var(--white);
               padding: 8px 0px 0px 16px;
               border-radius: 16px;

@@ -48,7 +48,6 @@ import NavigationDrawer from './NavigationDrawer'
 import NotFound from './NotFound'
 
 import Pagination from './Pagination'
-import PaymentChart from "./PaymentChart";
 import PinInput from "./PinEntry";
 import PortalHead, { usePortalNotification } from './PortalHead'
 
@@ -128,7 +127,6 @@ export {
     NavigationDrawer,
     NotFound,
     Pagination,
-    PaymentChart,
     PinInput,
     PortalHead,
     usePortalNotification,
