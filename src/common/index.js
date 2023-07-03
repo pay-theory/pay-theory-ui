@@ -36,7 +36,7 @@ import HoverMenu from './HoverMenu'
 
 import Icon from './Icon'
 import IconButton from './IconButton'
-import InnerTable, { useResultsPerPage } from './InnerTable'
+import InnerTable from './InnerTable'
 import IndexColumn, { useIndexColumn } from './IndexColumn'
 
 import ModalContent, { closeModal, openModal } from './ModalContent'
@@ -47,8 +47,14 @@ import { PaymentItem } from './Model'
 import NavigationDrawer from './NavigationDrawer'
 import NotFound from './NotFound'
 
-import Pagination, { usePagination } from './Pagination'
+import Pagination from './Pagination'
+import PaymentChart from "./PaymentChart";
+import PinInput from "./PinEntry";
 import PortalHead, { usePortalNotification } from './PortalHead'
+
+import QRCode, {copyQrCode, copyCanvas, downloadQrCode} from './QRCode'
+
+import { Radio, RadioGroup } from './Radio'
 
 import {
     ErrorMessage,
@@ -63,14 +69,17 @@ import SubsectionHead from './SubsectionHead'
 
 import TabMenu from './TabMenu'
 import TabPage from './TabPage'
+import TextArea from "./TextArea";
 import TextEntry from './TextEntry'
 import TextEntryDate from './TextEntryDate'
+import TextEntryDollar from './TextEntryDollar'
 import TextEntryPhone from './TextEntryPhone'
 import Toggle from './Toggle'
 import ToolTip from './Tooltip'
 
 import Unauthorized from './Unauthorized'
 import UtilityBar from './UtilityBar'
+import UploadCard from './UploadCard'
 
 import { timedLogout } from './utilities'
 import { downloadCSV } from './generalUtils'
@@ -109,7 +118,6 @@ export {
     InnerTable,
     IndexColumn,
     useIndexColumn,
-    useResultsPerPage,
     ModalContent,
     closeModal,
     openModal,
@@ -120,9 +128,16 @@ export {
     NavigationDrawer,
     NotFound,
     Pagination,
-    usePagination,
+    PaymentChart,
+    PinInput,
     PortalHead,
     usePortalNotification,
+    QRCode,
+    copyQrCode,
+    copyCanvas,
+    downloadQrCode,
+    Radio,
+    RadioGroup,
     Select,
     SubsectionHead,
     Sheet,
@@ -134,12 +149,15 @@ export {
     SuccessMessage,
     TabMenu,
     TabPage,
+    TextArea,
     TextEntry,
     TextEntryDate,
+    TextEntryDollar,
     TextEntryPhone,
     Toggle,
     ToolTip,
     timedLogout,
     Unauthorized,
-    UtilityBar
+    UtilityBar,
+    UploadCard
 }

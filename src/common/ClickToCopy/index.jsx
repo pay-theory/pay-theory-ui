@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import IconButton from "../IconButton";
+import Tooltip from "../Tooltip";
 
-const ClickToCopy = ({ text }) => {
+const ClickToCopy = ({ text, left, right, bottom, children }) => {
   const INITIAL = "Click to Copy";
   const COPY = "copy";
   const SUCCESS = "Copied!";
@@ -57,11 +58,26 @@ const ClickToCopy = ({ text }) => {
 
   return (
     <div className="pt-click-to-copy">
-      <IconButton icon={COPY} label={label} onClick={copyTextToClipboard} />
+      {children ? (
+        <Tooltip text={label} left={left} right={right} bottom={bottom}>
+          <span className="child-span" onClick={copyTextToClipboard}>
+            {children}
+          </span>
+        </Tooltip>
+      ) : (
+        <IconButton
+          icon={COPY}
+          label={label}
+          onClick={copyTextToClipboard}
+          left={left}
+          right={right}
+          bottom={bottom}
+        />
+      )}
       <style jsx="true" global="true">
         {`
-          .pt-click-to-copy {
-            align-self: flex-start;
+          .pt-click-to-copy .child-span {
+            cursor: pointer;
           }
         `}
       </style>

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Icon from "../../Icon";
 import Badge from "../../Badge";
 
-const NavigationCategory = (props) => {
+const NavigationCategory = ({ item, createItem }) => {
   const reduceBadgeNumber = (items) => {
     const reducer = (acc, value) => {
       let num = value.badgeNumber ? value.badgeNumber : 0;
@@ -12,39 +13,51 @@ const NavigationCategory = (props) => {
     return items.reduce(reducer, 0);
   };
 
-  const [badgeNumber] = useState(reduceBadgeNumber(props.item.subContent));
+  let location = useLocation();
+  const [badgeNumber] = useState(
+    reduceBadgeNumber(item.subContent) + (item.badgeNumber || 0)
+  );
+  const [detailsOpen, setDetailsOpen] = useState(false);
+
+  useEffect(() => {
+    let allLocations = item.subContent.map((item) => item.to);
+    allLocations.push(item.to);
+    if (allLocations.includes(location.pathname)) {
+      setDetailsOpen(true);
+    } else {
+      setDetailsOpen(false);
+    }
+  }, [location, item]);
 
   return (
-    <li key={props.item.tag} data-testid={props.item.tag}>
-      <details
-        data-testid={`${props.item.tag}-details`}
-        open={props.detailsOpen}
+    <li key={item.tag} data-testid={item.tag}>
+      <NavLink
+        className={({ isActive }) => (isActive ? "active" : "inactive")}
+        id={`${item.tag}-link`}
+        to={{
+          pathname: item.to,
+          state: { hash: item.tag }
+        }}
       >
-        <summary>
-          <div className="summary">
-            <p id={`${props.item.tag}-link`} className="summary-title">
-              <Icon name={props.item.icon} label="leading" brand={props.item.iconBrand} />
-              {props.item.label}
-            </p>
-            <div className="summary-trailing">
-              {badgeNumber ? <Badge number={`${badgeNumber}`} /> : ""}
-              <Icon name="chevron-right" label="summary-chevron" />
-            </div>
-          </div>
-        </summary>
-        <ul className="sub-list">
-          {props.item.subContent.map((subMenuItem) => {
-            return props.createItem(subMenuItem);
-          })}
-        </ul>
-      </details>
+        <p className="label">
+          {item.icon ? (
+            <Icon label="leading" name={item.icon} brand={item.iconBrand} />
+          ) : null}
+          {item.label}
+        </p>
+        {badgeNumber ? <Badge number={`${badgeNumber}`} /> : ""}
+      </NavLink>
+      <ul className={`sub-list ${detailsOpen ? "details-open" : ""}`}>
+        {item.subContent.map((subMenuItem) => {
+          return createItem(subMenuItem);
+        })}
+      </ul>
     </li>
   );
 };
 
 NavigationCategory.propTypes = {
   item: PropTypes.object.isRequired,
-  detailsOpen: PropTypes.bool.isRequired,
   createItem: PropTypes.func.isRequired
 };
 

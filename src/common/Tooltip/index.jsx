@@ -27,8 +27,9 @@ const Tooltip = ({ text, left, right, bottom, children }) => {
 
                     .pt-tooltiptext {
                         visibility: hidden;
-                        background-color: var(--grey);
-                        color: white;
+                        background-color: var(--white);
+                        border: 1px solid var(--black);
+                        color: var(--black);
                         text-align: center;
                         border-radius: 6px;
                         padding: 2px 18px 5px;
@@ -83,7 +84,7 @@ const Tooltip = ({ text, left, right, bottom, children }) => {
                         margin-left: -7px;
                         border-width: 7px;
                         border-style: solid;
-                        border-color: var(--grey) transparent transparent
+                        border-color: var(--black) transparent transparent
                             transparent;
                     }
 
@@ -95,7 +96,7 @@ const Tooltip = ({ text, left, right, bottom, children }) => {
                         margin-left: -7px;
                         border-width: 7px;
                         border-style: solid;
-                        border-color: transparent transparent var(--grey)
+                        border-color: transparent transparent var(--black)
                             transparent;
                     }
 
@@ -108,7 +109,7 @@ const Tooltip = ({ text, left, right, bottom, children }) => {
                         border-width: 5px;
                         border-style: solid;
                         border-color: transparent transparent transparent
-                            var(--grey);
+                            var(--black);
                     }
 
                     .pt-tooltiptext.right::after {
@@ -119,7 +120,7 @@ const Tooltip = ({ text, left, right, bottom, children }) => {
                         margin-top: -5px;
                         border-width: 5px;
                         border-style: solid;
-                        border-color: transparent var(--grey) transparent
+                        border-color: transparent var(--black) transparent
                             transparent;
                     }
                 `}

@@ -1,16 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "../../Button";
 
 const LinkCol = ({ className, row, col, view, content }) => {
   return (
     <td
-      className={`${className} cell`}
+      className={`${className} cell link`}
       key={`${className}-${row}-${col}`}
       data-testid="linked-column"
     >
-      <p onClick={view} className="link content">
-        {content}
-      </p>
+      <Button
+        onClick={(e) => {
+          e.stopPropagation();
+          view();
+        }}
+        label={content}
+        text
+      />
     </td>
   );
 };

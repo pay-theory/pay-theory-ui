@@ -95,12 +95,13 @@ const GlobalStyle = (props) => {
                         background-color: var(--white);
                         display: grid;
                         height: 100%;
-                        grid-template-columns: 290px 1fr;
+                        grid-template-columns: 320px 1fr;
                         overflow: hidden;
                     }
 
                     .body-content {
-                        padding: 16px;
+                        padding: 0px 16px 16px 16px;
+                        margin-top: 16px;
                         overflow-y: auto;
                     }
 

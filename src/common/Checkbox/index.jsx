@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import Icon from "../Icon";
 
 const Checkbox = ({
-  id,
-  indeterminate,
-  disabled,
-  inputProps,
-  label,
-  top,
-  bottom,
-  left
-}) => {
+                    id,
+                    indeterminate,
+                    disabled,
+                    inputProps,
+                    label,
+                    icon,
+                    top,
+                    bottom,
+                    left
+                  }) => {
   const checkRef = useRef();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const Checkbox = ({
     <label
       htmlFor={id}
       className={`pt-checkbox ${disabled ? "disabled" : ""} ${location}`}
+      onClick={(e) => e.stopPropagation()}
     >
       <span className={`pt-checkbox-box ${disabled ? "disabled" : ""}`}>
         <input
@@ -36,20 +38,20 @@ const Checkbox = ({
           {...inputProps}
         />
         <span className="icons">
-          <Icon name="check" label="check" />
-          <Icon name="minus" label="minus" />
+          <Icon name="check" label="check checkbox-icon" />
+          <Icon name="minus" label="minus checkbox-icon" />
         </span>
       </span>
-      <p>{label}</p>
+      {label && <p>{label}</p>}
+      {icon && <Icon name={icon} label="checkbox-label-icon" />}
       <style jsx="true">{`
         .pt-checkbox {
           cursor: pointer;
           display: inline-flex;
           align-items: center;
-          align-self: flex-start;
         }
 
-        .pt-checkbox .pt-icon {
+        .pt-checkbox .checkbox-icon {
           display: none;
           color: var(--white);
         }
@@ -110,13 +112,16 @@ const Checkbox = ({
         .pt-checkbox.bottom {
           flex-direction: column;
         }
-        .pt-checkbox.left p {
+        .pt-checkbox.left p,
+        .pt-checkbox.left .checkbox-label-icon {
           padding-right: 4px;
         }
-        .pt-checkbox.right p {
+        .pt-checkbox.right p,
+        .pt-checkbox.right .checkbox-label-icon {
           padding-left: 4px;
         }
-        .pt-checkbox p {
+        .pt-checkbox p,
+        .pt-checkbox .checkbox-label-icon {
           -webkit-touch-callout: none; /* iOS Safari */
           -webkit-user-select: none; /* Safari */
           -khtml-user-select: none; /* Konqueror HTML */
@@ -131,7 +136,8 @@ const Checkbox = ({
           cursor: auto;
         }
 
-        .pt-checkbox.disabled p {
+        .pt-checkbox.disabled p,
+        .pt-checkbox.disabled .checkbox-label-icon {
           color: var(--grey-1);
         }
 

@@ -3,24 +3,19 @@ import PropTypes from 'prop-types'
 
 import TextEntry from '../TextEntry'
 
-import { formatDateString, validDate } from '../dateUtils'
+import { formatDollarAmountString } from '../generalUtils'
 
-const TextEntryDate = ({
+const TextEntryDollar = ({
     label,
-    placeholder,
     onChange,
     value,
     disabled,
     inputProps,
     helperText,
-    leadingIcon,
     trailingIcon,
     valid,
     className
 }) => {
-    const validCheck = (value) => {
-        return valid(value) && validDate(value)
-    }
 
     return (
         <TextEntry
@@ -28,28 +23,23 @@ const TextEntryDate = ({
             helperText={helperText}
             inputProps={inputProps}
             label={label}
-            leadingIcon={leadingIcon}
+            leadingIcon={{name: "dollar-sign"}}
             onChange={(e) => {
-                const formatted = formatDateString(e.target.value, value)
+                const formatted = formatDollarAmountString(e.target.value)
                 onChange(formatted)
             }}
-            placeholder={placeholder}
+            placeholder="0.00"
             trailingIcon={trailingIcon}
-            valid={validCheck}
+            valid={valid}
             value={value}
             className={className}
         />
     )
 }
 
-TextEntryDate.propTypes = {
+TextEntryDollar.propTypes = {
     disabled: PropTypes.bool,
     label: PropTypes.string.isRequired,
-    leadingIcon: PropTypes.shape({
-        name: PropTypes.string,
-        brand: PropTypes.bool
-    }),
-    placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     trailingIcon: PropTypes.shape({
         name: PropTypes.string,
@@ -62,10 +52,10 @@ TextEntryDate.propTypes = {
     className: PropTypes.string
 }
 
-TextEntryDate.defaultProps = {
+TextEntryDollar.defaultProps = {
     valid: () => {
         return true
     }
 }
 
-export default TextEntryDate
+export default TextEntryDollar
