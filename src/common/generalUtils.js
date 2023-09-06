@@ -89,34 +89,6 @@ const downloadCSV = (items, fileName) => {
 
 export { downloadCSV };
 
-const parseAddress = (incoming) => {
-  incoming.map((item) => {
-    if (item.address) {
-      const parsed = JSON.parse(item.address.replace(/\\/, ""));
-      const address = parsed.personal_address;
-      item.line1 = address.line1;
-      item.line2 = address.line2;
-      item.city = address.city;
-      item.region = address.region;
-      item.postal_code = address.postal_code;
-      item.country = address.country;
-      delete item.address;
-    } else {
-      item.line1 = "";
-      item.line2 = "";
-      item.city = "";
-      item.region = "";
-      item.postal_code = "";
-      item.country = "";
-      delete item.address;
-    }
-    return item;
-  });
-  return incoming;
-};
-
-export { parseAddress };
-
 export const formatDollarAmountString = (value) => {
   const newValue = value.replace(/[^0-9]/g, '');
   let amount = parseFloat(newValue) ?? 0;
