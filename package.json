@@ -124,6 +124,6 @@
         "example": "example"
     },
     "dependencies": {
-        "eslint-plugin-security": "^1.4.0"
+        "eslint-plugin-security": "^1.7.1"
     }
 }
